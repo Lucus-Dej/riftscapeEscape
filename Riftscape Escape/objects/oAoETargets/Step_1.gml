@@ -1,0 +1,2 @@
+inCircle = false;
+inBombGrass = false;

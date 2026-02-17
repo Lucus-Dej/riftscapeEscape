@@ -1,0 +1,29 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 110);
+shoot_delay = 100;
+enemey_hp = 170;
+
+enemSpeed = 0.85;
+base_enemSpeed = enemSpeed;
+xp = 20;
+damage = 22;
+enragedRan = 0;
+attack = 0;
+summonNum = 2;
+summonCurrnet = 6;
+range = 64;
+shotAngle = 0;
+shotTimer = 2;
+shotTotal = 30;
+spinSpeed = 4;
+enrage_point = enemey_hp*(2/3);
+enrage_point2 = enemey_hp*(1/3)
+enraged2 = false;
+enraged = false;
+bullet_speed = 2;
+attackTimer = 450;
+shotsFired = 0;
+rounds = 4;
+roundDiraction = 55;
+fireDelay = 12;
+spawnEnemy = oBadGuy3

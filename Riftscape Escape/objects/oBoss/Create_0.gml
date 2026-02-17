@@ -1,0 +1,16 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 25);
+enemSpeed = 0.6;
+base_speed = enemSpeed;
+bullet_speed = 8;
+shoot_delay = 40;
+recoil_cooldown = 10;
+fire_duration = 9;
+fire_timer = fire_duration;
+recoil_timer = 0;
+enemey_hp = 30;
+enrage_point = enemey_hp/2;
+enraged = false;
+xp = 10;
+damage = 3;
+searchPlayer();

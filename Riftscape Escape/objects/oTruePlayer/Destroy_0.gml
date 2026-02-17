@@ -1,0 +1,1 @@
+global.playerSpawned = false;

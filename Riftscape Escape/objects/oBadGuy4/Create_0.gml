@@ -1,0 +1,10 @@
+event_inherited();
+enemey_hp = 0.85;
+bite_cooldown = 75;
+on_cooldown = false;
+bite_timer = bite_cooldown;
+path_cooldown = 5;
+enemSpeed = 3.85;
+base_enemSpeed = enemSpeed;
+xp = 2.45;
+damage = 6;

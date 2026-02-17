@@ -1,0 +1,35 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 110);
+arcFire = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
+shoot_delay = 200;
+enemey_hp = 60;
+arcAngle = 45;
+currentArc = arcAngle;
+enemSpeed = 0.25;
+base_speed = enemSpeed;
+xp = 20;
+damage = 4;
+attack = 0;
+summonNum = 2;
+summonCurrnet = 0;
+range = 64;
+shotAngle = 0;
+shotTimer = 2;
+shotTotal = 30;
+spinSpeed = 4;
+enrage_point = enemey_hp*(2/3);
+spiralArc = 0;
+enraged2 = false;
+enraged = false;
+bullet_speed = 2;
+attackTimer = 450;
+shotsFired = 0;
+rounds = 4;
+roundDiraction = 55;
+fireDelay = 12;
+spawnEnemy = oWastelandBurner
+with followLight {
+	light[|eLight.Color] = $FF05177F;
+	light[|eLight.Range] = 512;
+	light[|eLight.Intensity] = 4;
+}

@@ -1,0 +1,10 @@
+minionSpeed = 25;
+follow = oTruePlayer;
+bulletCoolDown = oPlayerManager.uiHealth;
+bulletDelay = bulletCoolDown;
+xTo = x;
+yto = y
+target = noone;
+fire = false;
+fateBullet = 0;
+damage = 0.4;

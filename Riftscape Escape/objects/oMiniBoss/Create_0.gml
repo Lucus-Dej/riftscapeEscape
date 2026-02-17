@@ -1,0 +1,15 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 25);
+shoot_delay = 60;
+angle = 0;
+recoil_cooldown = 8;
+fire_duration = 6;
+fire_timer = fire_duration;
+recoil_timer = 0;
+enemey_hp = 20;
+enemSpeed = 1;
+base_enemSpeed = enemSpeed;
+xp = 7.5;
+damage = 4;
+bullet_speed = 6;
+angleAdd = 0;

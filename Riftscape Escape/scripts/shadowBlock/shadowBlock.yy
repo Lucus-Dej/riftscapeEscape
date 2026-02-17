@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"shadowBlock",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"shadowBlock",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

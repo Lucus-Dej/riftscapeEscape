@@ -1,0 +1,1 @@
+other.inEssenceHuskCircle = true;

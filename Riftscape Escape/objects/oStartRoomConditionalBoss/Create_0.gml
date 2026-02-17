@@ -1,0 +1,1 @@
+enemey_hp = 1;

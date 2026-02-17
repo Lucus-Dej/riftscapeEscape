@@ -1,0 +1,10 @@
+existance = 650+ (global.playerEssence*50)
+minionSpeed = 65;
+follow = oTruePlayer;
+bulletCoolDown = global.bullet_cooldown;
+bulletDelay = bulletCoolDown;
+xTo = x;
+yto = y
+target = noone;
+fire = false;
+fateBullet = -1;

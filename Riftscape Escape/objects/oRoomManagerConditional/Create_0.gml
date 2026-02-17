@@ -1,0 +1,14 @@
+ready = false;
+spawned = false;
+spawn_timer = spawn_cooldown;
+portal_cooldown = 35;
+portal_timer = portal_cooldown;
+enemies = enem1count + enem2count + enem3count;
+portal_count = enemies;
+enemyPull = 0;
+tempEnemy = noone;
+hasBoss = false;
+enemySelect = oBadGuy;
+spawn = false;
+bossPull = noone;
+temp_portal = noone;
