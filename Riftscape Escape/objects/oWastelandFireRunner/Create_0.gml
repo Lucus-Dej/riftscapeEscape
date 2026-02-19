@@ -28,8 +28,3 @@ rounds = 4;
 roundDiraction = 55;
 fireDelay = 12;
 spawnEnemy = oWastelandBurner
-with followLight {
-	light[|eLight.Color] = $FF05177F;
-	light[|eLight.Range] = 512;
-	light[|eLight.Intensity] = 4;
-}

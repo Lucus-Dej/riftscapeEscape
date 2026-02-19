@@ -21,7 +21,7 @@ if (dragTimer > 0) {
         path_timer = 0;
     }
 }
-if (state = ENEM_STATE.CHASE) {
+if (state == ENEM_STATE.CHASE) {
 	chargeCooldown--;
 	if (chargeCooldown <= 0 && instance_exists(oTruePlayer)) {
 		chargeTargetX = oTruePlayer.x;
@@ -35,15 +35,16 @@ if (state = ENEM_STATE.CHASE) {
 	}
 }
 
-if (state = ENEM_STATE.WINDUP) {
+if (state == ENEM_STATE.WINDUP) {
 	attackDelay--;
 	if (attackDelay <= 0) {
-		state = ENEM_STATE.CHARGE;
 		chargeTime = 12;
+		state = ENEM_STATE.CHARGE;
+		
 		enemSpeed = 12;
 	}
 }
-if (state = ENEM_STATE.CHARGE) {
+if (state == ENEM_STATE.CHARGE) {
 	hsp = lengthdir_x(enemSpeed, chargeDir);
 	vsp = lengthdir_y(enemSpeed, chargeDir);
 	if (!place_meeting(x + hsp, y, oWalls)) {
@@ -64,7 +65,7 @@ if (state = ENEM_STATE.CHARGE) {
 	}
 }
 
-if (state = ENEM_STATE.RECOVER) {
+if (state == ENEM_STATE.RECOVER) {
 	chargeCooldown = chargeDelay;
 	enemSpeed = 0.3;
 	path_timer = path_cooldown;
@@ -72,7 +73,7 @@ if (state = ENEM_STATE.RECOVER) {
 }
 
 
-if (path_timer <= 0 && !charging) {
+if (path_timer <= 0 && state == ENEM_STATE.CHASE) {
 	path_timer = path_cooldown;
     pathfind(global.Grid, oTruePlayer, enemSpeed);
 }

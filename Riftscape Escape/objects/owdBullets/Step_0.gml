@@ -27,8 +27,8 @@ if (type == 1) {
 	
 }
 if (existance <= 360 && type == 2) {
-	orbitRadius += 8;
+	orbitRadius += 6;
 }
 if (existance <= 260 && type == 2) {
-	orbitRadius -= 12;
+	orbitRadius -= 10;
 }

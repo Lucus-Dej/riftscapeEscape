@@ -1,5 +1,5 @@
 path = -1;
-
+isLightExcluded = false;
 path_cooldown = 15;
 path_timer = path_cooldown;
 hasDamaged = false;
@@ -10,5 +10,3 @@ dragDir = 0;
 targetResetTime = 60;
 flash = 0;
 canSeePlayer = false;
-followLight = instance_create_layer(x, y, "Instances", oEnemFollowLight);
-followLight.owner = id;

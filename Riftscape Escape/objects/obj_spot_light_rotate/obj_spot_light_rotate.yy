@@ -7,11 +7,7 @@
   ],
   "managed":true,
   "name":"obj_spot_light_rotate",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Type","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Spot Light\"",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Color","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"$E9FFD400",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Angle","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"45",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Demo",
     "path":"folders/objects/Demo.yy",
@@ -50,10 +46,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_light_spot",
-    "path":"sprites/spr_light_spot/spr_light_spot.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":false,
 }

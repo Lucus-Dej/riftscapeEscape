@@ -6,9 +6,7 @@
   ],
   "managed":true,
   "name":"oDesertTorch",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Color","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"$FF05177F",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"DESERT",
     "path":"folders/roomstuff/wallstuff/DESERT.yy",

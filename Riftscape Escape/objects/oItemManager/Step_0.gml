@@ -76,15 +76,19 @@ if (hasGunpowder) {
 }
 // tesseract stuff
 if (hasTesseract) {
-	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/10)
+	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/20)
 	if (oTruePlayer.currentSpeed > 1) {
 		if (oPlayerManager.tesseractSpeedBonus <= 1.5) {
 			oPlayerManager.tesseractSpeedBonus += 0.002;
 			oPlayerManager.tesseractSpeed += 0.0085;
 		}
 	} else {
-		oPlayerManager.tesseractSpeedBonus = 0;
-		oPlayerManager.tesseractSpeed = 0;
+		if (oPlayerManager.tesseractSpeedBonus > 0) {
+			oPlayerManager.tesseractSpeedBonus /= 2;
+		}
+		if (oPlayerManager.tesseractSpeed > 0) {
+			oPlayerManager.tesseractSpeed  /= 2;
+		}
 	}
 }
 // Tethered Soul stuff

@@ -7,7 +7,7 @@ if ((enemey_hp <= enragePoint1) && phase < 1) {
 	wallTotal += 2;
 	ringCount += 2;
 	nadoIntensity -= 3;
-	shoot_delay -= 80;
+	shoot_delay -= 60;
 	bullet_count += 2;
 	spawnTimer -= -150;
 	with oEnemStart {
@@ -15,11 +15,6 @@ if ((enemey_hp <= enragePoint1) && phase < 1) {
 			instance_create_layer(x, y, "Instances", oWastelandBurner);
 		}
 	}
-	with followLight {
-	light[|eLight.Color] = $FF05177F;
-	light[|eLight.Range] += 512;
-	light[|eLight.Intensity] = 3;
-}
 }
 if ((enemey_hp <= enragePoint2) && phase < 2) {
 	phase++;
@@ -28,8 +23,8 @@ if ((enemey_hp <= enragePoint2) && phase < 2) {
 	wallTotal += 6;
 	ringCount += 2;
 	nadoIntensity -= 3;
-	spawnTimer -= -250;
-	shoot_delay -= 240;
+	spawnTimer -= -280;
+	shoot_delay -= 140;
 	bullet_count += 2;
 	lineCount += 2;
 	lineRotateSpeed += 1;
@@ -41,11 +36,6 @@ if ((enemey_hp <= enragePoint2) && phase < 2) {
 			e.enrage_point /= 8;
 		}
 	}
-	with followLight {
-	light[|eLight.Color] = $FF05177F;
-	light[|eLight.Range] += 512;
-	light[|eLight.Intensity] = 5;
-}
 }
 if (attack == 0) {
 	shoot_cooldown = shoot_delay;
@@ -129,6 +119,8 @@ if (irandom(350) == 0) {
 	var ranOffest = irandom_range(-128, 128)
     var enem = instance_create_layer(x+ranOffest, y+ranOffest, "Instances", oWastelandBurner);
 	enem.xp = 0;
+	enem.enemey_hp = 1;
+	enem.damage /= 2;
 }
 
 if (phase >= 1) {
@@ -136,10 +128,14 @@ if (phase >= 1) {
 if (lineTimer >= lineInterval) {
     lineTimer = 0;
     for (var l = 0; l < lineCount; l++) {
-        var ang = lineAngle + (l * (360 / lineCount));
-        spawnFireLine(ang);
+		if (l == 1) {
+			spawnFireLine(lineAngleCW);
+		} else if (l == 2) {
+			spawnFireLine(lineAngleCCW + 90);
+		}
     }
-    lineAngle += lineRotateSpeed;
+	lineAngleCW += lineRotateSpeed;
+	lineAngleCCW -= lineRotateSpeed;
 }
 }
 

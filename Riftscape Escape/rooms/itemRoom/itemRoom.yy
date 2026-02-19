@@ -204,7 +204,6 @@
     {"name":"inst_5CB5387B","path":"rooms/itemRoom/itemRoom.yy",},
     {"name":"inst_57E2AA34","path":"rooms/itemRoom/itemRoom.yy",},
     {"name":"inst_7C7B994B","path":"rooms/itemRoom/itemRoom.yy",},
-    {"name":"inst_32140D4A","path":"rooms/itemRoom/itemRoom.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -441,7 +440,6 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oTeleSpawner","path":"objects/oTeleSpawner/oTeleSpawner.yy",},"propertyId":{"name":"fromFloor","path":"objects/oTeleSpawner/oTeleSpawner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1952.0,"y":1056.0,},
         {"$GMRInstance":"v4","%Name":"inst_7C7B994B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7C7B994B","objectId":{"name":"oTetheredSoulPickup","path":"objects/oTetheredSoulPickup/oTetheredSoulPickup.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2176.0,"y":448.0,},
-        {"$GMRInstance":"v4","%Name":"inst_32140D4A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_32140D4A","objectId":{"name":"obj_light_renderer","path":"objects/obj_light_renderer/obj_light_renderer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":64.0,"y":96.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Lights","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_7D88B40C1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7D88B40C1","objectId":{"name":"oDesertTorch","path":"objects/oDesertTorch/oDesertTorch.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2272.0,"y":768.0,},

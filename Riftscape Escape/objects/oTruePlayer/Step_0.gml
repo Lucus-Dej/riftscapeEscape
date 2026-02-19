@@ -51,12 +51,4 @@ if (instance_exists(visual)) {
 	var ang = point_direction(x, y, mouse_x, mouse_y);
 	visual.image_angle = ang;
 }
-if (instance_exists(light)) {
-	with light {
-		other.light.x = oTruePlayer.x;
-		other.light.y = oTruePlayer.y;
-		light[| eLight.X] = oTruePlayer.x;
-		light[| eLight.Y] = oTruePlayer.y;
-	}
-}
 	

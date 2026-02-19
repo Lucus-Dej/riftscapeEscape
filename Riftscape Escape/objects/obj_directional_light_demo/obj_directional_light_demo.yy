@@ -7,9 +7,7 @@
   ],
   "managed":true,
   "name":"obj_directional_light_demo",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Type","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Directional Light\"",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Demo",
     "path":"folders/objects/Demo.yy",
@@ -35,10 +33,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_light_directional",
-    "path":"sprites/spr_light_directional/spr_light_directional.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":false,
 }

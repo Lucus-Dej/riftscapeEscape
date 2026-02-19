@@ -6,7 +6,7 @@ for (var i = 0; i < bullet_count; i++) {
     var angle = i * (360 / bullet_count);
     var bx = x + lengthdir_x(radius, angle);
     var by = y + lengthdir_y(radius, angle);
-	var b = bulletFire(bx, by, 4, 0, damage*2, owdBullets, id)
+	var b = bulletFire(bx, by, 4, 0, damage, owdBullets, id)
 	b.type = 2;
     b.image_xscale = 4;
 	b.image_yscale = 4;
@@ -55,14 +55,13 @@ function wdFirewall() {
 		var px = x + lengthdir_x(offset, dir + 90);
 		var py = y + lengthdir_y(offset, dir + 90);
 		
-		var f = bulletFire(px, py, dir, 8, damage/2, oFireBullet, id);
+		var f = bulletFire(px, py, dir, 8, damage/2, owdBullets, id);
 		f.accel = false;
 		f.image_xscale = 2;
 		f.image_yscale = 2;
 	}
 }
-function wdFirenado(_count)
-{
+function wdFirenado(_count) {
     nadoActive = true;
 
     nadoCount = _count;
@@ -74,7 +73,13 @@ function wdFirenado(_count)
 
     nadoRingSpeed = 1;
 }
+
 function spawnFireLine(_angle) {
+    spawnFireHalf(_angle);        // forward
+    spawnFireHalf(_angle + 180);  // backward
+}
+
+function spawnFireHalf(_angle,) {
     var maxDist = lineLength;
 
     var hit = collision_line( x, y, x + lengthdir_x(maxDist, _angle), y + lengthdir_y(maxDist, _angle), oSuperwalls, false, true);
@@ -91,7 +96,7 @@ function spawnFireLine(_angle) {
         var px = x + lengthdir_x(dist, _angle);
         var py = y + lengthdir_y(dist, _angle);
 
-        var b = bulletFire(px, py, 0, 0, damage/3, oFireBullet, id);
+        var b = bulletFire(px, py, 0, 0, damage/5, owdBullets, id);
 
         b.accel = false;
         b.infExist = false;

@@ -6,7 +6,4 @@ bite_timer = bite_cooldown;
 enemSpeed = 5;
 base_enemSpeed = enemSpeed;
 xp = 0;
-damage = 15;
-with followLight {
-	light[|eLight.Color] = $FF05177F;
-}
+damage = 8;

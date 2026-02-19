@@ -6,14 +6,15 @@ enemey_hp = 500;
 enragePoint1 = enemey_hp*(2/3);
 enragePoint2 = enemey_hp*(1/3);
 phase = 0;
+linePhase = 0;
 xp = 35;
 damage = 15;
 attack = 0;
 enemSpeed = 0.35;
 base_enemSpeed = enemSpeed;
-shoot_cooldown = 100;
-shoot_delay = 420;
-bullet_count = 8;
+shoot_cooldown = 120;
+shoot_delay = 460;
+bullet_count = 6;
 nadoActive = false;
 segments = 6;
 spacing = 112;
@@ -38,9 +39,6 @@ lineRotateSpeed = 0.5;
 
 lineTimer = 0;
 lineInterval = 6;
+lineAngleCW = 0;
+lineAngleCCW = 0;
 
-with followLight {
-	light[|eLight.Color] = $FF05177F;
-	light[|eLight.Range] = 1024;
-	light[|eLight.Intensity] = 2;
-}

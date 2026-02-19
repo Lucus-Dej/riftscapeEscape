@@ -4,10 +4,7 @@
   "eventList":[],
   "managed":true,
   "name":"obj_area_light_demo",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Type","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Area Light\"",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_light","path":"objects/obj_light/obj_light.yy",},"propertyId":{"name":"Light_Color","path":"objects/obj_light/obj_light.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"$FF02FFAA",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Demo",
     "path":"folders/objects/Demo.yy",
@@ -33,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_light_area",
-    "path":"sprites/spr_light_area/spr_light_area.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":false,
 }
