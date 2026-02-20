@@ -37,3 +37,4 @@ itemSpawner = noone;
 reBuildGrid = false;
 teleSpawn = noone;
 global.activeRoom = false;
+
