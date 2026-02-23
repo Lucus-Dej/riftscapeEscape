@@ -6,8 +6,8 @@
   "name":"oEvilWalls",
   "overriddenProperties":[],
   "parent":{
-    "name":"roomstuff",
-    "path":"folders/roomstuff.yy",
+    "name":"random",
+    "path":"folders/roomstuff/random.yy",
   },
   "parentObjectId":{
     "name":"oWalls",

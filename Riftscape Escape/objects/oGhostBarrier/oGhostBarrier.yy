@@ -11,8 +11,8 @@
   "name":"oGhostBarrier",
   "overriddenProperties":[],
   "parent":{
-    "name":"wallstuff",
-    "path":"folders/roomstuff/wallstuff.yy",
+    "name":"doorstuff",
+    "path":"folders/roomstuff/doorstuff.yy",
   },
   "parentObjectId":null,
   "persistent":false,

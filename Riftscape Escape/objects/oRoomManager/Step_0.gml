@@ -93,6 +93,7 @@ if (global.grid_cool == false && global.activeRoom) {
 }
 // destroys any evil walls if they are in the room
 if (destroyWalls) {
+	event_user(1)
 	for (var i = 0; i < ds_list_size(evilWallList); i++) {
     var w = evilWallList[| i];
 	if (instance_exists(w)) {

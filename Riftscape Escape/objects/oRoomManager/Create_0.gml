@@ -1,3 +1,4 @@
+width = 0;
 ready = false;
 spawned = false;
 spawn_timer = spawn_cooldown;
@@ -38,3 +39,30 @@ reBuildGrid = false;
 teleSpawn = noone;
 global.activeRoom = false;
 
+
+with (oRoomClaimX) {
+	if (RoomID == other.RoomID) {
+		other.workerX = id;
+	}
+}
+with (oRoomClaimY) {
+	if (RoomID == other.RoomID) {
+		other.workerY = id;
+	}
+}
+if (!instance_exists(oRoomBuilder)) {
+	builder = instance_create_layer(x, y, "Instances", oRoomBuilder);
+	show_debug_message("I HAVE MADE THE BUILDER")
+	builder.owner = id;
+}
+
+if (instance_exists(oRoomBuilder)) {
+	with (oRoomBuilder) {
+		if (RoomID == other.RoomID) {
+			owner = id;
+		}
+	}
+}
+
+// checks for x and y markers (needed for evil walls)
+event_user(1);

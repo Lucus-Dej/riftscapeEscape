@@ -1,9 +1,9 @@
 //checks room for doors
 
-with (oGhostBarrier) {
+/*with (oGhostBarrier) {
 	if (checked) {
 		continue;
-	} else if (dir == "up") {
+	} else if ( == "up") {
 		canUp = true;
 		
 	} else if (dir == "left") {

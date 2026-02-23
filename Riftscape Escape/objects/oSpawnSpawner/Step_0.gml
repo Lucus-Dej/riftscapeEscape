@@ -7,10 +7,13 @@ if (con && !used) {
 		}
 	}
 }
-if (childSpawned == true && !used) {
+if (childSpawned == true && !used && Manager != noone) {
 	if (!instance_exists(child_spawner)) {
 		Manager.destroyWalls = true;
 		Manager.roomStart = true;
 		used = true;
 	}
+}
+if (Manager == noone) {
+	Manager = findManager()
 }

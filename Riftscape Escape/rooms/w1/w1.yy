@@ -9937,7 +9937,7 @@
   "name":"w1",
   "parent":{
     "name":"3Wasteland",
-    "path":"folders/rooms/3Wasteland.yy",
+    "path":"folders/ROOMS/3Wasteland.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

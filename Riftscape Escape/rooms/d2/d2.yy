@@ -2826,7 +2826,7 @@
   "name":"d2",
   "parent":{
     "name":"2DesertTemple",
-    "path":"folders/rooms/2DesertTemple.yy",
+    "path":"folders/ROOMS/2DesertTemple.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -1690,7 +1690,7 @@
   "name":"hordeSurvival",
   "parent":{
     "name":"0intro",
-    "path":"folders/rooms/0intro.yy",
+    "path":"folders/ROOMS/0intro.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

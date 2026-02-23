@@ -1817,7 +1817,7 @@
   "name":"f3",
   "parent":{
     "name":"1RiftCaves",
-    "path":"folders/rooms/1RiftCaves.yy",
+    "path":"folders/ROOMS/1RiftCaves.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

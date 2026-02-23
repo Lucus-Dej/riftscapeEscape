@@ -24,7 +24,7 @@
   "name":"theEnd",
   "parent":{
     "name":"ending",
-    "path":"folders/rooms/ending.yy",
+    "path":"folders/ROOMS/ending.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

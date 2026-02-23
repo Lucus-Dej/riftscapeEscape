@@ -1,3 +1,4 @@
+if (follow != oTruePlayer) {
 camX = x;
 camY = y;
 maxPeek = 128+(global.playerReality*16);
@@ -51,3 +52,4 @@ camera_set_view_pos(
     camX - camW * 0.5,
     camY - camH * 0.5
 );
+}
