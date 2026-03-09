@@ -10,6 +10,7 @@ tookDamage = false;
 lastKilled = noone;
 lastKilledX = 0;
 lastKilledY = 0;
+global.bossBarCount = 0;
 
 //sword stuff
 sword_charge = 0;
@@ -98,6 +99,7 @@ hasMinionReality = false;
 hasMinionThought = false;
 hasMinionEssence = false;
 hasMinionFate = false;
+essenceMinionCount = 0;
 
 // fate circle stuff
 initCircle = false;
@@ -118,7 +120,7 @@ initHusk = false;
 huskCharge = 0;
 huskTotal = 0;
 huskCooldown = 100;
-huskKey = "V";
+huskKey = "T";
 hasFateHusk = false;
 hasEssenceHusk = false;
 hasLifeHusk = false;
@@ -144,7 +146,7 @@ overhealthFlag = true;
 //xp
 xpTotal = 0;
 xpLevel = 1;
-xpProgress = 45.0;
+xpProgress = 85.0;
 xpUI = 100;
 overXP = 0;
 canLevel = false;
@@ -157,8 +159,8 @@ inLevelMenu = false;
 levelMenuLayer = "levelingMenu";
 inTokenMenu = false;
 tokenMenuLayer = "tokenMenu";
-
-
+checkTokenMenu = layer_get_visible(tokenMenuLayer);
+checkLevelLayer = layer_get_visible(levelMenuLayer);
 hasFateToken = false;
 hasLifeToken = false;
 hasRealityToken = false;
@@ -172,6 +174,23 @@ realityTokenSpent = false;
 thoughtTokenSpent = false;
 timeTokenSpent = false;
 essenceTokenSpent = false;
+
+startX = 22;
+startY = 48;
+yIncrement = 10;
+spacing = 28;
+
+abilityActive = [initate_sword, initDodge, initCrystal, initCircle, initHusk];
+
+abiltyCharge = [sword_charge, dodgeCharge, crystalCharge, circleCharge, huskCharge];
+
+abilityKey = [swordAttKey, dodgeKey, crystalKey, circleKey, huskKey];
+
+spriteCharging = [10, 4, 8, 0, 6];
+spriteReady = [11, 5, 9, 1, 7];
+
+abilityColor = [c_blue, c_orange, c_aqua, c_aqua, c_purple
+];
 
 
 
@@ -227,7 +246,7 @@ sculptureBonus = 1;
 tesseractSpeed = 0;
 
 uiX = 16;
-uiY = 96;
+uiY = 192;
 uiLine = 0;
 resW = 1366;
 resH = 768;

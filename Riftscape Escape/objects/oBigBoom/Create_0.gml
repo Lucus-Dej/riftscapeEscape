@@ -1,6 +1,6 @@
 image_speed = .2;
 purpose = 0;
-damage = global.playerDamage*.75;
+damage = global.playerDamage*.25;
 boomDamageList = ds_map_create();
 z = 0;
 	audio_listener_position(x, y, z);

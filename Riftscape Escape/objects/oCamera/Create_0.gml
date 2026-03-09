@@ -5,3 +5,4 @@ maxPeek = 192;
 
 peekSpeed = 0.15;
 camFollowSpeed = 0.10;
+peakFlag = false;

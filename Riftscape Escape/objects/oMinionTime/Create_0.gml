@@ -1,6 +1,7 @@
+event_inherited()
 minionSpeed = 65;
 follow = oTruePlayer;
-bulletCoolDown = global.bullet_cooldown;
+bulletCoolDown = global.bullet_delay;
 bulletDelay = bulletCoolDown;
 xTo = x;
 yto = y

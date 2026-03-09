@@ -1,9 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"oLightWalls",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"oLightWalls",
   "overriddenProperties":[],
@@ -12,8 +10,8 @@
     "path":"folders/objects/parents.yy",
   },
   "parentObjectId":{
-    "name":"oSuperwalls",
-    "path":"objects/oSuperwalls/oSuperwalls.yy",
+    "name":"oWalls",
+    "path":"objects/oWalls/oWalls.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

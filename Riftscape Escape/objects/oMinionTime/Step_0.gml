@@ -12,24 +12,13 @@ x += (xTo - x)/(minionSpeed);
 y += (yTo - y)/(minionSpeed);
 
 if (fire && !oPlayerManager.hasMinionThought) {
+	var dir =  point_direction(x, y, mouse_x, mouse_y);
+	bulletFire(x, y, dir, 4.5, global.playerDamage/4, oMinonBullet, id);
 	if (oPlayerManager.hasMinionFate) {
-		fateBullet = irandom_range(1, 10)
-	if (fateBullet == 10) {
-		bullet = instance_create_layer(x, y, "Instances", oMinionFateBullet);
-		bullet.direction = point_direction(x, y, mouse_x, mouse_y);
-		bullet.speed = 3;
-		bullet.damage = 1.5*global.playerDamage;
-	} else {
-		bullet = instance_create_layer(x, y, "Instances", oMinonBullet);
-		bullet.direction = point_direction(x, y, mouse_x, mouse_y);
-		bullet.speed = 4.5;
-		bullet.damage = global.playerDamage/4;
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(x, y, dir+35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
+			bulletFire(x, y, dir-35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
 		}
-	} else {
-		 bullet = instance_create_layer(x, y, "Instances", oMinonBullet);
-		bullet.direction = point_direction(x, y, mouse_x, mouse_y);
-		bullet.speed = 4.5;
-		bullet.damage = global.playerDamage/4;
 	}
 	fire = false;
 } else if (oPlayerManager.hasMinionThought) {
@@ -39,22 +28,15 @@ if (fire && !oPlayerManager.hasMinionThought) {
 			bulletDelay --;
 		}
 		if (bulletDelay <= 0) {
+			bulletFireAt(x, y, target, 4.5, global.playerDamage/4, oMinonBullet, id);
 			if (oPlayerManager.hasMinionFate) {
-				fateBullet = irandom_range(1, 10)
+				var dir = point_direction(x, y, target.x, target.y);
+				if (oItemManager.hasMetalOrb) {
+					bulletFire(x, y, dir+35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
+					bulletFire(x, y, dir-35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
+				}
 			}
-			if (fateBullet == 10) {
-				bullet = instance_create_layer(x, y, "Instances", oMinionFateBullet);
-				bullet.direction = point_direction(x, y,target.x, target.y);
-				bullet.speed = 4;
-				bulletDelay = global.bullet_delay/1+(global.playerLife/10)+(global.playerTime/10);
-				bullet.damage = bullet.damage*1.5;
-			} else {
-			 bullet = instance_create_layer(x, y, "Instances", oMinonBullet);
-			 bullet.direction = point_direction(x, y,target.x, target.y);
-			 bullet.speed = 4.5;
-			 bulletDelay = global.bullet_delay/1+(global.playerLife/10)+(global.playerTime/10);
-			 bullet.damage = global.playerDamage/4;
-			}
+			bulletDelay = bulletCoolDown;
 		}
 	} else {
 		target = noone;

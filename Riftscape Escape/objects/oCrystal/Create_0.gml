@@ -1,3 +1,4 @@
+event_inherited()
 if (oPlayerManager.hasCrystalReality) {
 	chainDistance = 100; 
 	goUp = true;

@@ -10,3 +10,4 @@ dragDir = 0;
 targetResetTime = 60;
 flash = 0;
 canSeePlayer = false;
+brainDead = false;

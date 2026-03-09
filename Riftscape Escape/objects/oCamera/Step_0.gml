@@ -1,7 +1,10 @@
 if (follow != oTruePlayer) {
 camX = x;
 camY = y;
-maxPeek = 128+(global.playerReality*16);
+var cam = view_camera[0];
+var halfView = camera_get_view_width(cam) / 2;
+
+maxPeek = min(128 + (global.playerReality * 16), halfView - 64);
 var desiredPeekX = 0;
 var desiredPeekY = 0;
 
@@ -20,9 +23,11 @@ var passive = 32;
 desiredPeekX = lengthdir_x(min(dist, passive), dir);
 desiredPeekY = lengthdir_y(min(dist, passive), dir);
 
+if (keyboard_check_pressed(vk_shift)) {
+	peakFlag = !peakFlag;
+}
 
-
-if (keyboard_check(vk_shift) && follow != noone) {
+if (peakFlag && follow != noone) {
     var peekDistance = min(dist, maxPeek);
 
     desiredPeekX = lengthdir_x(peekDistance, dir);

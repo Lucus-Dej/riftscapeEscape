@@ -1,26 +1,43 @@
+existance--;
+if (existance <= 0) {
+	instance_destroy()
+}
 portalDelay--;
 oPlayerManager.huskTotal = 0;
 if (portalDelay <= 0) {
 	ready = true;
 	if (oPlayerManager.huskPressed) {
-		flagDestroy = true;
+		tpSpotX = oTruePlayer.x; 
+		tpSpotY = oTruePlayer.y;
+		if (!oPlayerManager.hasTimeHusk) {
+			flagDestroy = true;
+		}
 		oTruePlayer.x = x;
 		oTruePlayer.y = y;
-		portalDelay = 999;
+		if (oPlayerManager.hasTimeHusk) {
+			portalDelay = 30;
+			x = tpSpotX;
+			y = tpSpotY;
+		}
+		if (oPlayerManager.hasRealityHusk) {
+			oPlayerManager.realityHuskSpeedBonus += 8;
+		}
 	}
 }
+
 if (oPlayerManager.hasFateHusk && instance_exists(oEnemy)) {
-	target = oEnemy;
-	image_angle = point_direction(x, y, target.x, target.y);
+	target = instance_nearest(x, y, oEnemy);
+	var dir = point_direction(x, y, target.x, target.y);
+	image_angle = dir;
 	if (bulletDelay > 0)  {
 			bulletDelay --;
 		}
 	if (bulletDelay <= 0) {
 		bulletDelay = global.bullet_delay/1+(global.playerThought/10);
-		bullet = instance_create_layer(x, y, "Instances", oHuskBullet);
-		bullet.speed = 4;
-		bullet.damage = (global.playerDamage/2)+(global.playerThought/10);
-		bullet.direction = point_direction(x, y, target.x, target.y);
-
+		var bullet = bulletFireAt(x, y, target, 4, global.playerDamage/4, oHuskBullet, id);
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(x, y, dir+35, 4, global.playerDamage/10, oHuskBullet, id);
+			bulletFire(x, y, dir-35, 4, global.playerDamage/10, oHuskBullet, id);
+		}
 	}
 }

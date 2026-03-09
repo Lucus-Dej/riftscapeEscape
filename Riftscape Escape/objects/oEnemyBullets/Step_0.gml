@@ -6,3 +6,6 @@ if (instance_exists(owner) &&rotate) {
 	x = orbitCenter.x + lengthdir_x(orbitRadius, orbitAngle);
 	y = orbitCenter.y + lengthdir_y(orbitRadius, orbitAngle);
 }
+if (canAccel) {
+	speed += 0.2;
+}

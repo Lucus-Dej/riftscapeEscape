@@ -6,5 +6,5 @@ if (existance <= 0) {
 	instance_destroy(self)
 }
 if (accel && speed > 0) {
-	speed -= 0.01;
+	speed -= 0.03;
 }

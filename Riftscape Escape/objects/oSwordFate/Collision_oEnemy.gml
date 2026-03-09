@@ -5,7 +5,7 @@ if (other.lastDamagedBy != id) {
 	} else {
 	other.enemey_hp -= global.playerDamage;
 	}
-	global.player_health += (global.playerDamage) + global.lifesteal;
+	global.player_health += global.lifesteal*2 + global.playerDamage+global.playerEssence/5;
 }
 
 if (other.enemey_hp <= 0) {

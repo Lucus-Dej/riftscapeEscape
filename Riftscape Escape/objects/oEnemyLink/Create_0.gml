@@ -1,0 +1,2 @@
+enemyA = noone;
+enemyB = noone;

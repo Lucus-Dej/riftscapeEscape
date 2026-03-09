@@ -9,12 +9,12 @@
   "name":"oMummy",
   "overriddenProperties":[],
   "parent":{
-    "name":"minibosses",
-    "path":"folders/enemies/minibosses.yy",
+    "name":"bosses",
+    "path":"folders/enemies/bosses.yy",
   },
   "parentObjectId":{
-    "name":"oEnemy",
-    "path":"objects/oEnemy/oEnemy.yy",
+    "name":"oBossParent",
+    "path":"objects/oBossParent/oBossParent.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

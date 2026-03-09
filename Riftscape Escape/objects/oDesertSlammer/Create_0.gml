@@ -26,7 +26,7 @@ enemey_hp = 26;
 enrage_point = enemey_hp/2;
 enraged = false;
 xp = 12.5;
-damage = 10;
+damage = 8;
 
 
 

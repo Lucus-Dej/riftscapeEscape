@@ -76,9 +76,9 @@ if (hasGunpowder) {
 }
 // tesseract stuff
 if (hasTesseract) {
-	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/20)
+	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/25)
 	if (oTruePlayer.currentSpeed > 1) {
-		if (oPlayerManager.tesseractSpeedBonus <= 1.5) {
+		if (oPlayerManager.tesseractSpeed <= global.player_speed/2) {
 			oPlayerManager.tesseractSpeedBonus += 0.002;
 			oPlayerManager.tesseractSpeed += 0.0085;
 		}

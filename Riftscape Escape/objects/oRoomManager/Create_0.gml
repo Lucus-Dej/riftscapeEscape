@@ -1,4 +1,5 @@
 width = 0;
+builder = noone;
 ready = false;
 spawned = false;
 spawn_timer = spawn_cooldown;
@@ -50,19 +51,13 @@ with (oRoomClaimY) {
 		other.workerY = id;
 	}
 }
-if (!instance_exists(oRoomBuilder)) {
+if (builder == noone) {
 	builder = instance_create_layer(x, y, "Instances", oRoomBuilder);
 	show_debug_message("I HAVE MADE THE BUILDER")
 	builder.owner = id;
+	builder.RoomID = RoomID;
 }
 
-if (instance_exists(oRoomBuilder)) {
-	with (oRoomBuilder) {
-		if (RoomID == other.RoomID) {
-			owner = id;
-		}
-	}
-}
+
 
 // checks for x and y markers (needed for evil walls)
-event_user(1);

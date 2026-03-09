@@ -68,4 +68,10 @@ switch (buttonID) {
 	game_end();
 	break;
 	
+	case 11:
+	with (oPauseManager) {
+		unpause = true;
+	}
+	break;
+	
 }

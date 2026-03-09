@@ -10,8 +10,8 @@
     "path":"folders/roomstuff/wallstuff/CAVES.yy",
   },
   "parentObjectId":{
-    "name":"oWalls",
-    "path":"objects/oWalls/oWalls.yy",
+    "name":"oLightWalls",
+    "path":"objects/oLightWalls/oLightWalls.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

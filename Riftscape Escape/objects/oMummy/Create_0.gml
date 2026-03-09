@@ -1,15 +1,15 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 110);
 shoot_delay = 100;
-enemey_hp = 170;
-
+enemey_hp = 215;
+healthTotal = enemey_hp;
 enemSpeed = 0.85;
 base_enemSpeed = enemSpeed;
-xp = 20;
+xp = 25;
 damage = 22;
 enragedRan = 0;
 attack = 0;
-summonNum = 2;
+summonNum = 4;
 summonCurrnet = 6;
 range = 64;
 shotAngle = 0;

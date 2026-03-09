@@ -4,3 +4,5 @@ pauseSurfBueffer = -1;
 pauseMenu = "deathMenu";
 resW = 1408;
 resH = 768;
+unpause = false;
+forceUnpause = false;

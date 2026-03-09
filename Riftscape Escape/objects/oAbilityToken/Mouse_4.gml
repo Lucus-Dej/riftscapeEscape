@@ -155,7 +155,7 @@ switch (abilityID) {
 		break;
 		
 		case 5:
-		oPlayerManager.hasLifeHusk = true;
+		oPlayerManager.hasTimeHusk = true;
 		oPlayerManager.timeTokenSpent = true;
 		upgradeCount++;
 		break;

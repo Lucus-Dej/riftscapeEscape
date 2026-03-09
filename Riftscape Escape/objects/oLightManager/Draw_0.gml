@@ -96,10 +96,15 @@ for (var i = 0; i < array_length(lightObjArray); i++) {
 }
 for (var i = 0; i < array_length(smallLightArray); i++) {
     var inst = smallLightArray[i];
-	if (variable_instance_exists(inst, "isLightExcluded") && inst.isLightExcluded) continue;
-    with (inst) {
-        draw_sprite_ext( sLight, 0, x - camX,  y - camY, .5, .5, 0, c_white, 0.4);
-    }
+	//if (variable_instance_exists(inst, "isLightExcluded") && inst.isLightExcluded) continue;
+	if (instance_exists(inst)) {
+		
+		with (inst) {
+			if (isLightExcluded) continue;
+			draw_sprite_ext( sLight, 0, x - camX,  y - camY, .5, .5, 0, c_white, 0.4);
+		}
+		inst = noone;
+	}
 }
 for (var i = 0; i < array_length(tinyLightArray); i++) {
     var inst = tinyLightArray[i];

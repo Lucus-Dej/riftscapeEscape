@@ -1,3 +1,4 @@
+event_inherited()
 portalDelay = 60;
 ready = false;
 flagDestroy = false;

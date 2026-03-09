@@ -1,9 +1,12 @@
+if (brainDead) {
+    exit;
+}
 path_timer--;
 
 if (!canSeePlayer) {
 	enemSpeed = base_speed*15;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = 0;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
@@ -43,5 +46,5 @@ if (dragTimer > 0) {
 }
 if (path_timer <= 0) {
     path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

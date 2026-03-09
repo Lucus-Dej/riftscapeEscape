@@ -3,16 +3,17 @@ depth = -99999999;
 lightSurface = -1;
 
 lightList = array_create(0);
-
+litEntity = noone;
+unlitEntity = noone
 
 array_push(lightList, oTruePlayer);
 array_push(lightList, oTruePlayer);
 lightSurface = surface_create(room_width, room_height)
 shadowSurface = surface_create(room_width, room_height)
 
-lightObjArray[0] = (oLightWall);
-lightObjArray[1] = (oCaveTorch);
-lightObjArray[3] = (oDesertTorch);
+lightObjArray[0] = (oLightEmmiter);
+lightObjArray[1] = (oLightWalls);
+
 
 smallLightArray[0] = (oTruePlayer);
 smallLightArray[1] = (oPlayerAbilities);

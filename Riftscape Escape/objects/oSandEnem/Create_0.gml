@@ -8,7 +8,7 @@ enemSpeed = 0.2;
 bullet_speed = 16.5;
 base_speed = enemSpeed;
 xp = 7.5;
-damage = 16;
+damage = 16.5;
 searchPlayer();
 chargeCooldown = 18;
 chargeTime = chargeCooldown;

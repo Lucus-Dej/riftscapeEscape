@@ -1,4 +1,5 @@
-if (keyboard_check_pressed(vk_escape)) {
+if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
+	unpause = false;
     pause = !pause;
 
     if (pause) {
@@ -14,7 +15,7 @@ if (keyboard_check_pressed(vk_escape)) {
 	} else {
         instance_activate_all();
 
-        layer_set_visible(pauseMenu, false);
+        layer_set_visible(oPauseManager.pauseMenu, false);
 
         if (surface_exists(pauseSurf))
             surface_free(pauseSurf);

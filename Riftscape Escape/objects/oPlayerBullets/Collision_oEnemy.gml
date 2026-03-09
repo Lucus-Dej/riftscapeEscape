@@ -16,7 +16,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
             hit.enemey_hp -= damage;
         }
 		if (canLifesteal) {
-			global.player_health += global.lifesteal;
+			global.player_health += global.lifesteal+damage/6;
 		}
 		z = 0;
 audio_listener_position(x, y, z);
@@ -36,44 +36,36 @@ audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0)
         // RICOCHET
        if (oPlayerManager.canRich && richCount > 0) {
 		   richCount--;
+		   var searchRadius = 960;
+		   var closest = noone;
+		   var closestDist = 100000;
 
-    var searchRadius = 960;
-    var closest = noone;
-    var closestDist = 100000;
+			with (oEnemy) {
+				if (id == other.lastHit) {
+					continue;
+				}
+				// Skip enemies already damaged
+				if (ds_map_exists(other.damagedList, id)) {
+					continue;
+				}
+				var d = point_distance(other.x, other.y, x, y);
 
-    with (oEnemy) {
+				if (d < searchRadius && d < closestDist) {
+					closestDist = d;
+					closest = id;
+				}
+			}
+			if (closest != noone && instance_exists(closest)) {
 
-        if (id == other.lastHit) {
-			continue;
-		}
-        // Skip enemies already damaged
-        if (ds_map_exists(other.damagedList, id)) {
-			continue;
-		}
-        var d = point_distance(other.x, other.y, x, y);
+				var dir = point_direction(x, y, closest.x, closest.y);
 
-        if (d < searchRadius && d < closestDist) {
-            closestDist = d;
-            closest = id;
-        }
-    }
+				var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, oTruePlayer)
+				richBullet.ignoreEnemy = hit;
+				richBullet.richCount = richCount;
 
-    if (closest != noone && instance_exists(closest)) {
-
-        var dir = point_direction(x, y, closest.x, closest.y);
-
-        var richBullet = instance_create_layer(x, y, "Instances", object_index);
-
-        richBullet.speed = speed;
-        richBullet.direction = dir;
-		richBullet.image_angle = dir-90;
-		richBullet.damage = damage/2;
-        richBullet.ignoreEnemy = hit;
-		richBullet.richCount = richCount;
-
-        richBullet.damagedList = ds_map_create();
-        ds_map_copy(richBullet.damagedList, damagedList);
-		}
+				richBullet.damagedList = ds_map_create();
+				ds_map_copy(richBullet.damagedList, damagedList);
+			}
 		}
 		 if (!oPlayerManager.canPierce) {
             instance_destroy();

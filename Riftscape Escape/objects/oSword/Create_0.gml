@@ -6,10 +6,11 @@ if (instance_exists(oSwordFate)) {
 	instance_destroy(oSwordFate)
 }
 if (oPlayerManager.hasSwordLife) {
-		var swordProj = instance_create_layer(x, y, "Instances", oSwordLife);
-		swordProj.speed = global.bullet_speed*2;
-		swordProj.direction = point_direction(x, y, mouse_x, mouse_y);
-		swordProj.image_angle = swordProj.direction - 90;
-		swordProj.damage = global.playerDamage;
+		bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y), global.bullet_speed*2, global.playerDamage, oSwordLife, oTruePlayer);
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y)-35, global.bullet_speed*2, global.playerDamage, oSwordLife, oTruePlayer);
+			bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y)+35, global.bullet_speed*2, global.playerDamage, oSwordLife, oTruePlayer);
+		}
+		
 }
 

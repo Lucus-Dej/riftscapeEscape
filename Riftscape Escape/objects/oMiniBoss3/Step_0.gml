@@ -1,3 +1,6 @@
+if (brainDead) {
+    exit;
+}
 //path timer reduction
 path_timer--;
 
@@ -22,7 +25,7 @@ if (shoot_cooldown <= 0) {
 				shoot_cooldown = shoot_delay;
 				recoil_timer = recoil_cooldown;
 				fire_timer = fire_duration;
-				enemSpeed += 0.045;
+				enemSpeed += 0.035;
 		}
 	}
 }
@@ -38,5 +41,5 @@ if (dragTimer > 0) {
 
 if (path_timer <= 0) {
     path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

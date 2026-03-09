@@ -1,13 +1,16 @@
+if (brainDead) {
+    exit;
+}
 //path timer reduction
 path_timer--;
 flash = max(0, flash - 0.15);
 if (enrage_point >= enemey_hp && enraged == false) {
 	enemSpeed += 1.6;
-	bullet_speed -= 3;
+	bullet_speed -= 2;
 	fire_duration += 6;
 	shoot_delay += 50;
-	recoil_cooldown += 12;
-	damage -= 8;
+	recoil_cooldown += 10;
+	damage -= 6;
 	enraged = true;
 }
 // countdown
@@ -48,5 +51,5 @@ if (dragTimer > 0) {
 
 if (path_timer <= 0) {
     path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

@@ -36,25 +36,45 @@ if (overHealthOverheated) {
 	overHealthOverheated = false;
 }
 }
+abilityActive[0] = initate_sword;
+abilityActive[1] = initDodge;
+abilityActive[2] = initCrystal;
+abilityActive[3] = initCircle;
+abilityActive[4] = initHusk;
+
+abilityCharge[0] = sword_charge;
+abilityCharge[1] = dodgeCharge;
+abilityCharge[2] = crystalCharge;
+abilityCharge[3] = circleCharge;
+abilityCharge[4] = huskCharge;
 // abilities
-if (initate_sword == true && sword_charge < 100) {
-	draw_healthbar(16, 50, 280, 58, sword_charge, c_white, c_black, c_blue, 0, true, true);
+
+
+for (var i = 0; i < array_length(abilityActive); i++) {
+	draw_set_color(c_white);
+	draw_set_font(fLevels);
+	if (!abilityActive[i]) continue;
+	
+	var barY1 = startY + spacing * i;
+	var barY2 = barY1 + 8;
+	var iconX = startX - 6;
+	var iconY = barY1 - 8;
+	
+	if (abilityCharge[i] < 100) {
+		draw_healthbar(startX, barY1, 280, barY2, abilityCharge[i], c_white, c_black, abilityColor[i], 0, true, true);
+		if (inDodge && dodgeBlackFlashCheck && dodgeBlackFlashTimer > 0) {
+			draw_healthbar(startX, (startY + spacing), 280, (startY + 8 + spacing), dodgeBlackFlashTimer, c_white, c_black, c_black, 0, true, true);
+		}
+		draw_sprite_ext(sCircleMenu, spriteCharging[i], iconX, iconY, 0.2, 0.2, 0, c_white, 1);
+
+	} else {
+		draw_sprite_ext(sCircleMenu, spriteReady[i], iconX, iconY, 0.2, 0.2, 0, c_white, 1);
+		draw_text(startX+32, barY1, "Press "+string(abilityKey[i])); 
+	}
 }
-if (initDodge == true && dodgeCharge < 100 && !dodgeBlackFlashCheck) {
-	draw_healthbar(16, 60, 280, 68, dodgeCharge, c_white, c_black, c_orange, 0, true, true);
-}
-if (inDodge && dodgeBlackFlashCheck && dodgeBlackFlashTimer > 0) {
-	draw_healthbar(16, 60, 280, 68, dodgeBlackFlashTimer, c_white, c_black, c_black, 0, true, true);
-}
-if (initCrystal && crystalCharge < 100) {
-	draw_healthbar(16, 70, 280, 78, crystalCharge, c_white, c_black, c_aqua, 0, true, true);
-}
-if (initCircle && circleCharge < 100) {
-	draw_healthbar(16, 80, 280, 88, circleCharge, c_white, c_black, c_aqua, 0, true, true);
-}
-if (initHusk && huskCharge < 100) {
-	draw_healthbar(16, 90, 280, 98, huskCharge, c_white, c_black, c_purple, 0, true, true);
-}
+
+
+
 if (!inLevelMenu) {
 	draw_set_color(c_white);
 	draw_set_font(fLevels);
@@ -95,5 +115,7 @@ draw_text(uiX, uiY + 6*16, "Essence"+string(global.playerEssence));
 draw_text (uiX, uiY + 11*16, "OverHealth Timer"+string (overhealthTimer));
 draw_text (uiX, uiY + 12*16, "Damage"+string (global.playerDamage));
 draw_text(uiX, uiY + 13*16,"Speed: " + string_format(point_distance(0,0,oTruePlayer.hsp,oTruePlayer.vsp), 1, 2));
-draw_text (uiX, uiY + 14*16, "Cooldown Rate (Per Frame)"+string (cooldownRate));
+draw_text (uiX, uiY + 14*16, "Cooldown Rate (Per Frame)"+string (cooldownRate+1));
 draw_text (uiX, uiY + 15*16, "thought cooldown bonus"+string (trackDodgeThoughtTimer));
+draw_text (uiX, uiY + 16*16, "health"+string (max_hp));
+draw_text (uiX, uiY + 17*16, "health"+string (global.player_health));

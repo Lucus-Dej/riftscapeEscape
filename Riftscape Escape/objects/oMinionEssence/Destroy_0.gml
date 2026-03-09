@@ -1,0 +1,1 @@
+oPlayerManager.essenceMinionCount--;

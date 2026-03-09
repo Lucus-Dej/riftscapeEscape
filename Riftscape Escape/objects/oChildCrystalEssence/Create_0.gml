@@ -1,3 +1,4 @@
+event_inherited()
 if (!oPlayerManager.hasCrystalReality) {
 	goUp = false;
 	goLeft = false;

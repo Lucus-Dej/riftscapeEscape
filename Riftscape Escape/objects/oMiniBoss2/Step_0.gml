@@ -1,3 +1,6 @@
+if (brainDead) {
+    exit;
+}
 //path timer reduction
 path_timer--;
 flash = max(0, flash - 0.15);
@@ -10,22 +13,22 @@ shoot_cooldown--;
 if (shoot_cooldown <= 0) {
 	recoil_timer--;
 	if (recoil_timer <= 0) {
-		fire_timer --;
-		if (fire_timer > 0) {
-			var ang = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
+		fire_timer ++
+		if (fire_timer < fire_duration) {
+			var ang = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*bullet_speed*0.2, oTruePlayer.y+oTruePlayer.vsp*bullet_speed*0.2);
 			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
 				ang = point_direction(x, y, mouse_x, mouse_y);
 			}
-			bulletFire(x, y, ang, bullet_speed, damage, oMiniBossBullet, id);
+			var bullet = bulletFire(x, y, ang, bullet_speed, damage, oMiniBossBullet, id);
+			bullet.type = 1;
 			recoil_timer = recoil_cooldown;
 			} else {
-				if (fire_duration > 3) {
-					fire_duration -= 0.25;
-					shoot_delay -= 1;
+				if (bullet_speed > 8) {
+					bullet_speed += 0.5;
 				}
 				shoot_cooldown = shoot_delay;
 				recoil_timer = recoil_cooldown;
-				fire_timer = fire_duration;
+				fire_timer = 0;
 		}
 	}
 }
@@ -41,5 +44,5 @@ if (dragTimer > 0) {
 
 if (path_timer <= 0) {
     path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

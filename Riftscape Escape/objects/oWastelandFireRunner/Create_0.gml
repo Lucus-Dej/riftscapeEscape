@@ -2,7 +2,7 @@ event_inherited();
 shoot_cooldown = irandom_range(10, 110);
 arcFire = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 shoot_delay = 200;
-enemey_hp = 60;
+enemey_hp = 42;
 arcAngle = 45;
 currentArc = arcAngle;
 enemSpeed = 0.25;

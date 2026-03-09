@@ -6,5 +6,5 @@ enemSpeed = 0.4;
 bullet_speed = 7.5;
 base_speed = enemSpeed;
 xp = 6.5;
-damage = 12;
+damage = 15;
 searchPlayer();

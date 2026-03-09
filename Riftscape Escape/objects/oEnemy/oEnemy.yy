@@ -14,8 +14,8 @@
   "name":"oEnemy",
   "overriddenProperties":[],
   "parent":{
-    "name":"weirdstuff",
-    "path":"folders/enemies/weirdstuff.yy",
+    "name":"basics",
+    "path":"folders/enemies/basics.yy",
   },
   "parentObjectId":{
     "name":"oAoETargets",

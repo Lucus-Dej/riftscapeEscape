@@ -11,7 +11,7 @@ if (!is_real(speed) || !is_real(direction)) {
 }
 if (oItemManager.hasBrokenSnowglobe) {
 	speed += 0.3;
-	damage += 0.025;
+	damage += 0.015;
 }
 if (!ds_exists(damagedList, ds_type_map)) {
     show_debug_message("MAP DIED in " + string(object_index) + " id:" + string(id));

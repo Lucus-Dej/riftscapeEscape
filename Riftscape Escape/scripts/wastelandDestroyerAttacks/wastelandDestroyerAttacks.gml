@@ -26,6 +26,7 @@ function wdSummonFireRunners() {
 		sumEnem = oWastelandBurner;
 		attack = 0;
 		shoot_cooldown = 0;
+		return;
 	} else {
 		sumEnem = oWastelandFireRunner;
 	}
@@ -55,13 +56,14 @@ function wdFirewall() {
 		var px = x + lengthdir_x(offset, dir + 90);
 		var py = y + lengthdir_y(offset, dir + 90);
 		
-		var f = bulletFire(px, py, dir, 8, damage/2, owdBullets, id);
+		var f = bulletFire(px, py, dir, 8, damage/1.25, owdBullets, id);
 		f.accel = false;
 		f.image_xscale = 2;
 		f.image_yscale = 2;
 	}
 }
 function wdFirenado(_count) {
+	
     nadoActive = true;
 
     nadoCount = _count;
@@ -69,11 +71,22 @@ function wdFirenado(_count) {
     nadoSpin = choose(-1, 1) * random_range(2, 4);
 
     nadoFireTimer = 0;
-    nadoFireDuration = 600; 
+    nadoFireDuration = 500; 
 
-    nadoRingSpeed = 1;
+    nadoRingSpeed = 1.8;
 }
+function wdFireShield(_count) {
+	nadoActive = true;
 
+    nadoCount = _count;
+    nadoAngle = 0;
+    nadoSpin = choose(-1, 1) * random_range(2, 4);
+
+    nadoFireTimer = 0;
+    nadoFireDuration = 180; 
+
+    nadoRingSpeed = 1.2;
+}
 function spawnFireLine(_angle) {
     spawnFireHalf(_angle);        // forward
     spawnFireHalf(_angle + 180);  // backward
@@ -96,7 +109,7 @@ function spawnFireHalf(_angle,) {
         var px = x + lengthdir_x(dist, _angle);
         var py = y + lengthdir_y(dist, _angle);
 
-        var b = bulletFire(px, py, 0, 0, damage/5, owdBullets, id);
+        var b = bulletFire(px, py, 0, 0, damage/2, owdBullets, id);
 
         b.accel = false;
         b.infExist = false;

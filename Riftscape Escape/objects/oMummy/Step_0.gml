@@ -1,3 +1,6 @@
+if (brainDead) {
+    exit;
+}
 path_timer--;
 flash = max(0, flash - 0.15);
 
@@ -7,11 +10,11 @@ if (enrage_point >= enemey_hp && enraged == false) {
     bullet_speed += 1;
     shoot_delay -= 30;
     enraged = true;
-    summonNum += 1;
+    summonNum = 3;
     rounds += 3;
     fireDelay -= 4;
     roundDiraction -= 10;
-    spawnEnemy = oBadGuy;
+    spawnEnemy = oSandEnem;
     shotTotal += 20;
     shotTimer -= 5;
     spinSpeed--;
@@ -84,7 +87,7 @@ if (shoot_cooldown <= 0) {
 
                     case 2:
 
-                        bulletFireAt(x, y, oTruePlayer, bullet_speed * 1.2, damage * 1.5, oBossBullet, id);
+                        bulletFireAt(x, y, oTruePlayer, bullet_speed * 1.5, damage * 1.5, oBossBullet, id);
 
                     break;
                 }
@@ -95,14 +98,20 @@ if (shoot_cooldown <= 0) {
             }
         }
         if (shotsFired >= rounds) {
-            bulletFireAt(x, y, oTruePlayer, bullet_speed * 0.8, damage * 2, oBossBullet, id);
+            bulletFireAt(x, y, oTruePlayer, bullet_speed * 0.9, damage * 2.5, oBossBullet, id);
             shotsFired = 0;
             shoot_cooldown = shoot_delay;
             attack = 0;
         }
 
     } else if (attack == 4 or attack == 5) {
-
+		if (instance_exists(spawnEnemy)) {
+			var ang = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*bullet_speed, oTruePlayer.y+oTruePlayer.vsp*bullet_speed);
+			bulletFire(x, y, ang, bullet_speed * 0.9, damage * 2, oBossBullet, id);
+			attack = 0;
+			shoot_cooldown = shoot_delay;
+		} else {
+		
         // summon attack
         for (var i = 0; i < summonNum; i++) {
             var range = irandom_range(-32, 32);
@@ -112,6 +121,7 @@ if (shoot_cooldown <= 0) {
 
         attack = 0;
         shoot_cooldown = shoot_delay;
+		}
 
     } else if (attack == 6) {
 
@@ -150,5 +160,5 @@ if (dragTimer > 0) {
 
 if (path_timer <= 0) {
     path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

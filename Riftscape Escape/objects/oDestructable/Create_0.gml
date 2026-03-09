@@ -1,3 +1,3 @@
 event_inherited();
-child_coll = instance_create_layer(x, y, "Instances", oColl);
-obHP = 10;
+//child_coll = instance_create_layer(x, y, "Instances", oColl);
+obHP = 30;

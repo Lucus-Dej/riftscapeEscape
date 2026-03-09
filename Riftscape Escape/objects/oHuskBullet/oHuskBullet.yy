@@ -9,7 +9,10 @@
     "name":"HUSK",
     "path":"folders/playerstuff/Abilities/HUSK.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oPlayerBullets",
+    "path":"objects/oPlayerBullets/oPlayerBullets.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

@@ -1,4 +1,7 @@
 function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
+	if (checked) {
+		return;
+	}
 	if (_room == noone) return;
 	var roomData = room_get_info(_room, false, true)
 	var roomInstData = roomData.instances;
@@ -7,6 +10,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var templateDoor = noone;
 	
 	var roomManager = noone;
+	var spawner = noone;
 	
 	// find matching door
 	for (var i = 0; i < array_length(roomInstData); i++) {
@@ -15,6 +19,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		if (asset_get_index(inst.object_index) == neededDoorObj) {
 			
 			templateDoor = inst;
+			templateDoor.checked = true;
 			show_debug_message("MY ORIGIN IS")
 			show_debug_message(templateDoor)
 			break;
@@ -55,22 +60,31 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		
 		var obj = asset_get_index(inst.object_index);
 		
-		show_debug_message(inst);
 		
 		var newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", obj);
-		newInst.RoomID = roomBuilder.RoomID+1;
-		show_debug_message(newInst.RoomID)
-		if (newInst == oRoomManager) {
-			roomManager = newInst;
+		newInst.RoomID = oFloorManager.IDCount +1;
+		if (newInst == oStartRoom) {
+			spawner = newInst;
 		}
+		if (newInst == templateDoor) {
+			templateDoor.checked = true;
+		}
+		//show_debug_message(newInst.RoomID)
+	}
+	roomManager = instance_create_layer(_doorConnector.x, _doorConnector.y, "Instances", oRoomManager);
+	roomManager.RoomID = oFloorManager.IDCount + 1;
+	
+	with (spawner) {
+		RoomID = roomManager.RoomID;
 	}
 	with (roomManager) {
 		event_user(3);
 		event_user(1);
 	}
+	oFloorManager.IDCount += 1;
 	if (oFloorManager.deep > 0 && roomManager != noone) {
 		builder = instance_create_layer(roomManager.x,roomManager.y, "Instances", oRoomBuilder);
-		deep -= 1;
+		oFloorManager.deep -= 1;
 	}
 }
 

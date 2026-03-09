@@ -1,0 +1,20 @@
+if (!is_real(x) || !is_real(y)) {
+    show_debug_message("oBullet position corrupted");
+    instance_destroy();
+    exit;
+}
+
+if (!is_real(speed) || !is_real(direction)) {
+    show_debug_message("oBullet movement corrupted");
+    instance_destroy();
+    exit;
+}
+if (oItemManager.hasBrokenSnowglobe && oPlayerManager.hasMinionFate) {
+	speed += 0.3;
+	damage += 0.025;
+}
+if (!ds_exists(damagedList, ds_type_map)) {
+    show_debug_message("MAP DIED in " + string(object_index) + " id:" + string(id));
+}
+x += lengthdir_x(speed, direction);
+y += lengthdir_y(speed, direction);

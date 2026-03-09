@@ -1,3 +1,6 @@
+if (brainDead) {
+    exit;
+}
 //path timer reduction
 path_timer--;
 if (!canSeePlayer) {
@@ -61,5 +64,5 @@ if (dragTimer > 0) {
 
 if (path_timer <= 0) {
     path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

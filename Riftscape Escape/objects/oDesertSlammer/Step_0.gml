@@ -1,3 +1,6 @@
+if (brainDead) {
+    exit;
+}
 //path timer reduction
 path_timer--;
 if (!canSeePlayer) {
@@ -75,5 +78,5 @@ if (state == ENEM_STATE.RECOVER) {
 
 if (path_timer <= 0 && state == ENEM_STATE.CHASE) {
 	path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed);
+    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

@@ -3,15 +3,25 @@ xpUI = (xpTotal/xpProgress)*100;
 
 if (xpTotal >= xpProgress) {
 	xpTotal -= xpProgress;
-	xpProgress *= 1.25;
+	xpProgress *= 1.12;
 	canLevel = true;
 	levelsPending++;
 	xpLevel++;
 }
-
+checkTokenMenu = layer_get_visible(tokenMenuLayer);
+checkLevelLayer = layer_get_visible(levelMenuLayer);
 levelPressed = keyboard_check_pressed(vk_tab)
-
-
+if (checkTokenMenu || checkLevelLayer) {
+	oPauseManager.forceUnpause = true;
+	if (keyboard_check_pressed(vk_escape)) {
+		inTokenMenu = false;
+		inLevelMenu = false;
+		layer_set_visible(tokenMenuLayer, false);
+		layer_set_visible(levelMenuLayer, false);
+	}
+} else {
+	oPauseManager.forceUnpause = false;
+}
 if (levelPressed) {
 	inLevelMenu = !inLevelMenu;
 	if (inLevelMenu) {
@@ -55,7 +65,7 @@ if (tookDamage) {
 if (global.player_health <= 0) {
 	if (oItemManager.hasTetheredSoul && instance_exists(oTetheredSoul)) {
 		instance_destroy(oTetheredSoul)
-		global.player_health = healthTotal;
+		global.player_health =max_hp;
 	} else {
 	room_goto(dead);
 	global.player_health = 1;
@@ -66,7 +76,7 @@ if (global.player_health <= 0) {
 global.player_speed = sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus);
 global.bullet_delay = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
 global.playerDamage = tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff;
-global.bullet_speed = 5+ (global.playerReality/2);
+global.bullet_speed = 5+ sqrt(global.playerReality*0.8);
 cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + overHealthCooldownBuff + circleCooldownBonus)*0.5);
 
 
@@ -257,7 +267,6 @@ if (initMinion && !instance_exists(oMinion)) {
 if (initMinion && hasMinionTime && !instance_exists(oMinionTime)) {
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionTime);
 }
-
 // fate circle stuff
 circlePressed = keyboard_check_pressed(ord(circleKey));
 if (initCircle) {
@@ -302,8 +311,8 @@ if (thoughtDodgeCooldownBoost > 0) {
 	thoughtDodgeCooldownBoost -= 0.05;
 }
 
-healthRatio = power(1.08, global.playerLife - 1);
-max_hp = healthTotal *healthRatio;
+//healthRatio = power(1.02, global.playerLife - 1);
+//max_hp = healthTotal *healthRatio;
 uiHealth = (global.player_health/max_hp) * healthTotal;
 
 // overhealth stuff
@@ -317,10 +326,10 @@ global.lifesteal = (global.playerEssence/2+(global.playerDamage/3));
 
 if (inOverhealth == true) {
 	dodgeLifeBonus = 0;
-	overHealthSpeedBonus = global.playerEssence/4;
+	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.6;
 	overHealthBulletDelay = sqrt(global.playerEssence)*0.1;
-	overHealthDamageBuff = (global.playerEssence/8)
-	overHealthCooldownBuff = global.playerEssence/2;
+	overHealthDamageBuff = sqrt(global.playerEssence)*0.1;
+	overHealthCooldownBuff = sqrt(global.playerEssence)*0.9;
 	global.player_health = 9999;
 }
 if (inOverhealth && overhealthFlag) {
