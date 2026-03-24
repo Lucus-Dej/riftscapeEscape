@@ -1,6 +1,5 @@
 if (owner != noone && !used && instance_exists(oFloorManager)) {
-	if (oFloorManager.deep > 0) {
-	
+	used = true;
 	with (oRoomClaimX) {
 		if (RoomID == other.RoomID) {
 			other.workerX = id;
@@ -12,7 +11,7 @@ if (owner != noone && !used && instance_exists(oFloorManager)) {
 		}
 	}
 	with (oGhostBarrier) {
-		if ((RoomID1 == other.RoomID) || (RoomID2 == other.RoomID)) {
+		if ((RoomID1 == other.RoomID)) {
 		show_debug_message("CHECKING DOOR")
 		if (!checked) {
 			show_debug_message("DOOR IS NOT CHECKED")
@@ -28,6 +27,6 @@ if (owner != noone && !used && instance_exists(oFloorManager)) {
 	show_debug_message(width)
 	//show_debug_message(newRoom)
 	event_user(0)
-	used = true;
-	}
+	
+	//}
 }

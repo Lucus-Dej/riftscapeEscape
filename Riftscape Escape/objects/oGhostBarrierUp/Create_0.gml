@@ -1,6 +1,4 @@
-Manager1 = noone;
-Manager2 = noone;
-used = false;
-childDoor = noone;
-checked = false;
+event_inherited();
+
 doorDir = "up";
+

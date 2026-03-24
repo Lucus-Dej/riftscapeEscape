@@ -4,3 +4,6 @@ used = false;
 childDoor = noone;
 roomBuilder = noone;
 checked = false;
+
+invalid = false;
+invalidBlock = noone;

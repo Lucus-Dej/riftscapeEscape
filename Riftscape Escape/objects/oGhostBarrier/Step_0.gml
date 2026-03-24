@@ -16,3 +16,6 @@ if (used) {
 		}
 	}
 }
+if (invalid && invalidBlock == noone) {
+	//invalidBlock = instance_create_layer(x, y, "Instances", oWastelandWall)
+}

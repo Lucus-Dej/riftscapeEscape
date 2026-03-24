@@ -39,7 +39,7 @@ itemSpawner = noone;
 reBuildGrid = false;
 teleSpawn = noone;
 global.activeRoom = false;
-
+built = false;
 
 with (oRoomClaimX) {
 	if (RoomID == other.RoomID) {
@@ -51,13 +51,16 @@ with (oRoomClaimY) {
 		other.workerY = id;
 	}
 }
-if (builder == noone) {
-	builder = instance_create_layer(x, y, "Instances", oRoomBuilder);
-	show_debug_message("I HAVE MADE THE BUILDER")
-	builder.owner = id;
-	builder.RoomID = RoomID;
+with (oFloorManager) {
+	other.fmanager = id;
 }
-
+startBuildRoom(fmanager, id)
+requestEnemies();
+testRange = noone;
+testTop = noone;
+testBottom = noone;
+testLeft = noone;
+testRight = noone;
 
 
 // checks for x and y markers (needed for evil walls)

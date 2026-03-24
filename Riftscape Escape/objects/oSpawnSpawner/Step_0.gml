@@ -1,10 +1,12 @@
-if (con && !used) {
+if (con && !used && Manager != noone) {
 	if (conMet && !childSpawned) {
 		childSpawned = true;
 		child_spawner = instance_create_layer(x, y, "Instances", oStartRoom);
 		with (child_spawner) {
 			spawnID = other.id;
+			RoomID = other.Manager.RoomID;
 		}
+		child_spawner.RoomID = Manager.RoomID;
 	}
 }
 if (childSpawned == true && !used && Manager != noone) {

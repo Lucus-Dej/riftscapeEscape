@@ -1,7 +1,4 @@
 function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
-	if (checked) {
-		return;
-	}
 	if (_room == noone) return;
 	var roomData = room_get_info(_room, false, true)
 	var roomInstData = roomData.instances;
@@ -11,20 +8,27 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	
 	var roomManager = noone;
 	var spawner = noone;
-	
+	var neededX = noone;
+	var neededY = noone;
 	// find matching door
 	for (var i = 0; i < array_length(roomInstData); i++) {
 		var inst = roomInstData[i];
 		
 		if (asset_get_index(inst.object_index) == neededDoorObj) {
-			
 			templateDoor = inst;
 			templateDoor.checked = true;
+			
 			show_debug_message("MY ORIGIN IS")
 			show_debug_message(templateDoor)
-			break;
+		}
+		if (asset_get_index(inst.object_index) == oRoomClaimX) {
+			neededX = inst;
+		}
+		if (asset_get_index(inst.object_index) == oRoomClaimY) {
+			neededY = inst;
 		}
 	}
+	
 	
 	// debug message error in case
 	if (templateDoor == noone) {
@@ -32,10 +36,8 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		return;
 	}
 	var sep = oGhostBarrier.sprite_width;
-	
 	var offsetX = _doorConnector.x - templateDoor.x;
 	var offsetY = _doorConnector.y - templateDoor.y;
-	
 	switch (_doorConnector.object_index) {
 		case oGhostBarrierRight: 
 		offsetX += sep; 
@@ -55,6 +57,26 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		break;
 	}
 	
+	
+	var left = min(neededX.x, neededY.x) + offsetX;
+	var right = max(neededX.x, neededY.x) + offsetX;
+	var top = min(neededX.y, neededY.y) + offsetY;
+	var bottom = max(neededX.y, neededY.y) + offsetY;
+	var spriteOffsetX = oRoomClaimY.sprite_width;
+	var spriteOffsetY = oRoomClaimY.sprite_height;
+	var testRange = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oRoomManager, false, false);
+	var reserveCheck = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oRoomReserve, false, false);
+	
+	if (testRange != noone || reserveCheck != noone) {
+		show_debug_message("INVALID ROOM FOUND")
+		invalid = true;
+		//oFloorManager.deep+=1;
+		return;
+	}
+	var claim = instance_create_layer(left, top, "Instances", oRoomReserve);
+	setClaimBounds(claim, left, top, right, bottom);
+	with (claim) { /* noop */ }
+	if (!invalid)
 	for (var i = 0; i < array_length(roomInstData); i++) {
 		var inst = roomInstData[i];
 		
@@ -62,13 +84,17 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		
 		
 		var newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", obj);
+		if (obj == neededDoorObj) {
+			show_debug_message("I HAVE FOUND THE MATCHING DOOR")
+			newInst.checked = true;
+			newInst.spawned = true;
+		}
+		
 		newInst.RoomID = oFloorManager.IDCount +1;
 		if (newInst == oStartRoom) {
 			spawner = newInst;
 		}
-		if (newInst == templateDoor) {
-			templateDoor.checked = true;
-		}
+		
 		//show_debug_message(newInst.RoomID)
 	}
 	roomManager = instance_create_layer(_doorConnector.x, _doorConnector.y, "Instances", oRoomManager);
@@ -82,10 +108,12 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		event_user(1);
 	}
 	oFloorManager.IDCount += 1;
-	if (oFloorManager.deep > 0 && roomManager != noone) {
-		builder = instance_create_layer(roomManager.x,roomManager.y, "Instances", oRoomBuilder);
-		oFloorManager.deep -= 1;
-	}
+	//if (oFloorManager.deep > 0 && roomManager != noone) {
+	//	builder = instance_create_layer(roomManager.x,roomManager.y, "Instances", oRoomBuilder);
+	//	oFloorManager.deep -= 1;
+	//}
+	//with (claim) instance_destroy();
+	spawned = true;
 }
 
 function getMatchingDoorObject(_doorObj) {
@@ -130,4 +158,19 @@ function findRoom (_sideAngle) {
 	}
 	show_debug_message(validPool)
 	return validPool[irandom(array_length(validPool)-1)];
+}
+function setClaimBounds(_id, _left, _top, _right, _bottom) {
+	var obj = _id;
+	var offsetX = oRoomClaimY.sprite_width;
+	var offsetY = oRoomClaimY.sprite_height;
+    obj.left = _left;
+    obj.top = _top;
+    obj.right = _right+offsetX;
+    obj.bottom = _bottom+offsetY;
+    
+    obj.x = obj.left;
+    obj.y = obj.top;
+    
+    obj.image_xscale = (obj.right - obj.left);
+    obj.image_yscale = (obj.bottom - obj.top);
 }
