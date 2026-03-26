@@ -1,5 +1,5 @@
 // find workers
-
+totalBoss = 0;
 with (oGhostBarrier) {
 	if (RoomID1 == other.RoomID) {
 		other.workerDoor1 = id;
@@ -32,6 +32,8 @@ with (oBossStart) {
     if (bossCount > 0 && RoomID == other.RoomID) {
         ds_list_add(other.BossList, id);
 		other.totalBoss += bossCount;
+		other.bossRoom = true;
+		other.bossSpawner = id;
     }
 }
 with (oRoomClaimX) {
@@ -54,5 +56,10 @@ with (oItemFlag) {
 	if (RoomID == other.RoomID) {
 		other.itemSpawner = id;
 		Manager = other.id;
+		if (other.roomType == "treasure") {
+			onStart = true;
+		} else if (other.roomStart == "boss") {
+			onStart = false;
+		}
 	}
 }

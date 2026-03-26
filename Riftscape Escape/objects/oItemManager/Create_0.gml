@@ -25,7 +25,7 @@ rareItemList = ds_list_create();
 powerfulItemList = ds_list_create();
 mythicItemList = ds_list_create();
 validItemLists = ds_list_create();
-item = oBadGuy3;
+item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 ds_list_add(rareItemList, oBrainInAJar, oBrokenBloodVial, oRareSeed, oSmallSculpture, oWaterDamagedNote, oHollowedDice);

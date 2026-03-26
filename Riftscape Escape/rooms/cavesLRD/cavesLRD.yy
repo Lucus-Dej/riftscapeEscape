@@ -178,8 +178,8 @@
   ],
   "name":"cavesLRD",
   "parent":{
-    "name":"tiles",
-    "path":"folders/ROOMS/procedualTest/tiles.yy",
+    "name":"caves",
+    "path":"folders/ROOMS/procedualTest/tiles/caves.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

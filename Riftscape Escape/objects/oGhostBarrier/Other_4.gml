@@ -8,7 +8,3 @@ with (oRoomManager) {
 		other.Manager2 = id;
 	}
 }
-if (!used && onStart) {
-	childDoor = instance_create_layer(x, y, "Instances", oBarrier);
-	used = true;
-}

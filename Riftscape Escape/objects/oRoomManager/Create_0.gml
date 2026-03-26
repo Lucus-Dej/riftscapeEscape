@@ -1,6 +1,7 @@
 width = 0;
 builder = noone;
 ready = false;
+challengeArray = [];
 spawned = false;
 spawn_timer = spawn_cooldown;
 portal_cooldown = 35;
@@ -11,7 +12,7 @@ enemyPull = 0;
 enem = noone;
 tempEnemy = noone;
 hasBoss = false;
-enemySelect = oBadGuy;
+enemySelect = oEnemBasic;
 spawn = false;
 bossPull = noone;
 temp_portal = noone;
@@ -30,6 +31,7 @@ spawnerList = ds_list_create();
 inCombat = false;
 killLifeHusk = false;
 combatFinished = false;
+roomType = "null"
 enemyPool = enemies;
 roomStart = false;
 BossList = ds_list_create();
@@ -40,7 +42,13 @@ reBuildGrid = false;
 teleSpawn = noone;
 global.activeRoom = false;
 built = false;
-
+fmanager = noone;
+doBoss = false;
+bossSpawner = noone;
+diffPool = 0;
+floorID = "null";
+enemArray = [];
+bossArray = [];
 with (oRoomClaimX) {
 	if (RoomID == other.RoomID) {
 		other.workerX = id;
@@ -53,9 +61,15 @@ with (oRoomClaimY) {
 }
 with (oFloorManager) {
 	other.fmanager = id;
+	other.floorID = floorID;
 }
-startBuildRoom(fmanager, id)
-requestEnemies();
+if (fmanager != noone) {
+	startBuildRoom(fmanager, id)
+	var arrayUnpacker = getEnemPool(floorID)
+	enemArray = arrayUnpacker.normArray;
+	bossArray = arrayUnpacker.bArray;
+}
+bossRoom = false;
 testRange = noone;
 testTop = noone;
 testBottom = noone;

@@ -14,9 +14,3 @@ if (instance_exists(oRoomManager)) {
 	}
 }
 
-if (!con) {
-	child_spawner = instance_create_layer(x, y, "Instances", oStartRoom);
-	childSpawned = true;
-	child_spawner.owner = id;
-	child_spawner.spawnID = RoomID;
-}

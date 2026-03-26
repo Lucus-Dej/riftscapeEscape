@@ -14,7 +14,7 @@ if (enrage_point >= enemey_hp && enraged == false) {
     rounds += 3;
     fireDelay -= 4;
     roundDiraction -= 10;
-    spawnEnemy = oSandEnem;
+    spawnEnemy = oEnemSandSniper;
     shotTotal += 20;
     shotTimer -= 5;
     spinSpeed--;
@@ -32,7 +32,7 @@ if (enrage_point2 >= enemey_hp && enraged2 == false) {
     fireDelay -= 6;
     enraged2 = true;
     roundDiraction -= 20;
-    spawnEnemy = oBadGuy4;
+    spawnEnemy = oEnemDesertBiter;
     shotTotal += 30;
     shotTimer += 2;
     spinSpeed -= 2;

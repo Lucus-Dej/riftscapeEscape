@@ -11,3 +11,5 @@ targetResetTime = 60;
 flash = 0;
 canSeePlayer = false;
 brainDead = false;
+bossed = false;
+event_inherited();

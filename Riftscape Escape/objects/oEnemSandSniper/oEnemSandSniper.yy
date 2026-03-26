@@ -1,21 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"oBadGuy3",
+  "%Name":"oEnemSandSniper",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"oTruePlayer","path":"objects/oTruePlayer/oTruePlayer.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oBadGuy3",
+  "name":"oEnemSandSniper",
   "overriddenProperties":[],
   "parent":{
     "name":"basics",
     "path":"folders/enemies/basics.yy",
   },
   "parentObjectId":{
-    "name":"oEnemy",
-    "path":"objects/oEnemy/oEnemy.yy",
+    "name":"oUnlitEnemy",
+    "path":"objects/oUnlitEnemy/oUnlitEnemy.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -35,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBadGuy3",
-    "path":"sprites/sBadGuy3/sBadGuy3.yy",
+    "name":"sSandEnem",
+    "path":"sprites/sSandEnem/sSandEnem.yy",
   },
   "spriteMaskId":null,
   "visible":true,

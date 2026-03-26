@@ -1,12 +1,12 @@
 {
   "$GMObject":"",
-  "%Name":"oBadGuy2",
+  "%Name":"oEnemBasic",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oBadGuy2",
+  "name":"oEnemBasic",
   "overriddenProperties":[],
   "parent":{
     "name":"basics",
@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBadGuy2",
-    "path":"sprites/sBadGuy2/sBadGuy2.yy",
+    "name":"sBadGuy",
+    "path":"sprites/sBadGuy/sBadGuy.yy",
   },
   "spriteMaskId":null,
   "visible":true,

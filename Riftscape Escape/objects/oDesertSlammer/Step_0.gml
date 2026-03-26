@@ -50,18 +50,24 @@ if (state == ENEM_STATE.WINDUP) {
 if (state == ENEM_STATE.CHARGE) {
 	hsp = lengthdir_x(enemSpeed, chargeDir);
 	vsp = lengthdir_y(enemSpeed, chargeDir);
-	if (!place_meeting(x + hsp, y, oWalls)) {
-        x += hsp;
-    } else {
-        state = ENEM_STATE.RECOVER;
-    }
-	if (!place_meeting(x, y + vsp, oWall)) {
-        y += vsp;
-    } else {
-        state = ENEM_STATE.RECOVER;
-    }
 	chargeTime--;
-	if (chargeTime <= 0) {
+	var moved = false;
+	
+	if (!place_meeting(x + hsp, y + vsp, oWalls)) {
+        x += hsp;
+		y += vsp;
+		moved = true;
+    } else {
+        if (!place_meeting(x + hsp, y, oWalls)) {
+			x += hsp;
+			moved = true;
+		}
+		if (!place_meeting(x, y + vsp, oWalls)) {
+			y += vsp;
+			moved = true;
+		}
+	}
+	if (chargeTime <= 0 || !moved) {
 		state = ENEM_STATE.RECOVER;
 		enemSpeed = 0;
 		path_timer = path_cooldown;

@@ -1,12 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"oBadGuy",
+  "%Name":"oEnemDesertBiter",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"oTruePlayer","path":"objects/oTruePlayer/oTruePlayer.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oBadGuy",
+  "name":"oEnemDesertBiter",
   "overriddenProperties":[],
   "parent":{
     "name":"basics",
@@ -34,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBadGuy",
-    "path":"sprites/sBadGuy/sBadGuy.yy",
+    "name":"sBadGuy4",
+    "path":"sprites/sBadGuy4/sBadGuy4.yy",
   },
   "spriteMaskId":null,
   "visible":true,

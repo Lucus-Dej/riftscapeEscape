@@ -85,20 +85,42 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		
 		var newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", obj);
 		if (obj == neededDoorObj) {
+			newInst.RoomID = oFloorManager.IDCount +1;
 			show_debug_message("I HAVE FOUND THE MATCHING DOOR")
 			newInst.checked = true;
 			newInst.spawned = true;
+			newInst.onStart = true;
+		} else {
+			newInst.RoomID = oFloorManager.IDCount +1;
 		}
-		
-		newInst.RoomID = oFloorManager.IDCount +1;
-		if (newInst == oStartRoom) {
+	
+		if (obj == oGhostBarrier) {
+			newInst.RoomID = oFloorManager.IDCount +1;
+		}
+		if (obj == oSpawnSpawner) {
 			spawner = newInst;
+		}
+		if (obj = oTeleSpawner) {
+			obj.con = true;
+			obj.goFloor = oFloorManager.nextLevel;
 		}
 		
 		//show_debug_message(newInst.RoomID)
 	}
 	roomManager = instance_create_layer(_doorConnector.x, _doorConnector.y, "Instances", oRoomManager);
 	roomManager.RoomID = oFloorManager.IDCount + 1;
+	var ranPool = irandom_range(-2, 4);
+	roomManager.diffPool = oFloorManager.difficultyPool+ranPool;
+	roomManager.floorID = oFloorManager.floorID;
+	switch (doorType) {
+		case "boss":
+		roomManager.roomType = "boss";
+		break;
+		
+		case "item":
+			roomManager.roomType = "treasure";
+		break;
+	}
 	
 	with (spawner) {
 		RoomID = roomManager.RoomID;
@@ -153,11 +175,19 @@ function findRoom (_sideAngle) {
 	random_get_seed()
 	var angle = getOppositeDoorDir(_sideAngle)
 	var validPool  = tag_get_asset_ids(angle, asset_room)
-	if (array_length(validPool) == 0) {
+	var filtered = [];
+	for (var i = 0; i < array_length(validPool); i++) {
+		var roomCheck = validPool[i];
+		var tags = asset_get_tags(roomCheck);
+		 if (!array_contains(tags, "item") && (!array_contains(tags, "boss"))) {
+			 array_push(filtered, roomCheck);
+		 }
+	}
+	if (array_length(filtered) == 0) {
 		return noone;
 	}
-	show_debug_message(validPool)
-	return validPool[irandom(array_length(validPool)-1)];
+	show_debug_message(filtered)
+	return filtered[irandom(array_length(filtered)-1)];
 }
 function setClaimBounds(_id, _left, _top, _right, _bottom) {
 	var obj = _id;

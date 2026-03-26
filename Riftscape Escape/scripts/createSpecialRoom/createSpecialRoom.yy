@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"createSpecialRoom",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"createSpecialRoom",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

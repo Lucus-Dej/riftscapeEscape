@@ -8,7 +8,7 @@ function fateUp() {
 }
 function thoughtUp() {
 	global.playerThought++;
-	oPlayerManager.statCooldown ++;
+	oPlayerManager.statCooldown += 1;
 	
 	var raw = (global.playerThought * 0.2) + power(global.playerThought, 0.5) * 0.2;
 	oPlayerManager.statBulletDelay = raw/ (1+raw/6)

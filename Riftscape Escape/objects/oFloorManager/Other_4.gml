@@ -1,0 +1,2 @@
+startingIndex ++;
+nextLevel = levelArray[startingIndex];

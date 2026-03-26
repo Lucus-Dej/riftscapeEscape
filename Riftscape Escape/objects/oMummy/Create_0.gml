@@ -26,4 +26,4 @@ shotsFired = 0;
 rounds = 4;
 roundDiraction = 55;
 fireDelay = 12;
-spawnEnemy = oBadGuy3
+spawnEnemy = oEnemSpider

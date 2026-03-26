@@ -1,7 +1,9 @@
+wait = true;
+onStart = false;
 active = false;
 used = false;
 flagManager = noone;
 Manager = noone;
-item = oBadGuy2;
-foundItem = oBadGuy;
+item = oEnemSniper;
+foundItem = oEnemBasic;
 spawnItem = false;

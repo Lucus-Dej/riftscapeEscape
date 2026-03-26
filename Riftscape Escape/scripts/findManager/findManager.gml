@@ -4,6 +4,8 @@ function findManager(){
 			if (RoomID == other.RoomID) {
 				other.Manager = id;
 			}
+			event_user(3);
+			event_user(1);
 		}
 		return Manager;
 	} else {

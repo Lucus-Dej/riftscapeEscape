@@ -13,7 +13,7 @@ if (len > 0) {
     _yinput /= len;
 }
 
-move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oEnemy);
+move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);
 
 var realSpeed = global.player_speed;
 
