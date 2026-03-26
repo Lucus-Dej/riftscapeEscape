@@ -189,8 +189,7 @@ abilityKey = [swordAttKey, dodgeKey, crystalKey, circleKey, huskKey];
 spriteCharging = [10, 4, 8, 0, 6];
 spriteReady = [11, 5, 9, 1, 7];
 
-abilityColor = [c_blue, c_orange, c_aqua, c_aqua, c_purple
-];
+abilityColor = [c_blue, c_orange, c_aqua, c_aqua, c_purple];
 
 
 
@@ -250,3 +249,9 @@ uiY = 192;
 uiLine = 0;
 resW = 1366;
 resH = 768;
+
+// level stuff
+levelArray = [caves0, caves01, caves02, desert0, desert01, desert02, wasteland0, wasteland01, wasteland02]
+levelIndex = 0;
+currentLevl = levelArray[levelIndex]
+nextLevel = levelArray[levelIndex +1];

@@ -28,7 +28,9 @@ function getEnemPool(_currentFloor) {
 		break;
 		
 		case "plains":
-		enemArray = [oEnemBasic, oEnemSpider, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank]
+		enemArray = [oEnemBasic, oEnemSpider, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
+		bossArray = [oRifterTank];
+		evilArray = []
 		break;
 		
 	}

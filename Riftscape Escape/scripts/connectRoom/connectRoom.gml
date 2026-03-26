@@ -102,7 +102,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		}
 		if (obj = oTeleSpawner) {
 			obj.con = true;
-			obj.goFloor = oFloorManager.nextLevel;
+			obj.goFloor = oPlayerManager.nextLevel;
 		}
 		
 		//show_debug_message(newInst.RoomID)
