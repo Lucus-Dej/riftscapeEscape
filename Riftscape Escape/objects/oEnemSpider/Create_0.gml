@@ -7,3 +7,4 @@ enemSpeed = 3.95;
 base_enemSpeed = enemSpeed;
 xp = 1.35;
 damage = 12;
+spawnWeight = 0.5;

@@ -14,3 +14,4 @@ xp = 7.5;
 damage = 3;
 bullet_speed = 6;
 playerPercent = 0;
+spawnWeight = 6.5;

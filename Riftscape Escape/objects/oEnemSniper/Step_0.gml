@@ -14,13 +14,28 @@ if (shoot_cooldown > 0 && canSeePlayer) {
 flash = max(0, flash - 0.15);
 
 // fire when ready
+if (shoot_cooldown == 12 && fireToggle) {
+	flash = 2;
+}
 if (shoot_cooldown <= 0) {
 	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
 		var dir = point_direction(x, y, mouse_x, mouse_y);
-		bulletFire(x, y, dir, bullet_speed, damage, oSniperBullet, id);
+		if (fireToggle) {
+			bulletFire(x, y, dir, bullet_speed, damage, oSniperBullet, id);
+		} else {
+			bulletFire(x, y, dir, bullet_speed, damage, oSniperBullet, id);
+			bulletFire(x, y, dir, bullet_speed, damage, oSniperBullet, id);
+		}
 	} else {
-	bulletFireAt(x, y, oTruePlayer, bullet_speed, damage, oSniperBullet, id);
+		var dir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
+		if (fireToggle) {
+			bulletFire(x, y, dir, bullet_speed*1.2, damage, oSniperBullet, id);
+		} else {
+			bulletFire(x, y, dir+25, bullet_speed, damage, oSniperBullet, id);
+			bulletFire(x, y, dir-25, bullet_speed, damage, oSniperBullet, id);
+		}
 	}
+	fireToggle = !fireToggle;
     shoot_cooldown = shoot_delay;
 }
 if (dragTimer > 0) {

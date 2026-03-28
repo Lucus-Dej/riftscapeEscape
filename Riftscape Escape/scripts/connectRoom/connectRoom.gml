@@ -65,16 +65,17 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var spriteOffsetX = oRoomClaimY.sprite_width;
 	var spriteOffsetY = oRoomClaimY.sprite_height;
 	var testRange = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oRoomManager, false, false);
-	var reserveCheck = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oRoomReserve, false, false);
-	
+	var claim = instance_create_layer(left, top, "Instances", oRoomReserve);
+	setClaimBounds(claim, left, top, right, bottom);
+	var reserveCheck = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oSpawnSpawner, false, true);
 	if (testRange != noone || reserveCheck != noone) {
 		show_debug_message("INVALID ROOM FOUND")
+		show_debug_message(claim)
+		show_debug_message(reserveCheck)
 		invalid = true;
 		//oFloorManager.deep+=1;
 		return;
 	}
-	var claim = instance_create_layer(left, top, "Instances", oRoomReserve);
-	setClaimBounds(claim, left, top, right, bottom);
 	with (claim) { /* noop */ }
 	if (!invalid)
 	for (var i = 0; i < array_length(roomInstData); i++) {
@@ -102,7 +103,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		}
 		if (obj = oTeleSpawner) {
 			obj.con = true;
-			obj.goFloor = oPlayerManager.nextLevel;
+			obj.goFloor = oPlayerManager.currentLevl;
 		}
 		
 		//show_debug_message(newInst.RoomID)

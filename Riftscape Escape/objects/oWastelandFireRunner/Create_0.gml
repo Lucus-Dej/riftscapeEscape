@@ -28,3 +28,4 @@ rounds = 4;
 roundDiraction = 55;
 fireDelay = 12;
 spawnEnemy = oWastelandBurner
+spawnWeight = 8;

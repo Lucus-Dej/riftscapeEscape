@@ -1,7 +1,7 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 110);
 shoot_delay = 100;
-enemey_hp = 215;
+enemey_hp = 180;
 healthTotal = enemey_hp;
 enemSpeed = 0.85;
 base_enemSpeed = enemSpeed;
@@ -27,3 +27,4 @@ rounds = 4;
 roundDiraction = 55;
 fireDelay = 12;
 spawnEnemy = oEnemSpider
+spawnWeight = 15;

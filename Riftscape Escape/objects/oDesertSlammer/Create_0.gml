@@ -27,7 +27,7 @@ enrage_point = enemey_hp/2;
 enraged = false;
 xp = 12.5;
 damage = 8;
-
+spawnWeight = 7.5;
 
 
 

@@ -8,3 +8,4 @@ xp = 4;
 damage = 10;
 bullet_speed = 5.5;
 searchPlayer();
+spawnWeight = 2;

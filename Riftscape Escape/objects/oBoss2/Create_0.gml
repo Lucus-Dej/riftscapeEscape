@@ -8,7 +8,7 @@ fire_duration = 9;
 fire_timer = fire_duration;
 recoil_timer = 0;
 enemey_hp = 20;
-
+spawnWeight = 9;
 enrage_point = enemey_hp/2;
 enraged = false;
 xp = 12.5;

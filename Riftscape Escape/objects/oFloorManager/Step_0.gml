@@ -81,9 +81,30 @@ if (floorState == genState.complete ) {
 	with (bossDoor) {
 		isBossDoor = true;
 		doorType = "boss";
-
+		
 		show_debug_message("boss door made")
 		connectRoom(id, dir, BossR, Manager1);
+		if (invalid) 
+		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+			invalid = false;
+			bossDoor = other.bossDoorArray[i]; 
+			dir = bossDoor.doorDir;
+			BossR = findSpecialRoom(dir, "boss");
+			connectRoom(id, dir, BossR, Manager1);
+			if (!invalid) {
+				break;
+			}
+		}
+		/*while (invalid) {
+			doorType = "null"
+			bossIndex = irandom(array_length(other.bossDoorArray)-1);
+			bossDoor = other.bossDoorArray[bossIndex];
+			BossR = findSpecialRoom(dir, "boss");
+			dir = bossDoor.doorDir;
+			connectRoom(id, dir, BossR, Manager1);
+			}
+		*/
+		doorType = "boss";
 	}
 	var itemRoomIndex = irandom(array_length(bossDoorArray)-1);
 	while (itemRoomIndex == bossIndex) {
@@ -96,6 +117,7 @@ if (floorState == genState.complete ) {
 	with (itemDoor) {
 		doorType = "item";
 		connectRoom(id, dir, itemR, Manager1);
+		doorType = "item";
 	}
 	floorState = genState.runRoomManagers;
 } else if (floorState == genState.runRoomManagers) {
@@ -107,7 +129,8 @@ if (floorState == genState.complete ) {
 	}
 	with (oRoomManager) {
 		floorID = other.floorID;
-		diffPool = other.difficultyPool;
+		var modifier = irandom_range(8, 15)
+		diffPool = other.difficultyPool*(modifier/10);
 		var request = getEnemPool(floorID)
 		request.bArray = bossArray;
 		request.normArray = enemArray;

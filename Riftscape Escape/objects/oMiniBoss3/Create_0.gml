@@ -11,3 +11,4 @@ base_enemSpeed = enemSpeed;
 xp = 8.5;
 damage = 5;
 bullet_speed = 3;
+spawnWeight = 7.5;

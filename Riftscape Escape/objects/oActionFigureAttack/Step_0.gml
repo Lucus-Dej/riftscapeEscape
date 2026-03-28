@@ -4,9 +4,9 @@ if (shotAngle < 360) {
 		bullet = instance_create_layer(x, y, "Instances", oActionFigureBullets);
 		bullet.direction = shotAngle;
 		bullet.speed = 5;
-		shotTimer = 12;
+		shotTimer = 8;
 		shotAngle+= 360/(7+(oItemManager.actionFigurePower));
-		bullet.damage = global.playerDamage/4;
+		bullet.damage = global.playerDamage/3;
 	}
 } else {
 	instance_destroy(self);

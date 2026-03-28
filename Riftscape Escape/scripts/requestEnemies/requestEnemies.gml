@@ -11,7 +11,7 @@ function getEnemPool(_currentFloor) {
 	switch (_currentFloor) {
 		case "caves":
 		enemArray = [oEnemBasic, oEnemSniper, oEnemSpider];
-		bossArray = [oBoss, oBoss2];
+		bossArray = [oBoss, oBoss2, oMiniBoss, oMiniBoss2];
 		evilArray = [oMiniBoss, oMiniBoss2]
 		
 		break;

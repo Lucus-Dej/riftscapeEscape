@@ -10,7 +10,7 @@ if (enrage_point >= enemey_hp && enraged == false) {
     bullet_speed += 1;
     shoot_delay -= 30;
     enraged = true;
-    summonNum = 3;
+    summonNum = 1;
     rounds += 3;
     fireDelay -= 4;
     roundDiraction -= 10;
@@ -27,7 +27,7 @@ if (enrage_point2 >= enemey_hp && enraged2 == false) {
     enemSpeed = 0.3;
     bullet_speed += 1;
     shoot_delay -= 30;
-    summonNum += 3;
+    summonNum += 2;
     rounds += 1;
     fireDelay -= 6;
     enraged2 = true;
@@ -87,7 +87,7 @@ if (shoot_cooldown <= 0) {
 
                     case 2:
 
-                        bulletFireAt(x, y, oTruePlayer, bullet_speed * 1.5, damage * 1.5, oBossBullet, id);
+                        bulletFireAt(x, y, oTruePlayer, bullet_speed * 1.5, damage * 1.2, oBossBullet, id);
 
                     break;
                 }
@@ -98,7 +98,7 @@ if (shoot_cooldown <= 0) {
             }
         }
         if (shotsFired >= rounds) {
-            bulletFireAt(x, y, oTruePlayer, bullet_speed * 0.9, damage * 2.5, oBossBullet, id);
+            bulletFireAt(x, y, oTruePlayer, bullet_speed * 0.9, damage * 2, oBossBullet, id);
             shotsFired = 0;
             shoot_cooldown = shoot_delay;
             attack = 0;

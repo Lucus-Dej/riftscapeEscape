@@ -12,3 +12,4 @@ damage = 16.5;
 searchPlayer();
 chargeCooldown = 18;
 chargeTime = chargeCooldown;
+spawnWeight = 4;

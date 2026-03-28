@@ -28,6 +28,7 @@ destroyWalls = false;
 checkFor = false;
 evilWallList = ds_list_create();
 spawnerList = ds_list_create();
+doorList = [];
 inCombat = false;
 killLifeHusk = false;
 combatFinished = false;

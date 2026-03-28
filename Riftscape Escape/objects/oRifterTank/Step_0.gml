@@ -83,8 +83,12 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 	linkLine = instance_create_layer(x, y, "Instances", oEnemyLink);
 	linkLine.enemyA = id;
 	linkLine.enemyB = vessel;
+	heldHP = enemey_hp;
 }
 	if (instance_exists(vessel)) {
+		image_alpha = 0.35;
+		enemey_hp = heldHP;
+		invincible = true;
 		if (vesselInit == false) {
 			vessel.brainDead = true;
 			hostSearchTimer = hostSearchCooldown;
@@ -100,6 +104,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 				path_end();
 			}
 			vesselInit = true;
+			
 		}
 // ------------- VESSEL "STEP CODE" --------
 		with (vessel) {
@@ -157,6 +162,9 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		vesselInit = false;
 		best = noone;
 		vessel = noone;
+		heldHP = 0;
+		invincible = false;
+		image_alpha = 1;
 }
 
 

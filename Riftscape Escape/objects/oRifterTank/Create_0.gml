@@ -11,9 +11,12 @@ fire_duration = 6;
 fire_timer = fire_duration;
 recoil_timer = 0;
 enemey_hp = 26;
+heldHP = enemey_hp;
+invincible = false;
 enrage_point = enemey_hp/2;
 enraged = false;
 xp = 20;
+spawnWeight = 10;
 damage = 3;
 path_cooldown = 30;
 

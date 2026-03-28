@@ -1,3 +1,10 @@
+
+if (variable_instance_exists(other, "invincible")) {
+	 if (other.invincible) {
+		ignoreEnemy = other; 
+	 }
+}
+
 if (ignoreEnemy != other) {
     var hit = other;
 	lastHit = hit;

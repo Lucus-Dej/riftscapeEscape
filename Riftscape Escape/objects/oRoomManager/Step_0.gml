@@ -12,6 +12,14 @@ if (portal_timer <= 0) {
 }
 if (roomStart && !ready) {
 	ready = true;
+	for (var i = 0; i < array_length(doorList); i++) {
+		var door = doorList[i];
+		with (door) {
+			if (!instance_exists(childDoor)) {
+				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
+			}
+		}
+	}
 	if (instance_exists(oMindHusk)) {
 		instance_destroy(oMindHusk);
 		if (oPlayerManager.hasLifeHusk) {
@@ -19,7 +27,7 @@ if (roomStart && !ready) {
 		}
 		oPlayerManager.huskCharge += 450;
 	}
-	if (instance_exists(workerDoor1)) {
+	/*if (instance_exists(workerDoor1)) {
 		with (workerDoor1) {
 		if (!instance_exists(childDoor)) {
 				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
@@ -33,6 +41,7 @@ if (roomStart && !ready) {
 			}
 		}
 	}
+	*/
 	global.activeRoom = true;
 	event_user(2);
 }
@@ -79,19 +88,20 @@ if (spawned == true && spawn_timer <= 0) {
 	instance_destroy(temp_portal);
 	if (instance_exists(oFloorManager) && !doBoss) {
 		event_user(4);
-	} else {
+	} else  if (instance_exists(oFloorManager) && doBoss){
 		tempEnemy = bossSpawner.bossName
 		totalBoss --;
 	}
 	 enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
 	 if (doBoss) {
 		 with (enem) {
+			 xp *= 1.5;
 			 event_user(13)
 		 }
 		 doBoss = false;
 	 }
 	 enem.RoomID = RoomID;
-	 diffPool -= enem.xp;
+	 diffPool -= enem.spawnWeight;
 	//temp_portal = noone;
 	spawn_timer = spawn_cooldown;
 	portal_timer = portal_cooldown;
@@ -107,18 +117,15 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 
 if (inCombat && !combatFinished) {
 	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy))) {
-		if (instance_exists(workerDoor1)) {
-			if (instance_exists(workerDoor1.childDoor)) {
-				show_debug_message("THIS IS A CHILD DOOR" +string(workerDoor1.childDoor));
-			instance_destroy(workerDoor1.childDoor);
+		for (var i = 0; i < array_length(doorList); i++) {
+		var door = doorList[i];
+		with (door) {
+			if (instance_exists(childDoor)) {
+				instance_destroy(childDoor);
 			}
 		}
-		if (instance_exists(workerDoor2)) {
-			if (instance_exists(workerDoor2.childDoor)) {
-				show_debug_message("THIS IS A CHILD DOOR" +string(workerDoor2.childDoor));
-			instance_destroy(workerDoor2.childDoor)
-			}
-		}
+	}
+		
 		combatFinished = true;
 		inCombat = false;
 		

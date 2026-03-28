@@ -10,6 +10,7 @@ enragePoint2 = enemey_hp*(1/3);
 phase = 0;
 linePhase = 0;
 xp = 35;
+spawnWeight = 25;
 damage = 18;
 attack = 0;
 enemSpeed = 0.35;

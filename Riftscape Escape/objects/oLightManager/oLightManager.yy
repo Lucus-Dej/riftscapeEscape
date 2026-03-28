@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"managers(needed to run)",
-    "path":"folders/ROOMS/procedualTest/tiles/caves/managers(needed to run).yy",
+    "path":"folders/managers(needed to run).yy",
   },
   "parentObjectId":null,
   "persistent":true,

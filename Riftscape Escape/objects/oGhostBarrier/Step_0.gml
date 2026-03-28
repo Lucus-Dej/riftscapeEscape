@@ -12,6 +12,8 @@ if (state == doorState.lookingForManager1) {
 	with (oRoomManager) {
 		if (RoomID == other.RoomID1) {
 			other.Manager1 = id;
+			array_push(doorList, other.id)
+			workerDoor1 = other.id;
 		}
 	}
 	childDoor = instance_create_layer(x, y, "Instances", oBarrier);
@@ -37,6 +39,7 @@ if (state == doorState.lookingForManager2 && Manager2 == noone) {
 	with (oRoomManager) {
 		if (RoomID == other.RoomID2) {
 			other.Manager2 = id;
+			array_push(doorList, other.id)
 		}
 	}
 	state = doorState.done;

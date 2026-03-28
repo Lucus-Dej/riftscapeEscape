@@ -13,3 +13,4 @@ xp = 7.5;
 damage = 4;
 bullet_speed = 6;
 angleAdd = 0;
+spawnWeight = 6.5;
