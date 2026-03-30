@@ -18,7 +18,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
         oPlayerManager.lastKilledY = hit.y;
 		other.flash = 1;
         if (oItemManager.hasWaterDamagedNote && !hit.hasDamaged) {
-            hit.enemey_hp -= 1.25 * damage;
+            hit.enemey_hp -= 2 * damage;
         } else {
             hit.enemey_hp -= damage;
         }

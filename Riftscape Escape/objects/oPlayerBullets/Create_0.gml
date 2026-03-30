@@ -3,6 +3,7 @@ inCircle = false;
 canParry = true;
 parried = false;
 canLifesteal = false;
+boomerangTime = 12;
 speed = global.bullet_speed;
 richCount = 0;
 damage = global.playerDamage;

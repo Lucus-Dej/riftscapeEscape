@@ -95,7 +95,7 @@ if (floorState == genState.complete ) {
 			invalid = false;
 			show_debug_message("trying again")
 			var newBossDoor = other.bossDoorArray[i]; 
-			instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+			//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
 			dir = newBossDoor.doorDir;
 			show_debug_message(dir)
 			BossR = findSpecialRoom(dir, "boss");
@@ -133,7 +133,7 @@ if (floorState == genState.complete ) {
 			invalid = false;
 			show_debug_message("trying again")
 			var newItemRoom = other.bossDoorArray[i]; 
-			instance_create_layer(newItemRoom.x, newItemRoom.y, "Instances", oLightWall);
+			//instance_create_layer(newItemRoom.x, newItemRoom.y, "Instances", oLightWall);
 			dir = newItemRoom.doorDir;
 			BossR = findSpecialRoom(dir, "boss");
 			connectRoom(newItemRoom.id, dir, BossR, Manager1);
@@ -153,7 +153,7 @@ if (floorState == genState.complete ) {
 	}
 	with (oRoomManager) {
 		floorID = other.floorID;
-		var modifier = irandom_range(8, 15)
+		var modifier = irandom_range(9, 15)
 		diffPool = other.difficultyPool*(modifier/10);
 		var request = getEnemPool(floorID)
 		bossArray = request.bArray;

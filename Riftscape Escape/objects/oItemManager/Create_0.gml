@@ -44,7 +44,7 @@ sculptureActive = false;
 sculptureTimer = 0;
 snapshotSpeed = global.player_speed/oPlayerManager.sculptureBonus;
 sculptureTimer = 0;
-
+hasBrokenBoomerang = false;
 hasWaterDamagedNote = false;
 hasHollowedDice = false;
 spawnSimple = false;
