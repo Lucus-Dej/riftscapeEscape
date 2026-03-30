@@ -12,3 +12,7 @@ if instance_exists(workerX) {
 		}
 	}
 }
+if (isChallenge) {
+	var request = getEnemPool(floorID)
+	enemArray = array_concat(enemArray, challengeArray)
+}

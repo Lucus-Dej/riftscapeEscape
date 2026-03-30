@@ -4,7 +4,7 @@ if (spawning == true) {
 	Manager.totalBoss--;
 }
 if (Manager == noone) {
-	findManager()
+	Manager = findManager()
 }
 if (bossCount <= 0 && Manager != noone) {
 	hasSpawnedAll = true;

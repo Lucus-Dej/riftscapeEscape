@@ -65,7 +65,7 @@ if (chosenList == simpleItemList) {
 		spawnItem = true;
 		spawnSimple = true;
 		if (other.hasHollowedDice) {
-			i = irandom_range(1,5)
+			i = irandom_range(1,3)
 				if (i == 2) {
 				j = irandom(ds_list_size(oItemManager.simpleItemList)-1);
 				item = other.simpleItemList[| j];

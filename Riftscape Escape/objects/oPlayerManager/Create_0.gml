@@ -221,7 +221,7 @@ overHealthDamageBuff = 0;
 global.player_speed = baseSpeed;
 global.playerSword = false;
 global.playerKilled = false;
-global.grid_cool = true;
+global.grid_cool = false;
 global.lifesteal = global.playerEssence/20;
 global.tempHP = 0;
 global.playerDamage = 0;
@@ -251,7 +251,7 @@ resW = 1366;
 resH = 768;
 
 // level stuff
-levelArray = [caves0, caves01, caves02, desert0, desert01, desert02, wasteland0, wasteland01, wasteland02]
+levelArray = [caves0, caves01, caves02, f3, desert0, desert01, desert02, d3, wasteland0, wasteland01, wasteland02, w1, plains0, plains01, plains02, p1, p2, theEnd, itemRoom]
 levelIndex = 0;
 currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];

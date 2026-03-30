@@ -4,6 +4,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var roomInstData = roomData.instances;
 	
 	var neededDoorObj = getMatchingDoorObject(_doorConnector.object_index);
+	show_debug_message(neededDoorObj)
 	var templateDoor = noone;
 	
 	var roomManager = noone;
@@ -68,7 +69,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var claim = instance_create_layer(left, top, "Instances", oRoomReserve);
 	setClaimBounds(claim, left, top, right, bottom);
 	var reserveCheck = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oSpawnSpawner, false, true);
-	if (testRange != noone || reserveCheck != noone) {
+	if (reserveCheck != noone) {
 		show_debug_message("INVALID ROOM FOUND")
 		show_debug_message(claim)
 		show_debug_message(reserveCheck)

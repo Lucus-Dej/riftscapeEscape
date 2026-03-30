@@ -16,7 +16,7 @@ if (childSpawned == true && !used && Manager != noone) {
 		used = true;
 	}
 }
-if (Manager == noone || RoomID == 0) {
+if (Manager == noone ) {
 	Manager = findManager()
 }
 if (!con && RoomID != 0 && !childSpawned) {

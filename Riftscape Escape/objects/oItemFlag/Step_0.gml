@@ -18,10 +18,10 @@ if (onStart && !used && Manager != noone) {
 	
 	used = true
 }
-if (spawnItem) {
+if (spawnItem && item != noone) {
 	instance_create_layer(x, y, "Instances", item)
 	spawnItem = false;
 }
 if (Manager == noone) {
-	findManager()
+	Manager = findManager()
 }

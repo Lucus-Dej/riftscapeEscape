@@ -491,8 +491,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"caves0","path":"rooms/caves0/caves0.yy",},},
     {"roomId":{"name":"hordeSurvival","path":"rooms/hordeSurvival/hordeSurvival.yy",},},
+    {"roomId":{"name":"caves0","path":"rooms/caves0/caves0.yy",},},
     {"roomId":{"name":"f1","path":"rooms/f1/f1.yy",},},
     {"roomId":{"name":"f2","path":"rooms/f2/f2.yy",},},
     {"roomId":{"name":"f3","path":"rooms/f3/f3.yy",},},

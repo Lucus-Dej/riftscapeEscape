@@ -1,6 +1,6 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 25);
-shoot_delay = 100;
+shoot_delay = 145;
 recoil_cooldown = 12;
 fire_duration = 3;
 fire_timer = fire_duration;

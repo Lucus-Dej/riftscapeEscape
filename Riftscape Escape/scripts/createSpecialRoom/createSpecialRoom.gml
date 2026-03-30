@@ -28,6 +28,7 @@ function findSpecialRoom (_sideAngle, _tag) {
 		
 	}
 	if (array_length(realPool) == 0) {
+		show_debug_message("no special room found i guess?")
 		return noone;
 	}
 	show_debug_message(realPool)

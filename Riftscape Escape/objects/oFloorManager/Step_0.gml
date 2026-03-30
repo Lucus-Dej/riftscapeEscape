@@ -61,13 +61,19 @@ if (floorState == genState.complete ) {
 			state = doorState.init;
 		}
 		doorStart = true;
+		with (oGhostBarrierDirectionalParent) {
+			if (state == doorState.lookingForManager2) {
+				state = doorState.init;
+			}
+		}
 	}
 	if (doorTimer > 0) {
 		doorTimer --;
+		
 	}
 	if (doorTimer <= 0) {
 		with (oGhostBarrierDirectionalParent) {
-			if (!spawned && !foundOther && state == doorState.searchingForDoor2) {
+			if (!spawned && !foundOther) {
 				array_push(other.bossDoorArray, id);
 			}
 		}
@@ -87,10 +93,14 @@ if (floorState == genState.complete ) {
 		if (invalid) 
 		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 			invalid = false;
-			bossDoor = other.bossDoorArray[i]; 
-			dir = bossDoor.doorDir;
+			show_debug_message("trying again")
+			var newBossDoor = other.bossDoorArray[i]; 
+			instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+			dir = newBossDoor.doorDir;
+			show_debug_message(dir)
 			BossR = findSpecialRoom(dir, "boss");
-			connectRoom(id, dir, BossR, Manager1);
+			
+			connectRoom(newBossDoor.id, dir, BossR, Manager1);
 			if (!invalid) {
 				break;
 			}
@@ -116,13 +126,27 @@ if (floorState == genState.complete ) {
 	var itemR = findSpecialRoom(dir, "item");
 	with (itemDoor) {
 		doorType = "item";
+		Manager1.isChallenge = true;
 		connectRoom(id, dir, itemR, Manager1);
+		if (invalid) 
+		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+			invalid = false;
+			show_debug_message("trying again")
+			var newItemRoom = other.bossDoorArray[i]; 
+			instance_create_layer(newItemRoom.x, newItemRoom.y, "Instances", oLightWall);
+			dir = newItemRoom.doorDir;
+			BossR = findSpecialRoom(dir, "boss");
+			connectRoom(newItemRoom.id, dir, BossR, Manager1);
+			if (!invalid) {
+				break;
+			}
+		}
 		doorType = "item";
 	}
 	floorState = genState.runRoomManagers;
 } else if (floorState == genState.runRoomManagers) {
 	with (oGhostBarrierDirectionalParent ) {
-		if (!spawned && !isBossDoor && !foundOther && !isBossDoor && !special) {
+		if (!spawned && !foundOther && !isBossDoor && !special) {
 			wall = instance_create_layer(x, y, "Instances", oWastelandWall);
 			instance_destroy(childDoor)
 		}
@@ -132,15 +156,19 @@ if (floorState == genState.complete ) {
 		var modifier = irandom_range(8, 15)
 		diffPool = other.difficultyPool*(modifier/10);
 		var request = getEnemPool(floorID)
-		request.bArray = bossArray;
-		request.normArray = enemArray;
-		request.cArray = challengeArray;
+		bossArray = request.bArray;
+		enemArray = request.normArray;
+		challengeArray = request.cArray;
+		if (isChallenge) {
+			array_concat(enemArray, request.cArray);
+			diffPool *= 1.25;
+		}
 		event_user(1);
 		event_user(3);
 	}
 	if (instance_exists(oBossStart)) {
 		with (oBossStart) {
-			findManager()
+			Manager = findManager()
 			var i = irandom(array_length(Manager.bossArray)-1);
 			var boss = Manager.bossArray[i];
 			bossName = boss;

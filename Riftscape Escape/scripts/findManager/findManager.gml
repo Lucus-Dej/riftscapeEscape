@@ -1,4 +1,5 @@
 function findManager(){
+	show_debug_message(RoomID)
 	if (instance_exists(oRoomManager)) {
 		with (oRoomManager) {
 			if (RoomID == other.RoomID) {

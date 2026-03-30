@@ -3,6 +3,10 @@ if (brainDead) {
 }
 //path timer reduction
 path_timer--;
+if (enragedPoint >= enemey_hp && enraged == false) {
+	enemSpeed -= 0.2;
+	enraged = true;
+}
 
 flash = max(0, flash - 0.15);
 
@@ -14,9 +18,12 @@ if (shoot_cooldown <= 0) {
 	if (recoil_timer <= 0) {
 		fire_timer --;
 		if (fire_timer > 0) {
-			var ang = 0;
+			var counter = 0;
+			if (enraged) {
+				ang += 45
+			}
 			if (ang > 360) ang -= 360;
-			while (ang < 360) {
+			for (var i = 0; i < 4; i++) {
 			bulletFire(x, y, ang, bullet_speed, damage, oMiniBossBullet, id);
 			ang += 90;
 			}

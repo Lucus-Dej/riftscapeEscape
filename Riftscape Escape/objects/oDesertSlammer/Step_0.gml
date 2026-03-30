@@ -25,6 +25,7 @@ if (dragTimer > 0) {
     }
 }
 if (state == ENEM_STATE.CHASE) {
+	if (canSeePlayer)
 	chargeCooldown--;
 	if (chargeCooldown <= 0 && instance_exists(oTruePlayer)) {
 		chargeTargetX = oTruePlayer.x;
@@ -41,10 +42,10 @@ if (state == ENEM_STATE.CHASE) {
 if (state == ENEM_STATE.WINDUP) {
 	attackDelay--;
 	if (attackDelay <= 0) {
-		chargeTime = 12;
+		chargeTime = 16;
 		state = ENEM_STATE.CHARGE;
 		
-		enemSpeed = 12;
+		enemSpeed = 14;
 	}
 }
 if (state == ENEM_STATE.CHARGE) {

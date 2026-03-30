@@ -5,17 +5,17 @@ chosenList = noone;
 
 
 simpleMin = 0;
-simpleMax = 55;
-simplePool = 55;
+simpleMax = 35;
+simplePool = 35;
 rareMin = 0;
-rareMax = 85;
-rarePool = 30;
+rareMax = 90;
+rarePool = 55;
 powerfulMin = 0;
-powerfulMax = 97;
-powerfulPool = 12;
+powerfulMax = 98;
+powerfulPool = 8;
 mythicMin = 0;
 mythicMax = 100;
-mythicPool = 3;
+mythicPool = 2;
 
 
 // rare passive

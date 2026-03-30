@@ -1,5 +1,5 @@
 event_inherited();
-enemey_hp = 3.2;
+enemey_hp = 2.8;
 bite_cooldown = 75;
 on_cooldown = false;
 bite_timer = bite_cooldown;

@@ -88,14 +88,18 @@ if (spawned == true && spawn_timer <= 0) {
 	instance_destroy(temp_portal);
 	if (instance_exists(oFloorManager) && !doBoss) {
 		event_user(4);
-	} else  if (instance_exists(oFloorManager) && doBoss){
+	} else if (instance_exists(oFloorManager) && doBoss){
 		tempEnemy = bossSpawner.bossName
-		totalBoss --;
 	}
+	totalBoss --;
 	 enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
+	 if (isChallenge) {
+		enem.xp *= 1.2; 
+	 }
 	 if (doBoss) {
 		 with (enem) {
 			 xp *= 1.5;
+			 enemey_hp *= 1.65;
 			 event_user(13)
 		 }
 		 doBoss = false;
@@ -115,7 +119,7 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 	roomStart = false;
 }
 
-if (inCombat && !combatFinished) {
+if (inCombat && !combatFinished && buffer <= 0) {
 	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy))) {
 		for (var i = 0; i < array_length(doorList); i++) {
 		var door = doorList[i];
@@ -130,10 +134,14 @@ if (inCombat && !combatFinished) {
 		inCombat = false;
 		
 	}
+} else if (inCombat && !combatFinished && buffer > 0) {
+	buffer--;
 }
 
-if (global.grid_cool == false && global.activeRoom) {
-	//event_user(2)
+if (global.grid_cool == false) {
+	global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
+	mp_grid_add_instances(global.Grid, oColl, 0);
+	global.grid_cool = true;
 }
 // destroys any evil walls if they are in the room
 if (destroyWalls) {

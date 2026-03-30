@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-enemey_hp = 600;
+enemey_hp = 450;
 healthTotal = enemey_hp;
 accel = 0;
 spawnPool = 350;

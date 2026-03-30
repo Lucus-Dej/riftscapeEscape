@@ -12,3 +12,7 @@ xp = 8.5;
 damage = 5;
 bullet_speed = 3;
 spawnWeight = 7.5;
+enraged = false;
+enragedPoint = enemey_hp*0.5;
+ang = 0;
+

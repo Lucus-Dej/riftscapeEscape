@@ -17,28 +17,30 @@ function getEnemPool(_currentFloor) {
 		break;
 		
 		case "desert":
-		enemArray = [oEnemBasic, oEnemSniper, oEnemSandSniper, oEnemDesertBiter, oMiniBoss2, oDesertSlammer, oMiniBoss, oMiniBoss3, oBoss, oBoss2];
-		bossArray = [oBoss3, oMummy]; 
+		enemArray = [oEnemBasic, oEnemSandSniper, oEnemDesertBiter, oDesertSlammer, oMiniBoss3];
+		bossArray = [oBoss3]; 
+		evilArray = [oMiniBoss, oMiniBoss2, oBoss, oBoss2]
 		break;
 		
 		case "wasteland":
-		enemArray = [oEnemBasic, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3]
-		bossArray = [oWastelandDestroyer];
-		evilArray = [oBoss, oBoss2, oBoss3]
+		enemArray = [oEnemBasic, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oMiniBoss, oMiniBoss3]
+		bossArray = [oBoss3, oWastelandFireRunner];
+		evilArray = [oBoss, oBoss2, oWastelandFireRunner]
 		break;
 		
 		case "plains":
 		enemArray = [oEnemBasic, oEnemSpider, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
 		bossArray = [oRifterTank];
-		evilArray = []
+		evilArray = [oRifterTank]
 		break;
 		
 	}
-	array_concat(challengeArray, enemArray, evilArray)
+	challengeArray = array_concat(challengeArray, enemArray, evilArray)
+	show_debug_message(challengeArray)
 	var request = {
 		normArray: enemArray,
 		bArray: bossArray,
-		cArray: challengeArray
+		cArray: evilArray
 	};
 	return request;
 }

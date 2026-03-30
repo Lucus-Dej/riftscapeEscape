@@ -5,7 +5,7 @@ IDCount = 1;
 global.roomQueue = ds_queue_create();
 global.roomStack = ds_stack_create();
 currentRequest = noone;
-doorTimer = 2;
+doorTimer = 12;
 enum genState {
 	idle, 
 	generating, 

@@ -4,7 +4,7 @@ if (brainDead) {
 path_timer--;
 
 if (!canSeePlayer) {
-	enemSpeed = base_speed*6;
+	enemSpeed = base_speed*7;
 } else if (canSeePlayer) {
 	enemSpeed = base_speed;
 }
