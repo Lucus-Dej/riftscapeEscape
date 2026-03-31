@@ -12,6 +12,6 @@ enemey_hp = 25;
 enrage_point = enemey_hp/2;
 enraged = false;
 xp = 10;
-damage = 3;
+damage = 4.5;
 spawnWeight = 10;
 searchPlayer();

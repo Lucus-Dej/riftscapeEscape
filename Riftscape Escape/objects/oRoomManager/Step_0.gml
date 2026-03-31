@@ -80,12 +80,14 @@ if (ready && !spawned && portal_timer <= 0 && !instance_exists(oFloorManager)) {
 		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);
 		audio_listener_position(temp_portal.x, temp_portal.y, 0);
 		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0)
+		
 	}
 	spawned = true;
 }
 if (spawned == true && spawn_timer <= 0) {
 	spawned = false;
 	instance_destroy(temp_portal);
+	temp_portal = noone;
 	if (instance_exists(oFloorManager) && !doBoss) {
 		event_user(4);
 	} else if (instance_exists(oFloorManager) && doBoss){
@@ -119,7 +121,7 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 	roomStart = false;
 }
 
-if (inCombat && !combatFinished && buffer <= 0) {
+if (inCombat && !combatFinished && temp_portal == noone) {
 	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy))) {
 		for (var i = 0; i < array_length(doorList); i++) {
 		var door = doorList[i];
@@ -132,6 +134,9 @@ if (inCombat && !combatFinished && buffer <= 0) {
 		
 		combatFinished = true;
 		inCombat = false;
+		if (global.chargeItem != noone && global.currentCharges < global.itemCharges) {
+			global.currentCharges += 10
+		}
 		
 	}
 } else if (inCombat && !combatFinished && buffer > 0) {

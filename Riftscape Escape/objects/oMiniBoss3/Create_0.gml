@@ -13,6 +13,6 @@ damage = 5;
 bullet_speed = 3;
 spawnWeight = 7.5;
 enraged = false;
-enragedPoint = enemey_hp*0.5;
+enragedPoint = enemey_hp*0.85;
 ang = 0;
 

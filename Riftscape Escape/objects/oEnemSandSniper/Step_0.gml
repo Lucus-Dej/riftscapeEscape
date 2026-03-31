@@ -5,13 +5,15 @@ path_timer--;
 
 if (!canSeePlayer) {
 	enemSpeed = base_speed*15;
+	image_alpha = 1;
 } else if (canSeePlayer) {
+	image_alpha = modifiedAlpha;
 	enemSpeed = 0;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
-	image_alpha = 0.1;
+	modifiedAlpha = 0.25;
 	var dist = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 	time = (clamp(dist / bullet_speed, 0, 30))+18;
 	targetDir = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*time, oTruePlayer.y+oTruePlayer.vsp*time);
@@ -24,7 +26,7 @@ if (chargeTime > 0) {
 if (shoot_cooldown <= 0) {
 	enemSpeed = 0;
 	chargeTime--;
-	image_alpha += 0.06;
+	modifiedAlpha += 0.06;
 	if (chargeTime <= 0) {
 	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
 		var dir = point_direction(x, y, mouse_x, mouse_y);

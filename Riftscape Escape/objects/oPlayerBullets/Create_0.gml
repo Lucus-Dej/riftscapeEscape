@@ -6,6 +6,9 @@ canLifesteal = false;
 boomerangTime = 12;
 speed = global.bullet_speed;
 richCount = 0;
+resetTimer = 120;
+startReset = false;
+hasReversed = false;
 damage = global.playerDamage;
 direction = point_direction(
     x, y,
@@ -19,3 +22,6 @@ if (oPlayerManager.canRich) {
 } else {
 	richCount = 0;
 }
+decayRate = (global.playerReality + 4)/24
+increaseRate = (global.playerReality + 2)/32
+pierceDebuffed = false;

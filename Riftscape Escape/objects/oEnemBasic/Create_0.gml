@@ -5,7 +5,7 @@ enemey_hp = 3.5;
 enemSpeed = 0.2;
 base_speed = enemSpeed;
 xp = 4;
-damage = 10;
+damage = 15;
 bullet_speed = 5.5;
 searchPlayer();
 spawnWeight = 2;

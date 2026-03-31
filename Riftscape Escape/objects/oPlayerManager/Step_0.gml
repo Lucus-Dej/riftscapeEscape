@@ -322,7 +322,7 @@ if (inOverhealth == false) {
 	}
 }
 
-global.lifesteal = (global.playerEssence/2+(global.playerDamage/3));
+global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*2.5;
 
 if (inOverhealth == true) {
 	dodgeLifeBonus = 0;

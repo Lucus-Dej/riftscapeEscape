@@ -23,5 +23,5 @@ if (spawnItem && item != noone) {
 	spawnItem = false;
 }
 if (Manager == noone) {
-	Manager = findManager()
+	//Manager = findManager()
 }

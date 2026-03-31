@@ -31,8 +31,8 @@ if (shoot_cooldown <= 0) {
 		if (fireToggle) {
 			bulletFire(x, y, dir, bullet_speed*1.2, damage, oSniperBullet, id);
 		} else {
-			bulletFire(x, y, dir+25, bullet_speed, damage, oSniperBullet, id);
-			bulletFire(x, y, dir-25, bullet_speed, damage, oSniperBullet, id);
+			bulletFire(x, y, dir+40, bullet_speed, damage, oSniperBullet, id);
+			bulletFire(x, y, dir-40, bullet_speed, damage, oSniperBullet, id);
 		}
 	}
 	fireToggle = !fireToggle;

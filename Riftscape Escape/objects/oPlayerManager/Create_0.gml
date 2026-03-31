@@ -5,6 +5,8 @@ global.playerLife = 1; //health
 global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal
 
+
+
 //weird enemy / damage stuff
 tookDamage = false;
 lastKilled = noone;
@@ -146,7 +148,7 @@ overhealthFlag = true;
 //xp
 xpTotal = 0;
 xpLevel = 1;
-xpProgress = 85.0;
+xpProgress = 100;
 xpUI = 100;
 overXP = 0;
 canLevel = false;
@@ -222,7 +224,7 @@ global.player_speed = baseSpeed;
 global.playerSword = false;
 global.playerKilled = false;
 global.grid_cool = false;
-global.lifesteal = global.playerEssence/20;
+global.lifesteal = global.playerEssence/10;
 global.tempHP = 0;
 global.playerDamage = 0;
 global.upLife = false;

@@ -2,7 +2,9 @@ searchItem = false;
 doBrain = false;
 chosenList = noone;
 
-
+global.chargeItem = noone;
+global.itemCharges = 0;
+global.currentCharges = 0;
 
 simpleMin = 0;
 simpleMax = 35;
@@ -28,7 +30,7 @@ validItemLists = ds_list_create();
 item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oBrainInAJar, oBrokenBloodVial, oRareSeed, oSmallSculpture, oWaterDamagedNote, oHollowedDice);
+ds_list_add(rareItemList, oBrainInAJar, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice);
 ds_list_add(powerfulItemList, oActionFigure, oMetalOrb, oWhisperingCrystal, oPoorFingerPainting, oImageOfYou, oGunpowder);
 ds_list_add(mythicItemList, oTesseract, oDepictionOfSeraphim, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 searchItem = false;

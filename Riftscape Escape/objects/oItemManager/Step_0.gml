@@ -2,6 +2,9 @@ if (searchItem == true) {
 	event_user(0);
 	searchItem = false;
 }
+if (global.chargeItem != noone) {
+	
+}
 //brain in a jar
 if (oPlayerManager.hasBrainInAJar && oPlayerManager.tookDamage && !doBrain) {
 	brainNum = irandom_range(0,9);

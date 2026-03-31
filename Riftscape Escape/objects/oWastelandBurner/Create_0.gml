@@ -6,5 +6,5 @@ bite_timer = bite_cooldown;
 enemSpeed = 5.5;
 base_enemSpeed = enemSpeed;
 xp = 3;
-damage = 12;
+damage = 12.5;
 spawnWeight = 1.5;

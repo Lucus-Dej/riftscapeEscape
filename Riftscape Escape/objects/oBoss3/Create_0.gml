@@ -11,6 +11,6 @@ enemey_hp = 42;
 enrage_point = enemey_hp/2;
 enraged = false;
 xp = 18.5;
-damage = 18;
+damage = 19;
 spawnWeight = 12;
 ang = irandom_range(35, 60);
