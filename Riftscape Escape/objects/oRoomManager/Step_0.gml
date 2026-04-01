@@ -103,6 +103,7 @@ if (spawned == true && spawn_timer <= 0) {
 			 xp *= 1.5;
 			 enemey_hp *= 1.65;
 			 event_user(13)
+			 isBoss = true;
 		 }
 		 doBoss = false;
 	 }

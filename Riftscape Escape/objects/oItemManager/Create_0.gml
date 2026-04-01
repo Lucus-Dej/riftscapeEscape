@@ -1,7 +1,9 @@
 searchItem = false;
 doBrain = false;
 chosenList = noone;
-
+luckBonus = 0;
+harvestBlockerCount = 0;
+lastBlocker = noone;
 global.chargeItem = noone;
 global.itemCharges = 0;
 global.currentCharges = 0;

@@ -46,7 +46,7 @@ if (ds_list_size(mythicItemList) > 0) {
 	mythicMax = -1;
 }
 
-var j = irandom(totalPool - 1 + global.playerTime);
+var j = irandom(totalPool - 1 + global.playerTime)+luckBonus;
 if (simpleMax >= 0 && j < simpleMax) {
 	chosenList = simpleItemList;
 } else if (rareMax >= 0 && j < rareMax) {

@@ -17,4 +17,5 @@ contactIframeCount = 45;
 contactDamage = 12.5;
 primeContact = false;
 startCount = false;
+isBoss = false;
 event_inherited();

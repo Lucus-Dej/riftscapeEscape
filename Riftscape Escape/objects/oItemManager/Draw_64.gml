@@ -115,7 +115,23 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		break;
 		
 		case oThePathForward:
+		dropID = oTruePlayer;
+		luckBonus += 10;
 		event_user(0);
+		instance_create_layer(dropID.x, dropID.y, "Instances", dropID.item)
+		luckBonus -= 10;
+		global.itemCharges += 2;
+		break;
+		
+		case oDeathBook:
+		with (oEnemy) {
+			if (!isBoss) {
+				instance_destroy(id)
+			}
+		}
+		break;
+		case oHarvestBook:
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionHarvestBlocker);
 		break;
 	}
 	global.currentCharges = 0;
