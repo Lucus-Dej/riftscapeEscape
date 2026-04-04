@@ -1,6 +1,15 @@
 if (brainDead) {
     exit;
 }
+if (!bossModApplied && isBoss) { 
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	enemSpeed *= speedMult;
+	damage *= dmgMult;
+	chargeDelay /= cooldownMult;
+	event_user(13);
+}
 //path timer reduction
 path_timer--;
 if (!canSeePlayer) {
@@ -11,7 +20,7 @@ if (iFrames >= 0) {
 	iFrames--;
 }
 
-if (enrage_point >= enemey_hp && enraged == false) {
+if (phasePoint1 >= enemey_hp && enraged == false) {
 	enraged = true;
 }
 	
@@ -27,6 +36,9 @@ if (dragTimer > 0) {
 if (state == ENEM_STATE.CHASE) {
 	if (canSeePlayer)
 	chargeCooldown--;
+	if (enraged) {
+		chargeCooldown -= 0.5;
+	}
 	if (chargeCooldown <= 0 && instance_exists(oTruePlayer)) {
 		chargeTargetX = oTruePlayer.x;
 		chargeTargetY = oTruePlayer.y;

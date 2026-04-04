@@ -1,13 +1,18 @@
 if (instance_exists(oFloorManager)) {
+	if (isBossDoor == true && instance_exists(wall)) {
+		instance_destroy(wall)
+	}
 if (state == doorState.init) {
 	if (RoomID != 0) {
 	RoomID1 = RoomID;
-	
-	state = doorState.lookingForManager1
 	show_debug_message(state)
+	state = doorState.lookingForManager1
+	} else {
+		RoomID = RoomID1
 	}
+	
 }
-if (state == doorState.lookingForManager1) {
+if (state == doorState.lookingForManager1 && !invalid) {
 	show_debug_message("SEARCHING FOR MANAGER")
 	with (oRoomManager) {
 		if (RoomID == other.RoomID1) {
@@ -40,9 +45,9 @@ if (state == doorState.lookingForManager2 && Manager2 == noone) {
 		if (RoomID == other.RoomID2) {
 			other.Manager2 = id;
 			array_push(doorList, other.id)
+			other.state = doorState.done;
 		}
 	}
-	state = doorState.done;
 }
 } else {
 	if (!used && onStart) {
@@ -58,6 +63,11 @@ if (state == doorState.lookingForManager2 && Manager2 == noone) {
 if (doorType == "boss") {
 	if (instance_exists(childDoor) && childDoor.sprite_index != sBossBarrier)
 	childDoor.sprite_index = sBossBarrier;
+}
+if (Manager1 != noone) {
+	if (Manager1.combatFinished && instance_exists(childDoor)) {
+		instance_destroy(childDoor);
+	}
 }
 if (used) {
 	if (instance_exists(Manager1) && instance_exists(Manager2)) {
@@ -78,7 +88,7 @@ if (used) {
 	}
 }
 if (invalid && invalidBlock == noone) {
-	//invalidBlock = instance_create_layer(x, y, "Instances", oWastelandWall)
+	invalidBlock = instance_create_layer(x, y, "Instances", oWastelandWall)
 }
 if (state == doorState.done && childDoor == noone) {
 	childDoor = instance_create_layer(x, y, "Instances", oBarrier);

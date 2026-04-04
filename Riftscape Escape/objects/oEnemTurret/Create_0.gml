@@ -1,0 +1,12 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 100);
+shoot_delay = 45;
+enemey_hp = 3.8;
+enemSpeed = 0.5;
+bullet_speed = 6.5;
+base_speed = enemSpeed;
+fireToggle = false;
+xp = 6.5;
+damage = 10;
+searchPlayer();
+spawnWeight = 4;

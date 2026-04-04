@@ -11,9 +11,9 @@ enemey_hp = 4.3;
 
 ang = 0;
 enemSpeed = 1.3;
-base_enemSpeed = enemSpeed;
+base_speed = enemSpeed;
 xp = 5.5;
-damage = 12;
+damage = 18.5;
 bullet_speed = 7;
 playerPercent = 0;
 spawnWeight = 6;

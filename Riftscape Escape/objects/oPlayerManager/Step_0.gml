@@ -1,6 +1,10 @@
 // xp stuff
 xpUI = (xpTotal/xpProgress)*100;
-
+if (global.grid_cool == false) {
+	global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
+	mp_grid_add_instances(global.Grid, oColl, 0);
+	global.grid_cool = true;
+}
 if (xpTotal >= xpProgress) {
 	xpTotal -= xpProgress;
 	xpProgress *= 1.12;
@@ -74,7 +78,7 @@ if (global.player_health <= 0) {
 
 //stat calcs
 global.player_speed = sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus);
-global.bullet_delay = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
+global.bullet_delay = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
 global.playerDamage = tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff;
 global.bullet_speed = 5+ sqrt(global.playerReality*0.8);
 cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + overHealthCooldownBuff + circleCooldownBonus)*0.5);
@@ -322,7 +326,7 @@ if (inOverhealth == false) {
 	}
 }
 
-global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*2.5;
+global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*oItemManager.sacDaggerBonus;
 
 if (inOverhealth == true) {
 	dodgeLifeBonus = 0;

@@ -4,7 +4,7 @@ if (state == ENEM_STATE.CHARGE && iFrames <= 0 && oPlayerManager.iframes <= 0) {
 	if (oPlayerManager.dodgeLifeBonus > 0) {
 		oPlayerManager.dodgeLifeBonus -= damage*6.5;
 	} else {
-		global.player_health -= damage*5;
+		global.player_health -= damage*3.5;
 	}
 	iFrames = impactDelay;
 } else if (iFrames <= 0 && oPlayerManager.iframes <= 0) {

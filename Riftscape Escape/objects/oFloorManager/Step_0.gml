@@ -88,6 +88,7 @@ if (floorState == genState.complete ) {
 		isBossDoor = true;
 		doorType = "boss";
 		
+		
 		show_debug_message("boss door made")
 		connectRoom(id, dir, BossR, Manager1);
 		if (invalid) 
@@ -105,15 +106,6 @@ if (floorState == genState.complete ) {
 				break;
 			}
 		}
-		/*while (invalid) {
-			doorType = "null"
-			bossIndex = irandom(array_length(other.bossDoorArray)-1);
-			bossDoor = other.bossDoorArray[bossIndex];
-			BossR = findSpecialRoom(dir, "boss");
-			dir = bossDoor.doorDir;
-			connectRoom(id, dir, BossR, Manager1);
-			}
-		*/
 		doorType = "boss";
 	}
 	var itemRoomIndex = irandom(array_length(bossDoorArray)-1);
@@ -141,12 +133,13 @@ if (floorState == genState.complete ) {
 				break;
 			}
 		}
+		
 		doorType = "item";
 	}
 	floorState = genState.runRoomManagers;
 } else if (floorState == genState.runRoomManagers) {
 	with (oGhostBarrierDirectionalParent ) {
-		if (!spawned && !foundOther && !isBossDoor && !special) {
+		if (!foundOther && !isBossDoor && !special) {
 			wall = instance_create_layer(x, y, "Instances", oWastelandWall);
 			instance_destroy(childDoor)
 		}

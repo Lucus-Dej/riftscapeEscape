@@ -1,4 +1,4 @@
-if (instance_exists(Manager)) {
+if (instance_exists(Manager) && Manager.object_index != oWavebasedManager) {
 if (Manager.combatFinished && !used) {
 	with (oItemManager) {
 		searchItem = true;

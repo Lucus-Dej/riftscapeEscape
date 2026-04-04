@@ -6,7 +6,7 @@ function searchPlayer() {
 		return false;
 	}
 
-    var hit = collision_line(x, y,oTruePlayer.x, oTruePlayer.y, oSuperwalls, false, true);
+    var hit = collision_line(x, y,oTruePlayer.x, oTruePlayer.y, oBulletBlocker, false, true);
 
     canSeePlayer = (hit == noone);
 

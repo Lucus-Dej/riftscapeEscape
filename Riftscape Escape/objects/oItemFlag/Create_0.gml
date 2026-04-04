@@ -4,6 +4,6 @@ active = false;
 used = false;
 flagManager = noone;
 Manager = noone;
-item = oEnemSniper;
+item = oEnemTurret;
 foundItem = oEnemBasic;
 spawnItem = false;

@@ -1,6 +1,15 @@
 if (brainDead) {
     exit;
 }
+if (!bossModApplied && isBoss) {
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
+	hostSearchCooldown /= cooldownMult*2.5;
+	event_user(13);
+}
 //path timer reduction
 path_timer--;
 show_debug_message(hostSearchTimer)

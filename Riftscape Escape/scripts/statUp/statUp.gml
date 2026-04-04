@@ -4,7 +4,7 @@ function realityUp() {
 }
 function fateUp() {
 	global.playerFate++;
-	oPlayerManager.statDamage = sqrt(global.playerFate)*0.25
+	oPlayerManager.statDamage = sqrt(global.playerFate)*0.25-0.2;
 }
 function thoughtUp() {
 	global.playerThought++;
@@ -18,7 +18,7 @@ function lifeUp() {
 	var startingHP = 100;
 	var oldRatio = oPlayerManager.max_hp;
 	global.playerLife++;
-	oPlayerManager.max_hp = startingHP+70*sqrt((global.playerLife - 1)*0.2);
+	oPlayerManager.max_hp = (startingHP+70*sqrt((global.playerLife - 1)*0.2))/oItemManager.sacDaggerPenalty;
 	var newRatio = oPlayerManager.max_hp;
 	
 	global.player_health += newRatio - oldRatio;

@@ -2,14 +2,22 @@ if (brainDead) {
     exit;
 }
 path_timer--;
-
+if (!bossModApplied && isBoss) {
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	damage *= dmgMult;
+	attackTimer /= cooldownMult;
+	shoot_delay /= cooldownMult;
+	event_user(13);
+}
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
 flash = max(0, flash - 0.15);
 // enraged
-if (enrage_point >= enemey_hp && enraged == false) {
+if (phasePoint1 >= enemey_hp && enraged == false) {
 	shoot_delay -= 20;
 	enraged = true;
 	arcAngle +=30;

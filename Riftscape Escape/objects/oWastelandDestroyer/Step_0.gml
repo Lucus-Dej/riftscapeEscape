@@ -3,8 +3,15 @@ if (brainDead) {
 }
 path_timer--;
 flash = max(0, flash - 0.15);
-
-if ((enemey_hp <= enragePoint1) && phase < 1) {
+if (!bossModApplied && isBoss) {
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
+	event_user(13);
+}
+if ((enemey_hp <= phasePoint1) && phase < 1) {
 	attack = 0;
 	phase++;
 	segments += 4;
@@ -22,7 +29,7 @@ if ((enemey_hp <= enragePoint1) && phase < 1) {
 		}
 	}
 }
-if ((enemey_hp <= enragePoint2) && phase < 2) {
+if ((enemey_hp <= phasePoint2) && phase < 2) {
 	attack = 0;
 	phase++;
 	segments +=6;

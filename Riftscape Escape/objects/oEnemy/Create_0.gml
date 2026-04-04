@@ -13,9 +13,16 @@ canSeePlayer = false;
 brainDead = false;
 bossed = false;
 contactIframe = 0;
-contactIframeCount = 45;
+contactIframeCount = 120;
 contactDamage = 12.5;
 primeContact = false;
 startCount = false;
 isBoss = false;
+bossModApplied = false;
+// boss stats
+hpMult = 1;
+speedMult = 1;
+dmgMult = 1;
+cooldownMult = 1;
+pushTimer = 60;
 event_inherited();

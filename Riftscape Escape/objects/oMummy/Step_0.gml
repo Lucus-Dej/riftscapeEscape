@@ -3,9 +3,16 @@ if (brainDead) {
 }
 path_timer--;
 flash = max(0, flash - 0.15);
-
+if (!bossModApplied && isBoss) { 
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
+	event_user(13);
+}
 // enraged
-if (enrage_point >= enemey_hp && enraged == false) {
+if (phasePoint1 >= enemey_hp && enraged == false) {
     enemSpeed -= 0.2;
     bullet_speed += 1;
     shoot_delay -= 30;
@@ -23,7 +30,7 @@ if (enrage_point >= enemey_hp && enraged == false) {
     shoot_cooldown = shoot_delay;
 }
 
-if (enrage_point2 >= enemey_hp && enraged2 == false) {
+if (phasePoint2 >= enemey_hp && enraged2 == false) {
     enemSpeed = 0.3;
     bullet_speed += 1;
     shoot_delay -= 30;

@@ -2,7 +2,7 @@
   "$GMSprite":"v2",
   "%Name":"sTornPainting",
   "bboxMode":0,
-  "bbox_bottom":54,
+  "bbox_bottom":55,
   "bbox_left":0,
   "bbox_right":46,
   "bbox_top":1,

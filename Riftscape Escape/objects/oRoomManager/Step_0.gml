@@ -27,6 +27,7 @@ if (roomStart && !ready) {
 		}
 		oPlayerManager.huskCharge += 450;
 	}
+	oPlayerManager.incombat = true;
 	/*if (instance_exists(workerDoor1)) {
 		with (workerDoor1) {
 		if (!instance_exists(childDoor)) {
@@ -92,18 +93,18 @@ if (spawned == true && spawn_timer <= 0) {
 		event_user(4);
 	} else if (instance_exists(oFloorManager) && doBoss){
 		tempEnemy = bossSpawner.bossName
+		totalBoss--;
 	}
-	totalBoss --;
 	 enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
 	 if (isChallenge) {
 		enem.xp *= 1.2; 
 	 }
 	 if (doBoss) {
 		 with (enem) {
-			 xp *= 1.5;
-			 enemey_hp *= 1.65;
-			 event_user(13)
 			 isBoss = true;
+			 xp *= 1.5;
+			 bossMod(id);
+			 //event_user(13)
 		 }
 		 doBoss = false;
 	 }
@@ -135,8 +136,9 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 		
 		combatFinished = true;
 		inCombat = false;
+		oPlayerManager.incombat = false;
 		if (global.chargeItem != noone && global.currentCharges < global.itemCharges) {
-			global.currentCharges += 10
+			global.currentCharges += 1;
 		}
 		
 	}
@@ -144,11 +146,7 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 	buffer--;
 }
 
-if (global.grid_cool == false) {
-	global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
-	mp_grid_add_instances(global.Grid, oColl, 0);
-	global.grid_cool = true;
-}
+
 // destroys any evil walls if they are in the room
 if (destroyWalls) {
 	event_user(1)

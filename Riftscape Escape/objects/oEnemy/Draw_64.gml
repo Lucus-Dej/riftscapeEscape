@@ -1,4 +1,4 @@
-if (bossed) {
+if (bossModApplied) {
 	var startX = (display_get_gui_width()/2)-256
 	var endX = (display_get_gui_width()/2)+256
 	var spacing = -48;

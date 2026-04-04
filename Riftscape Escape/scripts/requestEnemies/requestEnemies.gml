@@ -10,26 +10,26 @@ function getEnemPool(_currentFloor) {
 	var challengeArray = [];
 	switch (_currentFloor) {
 		case "caves":
-		enemArray = [oEnemBasic, oEnemSniper, oEnemSpider, oEnemBig, oCaveSpitter];
-		bossArray = [oBoss, oBoss2, oMiniBoss, oMiniBoss2];
+		enemArray = [oEnemBasic, oEnemTurret, oEnemSpider, oEnemBig, oCaveSpitter];
+		bossArray = [oBoss, oBoss2, oMiniBoss, oMiniBoss2, oEnemBig, oCaveSpitter];
 		evilArray = [oMiniBoss, oMiniBoss2]
 		
 		break;
 		
 		case "desert":
 		enemArray = [oEnemBig, oEnemBasic, oEnemSandSniper, oEnemDesertBiter, oDesertSlammer, oMiniBoss3];
-		bossArray = [oBoss3, oDesertSlammer]; 
+		bossArray = [oBoss3, oDesertSlammer, oEnemSandSniper, oMiniBoss3]; 
 		evilArray = [oMiniBoss, oMiniBoss2, oBoss, oBoss2]
 		break;
 		
 		case "wasteland":
-		enemArray = [oEnemBig, oCaveSpitter, oEnemBasic, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oMiniBoss, oMiniBoss3]
+		enemArray = [oEnemBig, oCaveSpitter, oEnemBasic, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oMiniBoss, oMiniBoss3]
 		bossArray = [oBoss3, oWastelandFireRunner];
 		evilArray = [oBoss, oBoss2, oWastelandFireRunner]
 		break;
 		
 		case "plains":
-		enemArray = [oCaveSpitter, oEnemBig, oEnemBasic, oEnemSpider, oEnemSandSniper, oEnemSniper, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
+		enemArray = [oPlainsShooter, oCaveSpitter, oEnemBig, oEnemBasic, oEnemSpider, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
 		bossArray = [oRifterTank];
 		evilArray = [oRifterTank]
 		break;

@@ -9,7 +9,7 @@ enemey_hp = 16;
 
 ang = 0;
 enemSpeed = 1.25;
-base_enemSpeed = enemSpeed;
+base_speed = enemSpeed;
 xp = 7.5;
 damage = 4.5;
 bullet_speed = 6;

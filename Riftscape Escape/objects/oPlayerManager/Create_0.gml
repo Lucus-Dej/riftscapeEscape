@@ -5,10 +5,11 @@ global.playerLife = 1; //health
 global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal
 
-
-
+global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
+mp_grid_add_instances(global.Grid, oColl, 0);
 //weird enemy / damage stuff
 tookDamage = false;
+incombat = false;
 lastKilled = noone;
 lastKilledX = 0;
 lastKilledY = 0;

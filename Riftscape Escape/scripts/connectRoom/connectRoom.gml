@@ -92,12 +92,18 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 			newInst.checked = true;
 			newInst.spawned = true;
 			newInst.onStart = true;
+			if (doorType != "null") {
+				newInst.special = true;
+			}
 		} else {
 			newInst.RoomID = oFloorManager.IDCount +1;
 		}
-	
+		if (obj == oItemFlag && doorType == "item") {
+			newInst.onStart = true;
+		}
 		if (obj == oGhostBarrier) {
 			newInst.RoomID = oFloorManager.IDCount +1;
+			//if (doorType == "boss") newInst.state = doorState.init
 		}
 		if (obj == oSpawnSpawner) {
 			spawner = newInst;
@@ -105,6 +111,10 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		if (obj = oTeleSpawner) {
 			obj.con = true;
 			obj.goFloor = oPlayerManager.currentLevl;
+		}
+		if (obj == oAbyss) {
+			instance_destroy(newInst)
+			newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Items", obj);
 		}
 		
 		//show_debug_message(newInst.RoomID)
@@ -114,15 +124,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var ranPool = irandom_range(-2, 4);
 	roomManager.diffPool = oFloorManager.difficultyPool+ranPool;
 	roomManager.floorID = oFloorManager.floorID;
-	switch (doorType) {
-		case "boss":
-		roomManager.roomType = "boss";
-		break;
-		
-		case "item":
-			roomManager.roomType = "treasure";
-		break;
-	}
+	
 	
 	with (spawner) {
 		RoomID = roomManager.RoomID;

@@ -1,3 +1,12 @@
+if (!bossModApplied && isBoss) {
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	enemSpeed *= speedMult;
+	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
+	event_user(13);
+}
 if (brainDead) {
     exit;
 }
@@ -11,7 +20,7 @@ shoot_cooldown--;
 
 // fire when ready, fires default bullet
 if (shoot_cooldown <= 0) {
-	ang = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*bullet_speed*0.1, oTruePlayer.y+oTruePlayer.vsp*bullet_speed*0.1);
+	//point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*bullet_speed*0.1, oTruePlayer.y+oTruePlayer.vsp*bullet_speed*0.1);
 	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
 		ang = point_direction(x, y, mouse_x, mouse_y);
 	}

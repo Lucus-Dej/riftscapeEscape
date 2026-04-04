@@ -126,12 +126,30 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		case oDeathBook:
 		with (oEnemy) {
 			if (!isBoss) {
+				instance_create_layer(x, y, "Instances", oMinionEssence)
 				instance_destroy(id)
 			}
 		}
 		break;
 		case oHarvestBook:
-		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionHarvestBlocker);
+		for (var f = 0; f < 8; f++) {
+			var summon = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionHarvestBlocker);
+			summon.orbitAngle = f*45;
+		}
+		with (oMinionHarvestBlocker) {
+			init = true;
+		}
+		break;
+		
+		case oDreamsBook:
+		room_goto(hordeSurvival);
+		global.chargeItem = noone;
+		with (oPlayerManager) {
+			levelIndex = 0;
+			currentLevl = levelArray[levelIndex]
+			nextLevel = levelArray[levelIndex +1];
+			
+		}
 		break;
 	}
 	global.currentCharges = 0;

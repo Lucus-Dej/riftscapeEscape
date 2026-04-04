@@ -1,10 +1,21 @@
 if (brainDead) {
     exit;
 }
+var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
+image_angle = playerDir+90;
+if (!bossModApplied && isBoss) {
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	enemSpeed *= speedMult;
+	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
+	event_user(13);
+}
 //path timer reduction
 path_timer--;
 flash = max(0, flash - 0.15);
-if (enrage_point >= enemey_hp && enraged == false) {
+if (phasePoint1 >= enemey_hp && enraged == false) {
 	enemSpeed += 1.6;
 	bullet_speed -= 2;
 	fire_duration += 6;

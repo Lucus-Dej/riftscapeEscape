@@ -1,10 +1,19 @@
 if (brainDead) {
     exit;
 }
+if (!bossModApplied && isBoss) { event_user(13) event_user(13)
+	bossModApplied = true;
+	enemey_hp *= hpMult;
+	base_speed *= speedMult;
+	enemSpeed *= speedMult;
+	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
+	event_user(13)
+}
 //path timer reduction
 path_timer--;
 flash = max(0, flash - 0.15);
-if (enrage_point >= enemey_hp && enraged == false) {
+if (phasePoint1 >= enemey_hp && enraged == false) {
 	enemSpeed -= 1;
 	bullet_speed = 1.5;
 	fire_duration += 30;
@@ -31,14 +40,18 @@ if (shoot_cooldown <= 0) {
 			} else {
 			bulletAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 		}
-		bulletFire(x, y, bulletAng, bullet_speed, damage, oMiniBossBullet, id);
+		if (bossModApplied) {
+			bulletFire(x, y, bulletAng, bullet_speed, damage, oBossBullet, id);
+		} else {
+			bulletFire(x, y, bulletAng, bullet_speed, damage, oMiniBossBullet, id);
+		}
 			recoil_timer = recoil_cooldown;
 			} else {
 				shoot_cooldown = shoot_delay;
 				recoil_timer = recoil_cooldown;
 				fire_timer = fire_duration;
 				if (enraged)
-				bullet_speed += 0.5;
+				bullet_speed += 0.1;
 		}
 	}
 }

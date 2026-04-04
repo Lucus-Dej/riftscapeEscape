@@ -1,2 +1,2 @@
 draw_self();
-draw_text(x, y-64, oPlayerManager.canPierce)
+draw_text(x, y-64, oPlayerManager.brainJarBonus)

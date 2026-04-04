@@ -35,5 +35,5 @@
     "path":"sprites/sGhostBarrier/sGhostBarrier.yy",
   },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

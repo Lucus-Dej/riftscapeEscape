@@ -1,4 +1,5 @@
 // Update the angle
+if (init)
 orbitAngle += orbitSpeed;
 
 // Calculate the new x and y positions using lengthdir functions

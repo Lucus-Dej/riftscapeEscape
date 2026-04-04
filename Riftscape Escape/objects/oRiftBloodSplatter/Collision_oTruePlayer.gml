@@ -1,0 +1,3 @@
+if (!decay) {
+	decay = true;
+}

@@ -6,30 +6,29 @@ if (global.chargeItem != noone) {
 	
 }
 //brain in a jar
-if (oPlayerManager.hasBrainInAJar && oPlayerManager.tookDamage && !doBrain) {
-	brainNum = irandom_range(0,9);
-	doBrain = true;
-	brainTime = 60;
+if (oPlayerManager.hasBrainInAJar && oPlayerManager.tookDamage) {
+	brainNum = irandom_range(0,4);
+	bigBrainNum = irandom_range(0, 99)
 }
-if (doBrain) {
-	if (brainNum = 0) {
-		oPlayerManager.brainJarBonus = 4;
-		if (brainTime >= 0) {
-			brainTime --;
-		}
-		if (brainTime <= 0) {
-			brainTime = 12;
-			doBrain = false;
-			oPlayerManager.brainJarBonus = 1;
-		}
-	} else {
-		doBrain = false;
+
+if (bigBrainNum == 0) {
+	if (global.chargeItem != noone) {
+		global.currentCharges++;
 	}
+	bigBrainNum = -9;
 }
+if (brainNum = 0) {
+	oPlayerManager.brainJarBonus += 12;
+	brainNum = -1;
+}
+if (oPlayerManager.brainJarBonus > 1) {
+	oPlayerManager.brainJarBonus -= 0.1;
+}
+
 // rare seed
 if (hasRareSeed) {
-	with oRoomManager {
-		if (inCombat && !other.seedStart) {
+	with oPlayerManager {
+		if (incombat && !other.seedStart) {
 			other.currentRoomManager = id;
 			other.seedCombatCheck= true;
 			other.seedStart = true;
@@ -41,12 +40,12 @@ if (seedCombatCheck && seedStart) {
 		seedFailed = true;
 	}
 	with currentRoomManager {
-		if (!inCombat && !other.seedFailed) {
+		if (!incombat && !other.seedFailed) {
 			global.player_health = oPlayerManager.max_hp;
 			other.seedStart = false;
 			other.seedFailed = false;
 			other.seedCombatCheck = false;
-		} else if (!inCombat && other.seedFailed) {
+		} else if (!incombat && other.seedFailed) {
 			other.seedCombatCheck = false;
 			other.seedStart = false;
 			other.seedFailed = false;
