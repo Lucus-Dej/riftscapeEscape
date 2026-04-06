@@ -10,3 +10,5 @@ bounceTarget = noone;
 ignoreWall = noone;
 tracking = 0;
 canAccel = false;
+canDecel = false;
+decelRate = 0.2;

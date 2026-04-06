@@ -1,7 +1,8 @@
-bulletCheck = collision_circle_list(x, y, 96*pull, oPlayerBullets, false, true, bulletCheck, false)
+collision_circle_list(x, y, 128+64*pull*2, oPlayerBullets, false, true, bulletCheck, false)
 image_angle += rotation;
 var playerDist = point_distance(oTruePlayer.x, oTruePlayer.y, x, y);
-if (instance_exists(oTruePlayer) && playerDist < 80*pull) {
+if (searchPlayer())
+if (instance_exists(oTruePlayer) && playerDist < 48+96*pull*2) {
 	var pdir = point_direction(oTruePlayer.x, oTruePlayer.y, x, y);
 	oTruePlayer.x += lengthdir_x(pull*0.8, pdir);
 	oTruePlayer.y += lengthdir_y(pull*0.8, pdir);
@@ -19,6 +20,7 @@ if (ds_list_size(bulletCheck) > 0) {
 		
 		if (dis < 4) {
 			if (instance_exists(host)) {
+				if (host.bulletCount < 24)
 				host.bulletCount ++;
 				if (host.image_yscale < 3) {
 					host.rotation +=0.5;
@@ -35,5 +37,12 @@ if (ds_list_size(bulletCheck) > 0) {
 			break;
 			}
 		}
+	}
+}
+if (!instance_exists(host)) {
+	image_xscale -= 0.01;
+	image_yscale -= 0.01;
+	if (image_yscale <= 0.2) {
+		instance_destroy()
 	}
 }

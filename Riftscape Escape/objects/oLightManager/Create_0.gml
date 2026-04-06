@@ -12,7 +12,7 @@ lightSurface = surface_create(room_width, room_height)
 shadowSurface = surface_create(room_width, room_height)
 
 lightObjArray[0] = (oLightEmmiter);
-lightObjArray[1] = (oLightWalls);
+lightObjArray[1] = (oLightWall);
 
 
 smallLightArray[0] = (oTruePlayer);

@@ -9,7 +9,7 @@ base_speed = enemSpeed;
 xp = 8;
 damage = 20;
 contactDamage = 35;
-bullet_speed = 5.5;
+bullet_speed = 9.5;
 searchPlayer();
 spawnWeight = 4;
 bulletCount = 0;

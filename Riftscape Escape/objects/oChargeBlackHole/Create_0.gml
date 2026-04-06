@@ -1,0 +1,9 @@
+host = oTruePlayer;
+pull = 1;
+bulletCheck = ds_list_create();
+rotation = 1;
+playerMultiple = 1;
+hp = 320;
+shotAngle = 1;
+bulletCount = 0;
+existance = 1800;

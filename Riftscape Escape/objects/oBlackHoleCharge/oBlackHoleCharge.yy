@@ -1,17 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"oLightWall",
-  "eventList":[],
+  "%Name":"oBlackHoleCharge",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oLightWall",
+  "name":"oBlackHoleCharge",
   "overriddenProperties":[],
   "parent":{
-    "name":"CAVES",
-    "path":"folders/roomstuff/wallstuff/CAVES.yy",
+    "name":"charge",
+    "path":"folders/items/charge.yy",
   },
   "parentObjectId":{
-    "name":"oBulletBlocker",
-    "path":"objects/oBulletBlocker/oBulletBlocker.yy",
+    "name":"oItemCharge",
+    "path":"objects/oItemCharge/oItemCharge.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -31,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sLightWall",
-    "path":"sprites/sLightWall/sLightWall.yy",
+    "name":"sBlackHoleBook",
+    "path":"sprites/sBlackHoleBook/sBlackHoleBook.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -35,7 +35,7 @@ validItemLists = ds_list_create();
 item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oHarvestBook, oBrainInAJar, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice);
+ds_list_add(rareItemList, oHarvestBook, oBlackHoleCharge, oBrainInAJar, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice);
 ds_list_add(powerfulItemList, oDictionaryCharge, oThePathForward, oActionFigure, oMetalOrb, oWhisperingCrystal, oPoorFingerPainting, oImageOfYou, oGunpowder);
 ds_list_add(mythicItemList, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oDepictionOfSeraphim, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 searchItem = false;

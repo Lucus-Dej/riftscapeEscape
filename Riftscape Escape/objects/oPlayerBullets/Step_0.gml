@@ -20,6 +20,12 @@ if (oItemManager.hasBrokenSnowglobe) {
 	speed += increaseRate;
 	damage += 0.025;
 }
+if (canAccel) {
+	speed += increaseRate;
+}
+if (canDecel) {
+	speed -= decayRate
+}
 if (oItemManager.hasBrokenBoomerang) {
 	boomerangTime--;
 	if (boomerangTime <= 0) {

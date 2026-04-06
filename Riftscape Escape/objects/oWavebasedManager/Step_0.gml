@@ -128,6 +128,10 @@ if (state == waveState.inBetween) {
 		case 21:
 		array_push(waveArray, oRifterTank)
 		break;
+		
+		case 24:
+		array_push(bossArray, oWastelandDestroyer)
+		break;
 	}
 	startingWeight *= 1.2;
 	waveWeight = startingWeight;

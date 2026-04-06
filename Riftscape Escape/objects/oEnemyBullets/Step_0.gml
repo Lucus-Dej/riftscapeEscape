@@ -9,3 +9,6 @@ if (instance_exists(owner) &&rotate) {
 if (canAccel) {
 	speed += 0.2;
 }
+if (canDecel) {
+	speed -= decelRate;
+}

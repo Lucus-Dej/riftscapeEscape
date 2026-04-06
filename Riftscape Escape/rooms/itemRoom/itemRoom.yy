@@ -267,6 +267,7 @@
     {"name":"inst_38C44F9C","path":"rooms/itemRoom/itemRoom.yy",},
     {"name":"inst_4D3F9B31","path":"rooms/itemRoom/itemRoom.yy",},
     {"name":"inst_6933E7E","path":"rooms/itemRoom/itemRoom.yy",},
+    {"name":"inst_67F90001","path":"rooms/itemRoom/itemRoom.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -583,6 +584,7 @@
         {"$GMRInstance":"v4","%Name":"inst_38C44F9C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_38C44F9C","objectId":{"name":"oDeathBook","path":"objects/oDeathBook/oDeathBook.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2368.0,"y":416.0,},
         {"$GMRInstance":"v4","%Name":"inst_4D3F9B31","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4D3F9B31","objectId":{"name":"oBrokenBoomerang","path":"objects/oBrokenBoomerang/oBrokenBoomerang.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1728.0,"y":512.0,},
         {"$GMRInstance":"v4","%Name":"inst_6933E7E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6933E7E","objectId":{"name":"oSacDagger","path":"objects/oSacDagger/oSacDagger.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2240.0,"y":448.0,},
+        {"$GMRInstance":"v4","%Name":"inst_67F90001","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_67F90001","objectId":{"name":"oBlackHoleCharge","path":"objects/oBlackHoleCharge/oBlackHoleCharge.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2368.0,"y":544.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Lights","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_7D88B40C1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7D88B40C1","objectId":{"name":"oDesertTorch","path":"objects/oDesertTorch/oDesertTorch.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2272.0,"y":768.0,},

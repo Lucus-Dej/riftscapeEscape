@@ -151,6 +151,10 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 			
 		}
 		break;
+		
+		case oBlackHoleCharge:
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oChargeBlackHole);
+		break;
 	}
 	global.currentCharges = 0;
 }
