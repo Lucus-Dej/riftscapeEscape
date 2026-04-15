@@ -1,11 +1,8 @@
 if (other.lastDamagedBy != id) {
 	other.lastDamagedBy = id;
-	if (oPlayerManager.hasSwordFate) {
-		other.enemey_hp -= global.playerDamage*2;
-	} else {
-	other.enemey_hp -= global.playerDamage;
-	}
-	global.player_health += global.lifesteal*2 + global.playerDamage+global.playerEssence/5;
+	
+	other.enemey_hp -= global.playerDamage + power(global.playerEssence, 1.2) * 0.15;
+	global.player_health += global.lifesteal + global.playerDamage/4+global.playerEssence/5;
 }
 
 if (other.enemey_hp <= 0) {

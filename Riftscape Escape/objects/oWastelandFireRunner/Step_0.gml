@@ -35,7 +35,7 @@ if (attack == 0) {
 
 if (enraged && distance_to_object(oTruePlayer) < 120) {
 	spiralArc += 20;
-	bulletFire(x, y, spiralArc, bullet_speed+1, damage/3, oFireBullet, id);
+	bulletFire(x, y, spiralArc, bullet_speed+1, damage, oFireBullet, id);
 	if (spiralArc > 360) {
 		spiralArc -= 360;
 	}

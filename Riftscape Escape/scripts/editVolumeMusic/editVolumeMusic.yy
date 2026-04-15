@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"editVolumeMusic",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"editVolumeMusic",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

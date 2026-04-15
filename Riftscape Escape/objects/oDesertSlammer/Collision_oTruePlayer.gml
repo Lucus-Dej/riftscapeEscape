@@ -1,5 +1,5 @@
 if (state == ENEM_STATE.CHARGE && iFrames <= 0 && oPlayerManager.iframes <= 0) {
-	audio_play_sound_at(aBoom, x, y, 1, 1, 1, 1, false, 1);
+	audio_play_sound_at(aBoom, x, y, 1, 1, 1, 1, false, 1, global.sfxAudio);
 	oPlayerManager.tookDamage = true;
 	if (oPlayerManager.dodgeLifeBonus > 0) {
 		oPlayerManager.dodgeLifeBonus -= damage*6.5;
@@ -8,7 +8,7 @@ if (state == ENEM_STATE.CHARGE && iFrames <= 0 && oPlayerManager.iframes <= 0) {
 	}
 	iFrames = impactDelay;
 } else if (iFrames <= 0 && oPlayerManager.iframes <= 0) {
-	audio_play_sound_at(aBite, x, y, 1, 1, 1, 1, false, 1);
+	audio_play_sound_at(aBite, x, y, 1, 1, 1, 1, false, 1, global.sfxAudio);
 	oPlayerManager.tookDamage = true;
 	if (oPlayerManager.dodgeLifeBonus > 0) {
 		oPlayerManager.dodgeLifeBonus -= damage;

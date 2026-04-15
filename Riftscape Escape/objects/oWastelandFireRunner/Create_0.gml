@@ -1,16 +1,16 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 110);
 arcFire = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
-shoot_delay = 200;
-enemey_hp = 48;
+shoot_delay = 220;
+enemey_hp = 28;
 arcAngle = 45;
 currentArc = arcAngle;
 enemSpeed = 0.25;
 base_speed = enemSpeed;
 xp = 20;
-damage = 4;
+damage = 14.5;
 attack = 0;
-summonNum = 4;
+summonNum = 2;
 summonCurrnet = 0;
 range = 64;
 shotAngle = 0;
@@ -29,4 +29,4 @@ rounds = 4;
 roundDiraction = 55;
 fireDelay = 12;
 spawnEnemy = oWastelandBurner
-spawnWeight = 8;
+spawnWeight = 12;

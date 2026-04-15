@@ -16,8 +16,9 @@ lastKilledY = 0;
 global.bossBarCount = 0;
 
 //sword stuff
-sword_charge = 0;
-swordTotal = 0;
+swordMax = 1100;
+sword_charge = swordMax;
+swordTotal = swordMax;
 swordCooldown = 100;
 initate_sword = false;
 swordAttKey = "Q";
@@ -39,9 +40,10 @@ realitySwordBonus = 0;
 
 //dodge stuff
 initDodge = false;
+dodgeMax = 500;
 evilDodgeFlagIHate = false;
-dodgeCharge = 0;
-dodgeTotal = 0;
+dodgeCharge = dodgeMax;
+dodgeTotal = dodgeMax;
 dodgeCooldown = 100;
 dodgeKey = "E";
 isDodge = false;
@@ -76,8 +78,9 @@ dodgeState = DODGE_PHASE.locked;
 
 //crystal stuff
 initCrystal = false;
-crystalCharge = 0;
-crystalTotal = 0;
+crystalMax = 2500;
+crystalCharge = crystalMax;
+crystalTotal = crystalMax;
 crystalCooldown = 100;
 crystalKey = "R";
 hasCrystalReality = false;
@@ -103,11 +106,13 @@ hasMinionThought = false;
 hasMinionEssence = false;
 hasMinionFate = false;
 essenceMinionCount = 0;
+global.activeEssenceClones = 0;
 
 // fate circle stuff
+circleMax = 2250;
 initCircle = false;
-circleCharge = 0;
-circleTotal = 0;
+circleCharge = circleMax;
+circleTotal = circleMax;
 circleCooldown = 100;
 circleKey = "C";
 circleThoughtUpgrade = true;
@@ -120,8 +125,9 @@ hasCircleEssence = false;
 
 // mind husk
 initHusk = false;
-huskCharge = 0;
-huskTotal = 0;
+huskMax = 1600;
+huskCharge = huskMax;
+huskTotal = huskMax;
 huskCooldown = 100;
 huskKey = "T";
 hasFateHusk = false;
@@ -139,7 +145,7 @@ healthRatio = 1;
 overhealthSuperCooldown = 1800;
 overhealthSuperTotal = overhealthSuperCooldown;
 overhealthCooldownUI = 0;
-overhealthSuperTimer = 1799;
+overhealthSuperTimer = 2100;
 overhealthTimer = 100;
 overhealthCooldown = overhealthTimer;
 overHealthOverheated = false
@@ -205,7 +211,8 @@ statCooldown = 0;
 overHealthCooldownBuff = 0;
 tesseractSpeedBonus = 0;
 
-baseSpeed = 4;
+addHPBonus = 0;
+baseSpeed = 4.5;
 statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;

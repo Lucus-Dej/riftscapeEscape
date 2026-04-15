@@ -39,7 +39,7 @@ if ((enemey_hp <= phasePoint2) && phase < 2) {
 	nadoIntensity += 5;
 	spawnTimer -= -150;
 	shoot_delay -= 140;
-	bullet_count += 2;
+	bullet_count += 3;
 	lineCount += 2;
 	spawnPool -= 65;
 	lineInterval -=2;
@@ -48,12 +48,12 @@ if ((enemey_hp <= phasePoint2) && phase < 2) {
 		if (RoomID == other.RoomID) {
 			var e = instance_create_layer(x, y, "Instances", oWastelandFireRunner);
 			e.enemey_hp /= 8;
-			e.enrage_point /= 8;
+			e.phasePoint1 /= 8;
 		}
 	}
 }
 if (attack == 0) {
-	attack = irandom_range(1, 8);
+	attack = irandom_range(1, 7);
 }
 
 // countdown
@@ -64,7 +64,7 @@ if (shoot_cooldown > 0) {
 if (shoot_cooldown <= 0) {
 	//fires orbitals of fire that spawn an enemy on destruction
 	if (attack == 1 || attack == 2) {
-		wdOrbitalAttack();
+		wdFireShield();
 		shoot_cooldown = shoot_delay;
 		attack = 0;
 	}
@@ -101,67 +101,108 @@ if (shoot_cooldown <= 0) {
 			nadoFireTimer++;
 			accel = 0.00
 			if (nadoFireTimer mod nadoIntensity == 0) {
+				
 				var angle = nadoAngle;
-				var b = bulletFire(x, y, 0, 0, damage, owdBullets, id);
-
-				b.type = 1;
-				b.spinDir = sign(nadoSpin);
-				
-				b.dir = angle;
-				
-				
-				b.ring = 0;
-				b.ringSpeed = nadoRingSpeed+ringBonus;
-				b.ringAccel =accel;
-				
-				b.angularSpeed = abs(nadoSpin);
-				b.existance = 800;
-				
-				b.image_xscale = 2;
-				b.image_yscale = 2;
 				if (phase == 1) {
-				var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
-				c.type = 1;
-				c.spinDir = sign(nadoSpin);
-				c.dir = angle+180;
-				c.ring = 0;
-				c.ringSpeed = nadoRingSpeed+ringBonus;
-				c.ringAccel = accel;
+					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					d.type = 1;
+					d.spinDir = sign(nadoSpin);
+					d.dir = angle;
+					d.ring = 0;
+					d.ringSpeed = nadoRingSpeed+ringBonus;
+					d.ringAccel = accel;
 				
-				c.angularSpeed = abs(nadoSpin);
-				c.existance = 800;
+					d.angularSpeed = abs(nadoSpin);
+					d.existance = 800;
 				
-				c.image_xscale = 2;
-				c.image_yscale = 2;
+					d.image_xscale = 2;
+					d.image_yscale = 2;
+					
+					var f = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					f.type = 1;
+					f.spinDir = sign(nadoSpin);
+					f.dir = angle+120;
+					f.ring = 0;
+					f.ringSpeed = nadoRingSpeed+ringBonus;
+					f.ringAccel = accel;
+				
+					f.angularSpeed = abs(nadoSpin);
+					f.existance = 800;
+				
+					f.image_xscale = 2;
+					f.image_yscale = 2;
+					
+					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					c.type = 1;
+					c.spinDir = sign(nadoSpin);
+					c.dir = angle+240;
+					c.ring = 0;
+					c.ringSpeed = nadoRingSpeed+ringBonus;
+					c.ringAccel = accel;
+				
+					c.angularSpeed = abs(nadoSpin);
+					c.existance = 800;
+				
+					c.image_xscale = 2;
+					c.image_yscale = 2;
 				}
-				if (phase >= 2) {
-				var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
-				c.type = 1;
-				c.spinDir = sign(nadoSpin);
-				c.dir = angle+120;
-				c.ring = 0;
-				c.ringSpeed = nadoRingSpeed+ringBonus;
-				c.ringAccel = accel;
+				if (phase == 2) {
+					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					c.type = 1;
+					c.spinDir = sign(nadoSpin);
+					c.dir = angle + 90;
+					c.ring = 0;
+					c.ringSpeed = nadoRingSpeed+ringBonus;
+					c.ringAccel = accel;
 				
-				c.angularSpeed = abs(nadoSpin);
-				c.existance = 800;
+					c.angularSpeed = abs(nadoSpin);
+					c.existance = 800;
 				
-				c.image_xscale = 2;
-				c.image_yscale = 2;
+					c.image_xscale = 2;
+					c.image_yscale = 2;
+					
+					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					d.type = 1;
+					d.spinDir = sign(nadoSpin);
+					d.dir = angle + 270;
+					d.ring = 0;
+					d.ringSpeed = nadoRingSpeed+ringBonus;
+					d.ringAccel = accel;
 				
-				var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
-				d.type = 1;
-				d.spinDir = sign(nadoSpin);
-				d.dir = angle+240;
-				d.ring = 0;
-				d.ringSpeed = nadoRingSpeed+ringBonus;
-				d.ringAccel = accel;
+					d.angularSpeed = abs(nadoSpin);
+					d.existance = 800;
 				
-				d.angularSpeed = abs(nadoSpin);
-				d.existance = 800;
+					d.image_xscale = 2;
+					d.image_yscale = 2;
+				}
+				if (phase == 0 || phase == 2) {
+					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					c.type = 1;
+					c.spinDir = sign(nadoSpin);
+					c.dir = angle;
+					c.ring = 0;
+					c.ringSpeed = nadoRingSpeed+ringBonus;
+					c.ringAccel = accel;
 				
-				d.image_xscale = 2;
-				d.image_yscale = 2;
+					c.angularSpeed = abs(nadoSpin);
+					c.existance = 800;
+				
+					c.image_xscale = 2;
+					c.image_yscale = 2;
+				
+					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					d.type = 1;
+					d.spinDir = sign(nadoSpin);
+					d.dir = angle + 180;
+					d.ring = 0;
+					d.ringSpeed = nadoRingSpeed+ringBonus;
+					d.ringAccel = accel;
+				
+					d.angularSpeed = abs(nadoSpin);
+					d.existance = 800;
+				
+					d.image_xscale = 2;
+					d.image_yscale = 2;
 				}
 				nadoAngle += (nadoSpin/3);
 			}
@@ -175,33 +216,8 @@ if (shoot_cooldown <= 0) {
 		}
 	}
 	if (attack == 8) {
-		if (!nadoActive) {
-			nadoAngle = 0;
-			wdFireShield(ringCount);
-
-		}
-		if (nadoActive) {
-			nadoFireTimer++;
-			accel = -0.005
-			if (nadoFireTimer mod nadoIntensity == 0) {
-				var angle = nadoAngle;
-				var b = bulletFire(x, y, 0, 0, damage, owdBullets, id);
-
-				b.type = 1;
-				b.spinDir = sign(nadoSpin);
-				b.dir = irandom_range(0, 360);
-		
-				b.ring = 0;
-				b.ringSpeed = nadoRingSpeed+ringBonus;
-				b.ringAccel =accel;
-				
-				b.angularSpeed = abs(nadoSpin);
-				b.existance = 120;
-				
-				b.image_xscale = 2;
-				b.image_yscale = 2;
-			}
-		}
+		wdFireShield();
+		shoot_cooldown = shoot_delay;
 	}
 }
 //passive attacks

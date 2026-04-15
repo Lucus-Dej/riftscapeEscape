@@ -8,6 +8,7 @@ if (!bossModApplied && isBoss) {
 	enemSpeed *= speedMult;
 	damage *= dmgMult;
 	shoot_delay /= cooldownMult;
+	bullet_speed -= 1;
 	event_user(13);
 }
 //path timer reduction
@@ -27,6 +28,10 @@ if (shoot_cooldown <= 0) {
 			var ang = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*bullet_speed*0.2, oTruePlayer.y+oTruePlayer.vsp*bullet_speed*0.2);
 			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
 				ang = point_direction(x, y, mouse_x, mouse_y);
+			}
+			if (isBoss) {
+				var bullet = bulletFire(x, y, ang+180, bullet_speed, damage, oMiniBossBullet, id);
+				bullet.type = 1;
 			}
 			var bullet = bulletFire(x, y, ang, bullet_speed, damage, oMiniBossBullet, id);
 			bullet.type = 1;

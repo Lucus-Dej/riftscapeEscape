@@ -7,6 +7,11 @@ function bossMod(_enem){
 			hpMult = 8;
 			break;
 			
+			case oWastelandBurner:
+			dmgMult = 2;
+			speedMult = 2;
+			break;
+			
 			case oCaveSpitter:
 			dmgMult = 1.2;
 			hpMult = 6;
@@ -31,7 +36,7 @@ function bossMod(_enem){
 			cooldownMult = 3;
 			break;
 			
-			case oWastelandBurner:
+			case oWastelandFireRunner:
 			hpMult = 2;
 			dmgMult = 2;
 			phasePoint1 *= hpMult;
@@ -68,9 +73,9 @@ function bossMod(_enem){
 			break;
 			
 			case oMiniBoss:
-			hpMult = 1.3;
+			hpMult = 2;
 			dmgMult = 1.3;
-			cooldownMult = 2;
+			cooldownMult = 2.6;
 			break;
 			
 			case oMiniBoss2:
@@ -86,7 +91,7 @@ function bossMod(_enem){
 			break;
 			
 			case oRifterTank:
-			hpMult = 2;
+			hpMult = 2.5;
 			dmgMult = 1.2;
 			cooldownMult = 4.5;
 			break;

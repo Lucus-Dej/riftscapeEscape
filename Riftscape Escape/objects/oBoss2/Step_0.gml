@@ -1,7 +1,7 @@
 if (brainDead) {
     exit;
 }
-if (!bossModApplied && isBoss) { event_user(13) event_user(13)
+if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;

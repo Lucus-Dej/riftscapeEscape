@@ -8,8 +8,8 @@
   "name":"oPoorFingerPainting",
   "overriddenProperties":[],
   "parent":{
-    "name":"powerful",
-    "path":"folders/items/passive/powerful.yy",
+    "name":"mythic",
+    "path":"folders/items/passive/mythic.yy",
   },
   "parentObjectId":{
     "name":"oItems",

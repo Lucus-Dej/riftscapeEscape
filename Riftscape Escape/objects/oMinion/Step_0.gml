@@ -14,11 +14,11 @@ y += (yTo - y)/(minionSpeed);
 
 if (fire && !oPlayerManager.hasMinionThought) {
 	var dir =  point_direction(x, y, mouse_x, mouse_y);
-	bulletFire(x, y, dir, 4.5, global.playerDamage/4, oMinonBullet, id);
+	bulletFire(x, y, dir, 4.5, global.playerLife*0.045, oMinonBullet, oTruePlayer);
 	if (oPlayerManager.hasMinionFate) {
 		if (oItemManager.hasMetalOrb) {
-			bulletFire(x, y, dir+35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
-			bulletFire(x, y, dir-35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
+			bulletFire(x, y, dir+35, 4.5, global.playerLife*0.02, oMinonBullet, oTruePlayer);
+			bulletFire(x, y, dir-35, 4.5, global.playerLife*0.02, oMinonBullet, oTruePlayer);
 		}
 	}
 	fire = false;
@@ -29,12 +29,12 @@ if (fire && !oPlayerManager.hasMinionThought) {
 			bulletDelay --;
 		}
 		if (bulletDelay <= 0) {
-			bulletFireAt(x, y, target, 4.5, global.playerDamage/4, oMinonBullet, id);
+			bulletFireAt(x, y, target, 4.5, global.playerDamage/4, oMinonBullet, oTruePlayer);
 			if (oPlayerManager.hasMinionFate) {
 				var dir = point_direction(x, y, target.x, target.y);
 				if (oItemManager.hasMetalOrb) {
-					bulletFire(x, y, dir+35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
-					bulletFire(x, y, dir-35, 4.5, global.playerDamage*0.1, oMinonBullet, id);
+					bulletFire(x, y, dir+35, 4.5, global.playerDamage*0.1, oMinonBullet, oTruePlayer);
+					bulletFire(x, y, dir-35, 4.5, global.playerDamage*0.1, oMinonBullet, oTruePlayer);
 				}
 			}
 			bulletDelay = bulletCoolDown;

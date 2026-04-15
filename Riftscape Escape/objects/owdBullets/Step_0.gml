@@ -33,7 +33,7 @@ if (type == 1) {
 	
 }
 if (existance <= 360 && type == 2) {
-	orbitRadius += 6;
+	orbitRadius += orbitSpeed;
 }
 if (existance <= 260 && type == 2) {
 	if (orbitRadius <= 0) {

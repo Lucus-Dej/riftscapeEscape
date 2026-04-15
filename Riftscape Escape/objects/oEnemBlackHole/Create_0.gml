@@ -11,7 +11,7 @@ damage = 20;
 contactDamage = 35;
 bullet_speed = 9.5;
 searchPlayer();
-spawnWeight = 4;
+spawnWeight = 7.5;
 bulletCount = 0;
 attack = -1;
 blackHole = noone;

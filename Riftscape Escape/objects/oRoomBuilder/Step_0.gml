@@ -14,12 +14,9 @@ if (owner != noone && !used && instance_exists(oFloorManager)) {
 		if ((RoomID1 == other.RoomID)) {
 		show_debug_message("CHECKING DOOR")
 		if (!checked) {
-			show_debug_message("DOOR IS NOT CHECKED")
-			
 			ds_list_add(other.doorList, id);
 			roomBuilder = other.id ;
 		} else {
-			show_debug_message("DOOR IS CHECKED")
 		}
 	}
 	}

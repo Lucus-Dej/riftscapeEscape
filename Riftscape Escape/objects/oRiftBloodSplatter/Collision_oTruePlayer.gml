@@ -1,3 +1,2 @@
-if (!decay) {
-	decay = true;
-}
+decayRate = 0.1;
+canHeal = true;

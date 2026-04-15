@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"togglePause",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"togglePause",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

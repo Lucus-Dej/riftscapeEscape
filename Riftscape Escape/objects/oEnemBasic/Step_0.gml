@@ -12,8 +12,8 @@ if (!bossModApplied && isBoss) {
 }
 path_timer--;
 
-if (!canSeePlayer) {
-	enemSpeed = base_speed*3;
+if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 128) {
+	enemSpeed = base_speed*4.5;
 } else if (canSeePlayer) {
 	enemSpeed = base_speed;
 }

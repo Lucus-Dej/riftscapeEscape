@@ -74,4 +74,10 @@ switch (buttonID) {
 	}
 	break;
 	
+	case 12:
+
+	togglePause();
+	
+	callSettings();
+	break;
 }

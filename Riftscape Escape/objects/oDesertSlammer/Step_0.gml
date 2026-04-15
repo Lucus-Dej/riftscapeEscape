@@ -12,9 +12,9 @@ if (!bossModApplied && isBoss) {
 }
 //path timer reduction
 path_timer--;
-if (!canSeePlayer) {
-	chargeCooldown--;
-}
+
+chargeCooldown -= 0.5;
+
 flash = max(0, flash - 0.15);
 if (iFrames >= 0) {
 	iFrames--;
@@ -22,6 +22,7 @@ if (iFrames >= 0) {
 
 if (phasePoint1 >= enemey_hp && enraged == false) {
 	enraged = true;
+	image_blend = c_aqua;
 }
 	
 
@@ -37,13 +38,13 @@ if (state == ENEM_STATE.CHASE) {
 	if (canSeePlayer)
 	chargeCooldown--;
 	if (enraged) {
-		chargeCooldown -= 0.5;
+		chargeCooldown -= 1.5;
 	}
 	if (chargeCooldown <= 0 && instance_exists(oTruePlayer)) {
 		chargeTargetX = oTruePlayer.x;
 		chargeTargetY = oTruePlayer.y;
 		chargeDir = point_direction(x, y, chargeTargetX, chargeTargetY);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 1)
+		audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 1, global.sfxAudio)
 		path_end();
 		state = ENEM_STATE.WINDUP;
 		attackDelay = 36;
@@ -56,26 +57,38 @@ if (state == ENEM_STATE.WINDUP) {
 	if (attackDelay <= 0) {
 		chargeTime = 16;
 		state = ENEM_STATE.CHARGE;
-		
-		enemSpeed = 14;
+		if (enraged) {
+			enemSpeed = 16;
+		} else {
+			enemSpeed = 14;
+		}
 	}
 }
 if (state == ENEM_STATE.CHARGE) {
 	hsp = lengthdir_x(enemSpeed, chargeDir);
 	vsp = lengthdir_y(enemSpeed, chargeDir);
-	chargeTime--;
+	if (enraged && isBoss) {
+		chargeTime -= 0.75;
+	} else if (enraged && !isBoss) {
+		chargeTime -= 0.85;
+	} else if (!enraged && isBoss) {
+		chargeTime -= 0.8;
+	} else {
+		chargeTime -= 1;
+	}
+	
 	var moved = false;
 	
-	if (!place_meeting(x + hsp, y + vsp, oWalls)) {
+	if (!place_meeting(x + hsp, y + vsp, oIndestructable)) {
         x += hsp;
 		y += vsp;
 		moved = true;
     } else {
-        if (!place_meeting(x + hsp, y, oWalls)) {
+        if (!place_meeting(x + hsp, y, oIndestructable)) {
 			x += hsp;
 			moved = true;
 		}
-		if (!place_meeting(x, y + vsp, oWalls)) {
+		if (!place_meeting(x, y + vsp, oIndestructable)) {
 			y += vsp;
 			moved = true;
 		}

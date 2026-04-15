@@ -1,6 +1,6 @@
 // Inherit the parent event
 event_inherited();
-
+RoomID = 1;
 enemey_hp = 450;
 healthTotal = enemey_hp;
 accel = 0;

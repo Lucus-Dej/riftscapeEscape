@@ -1,3 +1,7 @@
+existance--;
+if (existance <= 0) {
+	instance_destroy();
+}
 if (!is_real(x) || !is_real(y)) {
     show_debug_message("oBullet position corrupted");
     instance_destroy();
@@ -16,20 +20,41 @@ if (!is_real(speed) || !is_real(direction)) {
     instance_destroy();
     exit;
 }
-if (oItemManager.hasBrokenSnowglobe) {
-	speed += increaseRate;
-	damage += 0.025;
-}
-if (canAccel) {
-	speed += increaseRate;
-}
-if (canDecel) {
-	speed -= decayRate
-}
-if (oItemManager.hasBrokenBoomerang) {
-	boomerangTime--;
-	if (boomerangTime <= 0) {
+if (canOrbit && instance_exists(orbitCenter)) {
+
+    orbitAngle += orbitSpeed;
+
+    orbitRadius = lerp(orbitRadius, orbitTargetRadius, 0.1);
+
+    x = orbitCenter.x + lengthdir_x(orbitRadius, orbitAngle);
+    y = orbitCenter.y + lengthdir_y(orbitRadius, orbitAngle);
+} else {
+	if (oItemManager.hasBrokenSnowglobe) {
+		speed += increaseRate;
+		damage += 0.025;
+	}
+	if (canAccel) {
+		speed += increaseRate;
+	}
+	if (canDecel) {
 		speed -= decayRate
+	}
+	if (oItemManager.hasSingularity) {
+		var dist = 720;
+		var target = instance_nearest(x, y, oEnemy);
+	if (instance_exists(target))
+		if (point_distance(x, y, target.x, target.y) <= dist && lastHit != target) {
+			var dir = point_direction(x, y, target.x, target.y);
+			var pull = 10;
+			x += lengthdir_x(pull*0.55, dir);
+			y += lengthdir_y(pull*0.55, dir);
+		}
+	}
+	if (oItemManager.hasBrokenBoomerang) {
+		boomerangTime--;
+		if (boomerangTime <= 0) {
+			speed -= decayRate
+		}
 	}
 }
 if (oPlayerManager.canPierce && !pierceDebuffed) {

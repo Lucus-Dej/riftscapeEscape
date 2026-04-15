@@ -8,8 +8,8 @@
   "name":"oDepictionOfSeraphim",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"items",
+    "path":"folders/items.yy",
   },
   "parentObjectId":{
     "name":"oItems",

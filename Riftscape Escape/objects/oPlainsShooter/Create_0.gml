@@ -8,7 +8,7 @@ recoil_timer = 4;
 enemey_hp = 35;
 
 ang = 0;
-enemSpeed = 1.3;
+enemSpeed = 1.8;
 base_speed = enemSpeed;
 xp = 7.5;
 damage = 12;

@@ -9,12 +9,12 @@
   "name":"oDestructable",
   "overriddenProperties":[],
   "parent":{
-    "name":"parents",
-    "path":"folders/objects/parents.yy",
+    "name":"superwalls",
+    "path":"folders/objects/parents/superwalls.yy",
   },
   "parentObjectId":{
-    "name":"oSuperwalls",
-    "path":"objects/oSuperwalls/oSuperwalls.yy",
+    "name":"oBulletBlocker",
+    "path":"objects/oBulletBlocker/oBulletBlocker.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

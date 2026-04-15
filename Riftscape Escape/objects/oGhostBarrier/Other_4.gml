@@ -1,3 +1,4 @@
+
 with (oRoomManager) {
 	if (RoomID == other.RoomID1) {
 		other.Manager1 = id;

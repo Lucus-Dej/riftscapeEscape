@@ -11,15 +11,15 @@ if (oPlayerManager.hasBrainInAJar && oPlayerManager.tookDamage) {
 	bigBrainNum = irandom_range(0, 99)
 }
 
-if (bigBrainNum == 0) {
+if (bigBrainNum+global.playerTime >= 99) {
 	if (global.chargeItem != noone) {
 		global.currentCharges++;
 	}
 	bigBrainNum = -9;
 }
-if (brainNum = 0) {
-	oPlayerManager.brainJarBonus += 12;
-	brainNum = -1;
+if (brainNum+global.playerTime/2 >= 4) {
+	oPlayerManager.brainJarBonus += 5.5;
+	brainNum = -99999;
 }
 if (oPlayerManager.brainJarBonus > 1) {
 	oPlayerManager.brainJarBonus -= 0.1;
@@ -41,7 +41,11 @@ if (seedCombatCheck && seedStart) {
 	}
 	with currentRoomManager {
 		if (!incombat && !other.seedFailed) {
-			global.player_health = oPlayerManager.max_hp;
+			healthUp(oPlayerManager.max_hp/10)
+			var randLifeUp = irandom_range(1, 15);
+			if (randLifeUp+global.playerTime >= 15) {
+				lifeUp();
+			}
 			other.seedStart = false;
 			other.seedFailed = false;
 			other.seedCombatCheck = false;

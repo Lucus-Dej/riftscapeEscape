@@ -7,7 +7,7 @@ if (global.grid_cool == false) {
 }
 if (xpTotal >= xpProgress) {
 	xpTotal -= xpProgress;
-	xpProgress *= 1.12;
+	xpProgress *= 1.15;
 	canLevel = true;
 	levelsPending++;
 	xpLevel++;
@@ -60,9 +60,9 @@ if (leveling && levelsPending <=0) {
 // damage and health stuff
 if (tookDamage) {
 	if (inOverhealth) {
-		overhealthTimer -= 75;
+		overhealthTimer /= 3;
 	}
-	iframes = 3;
+	iframes = 12;
 	tookDamage = false;
 }
 
@@ -88,8 +88,8 @@ cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statC
 //sword stuff
 swordAttPressed = keyboard_check_pressed(ord(swordAttKey));
 if (initate_sword) {
-	sword_charge = swordTotal/13.5;
-	if (swordTotal <= 1350) {
+	sword_charge = swordTotal/(swordMax/100);
+	if (swordTotal <= swordMax) {
 		swordTotal += 1+(cooldownRate + swordCooldownBonus);
 	}
 }
@@ -99,7 +99,7 @@ if (swordCooldownBonusTime >0) {
 if (swordCooldownBonusTime <= 0) {
 	swordCooldownBonus = 0;
 }
-if (swordTotal >= 1000 && swordAttPressed) {
+if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
 	moveSword = false;
 	if (hasSwordFate) {
 		fateSwordCount = global.playerFate;
@@ -123,20 +123,23 @@ if (!instance_exists(oSwordFate)) {
 }
 //dodge stuff
 dodgePressed = keyboard_check_pressed(ord(dodgeKey));
-if (global.playerReality >= 5) {
+if (global.playerReality >= 5 && evilDodgeFlagIHate) {
 	dodgeLifeHP = global.player_health/4;
-	dodgeCharge = dodgeTotal / 4.5;
+	dodgeCharge = dodgeTotal / 5;
 }
 if (initDodge && !evilDodgeFlagIHate) {
+	
 	dodgeState = DODGE_PHASE.onCooldown;
 	evilDodgeFlagIHate = true;
 }
 if (dodgeState == DODGE_PHASE.onCooldown) {
 	dodgeSpeed = 0;
 	dodgeLifeStart = false;
-	dodgeTotal += 1 + (cooldownRate);
-	if (dodgeTotal >= 450) {
+	
+	if (dodgeTotal >= dodgeMax) {
 		dodgeState = DODGE_PHASE.onStandby;
+	} else {
+		dodgeTotal += 1 + (cooldownRate);
 	}
 }
 if (iframes > 0) {
@@ -149,9 +152,9 @@ if (dodgeState == DODGE_PHASE.onStandby) {
 		inDodge = true;
 		dodgeTotal = 0;
 		dodgeState = DODGE_PHASE.dodging;
-		dodgeSpeed =  11.5 + (global.playerReality/10);
-		dodgeDuration = 5.5;
-		iframes = 2+global.playerReality;
+		dodgeSpeed =  18.5 + (global.playerReality/10);
+		dodgeDuration = 6;
+		iframes = 25+global.playerReality;
 	}
 }
 if (dodgeState == DODGE_PHASE.dodging) {
@@ -227,11 +230,11 @@ trackDodgeThoughtTimer--;
 crystalPressed = keyboard_check_pressed(ord(crystalKey));
 if (initCrystal) {
 	crystalCharge = crystalTotal/25;
-	if (crystalTotal <= 2500) {
+	if (crystalTotal <= crystalMax) {
 		crystalTotal +=1+(cooldownRate)+(realityBombCooldownBoost);
 	}
 }
-if (crystalTotal >= 2500 && crystalPressed) {
+if (crystalTotal >= crystalMax && crystalPressed && initCrystal) {
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oCrystal);
 	crystalTotal = 0;
 }
@@ -274,24 +277,24 @@ if (initMinion && hasMinionTime && !instance_exists(oMinionTime)) {
 // fate circle stuff
 circlePressed = keyboard_check_pressed(ord(circleKey));
 if (initCircle) {
-	circleCharge = circleTotal/22.5;
-	if (circleTotal <= 2250) {
-		circleTotal +=1+(cooldownRate);
+	circleCharge = circleTotal/(circleMax/100);
+	if (circleTotal <= circleMax) {
+		circleTotal += 1+(cooldownRate);
 	}
 }
-if (circleTotal >= 2250 && circlePressed) {
+if (circleTotal >= 2250 && circlePressed && initCircle) {
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oCricleOfFate);
 }
-	
+
 // husk stuff
-huskPressed = keyboard_check_pressed(ord(huskKey))
-if (global.playerThought >= 5) {
-	huskCharge = huskTotal/17.5;
-	if (huskTotal <= 1750) {
+huskPressed = keyboard_check_pressed(ord(huskKey));
+if (global.playerThought >= 5 && initHusk) {
+	huskCharge = huskTotal/(huskMax/100);
+	if (huskTotal <= huskMax) {
 		huskTotal += 1+(cooldownRate);
 	}
 }
-if (huskTotal >= 1750 && huskPressed) {
+if (huskTotal >= huskMax && huskPressed && initHusk) {
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oMindHusk);
 	huskTotal = 0;
 }
@@ -308,9 +311,9 @@ realitySwordBonus = clamp(realitySwordBonus, 0, 10);
 if (uiHealth > 100) {
 	global.player_health = max_hp;
 }
-if (global.playerKilled == true && inOverhealth) {
-	overhealthTimer = 110+global.playerEssence*10;
-}
+//if (global.playerKilled == true && inOverhealth) {
+//	overhealthTimer += 20+global.playerEssence*10;
+//}
 if (thoughtDodgeCooldownBoost > 0) {
 	thoughtDodgeCooldownBoost -= 0.05;
 }
@@ -322,7 +325,7 @@ uiHealth = (global.player_health/max_hp) * healthTotal;
 // overhealth stuff
 if (inOverhealth == false) {
 	if (overHealthOverheated) {
-	overhealthSuperTimer--;
+		overhealthSuperTimer--;
 	}
 }
 
@@ -330,9 +333,9 @@ global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*oItemManager
 
 if (inOverhealth == true) {
 	dodgeLifeBonus = 0;
-	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.6;
+	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
 	overHealthBulletDelay = sqrt(global.playerEssence)*0.1;
-	overHealthDamageBuff = sqrt(global.playerEssence)*0.1;
+	overHealthDamageBuff = sqrt(global.playerEssence)*0.14;
 	overHealthCooldownBuff = sqrt(global.playerEssence)*0.9;
 	global.player_health = 9999;
 }

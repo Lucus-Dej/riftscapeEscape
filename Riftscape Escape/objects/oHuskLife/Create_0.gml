@@ -6,6 +6,8 @@ bulletDelay = 0;
 bulletCooldown = bulletDelay;
 target = noone;
 existance = 900;
+existanceTot = existance;
+doRefund = false;
 if (oPlayerManager.hasTimeHusk) {
 	existance = 450;
 }

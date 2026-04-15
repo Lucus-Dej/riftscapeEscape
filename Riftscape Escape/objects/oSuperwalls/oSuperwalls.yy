@@ -9,8 +9,8 @@
   "name":"oSuperwalls",
   "overriddenProperties":[],
   "parent":{
-    "name":"parents",
-    "path":"folders/objects/parents.yy",
+    "name":"superwalls",
+    "path":"folders/objects/parents/superwalls.yy",
   },
   "parentObjectId":{
     "name":"oBulletDetect",

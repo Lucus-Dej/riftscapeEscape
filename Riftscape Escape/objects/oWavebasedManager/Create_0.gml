@@ -2,6 +2,7 @@ wave = 0;
 startingWeight = 3;
 roundsTillBoss = 5;
 bossRound = false;
+bossBonus = 1;
 waveArray = [ oEnemSpider]
 bossArray = [oBoss, oBoss2, oMiniBoss2, oMiniBoss];
 allEnemPool = [oCaveSpitter, oEnemBasic, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,

@@ -1,4 +1,4 @@
-audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 2);
+audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 2, global.sfxAudio);
 //image_angle =  point_direction(oTruePlayer.x, oTruePlayer.y, mouse_x, mouse_y);
 image_xscale = sign(mouse_x - oTruePlayer.x);
 damagedList = ds_map_create();

@@ -1,6 +1,6 @@
 event_inherited();
 chargeCooldown = irandom_range(80, 160);
-chargeDelay = 240;
+chargeDelay = 260;
 chargeTargetY = 0;
 chargeTargetX = 0;
 chargeTime = 12;
@@ -23,10 +23,10 @@ impactDelay = 36;
 iFrames = 0;
 bullet_speed = 1.5;
 shoot_delay = 160;
-enemey_hp = 22;
+enemey_hp = 18;
 phasePoint1 = enemey_hp/2;
 enraged = false;
-xp = 12.5;
+xp = 13;
 damage = 12.5;
 spawnWeight = 7.5;
 

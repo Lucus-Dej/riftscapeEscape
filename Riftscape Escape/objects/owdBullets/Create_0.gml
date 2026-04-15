@@ -6,5 +6,6 @@ summon = false;
 ringSpeed = 7;
 phaseBonus = 0;
 type = 0;
+orbitSpeed = 6;
 playerSummon = false;
 speed = 0;

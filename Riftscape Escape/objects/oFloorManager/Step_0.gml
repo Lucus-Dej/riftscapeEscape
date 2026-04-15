@@ -41,9 +41,6 @@ if (totSize <= 0 && deep <= 0 && !done) {
 } else if (totSize > 0 && deep <= 0) {
 	ds_queue_clear(global.roomQueue);
 	ds_stack_clear(global.roomStack);
-}
-if (floorState == genState.complete ) {
-	floorState = genState.checkingDoors;
 	with (oRoomManager) {
 		floorID = other.floorID;
 		diffPool = other.difficultyPool;
@@ -54,31 +51,18 @@ if (floorState == genState.complete ) {
 		event_user(1);
 		event_user(3);
 	}
-	
+}
+if (floorState == genState.complete ) {
+	floorState = genState.checkingDoors;
 } else if (floorState == genState.checkingDoors) {
-	if (!doorStart) {
 		with (oGhostBarrierDirectionalParent) {
-			state = doorState.init;
-		}
-		doorStart = true;
-		with (oGhostBarrierDirectionalParent) {
-			if (state == doorState.lookingForManager2) {
-				state = doorState.init;
-			}
-		}
-	}
-	if (doorTimer > 0) {
-		doorTimer --;
-		
-	}
-	if (doorTimer <= 0) {
-		with (oGhostBarrierDirectionalParent) {
-			if (!spawned && !foundOther) {
+			var doorCheck = collision_circle(x, y, 40, oGhostBarrierDirectionalParent, false, true)
+			if (doorCheck != noone) validForSpecialRoom = false;
+			if (validForSpecialRoom) {
 				array_push(other.bossDoorArray, id);
 			}
 		}
 		floorState = genState.buildingSpecialRooms;
-	}
 } else if (floorState == genState.buildingSpecialRooms) {
 	var bossIndex = irandom(array_length(bossDoorArray)-1);
 	var bossDoor = bossDoorArray[bossIndex];
@@ -87,12 +71,11 @@ if (floorState == genState.complete ) {
 	with (bossDoor) {
 		isBossDoor = true;
 		doorType = "boss";
-		
-		
 		show_debug_message("boss door made")
 		connectRoom(id, dir, BossR, Manager1);
 		if (invalid) 
 		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+	
 			invalid = false;
 			show_debug_message("trying again")
 			var newBossDoor = other.bossDoorArray[i]; 
@@ -118,7 +101,7 @@ if (floorState == genState.complete ) {
 	var itemR = findSpecialRoom(dir, "item");
 	with (itemDoor) {
 		doorType = "item";
-		Manager1.isChallenge = true;
+		
 		connectRoom(id, dir, itemR, Manager1);
 		if (invalid) 
 		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
@@ -135,14 +118,12 @@ if (floorState == genState.complete ) {
 		}
 		
 		doorType = "item";
+		
 	}
 	floorState = genState.runRoomManagers;
 } else if (floorState == genState.runRoomManagers) {
 	with (oGhostBarrierDirectionalParent ) {
-		if (!foundOther && !isBossDoor && !special) {
-			wall = instance_create_layer(x, y, "Instances", oWastelandWall);
-			instance_destroy(childDoor)
-		}
+		state = doorState.init;
 	}
 	with (oRoomManager) {
 		floorID = other.floorID;
@@ -171,4 +152,5 @@ if (floorState == genState.complete ) {
 	}
 	instance_destroy(oRoomReserve)
 	floorState = genState.done;
+	
 }

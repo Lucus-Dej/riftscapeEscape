@@ -8,3 +8,4 @@ base_speed = enemSpeed;
 xp = 3;
 damage = 12.5;
 spawnWeight = 1.5;
+denyHP = true;

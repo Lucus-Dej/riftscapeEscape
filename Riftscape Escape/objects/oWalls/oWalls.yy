@@ -6,8 +6,8 @@
   "name":"oWalls",
   "overriddenProperties":[],
   "parent":{
-    "name":"parents",
-    "path":"folders/objects/parents.yy",
+    "name":"superwalls",
+    "path":"folders/objects/parents/superwalls.yy",
   },
   "parentObjectId":{
     "name":"oSuperwalls",

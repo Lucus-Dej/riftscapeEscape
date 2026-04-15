@@ -1,7 +1,7 @@
 if (bossModApplied) {
 	var startX = (display_get_gui_width()/2)-256
 	var endX = (display_get_gui_width()/2)+256
-	var spacing = -48;
+	var spacing = -40;
 
 	var baseY = display_get_gui_height() * 0.95;
 

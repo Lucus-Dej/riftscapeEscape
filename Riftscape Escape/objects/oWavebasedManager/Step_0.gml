@@ -39,6 +39,7 @@ if (state == waveState.spawning) {
 			}
 			with (spawner) {
 				var enem = instance_create_layer(x, y, "Instances", pull);
+				enem.RoomID = RoomID;
 				if (other.bossRound) {
 					enem.isBoss = true;
 					enem.xp *= 1.5;
@@ -51,6 +52,8 @@ if (state == waveState.spawning) {
 		}
 	} else if (!instance_exists(oEnemy)) {
 		if (bossRound) {
+			startingWeight += bossBonus*3;
+			bossBonus++;
 			itemSpawner.spawnItem = true;
 			with (itemSpawner) {
 				event_user(0);
@@ -82,7 +85,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 3:
-		array_push(waveArray, oEnemTurret, oCaveSpitter)
+		array_push(waveArray, oEnemTurret)
 		break;
 		
 		case 5:
@@ -94,11 +97,11 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 7:
-		array_push(waveArray, oDesertSlammer, oMiniBoss)
+		array_push(waveArray, oMiniBoss, oMiniBoss2,)
 		break;
 		
 		case 9:
-		array_push(waveArray, oEnemSandSniper, oMiniBoss2)
+		array_push(waveArray, oEnemSandSniper,  oDesertSlammer,)
 		break;
 		
 		case 11:
@@ -106,7 +109,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 12:
-		array_push(waveArray, oWastelandBurner, oWastelandFireRunner, oMiniBoss3)
+		array_push(waveArray, oWastelandBurner, oMiniBoss3)
 		break;
 		
 		case 14:
@@ -118,7 +121,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 17:
-		array_push(waveArray, oPlainsShooter, oEnemBlackHole)
+		array_push(waveArray, oPlainsShooter)
 		break;
 		
 		case 19:
@@ -126,14 +129,14 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 21:
-		array_push(waveArray, oRifterTank)
+		array_push(waveArray, oRifterTank, oEnemBlackHole)
 		break;
 		
 		case 24:
 		array_push(bossArray, oWastelandDestroyer)
 		break;
 	}
-	startingWeight *= 1.2;
+	startingWeight *= 1.1;
 	waveWeight = startingWeight;
 	waveCooldown = waveTimer;
 	state = waveState.waiting;

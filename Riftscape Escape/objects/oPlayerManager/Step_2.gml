@@ -1,4 +1,7 @@
 if (global.playerKilled == true) {
+	if (inOverhealth && overhealthTimer < 125+25*global.playerEssence) {
+		overhealthTimer += 25+global.playerEssence*5;
+	}
 	if (hasCircleEssence && initCircle && oTruePlayer.inCircle) {
 		oCricleOfFate.existance += global.playerEssence*30;
 	}

@@ -1,5 +1,5 @@
 if (bite_timer <= 0 && on_cooldown =false && oPlayerManager.iframes <= 0) {	
-	audio_play_sound_at(aBite, x, y, 1, 1, 1, 1, false, 1);
+	audio_play_sound_at(aBite, x, y, 1, 1, 1, 1, false, 1, global.sfxAudio);
 	if (oPlayerManager.dodgeLifeBonus > 0) {
 		oPlayerManager.dodgeLifeBonus -= damage;
 	} else {

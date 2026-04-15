@@ -13,4 +13,4 @@ if (oItemManager.hasGunpowder && oPlayerManager.hasMinionFate) {
 } else {
 	var f = instance_create_layer(x, y, "Instances",oBoom);
 }
-audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0)
+audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)

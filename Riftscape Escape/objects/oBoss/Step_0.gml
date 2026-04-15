@@ -2,7 +2,6 @@ if (brainDead) {
     exit;
 }
 var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
-image_angle = playerDir+90;
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;

@@ -73,19 +73,32 @@ function wdFirenado(_count) {
     nadoFireTimer = 0;
     nadoFireDuration = 500; 
 
-    nadoRingSpeed = 1.8;
+    nadoRingSpeed = 1.3;
 }
-function wdFireShield(_count) {
-	nadoActive = true;
+function wdFireShield() {
 
-    nadoCount = _count;
-    nadoAngle = 0;
-    nadoSpin = choose(-1, 1) * random_range(2, 4);
+	var radius = 142;
 
-    nadoFireTimer = 0;
-    nadoFireDuration = 180; 
-
-    nadoRingSpeed = 1.2;
+	for (var i = 0; i < bullet_count; i++) {
+		var skip = irandom(8);
+		if (skip == 2) continue;
+	    var angle = i * (360 / bullet_count);
+	    var bx = x + lengthdir_x(radius, angle);
+	    var by = y + lengthdir_y(radius, angle);
+		var b = bulletFire(bx, by, 4, 0, damage, owdBullets, id)
+		b.type = 2;
+	    b.image_xscale = 4;
+		b.image_yscale = 4;
+		b.image_angle = 0;
+		b.playerSummon = true;
+	    b.orbitCenter = id;
+	    b.orbitAngle = angle;
+		b.orbitSpeed = 6.5;
+	    b.orbitRadius = radius;
+		b.accel = false;
+		b.existance = 600;
+		b.rotate = true;
+	}
 }
 function spawnFireLine(_angle) {
     spawnFireHalf(_angle);        // forward

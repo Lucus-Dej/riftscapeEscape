@@ -8,8 +8,8 @@
   "name":"oBrainInAJar",
   "overriddenProperties":[],
   "parent":{
-    "name":"rare",
-    "path":"folders/items/passive/rare.yy",
+    "name":"powerful",
+    "path":"folders/items/passive/powerful.yy",
   },
   "parentObjectId":{
     "name":"oItems",

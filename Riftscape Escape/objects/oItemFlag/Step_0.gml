@@ -10,7 +10,7 @@ if (Manager.combatFinished && !used) {
 	//instance_create_layer(x,y, "Instances", oBoss);
 }
 
-if (onStart && !used && Manager != noone) {
+if (onStart && !used) {
 	with (oItemManager) {
 		searchItem = true;
 		dropID = other.id;
@@ -21,7 +21,7 @@ if (onStart && !used && Manager != noone) {
 if (spawnItem && item != noone) {
 	instance_create_layer(x, y, "Instances", item)
 	spawnItem = false;
-}
+} 
 if (Manager == noone) {
 	//Manager = findManager()
 }

@@ -13,8 +13,8 @@
     "path":"folders/roomstuff/wallstuff.yy",
   },
   "parentObjectId":{
-    "name":"oBulletBlocker",
-    "path":"objects/oBulletBlocker/oBulletBlocker.yy",
+    "name":"oIndestructable",
+    "path":"objects/oIndestructable/oIndestructable.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

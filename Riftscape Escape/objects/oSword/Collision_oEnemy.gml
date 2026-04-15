@@ -4,9 +4,9 @@ if (!ds_exists(damagedList, ds_type_map)) {
 }
     if (!ds_map_exists(damagedList, hit.id)) {
         ds_map_add(damagedList, hit.id, true);
-	other.enemey_hp -= global.playerDamage+global.playerEssence/5;
+	other.enemey_hp -= global.playerDamage + power(global.playerEssence, 1.2) * 0.2;
 	
-	global.player_health += global.lifesteal*2 + global.playerDamage+global.playerEssence/5;
+	global.player_health += global.lifesteal*2 + global.playerDamage/1.5+global.playerEssence/5;
 }
 
 if (other.enemey_hp <= 0) {

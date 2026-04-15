@@ -12,9 +12,8 @@ if (portal_timer <= 0) {
 }
 if (roomStart && !ready) {
 	ready = true;
-	for (var i = 0; i < array_length(doorList); i++) {
-		var door = doorList[i];
-		with (door) {
+	with (oGhostBarrierDirectionalParent) {
+		if (RoomID == other.RoomID) {
 			if (!instance_exists(childDoor)) {
 				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
 			}
@@ -28,7 +27,15 @@ if (roomStart && !ready) {
 		oPlayerManager.huskCharge += 450;
 	}
 	oPlayerManager.incombat = true;
-	/*if (instance_exists(workerDoor1)) {
+	/*for (var i = 0; i < array_length(doorList); i++) {
+		var door = doorList[i];
+		with (door) {
+			if (!instance_exists(childDoor)) {
+				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
+			}
+		}
+	}
+	if (instance_exists(workerDoor1)) {
 		with (workerDoor1) {
 		if (!instance_exists(childDoor)) {
 				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
@@ -58,13 +65,13 @@ if (ready && !spawned && portal_timer <= 0 && !instance_exists(oFloorManager)) {
 		doBoss = true;
 		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oBossPortal);
 		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0);
+		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio);
 	} else {
 		var i = irandom(ds_list_size(spawnerList) - 1);
 		pick = spawnerList[| i];
 		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);
 		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0)
+		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 	}
 	spawned = true;
 } else if (ready && !spawned && portal_timer <= 0 && instance_exists(oFloorManager) && diffPool > 0) {
@@ -73,14 +80,14 @@ if (ready && !spawned && portal_timer <= 0 && !instance_exists(oFloorManager)) {
 		pick = bossSpawner;
 		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oBossPortal);
 		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0)
+		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 	} else {
 		show_debug_message("I AM ROUGELIKING IT I AM ROUGELINKING IT SO GOOD")
 		var f = irandom(ds_list_size(spawnerList) - 1);
 		pick = spawnerList[| f];
 		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);
 		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0)
+		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 		
 	}
 	spawned = true;
@@ -125,11 +132,10 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 
 if (inCombat && !combatFinished && temp_portal == noone) {
 	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy))) {
-		for (var i = 0; i < array_length(doorList); i++) {
-		var door = doorList[i];
-		with (door) {
-			if (instance_exists(childDoor)) {
-				instance_destroy(childDoor);
+		with (oGhostBarrierDirectionalParent) {
+		if ((RoomID1 == other.RoomID) || (RoomID2 == other.RoomID)) {
+			if (!instance_exists(childDoor)) {
+				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
 			}
 		}
 	}

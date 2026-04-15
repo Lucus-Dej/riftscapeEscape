@@ -2,7 +2,6 @@
   "$GMObject":"",
   "%Name":"oBarrier",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
@@ -13,8 +12,8 @@
     "path":"folders/roomstuff/wallstuff.yy",
   },
   "parentObjectId":{
-    "name":"oBulletBlocker",
-    "path":"objects/oBulletBlocker/oBulletBlocker.yy",
+    "name":"oIndestructable",
+    "path":"objects/oIndestructable/oIndestructable.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

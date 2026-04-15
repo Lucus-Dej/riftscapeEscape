@@ -15,6 +15,7 @@ if (!bossModApplied && isBoss) {
 path_timer--;
 if (!canSeePlayer) {
 	enemSpeed = base_speed*2;
+	shoot_cooldown = shoot_delay;
 } else if (canSeePlayer) {
 	enemSpeed = 0;
 }

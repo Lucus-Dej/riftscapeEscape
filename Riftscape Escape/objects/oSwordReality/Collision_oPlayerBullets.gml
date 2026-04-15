@@ -1,5 +1,5 @@
 if (!other.parried) {
-	audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 2);
+	audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 2, global.sfxAudio);
 	instance_create_layer(x, y, "Instances", oBoom)
 	parryBullet = instance_create_layer(x, y, "Instances", global.chosenBullet)
 	parryBullet.parried = true;

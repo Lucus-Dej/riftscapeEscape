@@ -3,6 +3,7 @@ if (con && !used && RoomID != 0) {
 		childSpawned = true;
 		child_spawner = instance_create_layer(x, y, "Instances", oStartRoom);
 		with (child_spawner) {
+			owner = other.id;
 			spawnID = other.id;
 			RoomID = other.Manager.RoomID;
 		}

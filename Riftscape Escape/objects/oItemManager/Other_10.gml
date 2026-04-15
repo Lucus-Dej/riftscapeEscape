@@ -47,6 +47,11 @@ if (ds_list_size(mythicItemList) > 0) {
 }
 
 var j = irandom(totalPool - 1 + global.playerTime)+luckBonus;
+if (hasIceSoup && !iceSoupTriggered) {
+	luckBonus -= 70;
+	iceSoupTriggered = true;
+}
+j = clamp(j, 0, totalPool - 1);
 if (simpleMax >= 0 && j < simpleMax) {
 	chosenList = simpleItemList;
 } else if (rareMax >= 0 && j < rareMax) {
@@ -70,7 +75,7 @@ if (chosenList == simpleItemList) {
 				j = irandom(ds_list_size(oItemManager.simpleItemList)-1);
 				item = other.simpleItemList[| j];
 				instance_create_layer(x-32, y, "Instances", item);
-				audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 1)
+				audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 1, global.sfxAudio)
 			}
 		}
 	}

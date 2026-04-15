@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"aSniperMiss",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"agSFX",
+    "path":"audiogroups/agSFX",
   },
   "bitDepth":1,
   "channelFormat":0,
@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"aSniperMiss.mp3",
-  "volume":0.15,
+  "volume":1.0,
 }
