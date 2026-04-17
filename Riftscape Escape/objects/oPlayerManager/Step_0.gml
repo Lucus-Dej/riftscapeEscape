@@ -70,10 +70,12 @@ if (global.player_health <= 0) {
 	if (oItemManager.hasTetheredSoul && instance_exists(oTetheredSoul)) {
 		instance_destroy(oTetheredSoul)
 		global.player_health =max_hp;
+	} else if (room == hordeSurvival) {
+	room_goto(caves0);
 	} else {
-	room_goto(dead);
-	global.player_health = 1;
+		room_goto(dead);
 	}
+	global.player_health = 1;
 }
 
 //stat calcs
@@ -315,7 +317,7 @@ if (uiHealth > 100) {
 //	overhealthTimer += 20+global.playerEssence*10;
 //}
 if (thoughtDodgeCooldownBoost > 0) {
-	thoughtDodgeCooldownBoost -= 0.05;
+	thoughtDodgeCooldownBoost -= 0.1;
 }
 
 //healthRatio = power(1.02, global.playerLife - 1);

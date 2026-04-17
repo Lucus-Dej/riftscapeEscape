@@ -1,12 +1,1 @@
-
-with other {
-	event_user(14);
-	doTick = true;
-	dotTarget = self;
-	dotTicks = 2;
-	dotDelay = 25;
-	dotDamage = 2;
-	event_user(15);
-	
-	alarm[0] = dotDelay;
-}
+callDOT(other, global.playerEssence/5, 6, 12, dotType.blood, object_index);

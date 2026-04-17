@@ -13,9 +13,7 @@ if (global.playerKilled == true) {
 	if (hasMinionEssence && instance_exists(oMinion) && essenceMinionCount < global.playerEssence) {
 			instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionEssence)
 	}
-	if (trackDodgeThoughtTimer > 0) {
-		thoughtDodgeCooldownBoost = 10;
-	}
+	
 	if (oItemManager.hasActionFigure) {
 	instance_create_layer(oPlayerManager.lastKilledX, oPlayerManager.lastKilledY, "Instances", oActionFigureAttack)
 	}

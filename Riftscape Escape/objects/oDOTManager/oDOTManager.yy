@@ -1,16 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"oGoalWall",
-  "eventList":[],
+  "%Name":"oDOTManager",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oGoalWall",
+  "name":"oDOTManager",
   "overriddenProperties":[],
   "parent":{
-    "name":"wallstuff",
-    "path":"folders/roomstuff/wallstuff.yy",
+    "name":"managers(needed to run)",
+    "path":"folders/managers(needed to run).yy",
   },
   "parentObjectId":null,
-  "persistent":false,
+  "persistent":true,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -27,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sMinimapItem",
-    "path":"sprites/sMinimapItem/sMinimapItem.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

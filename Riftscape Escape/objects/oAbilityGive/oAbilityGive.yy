@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sRoomManagerConditional",
-    "path":"sprites/sRoomManagerConditional/sRoomManagerConditional.yy",
+    "name":"sMinimapItem",
+    "path":"sprites/sMinimapItem/sMinimapItem.yy",
   },
   "spriteMaskId":null,
   "visible":true,

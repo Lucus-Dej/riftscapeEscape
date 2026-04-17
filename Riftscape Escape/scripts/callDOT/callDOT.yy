@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"callDOT",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"callDOT",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

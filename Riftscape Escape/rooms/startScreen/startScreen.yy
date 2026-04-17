@@ -107,6 +107,8 @@
     {"name":"inst_576BE83D","path":"rooms/startScreen/startScreen.yy",},
     {"name":"inst_378B803F","path":"rooms/startScreen/startScreen.yy",},
     {"name":"inst_47A2F959","path":"rooms/startScreen/startScreen.yy",},
+    {"name":"inst_598C0F4F","path":"rooms/startScreen/startScreen.yy",},
+    {"name":"inst_3843F9E5","path":"rooms/startScreen/startScreen.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -141,6 +143,8 @@
         {"$GMRInstance":"v4","%Name":"inst_378B803F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_378B803F","objectId":{"name":"oSlider","path":"objects/oSlider/oSlider.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oSlider","path":"objects/oSlider/oSlider.yy",},"propertyId":{"name":"controlsMusic","path":"objects/oSlider/oSlider.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.375,"scaleY":1.0,"x":864.0,"y":384.0,},
+        {"$GMRInstance":"v4","%Name":"inst_598C0F4F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_598C0F4F","objectId":{"name":"oDOTManager","path":"objects/oDOTManager/oDOTManager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":192.0,"y":96.0,},
+        {"$GMRInstance":"v4","%Name":"inst_3843F9E5","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3843F9E5","objectId":{"name":"oMinimapManager","path":"objects/oMinimapManager/oMinimapManager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":96.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":200,"effectEnabled":true,"effectType":"_filter_vignette","gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[
         {"name":"g_VignetteEdges","type":0,"value":"0.5",},

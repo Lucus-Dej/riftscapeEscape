@@ -4,6 +4,6 @@ if (canHeal) {
 			oPlayerManager.overhealthTimer += 40+global.playerEssence*5;
 	}
 	if (oPlayerManager.overHealthOverheated) {
-		oPlayerManager.overhealthSuperTimer -= 15*global.playerEssence+45;
+		oPlayerManager.overhealthSuperTimer -= 25*global.playerEssence+45;
 	}
 }

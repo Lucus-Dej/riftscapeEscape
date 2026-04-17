@@ -4,15 +4,15 @@ tracking = 0;
 canBounce = false
 canSpread = false;
 
-if (oItemManager.hasUnstableEnergy) {
+if (oItemManager.hasUnstableEnergy && oPlayerManager.hasMinionFate) {
 	canSpread = true
 } 
-if (oItemManager.hasMirrorShard) {
+if (oItemManager.hasMirrorShard && oPlayerManager.hasMinionFate) {
 	canBounce = true
 	bounceNum += 1;
 	tracking = 1;
 } 
-if (oItemManager.hasDirtyMirror) {
+if (oItemManager.hasDirtyMirror && oPlayerManager.hasMinionFate) {
 	canBounce = true;
 	bounceNum += 3;
 	tracking = 0;
@@ -51,7 +51,7 @@ image_angle = point_direction(
 damagedList = ds_map_create();
 ignoreEnemy = noone;
 ignoreWall = noone;
-if (oPlayerManager.canRich) {
+if (oPlayerManager.canRich && oPlayerManager.hasMinionFate) {
 	richCount = 1;
 } else {
 	richCount = 0;

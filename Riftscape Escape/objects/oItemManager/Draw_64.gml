@@ -10,7 +10,7 @@ var cell = iconSize + pad;
 
 // bottom-right anchor
 var startX = guiW - (cols * cell) - 8;
-var startY = guiH * 0.25;
+var startY = guiH * 0.35;
 
 
 
