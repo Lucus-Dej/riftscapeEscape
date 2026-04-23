@@ -46,7 +46,7 @@ if (shoot_cooldown <= 0) {
 				shoot_cooldown = shoot_delay;
 				recoil_timer = recoil_cooldown;
 				fire_timer = fire_duration;
-				enemSpeed += 0.035;
+				enemSpeed += 0.015;
 		}
 		
 	}

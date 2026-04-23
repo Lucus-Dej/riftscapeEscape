@@ -38,6 +38,7 @@ switch (abilityID) {
 		
 		case 4:
 		oPlayerManager.hasCircleThought = true;
+		oPlayerManager.circleThoughtUpgrade = true;
 		oPlayerManager.thoughtTokenSpent = true;
 		upgradeCount++;
 		break;

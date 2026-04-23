@@ -16,7 +16,7 @@ invincible = false;
 enrage_point = enemey_hp/2;
 enraged = false;
 xp = 20;
-spawnWeight = 10;
+spawnWeight = 12.5;
 damage = 3;
 path_cooldown = 30;
 

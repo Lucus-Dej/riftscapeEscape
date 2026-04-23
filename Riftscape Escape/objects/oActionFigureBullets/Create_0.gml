@@ -5,6 +5,4 @@ direction = oActionFigureAttack.shotAngle;
 }
 targetID = noone;
 target = noone;
-parried = false;
-damagedList = ds_map_create();
 damage = global.playerDamage/2;

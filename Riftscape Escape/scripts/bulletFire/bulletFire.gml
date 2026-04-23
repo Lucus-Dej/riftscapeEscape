@@ -7,7 +7,7 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
     b.speed       = _speed;
     b.damage      = _damage;
     b.owner       = _owner;
-	if (instance_exists(_owner))
+	if (instance_exists(_owner) && instance_exists(id))
 	if (id.object_index == oTruePlayer && oItemManager.hasMagnet && oTruePlayer.orbitCount < 8) {
 		var rand = irandom_range(1, 15);
 		if (rand+global.playerTime >= 15) {

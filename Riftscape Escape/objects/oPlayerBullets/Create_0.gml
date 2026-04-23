@@ -15,7 +15,6 @@ if (oItemManager.hasMirrorShard) {
 if (oItemManager.hasDirtyMirror) {
 	canBounce = true;
 	bounceNum += 3;
-	tracking = 0;
 }
 bounced = false;
 

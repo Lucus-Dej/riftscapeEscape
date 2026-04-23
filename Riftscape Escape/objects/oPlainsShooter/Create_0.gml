@@ -12,6 +12,6 @@ enemSpeed = 1.8;
 base_speed = enemSpeed;
 xp = 7.5;
 damage = 12;
-bullet_speed = 7;
+bullet_speed = 8;
 playerPercent = 0;
 spawnWeight = 6;

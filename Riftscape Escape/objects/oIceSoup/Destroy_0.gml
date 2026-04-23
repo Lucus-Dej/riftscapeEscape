@@ -1,6 +1,5 @@
 // Inherit the parent event
 event_inherited();
-oItemManager.luckBonus += 50;
 oItemManager.hasIceSoup = true;
 var spawner = instance_nearest(x, y, oItemFlag)
 with (spawner) {

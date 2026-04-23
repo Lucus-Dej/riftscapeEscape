@@ -88,16 +88,17 @@ if (state == waveState.inBetween) {
 		array_push(waveArray, oEnemTurret)
 		break;
 		
-		case 5:
-		array_push(waveArray, oEnemDesertBiter)
-		break;
 		
 		case 6:
-		array_push(bossArray, oBoss3, oMiniBoss3, oCaveSpitter)
+		array_push(bossArray, oBoss3, oMiniBoss3)
 		break;
 		
 		case 7:
 		array_push(waveArray, oMiniBoss, oMiniBoss2,)
+		break;
+		
+		case 8:
+		array_push(waveArray, oEnemDesertBiter)
 		break;
 		
 		case 9:
@@ -129,11 +130,19 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 21:
-		array_push(waveArray, oRifterTank, oEnemBlackHole)
+		array_push(waveArray, oEnemBlackHole)
 		break;
 		
 		case 24:
 		array_push(bossArray, oWastelandDestroyer)
+		break;
+		
+		case 25:
+		array_push(waveArray, oRifterTank)
+		break;
+		
+		case 50: 
+		array_push(bossArray, oKrost)
 		break;
 	}
 	startingWeight *= 1.1;

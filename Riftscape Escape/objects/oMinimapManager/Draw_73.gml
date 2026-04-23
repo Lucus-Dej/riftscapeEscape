@@ -7,7 +7,6 @@ if (instance_exists(follow)) {
 	surface_set_target(minimapSurface);
 	draw_clear_alpha(c_black, 0);
 
-	// apply minimap camera, NOT main camera
 	camera_apply(minimapCam);
 
 	with (oSuperwalls) {
@@ -22,7 +21,11 @@ if (instance_exists(follow)) {
 		} else {
 			draw_sprite_ext(sMinimapDoor, 0, x, y, 1, 1, 0, c_white, 1);
 		}
-	} 
+	}
+	if (oItemManager.hasGenStone)
+	with (oEnemy) {
+		draw_sprite_ext(sBossBullet, 0, x, y, 1, 1, 0, c_white, 1);
+	}
 	with (oPlayer) draw_self();
 
 	surface_reset_target();

@@ -115,7 +115,7 @@ circleCharge = circleMax;
 circleTotal = circleMax;
 circleCooldown = 100;
 circleKey = "C";
-circleThoughtUpgrade = true;
+circleThoughtUpgrade = false;
 circleCooldownBonus = 0;
 hasCircleThought = false;
 hasCircleReality = false;
@@ -261,7 +261,7 @@ resW = 1366;
 resH = 768;
 
 // level stuff
-levelArray = [caves0, caves01, caves02, f3, desert0, desert01, desert02, d3, wasteland0, wasteland01, wasteland02, w1, plains0, plains01, plains02, p1, p2, theEnd, itemRoom]
+levelArray = [caves0, caves01, f3, desert0, desert01, d3, wasteland0, wasteland02, w1, plains0, plains01, p3, theEnd, itemRoom]
 levelIndex = 0;
 currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];

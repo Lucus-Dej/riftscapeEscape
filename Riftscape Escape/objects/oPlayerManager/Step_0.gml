@@ -336,8 +336,8 @@ global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*oItemManager
 if (inOverhealth == true) {
 	dodgeLifeBonus = 0;
 	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
-	overHealthBulletDelay = sqrt(global.playerEssence)*0.1;
-	overHealthDamageBuff = sqrt(global.playerEssence)*0.14;
+	overHealthBulletDelay = sqrt(global.playerEssence)*0.24;
+	overHealthDamageBuff = sqrt(global.playerEssence)*0.16;
 	overHealthCooldownBuff = sqrt(global.playerEssence)*0.9;
 	global.player_health = 9999;
 }

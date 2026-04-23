@@ -38,9 +38,9 @@ validItemLists = ds_list_create();
 item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oHarvestBook, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice);
+ds_list_add(rareItemList, oHarvestBook, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
 ds_list_add(powerfulItemList, oDictionaryCharge, oMagnet, oSingularity, oThePathForward, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
-ds_list_add(mythicItemList, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
+ds_list_add(mythicItemList, oUnstableEnergy, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 searchItem = false;
 dropID = noone;
 brainTime = 60;
@@ -49,6 +49,7 @@ seedStart = false;
 seedFailed = false;
 seedCombatCheck = false
 
+hasGenStone = false;
 hasSmallSculpture = false;
 sculptureActive = false;
 sculptureTimer = 0;

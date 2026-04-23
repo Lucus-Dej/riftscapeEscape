@@ -9,6 +9,7 @@ if (!canBounce && bounceNum <= 0) {
 	var closest = noone;
 	var closestDist = 100000;
 	bounceNum -= 1;
+	if (tracking > 0)
 	with (oEnemy) {
 		// Skip enemies already damaged
 		if (ds_map_exists(other.damagedList, id)) {
@@ -33,6 +34,9 @@ if (!canBounce && bounceNum <= 0) {
 				vy *= -1;
 			}
 			newDir = point_direction(0,0,vx,vy);
+			if (is_nan(newDir)) {
+				newDir = direction; 
+			}
 		} else {
 		var tx = bounceTarget.x;
 		var ty = bounceTarget.y;
@@ -41,7 +45,12 @@ if (!canBounce && bounceNum <= 0) {
 		var tvy = lengthdir_y(bounceTarget.speed, bounceTarget.direction);
 		
 		var dist = point_distance(x, y, tx, ty);
-		var t = dist / speed;
+		var t = 0;
+		if (speed != 0) {
+			t = dist / speed;
+		} else {
+			t = dist /0.01 ;
+		}
 		
 		var leadx = tx + tvx * t;
 		var leady = ty + tvy * t;
@@ -50,11 +59,14 @@ if (!canBounce && bounceNum <= 0) {
 		var aimy = lerp(ty, leady, tracking);
 		
 		newDir = point_direction(x, y, aimx, aimy);
+		if (is_nan(newDir)) {
+			newDir = direction; 
+		}
 	}
 	// summon secondary projectile with everything this projectile has
 	var nx = x + lengthdir_x(2, newDir);
 	var ny = y + lengthdir_y(2, newDir);
-	var newSpeed = abs(speed);
+	var newSpeed = max(abs(speed), 0.01);
 	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage*0.8, object_index, oTruePlayer);
 	copy.bounceNum = bounceNum;
 	copy.boucned = true;

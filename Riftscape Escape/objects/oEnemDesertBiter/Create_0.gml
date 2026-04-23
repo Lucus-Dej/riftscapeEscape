@@ -7,5 +7,5 @@ path_cooldown = 5;
 enemSpeed = 3.75;
 base_speed = enemSpeed;
 xp = 2.45;
-damage = 6;
+damage = 10;
 spawnWeight = 1;

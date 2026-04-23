@@ -4,7 +4,7 @@ roundsTillBoss = 5;
 bossRound = false;
 bossBonus = 1;
 waveArray = [ oEnemSpider]
-bossArray = [oBoss, oBoss2, oMiniBoss2, oMiniBoss];
+bossArray = [oBoss, oBoss2, oMiniBoss2, oMiniBoss, oCaveSpitter, oEnemBig];
 allEnemPool = [oCaveSpitter, oEnemBasic, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,
 	oEnemSpider, oEnemTurret, oPlainsShooter, oWastelandBurner, oWastelandFireRunner, 
 	oBoss, oBoss2, oBoss3, oDesertSlammer, oMiniBoss, oMiniBoss2, oMiniBoss3, oRifterTank, 

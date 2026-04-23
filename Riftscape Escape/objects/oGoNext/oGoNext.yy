@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sPortal",
-    "path":"sprites/sPortal/sPortal.yy",
+    "name":"sLevelPortal",
+    "path":"sprites/sLevelPortal/sLevelPortal.yy",
   },
   "spriteMaskId":null,
   "visible":true,

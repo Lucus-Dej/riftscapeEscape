@@ -9,4 +9,4 @@ fireToggle = false;
 xp = 4.5;
 damage = 10;
 searchPlayer();
-spawnWeight = 4;
+spawnWeight = 2;

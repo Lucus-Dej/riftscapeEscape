@@ -20,7 +20,7 @@ tpArray = [];
 with (oKrostTp) {
 	array_push(other.tpArray, id);
 }
-xp = 80;
+xp = 250;
 
 searchPlayer();
 spawnWeight = 33.5;

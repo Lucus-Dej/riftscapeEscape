@@ -1,6 +1,11 @@
 if (brainDead) {
     exit;
 }
+if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
+	enemSpeed = base_speed*2.5;
+} else if (canSeePlayer) {
+	enemSpeed = base_speed;
+}
 if (!bossModApplied && isBoss) { 
 	bossModApplied = true;
 	enemey_hp *= hpMult;

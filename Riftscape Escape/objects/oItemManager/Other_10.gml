@@ -47,10 +47,7 @@ if (ds_list_size(mythicItemList) > 0) {
 }
 
 var j = irandom(totalPool - 1 + global.playerTime)+luckBonus;
-if (hasIceSoup && !iceSoupTriggered) {
-	luckBonus -= 70;
-	iceSoupTriggered = true;
-}
+
 j = clamp(j, 0, totalPool - 1);
 if (simpleMax >= 0 && j < simpleMax) {
 	chosenList = simpleItemList;
@@ -61,10 +58,21 @@ if (simpleMax >= 0 && j < simpleMax) {
 } else {
 	chosenList = mythicItemList;
 } 
-
+if (hasIceSoup && !iceSoupTriggered) {
+	var iceCheck = irandom_range(1, 3);
+	if (iceCheck >= 3) {
+		chosenList = mythicItemList;
+	} else {
+		chosenList = powerfulItemList;
+	}
+	iceSoupTriggered = true;
+	luckBonus -= 15;
+	
+}
 if (chosenList == simpleItemList) {
 	var i = irandom(ds_list_size(chosenList)-1);
 	item = chosenList[| i];
+	
 	with (dropID) {
 		item = other.item;
 		spawnItem = true;

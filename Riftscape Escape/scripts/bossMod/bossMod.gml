@@ -14,10 +14,10 @@ function bossMod(_enem){
 			
 			case oCaveSpitter:
 			dmgMult = 1.2;
-			hpMult = 6;
-			cooldownMult = 5.4;
-			image_xscale += 1;
-			image_yscale += 1
+			hpMult = 5;
+			cooldownMult = 4;
+			image_xscale += 1.5;
+			image_yscale += 1.5
 			break;
 			
 			case oEnemSandSniper:
@@ -37,8 +37,8 @@ function bossMod(_enem){
 			break;
 			
 			case oWastelandFireRunner:
-			hpMult = 2;
-			dmgMult = 2;
+			hpMult = 1.3;
+			dmgMult = 2.5;
 			phasePoint1 *= hpMult;
 			break;
 			
@@ -65,9 +65,9 @@ function bossMod(_enem){
 			break;
 			
 			case oDesertSlammer:
-			hpMult = 1.2;
+			hpMult = 2.4;
 			dmgMult = 1.5;
-			cooldownMult = 4.5;
+			cooldownMult = 4;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
@@ -75,13 +75,13 @@ function bossMod(_enem){
 			case oMiniBoss:
 			hpMult = 2;
 			dmgMult = 1.3;
-			cooldownMult = 2.6;
+			cooldownMult = 3.6;
 			break;
 			
 			case oMiniBoss2:
 			hpMult = 1.3;
 			dmgMult = 1.3;
-			cooldownMult = 3;
+			cooldownMult = 2;
 			break;
 			
 			case oMiniBoss3:
