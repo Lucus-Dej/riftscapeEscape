@@ -3,6 +3,11 @@ with oLevelChoiceLeft {
 		valid = false;
 	}
 }
+with (oUpgradeTokenReal) {
+	if (upgradeID == other.buttonID) {
+		spent = true;
+	}
+}
 if (levelMet && !hasChosen && valid) {
 	valid = false;
 	image_alpha = 0.5;

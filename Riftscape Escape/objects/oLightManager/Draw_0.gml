@@ -69,9 +69,7 @@ if (!surface_exists(lightSurface))
 
 
 // Resize if camera size changed
-if (surface_get_width(lightSurface) != camW
-||  surface_get_height(lightSurface) != camH)
-{
+if (surface_get_width(lightSurface) != camW || surface_get_height(lightSurface) != camH) {
     surface_free(lightSurface);
     lightSurface = surface_create(camW, camH);
 }
@@ -106,6 +104,7 @@ for (var i = 0; i < array_length(smallLightArray); i++) {
 		inst = noone;
 	}
 }
+
 for (var i = 0; i < array_length(tinyLightArray); i++) {
     var inst = tinyLightArray[i];
 	if (variable_instance_exists(inst, "isLightExcluded") && inst.isLightExcluded) continue;
@@ -113,9 +112,14 @@ for (var i = 0; i < array_length(tinyLightArray); i++) {
         draw_sprite_ext( sLight, 0, x - camX,  y - camY, 0.12, 0.12, 0, c_white, 0.2);
     }
 }
+gpu_set_blendmode_ext(bm_zero, bm_inv_src_colour);
 for (var i = 0; i < array_length(lightExclusionArray); i++) {
     var inst = lightExclusionArray[i];
-
+	if (instance_exists(inst)) {
+		with (inst){
+			draw_self();
+		}
+	}
     
 }
 gpu_set_blendmode(bm_normal);

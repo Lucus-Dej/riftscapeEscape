@@ -84,7 +84,6 @@
     {"name":"inst_66E4A8BB2","path":"rooms/caves01/caves01.yy",},
     {"name":"inst_1F4081F4_1","path":"rooms/caves01/caves01.yy",},
     {"name":"inst_547F9F73_1","path":"rooms/caves01/caves01.yy",},
-    {"name":"inst_4F496D62","path":"rooms/caves01/caves01.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -189,8 +188,8 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oGhostBarrier","path":"objects/oGhostBarrier/oGhostBarrier.yy",},"propertyId":{"name":"RoomID1","path":"objects/oGhostBarrier/oGhostBarrier.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":9856.0,"y":5088.0,},
         {"$GMRInstance":"v4","%Name":"inst_C5D596B1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_C5D596B1","objectId":{"name":"oFloorManager","path":"objects/oFloorManager/oFloorManager.yy",},"properties":[
-            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oFloorManager","path":"objects/oFloorManager/oFloorManager.yy",},"propertyId":{"name":"deep","path":"objects/oFloorManager/oFloorManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"8",},
-            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oFloorManager","path":"objects/oFloorManager/oFloorManager.yy",},"propertyId":{"name":"difficultyPool","path":"objects/oFloorManager/oFloorManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"12",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oFloorManager","path":"objects/oFloorManager/oFloorManager.yy",},"propertyId":{"name":"deep","path":"objects/oFloorManager/oFloorManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"9",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oFloorManager","path":"objects/oFloorManager/oFloorManager.yy",},"propertyId":{"name":"difficultyPool","path":"objects/oFloorManager/oFloorManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"14",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oFloorManager","path":"objects/oFloorManager/oFloorManager.yy",},"propertyId":{"name":"floorID","path":"objects/oFloorManager/oFloorManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"caves",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":8640.0,"y":4800.0,},
         {"$GMRInstance":"v4","%Name":"inst_1F4081F4_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1F4081F4_1","objectId":{"name":"oEnemStart","path":"objects/oEnemStart/oEnemStart.yy",},"properties":[
@@ -200,9 +199,7 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oEnemStart","path":"objects/oEnemStart/oEnemStart.yy",},"propertyId":{"name":"RoomID","path":"objects/oEnemStart/oEnemStart.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":8736.0,"y":5088.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-    {"$GMRInstanceLayer":"","%Name":"Items","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v4","%Name":"inst_4F496D62","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4F496D62","objectId":{"name":"oBrokenSnowglobe","path":"objects/oBrokenSnowglobe/oBrokenSnowglobe.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":8896.0,"y":4864.0,},
-      ],"layers":[],"name":"Items","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
+    {"$GMRInstanceLayer":"","%Name":"Items","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Items","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_1","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_1","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":625,"SerialiseWidth":1250,"TileSerialiseData":[
           6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,
           5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,

@@ -40,14 +40,26 @@ if (canOrbit && instance_exists(orbitCenter)) {
 		speed -= decayRate
 	}
 	if (oItemManager.hasSingularity) {
-		var dist = 720;
-		var target = instance_nearest(x, y, oEnemy);
-	if (instance_exists(target))
-		if (point_distance(x, y, target.x, target.y) <= dist && lastHit != target) {
-			var dir = point_direction(x, y, target.x, target.y);
-			var pull = 10;
-			x += lengthdir_x(pull*0.55, dir);
-			y += lengthdir_y(pull*0.55, dir);
+		var dist = 160;
+		var nearestDist = dist;
+		with (oEnemy) {
+			if (ds_exists(other.damagedList, ds_type_map))
+			if (!ds_map_exists(other.damagedList, id)) {
+				var d = point_distance(other.x, other.y, x, y);
+				if (d < 160) {
+					nearestDist = d;
+					other.target = id;
+				}
+			}
+		}
+	if (instance_exists(target) && lastHit != target) {
+		var turnSpeed = 6;
+		var dir = point_direction(x, y, target.x, target.y);
+			direction  -= clamp(angle_difference(direction, dir), -turnSpeed, turnSpeed)
+		}
+		if (ds_exists(other.damagedList, ds_type_map))
+		if (!instance_exists(target) || ds_map_exists(damagedList, target)) {
+			target = noone;
 		}
 	}
 	if (oItemManager.hasBrokenBoomerang) {

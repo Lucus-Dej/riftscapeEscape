@@ -5,11 +5,11 @@ if (!ds_exists(damagedList, ds_type_map)) {
     if (!ds_map_exists(damagedList, hit.id)) {
         ds_map_add(damagedList, hit.id, true);
 	if (chainDistance > 0) {
-		other.enemey_hp -= 0.05 + global.lifesteal/8;
-		global.player_health += 0.05 + global.lifesteal/8;
+		other.enemey_hp -= 0.1 + global.lifesteal/6;
+		global.player_health += 0.1 + global.lifesteal/6;
 	} else {
-	other.enemey_hp -= 0.25 + global.lifesteal;
-	global.player_health += 0.25 + global.lifesteal;
+		other.enemey_hp -= 0.65 + global.lifesteal;
+		global.player_health += 0.65 + global.lifesteal;
 	}
 }
 if (other.enemey_hp <= 0) {

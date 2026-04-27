@@ -19,10 +19,12 @@ smallLightArray[0] = (oTruePlayer);
 smallLightArray[1] = (oPlayerAbilities);
 smallLightArray[2] = (oEnemy);
 
+
 tinyLightArray[0] = (oEnemyBullets);
 tinyLightArray[1] = (oPlayerBullets);
 
 lightExclusionArray[0] = (oUnlitEnemy);
+lightExclusionArray[1] = (oUpgradeTokenFollow);
 darknessAlpha = 0.7;
 
 vertex_format_begin();

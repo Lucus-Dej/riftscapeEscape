@@ -12,18 +12,25 @@ global.currentCharges = 0;
 sacDaggerPenalty = 1;
 sacDaggerBonus = 1;
 simpleMin = 0;
-simpleMax = 35;
-simplePool = 35;
+simpleMax = 30;
+simplePool = 30;
 rareMin = 0;
-rareMax = 80;
+rareMax = 75;
 rarePool = 45;
 powerfulMin = 0;
 powerfulMax = 95;
-powerfulPool = 15;
+powerfulPool = 20;
 mythicMin = 0;
 mythicMax = 100;
 mythicPool = 5;
 randomise();
+hasSifterEssence = false;
+sifterLinkArray = [];
+sifterLinks = [];
+sifterEssenceRange = 240;
+sifterEssenceDmg = global.playerEssence/20;
+sifterCooldown = 60;
+sifterTimer = sifterCooldown;
 
 // rare passive
 hasIceSoup = false;
@@ -39,8 +46,8 @@ item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 ds_list_add(rareItemList, oHarvestBook, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oDictionaryCharge, oMagnet, oSingularity, oThePathForward, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
-ds_list_add(mythicItemList, oUnstableEnergy, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
+ds_list_add(powerfulItemList, oDirectorsNote, oDictionaryCharge, oReflectiveGem, oMagnet, oSingularity, oThePathForward, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
+ds_list_add(mythicItemList, oSifterEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 searchItem = false;
 dropID = noone;
 brainTime = 60;
@@ -68,6 +75,7 @@ actionFigurePower = 0
 actionFigureTargetX = 0;
 actionFigureTargetY = 0;
 
+hasReflectiveGem = false;
 hasSingularity = false;
 hasMagnet = false;
 hasMirrorShard = false;

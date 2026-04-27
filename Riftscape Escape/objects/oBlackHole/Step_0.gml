@@ -1,7 +1,8 @@
 collision_circle_list(x, y, 128+64*pull*2, oPlayerBullets, false, true, bulletCheck, false)
 image_angle += rotation;
 var playerDist = point_distance(oTruePlayer.x, oTruePlayer.y, x, y);
-if (searchPlayer())
+var blackHoleCheck = collision_line(x, y,oTruePlayer.x, oTruePlayer.y, oWalls, false, true);
+if (blackHoleCheck == noone)
 if (instance_exists(oTruePlayer) && playerDist < 48+96*pull*2) {
 	var pdir = point_direction(oTruePlayer.x, oTruePlayer.y, x, y);
 	oTruePlayer.x += lengthdir_x(pull*0.8, pdir);

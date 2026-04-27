@@ -1,4 +1,4 @@
-if (instance_exists(follow)) {
+if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 
 	if (!surface_exists(minimapSurface)) {
 	    minimapSurface = surface_create(200, 200);

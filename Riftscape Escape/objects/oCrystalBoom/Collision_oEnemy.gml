@@ -4,7 +4,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
 }
     if (!ds_map_exists(damagedList, hit.id)) {
         ds_map_add(damagedList, hit.id, true);
-	other.enemey_hp -= 2+global.playerDamage + global.playerTime/5;
+	other.enemey_hp -= 2.5 + global.playerDamage*1.1 + global.playerTime/4;
 }
 
 if (other.enemey_hp <= 0) {

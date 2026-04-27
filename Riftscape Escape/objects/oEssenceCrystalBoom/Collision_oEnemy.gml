@@ -8,8 +8,8 @@ if (!ds_exists(damagedList, ds_type_map)) {
 		other.enemey_hp -= 0.5 + global.lifesteal/5;
 		global.player_health += 0.5 + global.lifesteal/5;
 	} else {
-	other.enemey_hp -= 2.5+ global.lifesteal + global.playerTime/2;
-	global.player_health += 2.5+ global.lifesteal + global.playerTime/2;
+	other.enemey_hp -= 2.5 + global.lifesteal + global.playerTime/5;
+	global.player_health += 2.5 + global.lifesteal + global.playerTime/5;
 	}
 }
 

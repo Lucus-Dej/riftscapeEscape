@@ -15,6 +15,16 @@ if (array_length(dotArray) > 0) {
 			if (dot.target.enemey_hp <= 0) {
 				instance_destroy(dot.target)
 				array_delete(dotArray, i, 1);
+				if (dot.source == oSwordLife) {
+					if (dot.target.xp > 0) {
+						oPlayerManager.swordKills += 1;
+						oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*1.3 - 1.2;
+					}
+					if (oPlayerManager.hasSwordThought) {
+						oPlayerManager.swordCooldownBonus = 12;
+						oPlayerManager.swordCooldownBonusTime += 32;
+					}
+				}
 			}
 		}
 		if (dot.ticks <= 0)  {

@@ -50,6 +50,7 @@ image_angle = point_direction(
 damagedList = ds_map_create();
 ignoreEnemy = noone;
 ignoreWall = noone;
+target = noone;
 if (oPlayerManager.canRich) {
 	richCount = 1;
 } else {

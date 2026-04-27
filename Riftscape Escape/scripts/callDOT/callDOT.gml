@@ -1,5 +1,8 @@
 function callDOT(_target, _damage, _ticks, _delay, _type, _source){
 	if (!instance_exists(_target)) return;
+	if (variable_instance_exists(_target, "invincible") && _target.invincible == false) {
+		return;
+	}
 	var darr = oDOTManager.dotArray;
 	for (var i = array_length(darr) - 1; i >= 0; i--) {
 		var dotCheck = darr[i];

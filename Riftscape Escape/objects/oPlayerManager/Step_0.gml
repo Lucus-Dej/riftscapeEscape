@@ -75,13 +75,13 @@ if (global.player_health <= 0) {
 	} else {
 		room_goto(dead);
 	}
-	global.player_health = 1;
+	global.player_health = 12;
 }
 
 //stat calcs
 global.player_speed = sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus);
 global.bullet_delay = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
-global.playerDamage = tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff;
+global.playerDamage = (tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff + boomerangDmg)/directorsDebuff;
 global.bullet_speed = 5+ sqrt(global.playerReality*0.8);
 cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + overHealthCooldownBuff + circleCooldownBonus)*0.5);
 
@@ -102,6 +102,23 @@ if (swordCooldownBonusTime <= 0) {
 	swordCooldownBonus = 0;
 }
 if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	moveSword = false;
 	if (hasSwordFate) {
 		fateSwordCount = global.playerFate;
@@ -150,6 +167,23 @@ if (iframes > 0) {
 if (dodgeState == DODGE_PHASE.onStandby) {
 	inDodge = false;
 	if (dodgePressed) {
+		if (oItemManager.hasReflectiveGem) {
+			var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+			var enem = noone;
+			with (oTruePlayer) {
+				enem = instance_nearest(x, y, oEnemy) 
+			}
+			if (enem != noone) {
+				dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+			}
+			if (oItemManager.hasMetalOrb) {
+				bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+				bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+				bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			} else {
+				bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+			}
+		}
 		trackDodgeFate = true;
 		inDodge = true;
 		dodgeTotal = 0;
@@ -174,6 +208,23 @@ if (dodgeState == DODGE_PHASE.dodging) {
 	}
 }
 if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePressed) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	trackDodgeFate = true;
 	dodgeState = DODGE_PHASE.blackflashing;
 	dodgeBlackFlashTimer = 100;
@@ -237,6 +288,23 @@ if (initCrystal) {
 	}
 }
 if (crystalTotal >= crystalMax && crystalPressed && initCrystal) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oCrystal);
 	crystalTotal = 0;
 }
@@ -271,9 +339,43 @@ if (realityBombCheck == BOMB_KILL_CHECK.failed) {
 }
 //minion stuff
 if (initMinion && !instance_exists(oMinion)) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinion);
 }
 if (initMinion && hasMinionTime && !instance_exists(oMinionTime)) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionTime);
 }
 // fate circle stuff
@@ -285,6 +387,23 @@ if (initCircle) {
 	}
 }
 if (circleTotal >= 2250 && circlePressed && initCircle) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x, oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oCricleOfFate);
 }
 
@@ -297,6 +416,23 @@ if (global.playerThought >= 5 && initHusk) {
 	}
 }
 if (huskTotal >= huskMax && huskPressed && initHusk) {
+	if (oItemManager.hasReflectiveGem) {
+		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
+		var enem = noone;
+		with (oTruePlayer) {
+			enem = instance_nearest(x, y, oEnemy) 
+		}
+		if (enem != noone) {
+			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
+		}
+		if (oItemManager.hasMetalOrb) {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
+		} else {
+			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
+		}
+	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oMindHusk);
 	huskTotal = 0;
 }
@@ -336,10 +472,10 @@ global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*oItemManager
 if (inOverhealth == true) {
 	dodgeLifeBonus = 0;
 	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
-	overHealthBulletDelay = sqrt(global.playerEssence)*0.24;
-	overHealthDamageBuff = sqrt(global.playerEssence)*0.16;
+	overHealthBulletDelay = sqrt(global.playerEssence)*0.26;
+	overHealthDamageBuff = sqrt(global.playerEssence)*0.12;
 	overHealthCooldownBuff = sqrt(global.playerEssence)*0.9;
-	global.player_health = 9999;
+	global.player_health = 115;
 }
 if (inOverhealth && overhealthFlag) {
 	overhealthFlag = false;

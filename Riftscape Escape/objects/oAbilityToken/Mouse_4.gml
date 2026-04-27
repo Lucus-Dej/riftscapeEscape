@@ -1,5 +1,5 @@
 with oUpgradeTokenReal {
-	if (valid && selected) {
+	if (valid && selected && other.abilityGained != 0) {
 		other.upgrader = id;
 		other.startUpgrade = true;
 		other.storedUpgrade = upgrade;

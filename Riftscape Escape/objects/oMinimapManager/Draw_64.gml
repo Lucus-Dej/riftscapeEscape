@@ -1,4 +1,4 @@
-if (instance_exists(follow)) {
+if (instance_exists(follow) && (!oPlayerManager.inLevelMenu && !oPlayerManager.inTokenMenu)) {
 	var map_x = display_get_gui_width() - 216;
 	var map_y = 16;
 	var map_w = 200;

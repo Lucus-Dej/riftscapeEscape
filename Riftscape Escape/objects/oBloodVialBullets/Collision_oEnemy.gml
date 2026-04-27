@@ -1,5 +1,8 @@
 event_inherited();
-callDOT(other, 0.25, 4, 12, dotType.blood, object_index);
+if (ignoreEnemy != other) {
+	callDOT(other, 0.25, 4, 12, dotType.blood, object_index);
+}
+
 /*
 with other {
 	event_user(14);

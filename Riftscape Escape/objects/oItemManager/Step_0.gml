@@ -80,6 +80,60 @@ if (hasImageOfYou) {
 if (hasGunpowder) {
 	global.explosionBullet = oBigBoom;
 }
+if (hasSifterEssence) {
+	sifterEssenceDmg = global.playerEssence/20;
+	if (sifterTimer > 0) sifterTimer--;
+	
+	with (oEnemy) {
+		var d = point_distance(x, y, oTruePlayer.x, oTruePlayer.y);
+		
+		if (d <= other.sifterEssenceRange) {
+			
+			if (!array_contains(other.sifterLinkArray, id)) {
+				array_push(other.sifterLinkArray, id)
+				var link = instance_create_layer(x, y, "Instances", oEnemyLink);
+				 
+				 link.enemyA = id;
+				 with (oTruePlayer) {
+					 link.enemyB = id;
+				 }
+				 array_push(other.sifterLinks, link);
+			}
+		}
+	}
+	for (var i = array_length(sifterLinkArray)-1; i >= 0; i--) {
+		var enem = sifterLinkArray[i];
+		if (!instance_exists(enem) || point_distance(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y) > sifterEssenceRange) {
+			if (instance_exists(sifterLinks[i])) {
+				with (sifterLinks[i]) {
+					instance_destroy();
+				}
+			}
+			array_delete(sifterLinkArray,i,1);
+			array_delete(sifterLinks,i,1);
+		} else {
+			if (sifterTimer <= 0) {
+				if (oPlayerManager.inOverhealth) {
+					enem.enemey_hp -= sifterEssenceDmg*2.5;
+					oPlayerManager.overhealthTimer += 7.5;
+				} else {
+					enem.enemey_hp -= sifterEssenceDmg;
+					oPlayerManager.overhealthSuperTimer -= 7.5;
+					global.player_health += sifterEssenceDmg*10;
+				}
+				
+				enem.flash = 1;
+				
+				if (enem.enemey_hp <= 0) {
+					instance_destroy(enem)
+				}
+			}
+		}
+	}
+	if (sifterTimer <= 0) {
+		sifterTimer = sifterCooldown;
+	}
+}
 // tesseract stuff
 if (hasTesseract) {
 	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/25)

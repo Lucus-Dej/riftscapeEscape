@@ -19,6 +19,8 @@ global.bossBarCount = 0;
 swordMax = 1100;
 sword_charge = swordMax;
 swordTotal = swordMax;
+swordDmgBonus = 0;
+swordKills = 0;
 swordCooldown = 100;
 initate_sword = false;
 swordAttKey = "Q";
@@ -248,6 +250,8 @@ inOverhealth = false;
 global.player_health = 100;
 
 //item specific things
+boomerangDmg = 0;
+directorsDebuff = 1;
 hasBrainInAJar = false;
 brainJarBonus = 1;
 tesseractBonusDamage = 0;
