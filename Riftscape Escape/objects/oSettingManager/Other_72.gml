@@ -1,5 +1,5 @@
 if (audio_group_is_loaded(agMusic)) {
-	audio_play_sound(global.currentTrack, 1000, true);
+	audio_play_sound(global.currentTrack, 1000, true, global.musicAudio);
 	control = true;
 }
 if (audio_group_is_loaded(agSFX)) {

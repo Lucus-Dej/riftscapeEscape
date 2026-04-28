@@ -8,13 +8,13 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
     b.damage      = _damage;
     b.owner       = _owner;
 	if (instance_exists(_owner) && instance_exists(id))
-	if (id.object_index == oTruePlayer && oItemManager.hasMagnet && oTruePlayer.orbitCount < 8) {
+	if (id.object_index == oTruePlayer && oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
 		var rand = irandom_range(1, 15);
 		if (rand+global.playerTime >= 15) {
 			b.canOrbit = true;
 			b.orbitCenter = oTruePlayer;
 			b.orbitAngle = point_direction(oTruePlayer.x, oTruePlayer.y, _x, _y);
-			b.orbitTargetRadius = 90;
+			b.orbitTargetRadius = 64;
 			oTruePlayer.orbitCount++;
 			b.orbitRadius = 0;
 			b.orbitAngle = _dir;

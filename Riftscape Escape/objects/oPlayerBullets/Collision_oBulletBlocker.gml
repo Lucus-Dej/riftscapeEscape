@@ -1,7 +1,10 @@
 if (!canBounce && bounceNum <= 0) {
-	instance_create_layer(x, y, "Instances", oBoom);
+	if (!oItemManager.hasMagnet) {
+		instance_create_layer(x, y, "Instances", oBoom);
 	instance_destroy();
 	audio_play_sound_at(aBoom, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
+	}
+	
 } else {
 	// mark the wall that it bounced from via other.id
 	ignoreWall = other.id;

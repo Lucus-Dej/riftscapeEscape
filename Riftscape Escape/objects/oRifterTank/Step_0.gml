@@ -78,7 +78,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		if (inst == id) continue;
 		if (inst.brainDead) continue;
 			
-		 if (inst.xp < xp && inst.enemey_hp < enemey_hp) {
+		 if (inst.xp < xp && inst.enemey_hp < enemey_hp && inst.object_index != oRifterTank) {
 			 var d = point_distance(x, y, inst.x, inst.y);
 			 
 			 if (d < bestDist) {

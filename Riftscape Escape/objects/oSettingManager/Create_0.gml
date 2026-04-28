@@ -1,5 +1,5 @@
-global.musicAudio = 1;
-global.sfxAudio = 1;
+global.musicAudio = 0.2;
+global.sfxAudio = 0.5;
 global.difficulty = 1;
 
 global.currentTrack = aChimingCrystals;

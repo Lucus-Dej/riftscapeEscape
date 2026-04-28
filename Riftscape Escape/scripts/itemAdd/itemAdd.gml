@@ -28,7 +28,7 @@ function itemAdd(_item){
 		break;
 		case oBrokenBoomerang:
 		oItemManager.hasBrokenBoomerang = true;
-		oPlayerManager.boomerangDmg = 0.2;
+		oPlayerManager.boomerangDmg += 0.2;
 		break;
 		case oDirtyMirror:
 		oItemManager.hasDirtyMirror = true;
@@ -58,6 +58,8 @@ function itemAdd(_item){
 		case oWaterDamagedNote:
 		oItemManager.hasWaterDamagedNote = true;
 		break;
+		
+		// powerful
 		case oActionFigure:
 		oItemManager.hasActionFigure = true;
 		oItemManager.actionFigurePower++;
@@ -79,6 +81,8 @@ function itemAdd(_item){
 		break;
 		case oMagnet:
 		oItemManager.hasMagnet = true;
+		oPlayerManager.statBulletDebuff -= 15.5;
+		oPlayerManager.boomerangDmg += 0.1;
 		break;
 		case oMetalOrb:
 		oPlayerManager.statBulletDebuff += 20;

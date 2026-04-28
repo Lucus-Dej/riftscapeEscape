@@ -13,6 +13,8 @@ incombat = false;
 lastKilled = noone;
 lastKilledX = 0;
 lastKilledY = 0;
+fireRate = 0;
+fireRateCap = 12;
 global.bossBarCount = 0;
 
 //sword stuff

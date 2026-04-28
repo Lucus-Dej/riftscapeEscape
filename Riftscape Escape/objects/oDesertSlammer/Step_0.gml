@@ -79,16 +79,16 @@ if (state == ENEM_STATE.CHARGE) {
 	
 	var moved = false;
 	
-	if (!place_meeting(x + hsp, y + vsp, oIndestructable)) {
+	if (!place_meeting(x + hsp, y + vsp, oIndestructable) || !place_meeting(x + hsp, y + vsp, oAbyss)) {
         x += hsp;
 		y += vsp;
 		moved = true;
     } else {
-        if (!place_meeting(x + hsp, y, oIndestructable)) {
+        if (!place_meeting(x + hsp, y, oIndestructable) || !place_meeting(x + hsp, y + vsp, oAbyss)) {
 			x += hsp;
 			moved = true;
 		}
-		if (!place_meeting(x, y + vsp, oIndestructable)) {
+		if (!place_meeting(x, y + vsp, oIndestructable) || !place_meeting(x + hsp, y + vsp, oAbyss)) {
 			y += vsp;
 			moved = true;
 		}

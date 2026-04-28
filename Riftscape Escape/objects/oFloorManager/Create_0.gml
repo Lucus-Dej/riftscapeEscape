@@ -22,3 +22,7 @@ doorStart = false;
 levelArray = [caves0, caves01, f3]
 startingIndex = 0;
 nextLevel = levelArray[startingIndex];
+switch (room) {
+	case desert0:
+	changeTrack(desertTemples)
+}

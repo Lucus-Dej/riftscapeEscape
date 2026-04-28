@@ -1,8 +1,8 @@
 if (brainDead) {
     exit;
 }
-if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
-	enemSpeed = base_speed*2.5;
+if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 320) {
+	enemSpeed = base_speed*2.8;
 } else if (canSeePlayer) {
 	enemSpeed = base_speed;
 }
