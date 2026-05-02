@@ -109,7 +109,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		}
 		if (obj == oTeleSpawner) {
 			newInst.con = true;
-			newInst.goFloor = oPlayerManager.currentLevl;
+			newInst.goFloor = findNextLevel(room);
 		}
 		if (obj == oAbyss) {
 			instance_destroy(newInst)

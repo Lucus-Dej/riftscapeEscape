@@ -1,6 +1,5 @@
 if (instance_exists(Manager)) {
 if (con && Manager.combatFinished && !used) {
-	show_debug_message(timer)
 	if (timer > 0) {
 		timer--;
 	}

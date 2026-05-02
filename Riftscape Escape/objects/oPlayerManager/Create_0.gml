@@ -19,6 +19,8 @@ global.bossBarCount = 0;
 
 //sword stuff
 swordMax = 1100;
+gridDebugPressed = keyboard_check_pressed(vk_decimal)
+toggleGrid = false;
 sword_charge = swordMax;
 swordTotal = swordMax;
 swordDmgBonus = 0;

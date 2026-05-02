@@ -82,7 +82,6 @@ if (ready && !spawned && portal_timer <= 0 && !instance_exists(oFloorManager)) {
 		audio_listener_position(temp_portal.x, temp_portal.y, 0);
 		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 	} else {
-		show_debug_message("I AM ROUGELIKING IT I AM ROUGELINKING IT SO GOOD")
 		var f = irandom(ds_list_size(spawnerList) - 1);
 		pick = spawnerList[| f];
 		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);

@@ -21,6 +21,7 @@ switch (buttonID) {
 	show_debug_message("trying to do music")
 	editVolumeMusic();
 	editVolumeSFX();
+	saveGame();
 	break;
 	
 	case 5: // return to main settings

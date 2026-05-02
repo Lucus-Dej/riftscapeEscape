@@ -64,12 +64,15 @@ function itemAdd(_item){
 		oItemManager.hasActionFigure = true;
 		oItemManager.actionFigurePower++;
 		break;
+		case oLilFurnacePickup:
+		oItemManager.hasLilFurnace = true;
+		break;
 		case oBrainInAJar:
 		oPlayerManager.hasBrainInAJar = true;
 		break;
 		case oDirectorsNote:
-		oPlayerManager.directorsDebuff += 2.5;
-		oPlayerManager.statBulletDebuff -= 37.5;
+		oPlayerManager.directorsDebuff += 2.2;
+		oPlayerManager.statBulletDebuff -= 42.5;
 		break;
 		case oGunpowder:
 		oItemManager.hasGunpowder = true;

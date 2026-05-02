@@ -12,6 +12,10 @@ if (xpTotal >= xpProgress) {
 	levelsPending++;
 	xpLevel++;
 }
+gridDebugPressed = keyboard_check_pressed(vk_enter);
+if (gridDebugPressed) {
+	toggleGrid = !toggleGrid;
+}
 checkTokenMenu = layer_get_visible(tokenMenuLayer);
 checkLevelLayer = layer_get_visible(levelMenuLayer);
 levelPressed = keyboard_check_pressed(vk_tab)

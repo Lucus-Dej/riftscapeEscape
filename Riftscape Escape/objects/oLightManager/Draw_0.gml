@@ -112,7 +112,6 @@ for (var i = 0; i < array_length(tinyLightArray); i++) {
         draw_sprite_ext( sLight, 0, x - camX,  y - camY, 0.12, 0.12, 0, c_white, 0.2);
     }
 }
-gpu_set_blendmode_ext(bm_zero, bm_inv_src_colour);
 for (var i = 0; i < array_length(lightExclusionArray); i++) {
     var inst = lightExclusionArray[i];
 	if (instance_exists(inst)) {

@@ -42,7 +42,7 @@ if (state == waveState.spawning) {
 				enem.RoomID = RoomID;
 				if (other.bossRound) {
 					enem.isBoss = true;
-					enem.xp *= 1.5;
+					enem.xp *= 2.5;
 					bossMod(enem.id);
 					enem.spawnWeight *= 2;
 				}
@@ -52,7 +52,7 @@ if (state == waveState.spawning) {
 		}
 	} else if (!instance_exists(oEnemy)) {
 		if (bossRound) {
-			startingWeight += bossBonus*3;
+			startingWeight += bossBonus*6.5;
 			bossBonus++;
 			itemSpawner.spawnItem = true;
 			with (itemSpawner) {
@@ -145,7 +145,7 @@ if (state == waveState.inBetween) {
 		array_push(bossArray, oKrost)
 		break;
 	}
-	startingWeight *= 1.1;
+	startingWeight *= 1.065;
 	waveWeight = startingWeight;
 	waveCooldown = waveTimer;
 	state = waveState.waiting;

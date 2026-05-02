@@ -1,4 +1,4 @@
-if (active) {
+if (active && instance_exists(owner)) {
 	var left  = owner.x;
 	var right = owner.x + owner.sprite_width;
 	x = mouse_x;

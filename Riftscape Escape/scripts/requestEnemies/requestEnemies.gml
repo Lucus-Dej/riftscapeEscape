@@ -36,7 +36,6 @@ function getEnemPool(_currentFloor) {
 		
 	}
 	challengeArray = array_concat(challengeArray, enemArray, evilArray)
-	show_debug_message(challengeArray)
 	var request = {
 		normArray: enemArray,
 		bArray: bossArray,

@@ -22,6 +22,8 @@ smallLightArray[2] = (oEnemy);
 
 tinyLightArray[0] = (oEnemyBullets);
 tinyLightArray[1] = (oPlayerBullets);
+tinyLightArray[2] = (oLilFurnace);
+tinyLightArray[3] = (oLilFurnaceMinion);
 
 lightExclusionArray[0] = (oUnlitEnemy);
 lightExclusionArray[1] = (oUpgradeTokenFollow);
@@ -32,7 +34,7 @@ vertex_format_add_position_3d();
 vf = vertex_format_end();
 vb = vertex_create_buffer();
 
-//Shader uniform variable setup
+
 u_pos = shader_get_uniform(shdLight,"u_pos");
 u_pos2 = shader_get_uniform(shdShadow,"u_pos");
 u_z = shader_get_uniform(shdLight,"u_z");

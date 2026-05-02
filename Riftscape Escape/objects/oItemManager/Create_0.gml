@@ -46,7 +46,7 @@ item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 ds_list_add(rareItemList, oHarvestBook, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oDirectorsNote, oDictionaryCharge, oReflectiveGem, oMagnet, oSingularity, oThePathForward, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
+ds_list_add(powerfulItemList, oLilFurnace, oDirectorsNote, oDictionaryCharge, oReflectiveGem, oMagnet, oSingularity, oThePathForward, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
 ds_list_add(mythicItemList, oSifterEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 searchItem = false;
 dropID = noone;
@@ -75,6 +75,7 @@ actionFigurePower = 0
 actionFigureTargetX = 0;
 actionFigureTargetY = 0;
 
+hasLilFurnace = false;
 hasReflectiveGem = false;
 hasSingularity = false;
 hasMagnet = false;

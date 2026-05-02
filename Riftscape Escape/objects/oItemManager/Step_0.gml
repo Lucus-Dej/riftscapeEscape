@@ -5,6 +5,11 @@ if (searchItem == true) {
 if (global.chargeItem != noone) {
 	
 }
+if (hasLilFurnace && !instance_exists(oLilFurnace)) {
+	if (instance_exists(oTruePlayer)) {
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oLilFurnace);
+	}
+}
 //brain in a jar
 if (oPlayerManager.hasBrainInAJar && oPlayerManager.tookDamage) {
 	brainNum = irandom_range(0,4);
