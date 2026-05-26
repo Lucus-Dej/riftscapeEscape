@@ -1,9 +1,13 @@
+if (oItemManager.hasLostCrown) {
+	bulletCoolDown = (oPlayerManager.uiHealth)/2;
+} else {
+	bulletCoolDown = (oPlayerManager.uiHealth);
+}
 if (follow != noone) {
 	xTo = follow.x;
 	yTo = follow.y;
 }
 clamp(bulletCoolDown, 10, 100)
-bulletCoolDown = (oPlayerManager.uiHealth);
 x += (xTo - x)/(minionSpeed);
 y += (yTo - y)/(minionSpeed);
 if (instance_exists(oEnemy)) {

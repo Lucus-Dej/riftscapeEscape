@@ -26,8 +26,13 @@ if (!canBounce && bounceNum <= 0) {
 		}
 		if (closest != noone && instance_exists(closest)) {
 			bounceTarget = closest;
+			with (other) {
+				collCheck = collision_line(other.x, other.y, x, closest.y, oBulletBlocker, true, false)
+			}
+			
 		}
-	if (bounceTarget == noone || !instance_exists(bounceTarget)) {	
+	show_debug_message(collCheck)
+	if (bounceTarget == noone || !instance_exists(bounceTarget) || collCheck != noone) {	
 		var vx = lengthdir_x(speed, direction);
 		var vy = lengthdir_y(speed, direction);
 	
@@ -41,30 +46,30 @@ if (!canBounce && bounceNum <= 0) {
 				newDir = direction; 
 			}
 		} else {
-		var tx = bounceTarget.x;
-		var ty = bounceTarget.y;
+			var tx = bounceTarget.x;
+			var ty = bounceTarget.y;
 		
-		var tvx = lengthdir_x(bounceTarget.speed, bounceTarget.direction);
-		var tvy = lengthdir_y(bounceTarget.speed, bounceTarget.direction);
+			var tvx = lengthdir_x(bounceTarget.speed, bounceTarget.direction);
+			var tvy = lengthdir_y(bounceTarget.speed, bounceTarget.direction);
 		
-		var dist = point_distance(x, y, tx, ty);
-		var t = 0;
-		if (speed != 0) {
-			t = dist / speed;
-		} else {
-			t = dist /0.01 ;
-		}
+			var dist = point_distance(x, y, tx, ty);
+			var t = 0;
+			if (speed != 0) {
+				t = dist / speed;
+			} else {
+				t = dist /0.01 ;
+			}
 		
-		var leadx = tx + tvx * t;
-		var leady = ty + tvy * t;
+			var leadx = tx + tvx * t;
+			var leady = ty + tvy * t;
 		
-		var aimx = lerp(tx, leadx, tracking);
-		var aimy = lerp(ty, leady, tracking);
+			var aimx = lerp(tx, leadx, tracking);
+			var aimy = lerp(ty, leady, tracking);
 		
-		newDir = point_direction(x, y, aimx, aimy);
-		if (is_nan(newDir)) {
-			newDir = direction; 
-		}
+			newDir = point_direction(x, y, aimx, aimy);
+			if (is_nan(newDir)) {
+				newDir = direction; 
+			}
 	}
 	// summon secondary projectile with everything this projectile has
 	var nx = x + lengthdir_x(2, newDir);
@@ -76,6 +81,9 @@ if (!canBounce && bounceNum <= 0) {
 	copy.canSpread = canSpread;
 	copy.canBounce = false;
 	copy.ignoreWall = ignoreWall;
+	copy.image_blend = image_blend;
+	copy.image_xscale = image_xscale;
+	copy.image_yscale = image_yscale;
 	copy.damagedList = ds_map_create();
 	ds_map_copy(copy.damagedList, damagedList);
 	instance_destroy()

@@ -1,0 +1,1 @@
+flash = max(0, flash - 0.15);

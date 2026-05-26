@@ -3,9 +3,12 @@ bounceNum = 0;
 tracking = 0;
 canBounce = false
 canSpread = false;
-
+baseSpeed = 0;
+spreadCount = 0;
+collCheck = noone;
 if (oItemManager.hasUnstableEnergy) {
 	canSpread = true
+	spreadCount = 6+global.playerTime;
 } 
 if (oItemManager.hasMirrorShard) {
 	canBounce = true

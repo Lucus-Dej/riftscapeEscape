@@ -1,5 +1,6 @@
 searchItem = false;
 doBrain = false;
+bossSearch = false;
 brainNum = -99999;
 bigBrainNum = -99999;
 chosenList = noone;
@@ -12,25 +13,25 @@ global.currentCharges = 0;
 sacDaggerPenalty = 1;
 sacDaggerBonus = 1;
 simpleMin = 0;
-simpleMax = 30;
-simplePool = 30;
+simpleMax = 0;
+simplePool = 0;
 rareMin = 0;
-rareMax = 75;
-rarePool = 45;
+rarePool = 50;
+rareMax = rarePool + simplePool;
 powerfulMin = 0;
-powerfulMax = 95;
-powerfulPool = 20;
+powerfulPool = 40;
+powerfulMax = powerfulPool + rareMax
 mythicMin = 0;
-mythicMax = 100;
-mythicPool = 5;
+mythicPool = 10;
+mythicMax = powerfulMax + mythicPool;
+
+displayItemDuration = 90;
+displayItemTimer = 0;
+itemDesc = "placeholder";
+itemDescLength = string_length(itemDesc);
+
+rarity = 0;
 randomise();
-hasSifterEssence = false;
-sifterLinkArray = [];
-sifterLinks = [];
-sifterEssenceRange = 240;
-sifterEssenceDmg = global.playerEssence/20;
-sifterCooldown = 60;
-sifterTimer = sifterCooldown;
 
 // rare passive
 hasIceSoup = false;
@@ -38,16 +39,26 @@ iceSoupTriggered = false;
 hasRareSeed = false;
 hasHammer = false;
 simpleItemList = ds_list_create();
+simpleItemCopy = ds_list_create();
 rareItemList = ds_list_create();
+rareItemCopy = ds_list_create();
 powerfulItemList = ds_list_create();
+powerfulItemCopy = ds_list_create();
 mythicItemList = ds_list_create();
+mythicItemCopy = ds_list_create();
 validItemLists = ds_list_create();
+bookList = ds_list_create()
+ds_list_add(bookList, oDeathBook, oDreamsBook, oThePathForward, oDictionaryCharge, oBlackHoleCharge, oHarvestBook);
 item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oHarvestBook, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oLilFurnace, oDirectorsNote, oDictionaryCharge, oReflectiveGem, oMagnet, oSingularity, oThePathForward, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
-ds_list_add(mythicItemList, oSifterEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oDeathBook, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
+ds_list_add(rareItemList, oHarvestBook, oBloodyGem, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
+ds_list_add(powerfulItemList, oLilFurnacePickup, oCrackedEgg, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oReflectiveGem, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
+ds_list_add(mythicItemList, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oVirstEssence, oTorzolEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oThePathForward, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
+ds_list_copy(simpleItemCopy, simpleItemList);
+ds_list_copy(rareItemCopy, rareItemList);
+ds_list_copy(powerfulItemCopy, powerfulItemList);
+ds_list_copy(mythicItemCopy, mythicItemList);
 searchItem = false;
 dropID = noone;
 brainTime = 60;
@@ -56,6 +67,7 @@ seedStart = false;
 seedFailed = false;
 seedCombatCheck = false
 
+hasBloodyGem = false;
 hasGenStone = false;
 hasSmallSculpture = false;
 sculptureActive = false;
@@ -70,10 +82,12 @@ hasDirtyMirror = false;
 show_debug_message("ItemManager CREATED in room: " + string(room));
 
 // powerful passive
+hasCrackedEgg = false;
 hasActionFigure = false;
 actionFigurePower = 0
 actionFigureTargetX = 0;
 actionFigureTargetY = 0;
+hasLostCrown = false;
 
 hasLilFurnace = false;
 hasReflectiveGem = false;
@@ -83,6 +97,27 @@ hasMirrorShard = false;
 hasMetalOrb = false;
 hasGunpowder = false;
 hasImageOfYou = false;
+
+hasSifterEssence = false;
+sifterLinkArray = [];
+sifterLinks = [];
+sifterEssenceRange = 240;
+sifterEssenceDmg = global.playerEssence/20;
+sifterCooldown = 60;
+sifterTimer = sifterCooldown;
+hasAlextraEssence = false;
+alextraTimer = 360;
+alextraCooldown = 360;
+alextraEntry = [];
+alextraDone = [];
+hasTorzolEssence = false;
+hasVirstEssence = false;
+hasVeribroseEssence = false;
+veriFlagTP = false;
+veriRoom = veribroseItemRoom;
+savedRoom = noone;
+hasKrostEssence = false;
+
 
 //mythic passive
 hasTesseract = false;

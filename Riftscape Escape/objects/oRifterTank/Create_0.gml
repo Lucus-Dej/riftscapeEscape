@@ -5,8 +5,8 @@ shoot_cooldown = irandom_range(10, 25);
 enemSpeed = 0.1;
 base_speed = enemSpeed;
 bullet_speed = 3.5;
-shoot_delay = 120;
-recoil_cooldown = 12;
+shoot_delay = 140;
+recoil_cooldown = 16;
 fire_duration = 6;
 fire_timer = fire_duration;
 recoil_timer = 0;
@@ -17,7 +17,7 @@ enrage_point = enemey_hp/2;
 enraged = false;
 xp = 20;
 spawnWeight = 12.5;
-damage = 3;
+damage = 2.5;
 path_cooldown = 30;
 
 hostSearchCooldown = 300;
@@ -28,13 +28,13 @@ vessel = noone;
 
 // vessel stats
 VesselEnemSpeed = 0.5;
-VesselDamage = 10;
+VesselDamage = 8;
 VesselBaseSpeed = VesselEnemSpeed;
 			
 VesselPath_cooldown = 15;
 VesselShoot_cooldown = 120;
 VesselShootTimer = VesselShoot_cooldown;
 VesselPath_timer = 15;
-VesselBulletSpeed = 2;
+VesselBulletSpeed = 4;
 
 searchPlayer();

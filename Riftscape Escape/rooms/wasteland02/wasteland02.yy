@@ -19916,8 +19916,8 @@
   ],
   "name":"wasteland02",
   "parent":{
-    "name":"wasteland",
-    "path":"folders/ROOMS/procedualTest/tiles/wasteland.yy",
+    "name":"4wasteland",
+    "path":"folders/ROOMS/procedualTest/tiles/4wasteland.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

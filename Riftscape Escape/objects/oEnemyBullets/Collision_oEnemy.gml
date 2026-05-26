@@ -8,6 +8,7 @@ audio_listener_position(x, y, z);
 audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
 	other.flash = 1;
 	other.enemey_hp -= damage/10;
+	addDamageNumber(x, y, damage/10);
 	instance_create_layer(x, y, "Instances", oBoom);
 	instance_destroy();
 }

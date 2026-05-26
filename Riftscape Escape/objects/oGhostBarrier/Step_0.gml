@@ -1,3 +1,4 @@
+
 if (instance_exists(oFloorManager)) {
 	if (doorType == "item" && instance_exists(Manager1) && !challengeAccepted) {
 		Manager1.isChallenge = true;
@@ -16,10 +17,8 @@ if (state == doorState.init) {
 	} else {
 		RoomID = RoomID1
 	}
-	show_debug_message(state)
 	state = doorState.lookingForManager1
 } else if (state == doorState.lookingForManager1) {
-	show_debug_message("SEARCHING FOR MANAGER")
 	with (oRoomManager) {
 		if (RoomID == other.RoomID1) {
 			other.Manager1 = id;
@@ -33,7 +32,6 @@ if (state == doorState.init) {
 		show_debug_message(RoomID)
 	} else {
 		state = doorState.searchingForDoor2;
-		show_debug_message(state)
 	}
 } else if (state == doorState.searchingForDoor2) {
 	var doorCheck = getMatchingDoorObject(self.object_index)
@@ -41,7 +39,6 @@ if (state == doorState.init) {
 	//var checkDir = getOppositeDoorDir(doorDir);
 	if (check != noone) {
 		if (check.object_index == doorCheck && RoomID1 != 0) {
-			show_debug_message("RoomID2 just changed")
 			check.RoomID2 = RoomID1;
 			check.Manager2 = Manager1;
 			foundOther = true;

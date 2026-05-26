@@ -2,6 +2,7 @@ realityCheck--;
 if (realityCheck < 0 && hasSpawned = false) {
 	if (oPlayerManager.hasCrystalReality && chainDistance > 0) {
 		chainDistance--;
+		chaseSpeed = (global.playerTime+global.playerThought)/100;
 	if (variable_instance_exists(self, "goUp")) {
 		if (goUp && distance_to_object(oWalls) > 64) {
 			up = instance_create_layer(x, y+64, "Instances", oChildCrystalEssence)

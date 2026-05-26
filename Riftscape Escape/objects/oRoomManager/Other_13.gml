@@ -28,6 +28,7 @@ with (oTeleSpawner) {
 		Manager = other.id;
     }
 }
+bossCount = 0;
 with (oBossStart) {
     if (bossCount > 0 && RoomID == other.RoomID) {
         ds_list_add(other.BossList, id);

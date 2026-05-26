@@ -433,7 +433,7 @@
         {"$GMRInstance":"v4","%Name":"inst_43174CBF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_43174CBF","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"RoomID","path":"objects/oRoomManager/oRoomManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"enem1","path":"objects/oRoomManager/oRoomManager.yy",},"resource":{"name":"oCaveSpitter","path":"objects/oCaveSpitter/oCaveSpitter.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"oCaveSpitter",},
-            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"enem1count","path":"objects/oRoomManager/oRoomManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"4",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"enem1count","path":"objects/oRoomManager/oRoomManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"enem2","path":"objects/oRoomManager/oRoomManager.yy",},"resource":{"name":"oEnemTurret","path":"objects/oEnemTurret/oEnemTurret.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"oEnemTurret",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"enem2count","path":"objects/oRoomManager/oRoomManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomManager","path":"objects/oRoomManager/oRoomManager.yy",},"propertyId":{"name":"enem3","path":"objects/oRoomManager/oRoomManager.yy",},"resource":{"name":"oMiniBoss3","path":"objects/oMiniBoss3/oMiniBoss3.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"oMiniBoss3",},
@@ -1828,7 +1828,7 @@
   "roomSettings":{
     "Height":3072,
     "inheritRoomSettings":false,
-    "persistent":true,
+    "persistent":false,
     "Width":3072,
   },
   "sequenceId":null,

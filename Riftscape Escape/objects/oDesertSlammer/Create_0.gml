@@ -27,7 +27,9 @@ enemey_hp = 18;
 phasePoint1 = enemey_hp/2;
 enraged = false;
 xp = 13;
-damage = 12.5;
+damage = 14;
+chargeBonus = 0;
+contactDamage = damage;
 spawnWeight = 7.5;
 
 

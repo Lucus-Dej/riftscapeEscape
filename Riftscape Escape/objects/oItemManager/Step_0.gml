@@ -1,5 +1,11 @@
 if (searchItem == true) {
-	event_user(0);
+	if (bossSearch) {
+		event_user(1);
+		bossSearch = false;
+	} else {
+		event_user(0);
+	}
+	
 	searchItem = false;
 }
 if (global.chargeItem != noone) {
@@ -29,7 +35,20 @@ if (brainNum+global.playerTime/2 >= 4) {
 if (oPlayerManager.brainJarBonus > 1) {
 	oPlayerManager.brainJarBonus -= 0.1;
 }
-
+if (hasVeribroseEssence && !veriFlagTP) {
+	if (instance_exists(oGoNext)) {
+		with (oGoNext) {
+			other.savedRoom = owned.goFloor;
+			owned.goFloor = other.veriRoom;
+		}
+		veriFlagTP = true;
+	}
+}
+if (veriFlagTP && savedRoom != noone && room = veribroseItemRoom) {
+	with (oGoNext) {
+		owned.goFloor = other.savedRoom;
+	}
+}
 // rare seed
 if (hasRareSeed) {
 	with oPlayerManager {
@@ -139,20 +158,49 @@ if (hasSifterEssence) {
 		sifterTimer = sifterCooldown;
 	}
 }
+if (hasAlextraEssence) {
+	with (oEnemy) {
+		if (array_get_index(other.alextraEntry, id) == -1) {
+			array_push(other.alextraEntry, id);
+			array_push(other.alextraDone, other.alextraTimer);
+		}
+	}
+	if (array_length(alextraEntry) > 0) {
+		for (var i = array_length(alextraEntry) - 1; i>= 0; i--) {
+			if (alextraDone[i] > 0 && instance_exists(alextraEntry[i])) {
+				alextraDone[i] --;
+				alextraEntry[i].brainDead = true;
+				alextraEntry[i].image_blend = c_purple;
+			} else if (alextraDone[i] <= 0 && instance_exists(alextraEntry[i])) {
+				alextraEntry[i].brainDead = false;
+				alextraEntry[i].image_blend = c_white;
+				
+			} else {
+				array_delete(alextraEntry, i, 1);
+				array_delete(alextraDone, i, 1);
+			}
+		}
+	}
+}
+if (hasTorzolEssence && global.player_health < oPlayerManager.max_hp*0.95 && global.activeRoom) {
+	var missingHP = (oPlayerManager.max_hp - global.player_health);
+	var torzBonus = (missingHP*0.0008)*global.playerLife/4;
+	global.player_health += torzBonus;
+}
 // tesseract stuff
 if (hasTesseract) {
-	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/25)
+	oPlayerManager.tesseractBonusDamage = (oTruePlayer.currentSpeed/18)
 	if (oTruePlayer.currentSpeed > 1) {
-		if (oPlayerManager.tesseractSpeed <= global.player_speed/2) {
+		if (oPlayerManager.tesseractSpeed <= global.player_speed/3.5) {
 			oPlayerManager.tesseractSpeedBonus += 0.002;
-			oPlayerManager.tesseractSpeed += 0.0085;
+			oPlayerManager.tesseractSpeed += 0.0095;
 		}
 	} else {
 		if (oPlayerManager.tesseractSpeedBonus > 0) {
-			oPlayerManager.tesseractSpeedBonus /= 2;
+			oPlayerManager.tesseractSpeedBonus /= 1.1;
 		}
 		if (oPlayerManager.tesseractSpeed > 0) {
-			oPlayerManager.tesseractSpeed  /= 2;
+			oPlayerManager.tesseractSpeed  /= 1.1;
 		}
 	}
 }

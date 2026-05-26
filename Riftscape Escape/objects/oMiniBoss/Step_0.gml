@@ -1,10 +1,3 @@
-if (brainDead) {
-    exit;
-}
-//path timer reduction
-path_timer--;
-flash = max(0, flash - 0.15);
-
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
@@ -14,6 +7,14 @@ if (!bossModApplied && isBoss) {
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
+//path timer reduction
+path_timer--;
+
 // countdown
 shoot_cooldown--;
 

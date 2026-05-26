@@ -1,23 +1,23 @@
-if (brainDead) {
-    exit;
-}
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
-	//base_speed *= speedMult;
-	//enemSpeed *= speedMult;
+	base_speed *= speedMult;
+	enemSpeed *= speedMult;
 	damage *= dmgMult;
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
 //path timer reduction
 path_timer--;
 if (phasePoint1 >= enemey_hp && enraged == false) {
 	//enemSpeed -= 0.2;
 	enraged = true;
 }
-
-flash = max(0, flash - 0.15);
 
 // countdown
 shoot_cooldown--;

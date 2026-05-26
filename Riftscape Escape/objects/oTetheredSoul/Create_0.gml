@@ -8,3 +8,4 @@ target = noone;
 fire = false;
 fateBullet = 0;
 damage = 0.4;
+baseDmg = damage;

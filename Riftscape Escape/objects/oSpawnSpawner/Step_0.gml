@@ -21,6 +21,7 @@ if (childSpawned == true && !used && Manager != noone) {
 if (Manager == noone ) {
 	Manager = findManager()
 }
+
 if (instance_exists(Manager) && Manager.isChallenge) {
 	if (instance_exists(child_spawner))
 	with child_spawner {

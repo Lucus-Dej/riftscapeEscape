@@ -1,17 +1,18 @@
-if (brainDead) {
-    exit;
-}
-path_timer--;
-if (!bossModApplied && isBoss) { 
+if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
 	enemSpeed *= speedMult;
 	damage *= dmgMult;
 	shoot_delay /= cooldownMult;
-	
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
+path_timer--;
 if (enemey_hp < phasePoint1 && !phase1Applied) {
 	shoot_delay -= 30;
 	base_speed += 0.75;
@@ -55,7 +56,6 @@ if (!canSeePlayer) {
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
-flash = max(0, flash - 0.15);
 
 // fire when ready
 if (shoot_cooldown <= 0) {

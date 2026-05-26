@@ -1,8 +1,3 @@
-if (brainDead) {
-    exit;
-}
-var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
-
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
@@ -12,9 +7,14 @@ if (!bossModApplied && isBoss) {
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
+var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 //path timer reduction
 path_timer--;
-flash = max(0, flash - 0.15);
 if (phasePoint1 >= enemey_hp && enraged == false) {
 	enemSpeed += 1.6;
 	bullet_speed -= 2;

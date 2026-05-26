@@ -1,6 +1,6 @@
 // Inherit the parent event
 event_inherited();
-
+image_speed = 0;
 shoot_cooldown = irandom_range(10, 25);
 shoot_delay = 180;
 recoil_cooldown = 12;
@@ -14,6 +14,6 @@ enemSpeed = 1.3;
 base_speed = enemSpeed;
 xp = 6.5;
 damage = 11.5;
-bullet_speed = 7;
+bullet_speed = 4;
 playerPercent = 0;
 spawnWeight = 4;

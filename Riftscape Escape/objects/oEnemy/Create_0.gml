@@ -1,4 +1,7 @@
 path = -1;
+RoomID = 0;
+Manager = noone;
+invincible = false;
 bossBarIndex  = 0;
 isLightExcluded = false;
 path_cooldown = 15;

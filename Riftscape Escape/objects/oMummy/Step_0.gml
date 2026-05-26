@@ -1,16 +1,18 @@
-if (brainDead) {
-    exit;
-}
-path_timer--;
-flash = max(0, flash - 0.15);
-if (!bossModApplied && isBoss) { 
+if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
+	enemSpeed *= speedMult;
 	damage *= dmgMult;
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
+path_timer--;
 // enraged
 if (phasePoint1 >= enemey_hp && enraged == false) {
     enemSpeed -= 0.2;
@@ -38,7 +40,7 @@ if (phasePoint2 >= enemey_hp && enraged2 == false) {
     rounds += 1;
     fireDelay -= 6;
     enraged2 = true;
-    roundDiraction -= 20;
+    roundDiraction -= 10;
     spawnEnemy = oEnemDesertBiter;
     shotTotal += 30;
     shotTimer += 2;
@@ -87,14 +89,14 @@ if (shoot_cooldown <= 0) {
                             ang = point_direction(x, y, mouse_x, mouse_y);
                         }
 
-                        bulletFire(x, y, ang + roundDiraction, bullet_speed * 1.2, damage, oBossBullet, id);
-                        bulletFire(x, y, ang - roundDiraction, bullet_speed * 1.2, damage, oBossBullet, id);
+                        bulletFire(x, y, ang + roundDiraction, bullet_speed, damage, oBossBullet, id);
+                        bulletFire(x, y, ang - roundDiraction, bullet_speed, damage, oBossBullet, id);
 
                     break;
 
                     case 2:
 
-                        bulletFireAt(x, y, oTruePlayer, bullet_speed * 1.5, damage * 1.2, oBossBullet, id);
+                        bulletFireAt(x, y, oTruePlayer, bullet_speed*1.2, damage*1.2, oBossBullet, id);
 
                     break;
                 }
@@ -105,7 +107,15 @@ if (shoot_cooldown <= 0) {
             }
         }
         if (shotsFired >= rounds) {
-            bulletFireAt(x, y, oTruePlayer, bullet_speed * 0.9, damage * 2, oBossBullet, id);
+            var bullet = bulletFireAt(x, y, oTruePlayer, bullet_speed * 0.6, damage * 1.4, oBossBullet, id);
+			if (enraged) {
+				bullet.canAccel = true;
+			}
+			if (enraged2) {
+				bullet.canBounce = true;
+				bullet.tracking = 0.9;
+				bullet.bounceTarget = oTruePlayer;
+			}
             shotsFired = 0;
             shoot_cooldown = shoot_delay;
             attack = 0;
@@ -138,11 +148,8 @@ if (shoot_cooldown <= 0) {
         }
 
         if (shotTimer <= 0) {
-            var bullet = instance_create_layer(x, y, "Instances", oBossBullet);
+			bulletFire(x, y, shotAngle, spinSpeed, damage/2, oBossBullet, id)
             shotsFired++;
-            bullet.damage = damage / 2;
-            bullet.direction = shotAngle;
-            bullet.speed = spinSpeed;
             shotAngle += 137.5;
             shotTimer = 8;
         }

@@ -1,4 +1,6 @@
+
 if (owner != noone && !used && instance_exists(oFloorManager)) {
+	
 	used = true;
 	with (oRoomClaimX) {
 		if (RoomID == other.RoomID) {
@@ -12,7 +14,6 @@ if (owner != noone && !used && instance_exists(oFloorManager)) {
 	}
 	with (oGhostBarrier) {
 		if ((RoomID1 == other.RoomID)) {
-		show_debug_message("CHECKING DOOR")
 		if (!checked) {
 			ds_list_add(other.doorList, id);
 			roomBuilder = other.id ;

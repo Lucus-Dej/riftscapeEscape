@@ -5,6 +5,8 @@ global.playerLife = 1; //health
 global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal
 
+global.damageNumbers = [];
+global.playerContactDmg = false;
 global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 mp_grid_add_instances(global.Grid, oColl, 0);
 //weird enemy / damage stuff
@@ -16,6 +18,9 @@ lastKilledY = 0;
 fireRate = 0;
 fireRateCap = 12;
 global.bossBarCount = 0;
+global.activeRoom = false;
+bloodyGemCooldown = 12;
+bloodyGemTimer = bloodyGemCooldown;
 
 //sword stuff
 swordMax = 1100;
@@ -161,7 +166,7 @@ overhealthFlag = true;
 //xp
 xpTotal = 0;
 xpLevel = 1;
-xpProgress = 100;
+xpProgress = 115;
 xpUI = 100;
 overXP = 0;
 canLevel = false;
@@ -216,7 +221,10 @@ baseCooldown = global.playerThought;
 statCooldown = 0;
 overHealthCooldownBuff = 0;
 tesseractSpeedBonus = 0;
+krostEssenceSpeedBouns = 0;
 
+global.contactDmg = 0;
+dodgeContactDmg = 1;
 addHPBonus = 0;
 baseSpeed = 4.5;
 statSpeed = 0;

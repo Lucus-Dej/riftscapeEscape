@@ -8,8 +8,8 @@
   "name":"oDesertTorch",
   "overriddenProperties":[],
   "parent":{
-    "name":"DESERT",
-    "path":"folders/roomstuff/wallstuff/DESERT.yy",
+    "name":"random",
+    "path":"folders/roomstuff/random.yy",
   },
   "parentObjectId":{
     "name":"oLightEmmiter",

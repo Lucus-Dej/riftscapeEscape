@@ -1,9 +1,5 @@
-if (brainDead) {
-    exit;
-}
 image_angle -= rotation;
-path_timer--;
-if (!bossModApplied && isBoss) { 
+if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
@@ -12,16 +8,18 @@ if (!bossModApplied && isBoss) {
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
-if (!canSeePlayer) {
-	enemSpeed = base_speed;
-} else if (canSeePlayer) {
-	enemSpeed = base_speed;
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
 }
+path_timer--;
+
+
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
-flash = max(0, flash - 0.15);
+
 
 // fire when ready
 if (shoot_cooldown <= 0 && attack == -1) {
@@ -54,7 +52,10 @@ if (attack == 2 && bulletCount > 0 && shoot_cooldown <= 0) {
 	}
 	var singleAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y)
 	if (bulletCount == 1) {
-		bulletFire(x, y, singleAng, bullet_speed, damage, oBadBullet, id)
+		var bullet = bulletFire(x, y, singleAng, bullet_speed, damage, oBadBullet, id)
+		bullet.isGhost = true;
+		bullet.image_alpha = 0.7;
+		bullet.sprite_index = sKrostBullet;
 	} else {
 		for (var i = 0; i < 360; i += shotAngle) {
 			var angle = i;
@@ -62,10 +63,18 @@ if (attack == 2 && bulletCount > 0 && shoot_cooldown <= 0) {
 				var bullet = bulletFire(x, y, singleAng+angle, bullet_speed, damage, oBadBullet, id)
 				bullet.canDecel = true;
 				bullet.decelRate = 0.08;
+				bullet.isGhost = true;
+				bullet.image_alpha = 0.7;
+				bullet.sprite_index = sKrostBullet;
 			} else {
-				var bullet = bulletFire(x, y, singleAng+angle, bullet_speed*0.7, damage, oBossBullet, id)
+				var bullet = bulletFire(x, y, singleAng+angle, bullet_speed*0.55, damage, oBossBullet, id)
 				bullet.canDecel = true;
 				bullet.decelRate = 0.08;
+				bullet.isGhost = true;
+				bullet.image_alpha = 0.7;
+				bullet.sprite_index = sKrostBullet;
+				bullet.image_xscale += 0.5;
+				bullet.image_yscale += 0.5;
 			}
 			
 		}

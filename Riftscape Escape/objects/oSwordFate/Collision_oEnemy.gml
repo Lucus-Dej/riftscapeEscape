@@ -1,14 +1,15 @@
 if (other.lastDamagedBy != id) {
 	other.lastDamagedBy = id;
-	
-	other.enemey_hp -= global.playerDamage + power(global.playerEssence, 1.2) * 0.15;
+	var damage = global.playerDamage +sqrt(global.playerEssence) * 0.15;
+	other.enemey_hp -= damage;
+	addDamageNumber(other.x, other.y, damage);
 	global.player_health += global.lifesteal + global.playerDamage/4+global.playerEssence/5;
 }
 
 if (other.enemey_hp <= 0) {
 	if (other.xp > 0) {
 		oPlayerManager.swordKills += 1;
-		oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*1.3 - 1.2;
+		oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*0.8 - 0.7;
 	}
 	if (oPlayerManager.hasSwordThought) {
 		oPlayerManager.swordCooldownBonus = 12;

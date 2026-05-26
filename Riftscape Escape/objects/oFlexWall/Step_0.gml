@@ -12,6 +12,9 @@ if (!levelApplied && currentLevel != "null") {
 		case "plains":
 		sprite_index = sPlainsBorder;
 		break;
+		case "kingdom":
+		sprite_index = sKingdomWalls;
+		break;
 	}
 }
 if (instance_exists(oFloorManager) && currentLevel == "null") {

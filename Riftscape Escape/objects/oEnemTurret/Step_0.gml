@@ -1,8 +1,3 @@
-if (brainDead) {
-    exit;
-}
-var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
-image_angle = playerDir+90;
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
@@ -12,6 +7,13 @@ if (!bossModApplied && isBoss) {
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
+image_angle = playerDir+90;
+
 path_timer--;
 if (!canSeePlayer) {
 	enemSpeed = base_speed*2;
@@ -23,7 +25,6 @@ if (!canSeePlayer) {
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
-flash = max(0, flash - 0.15);
 
 // fire when ready
 if (shoot_cooldown == 12 && fireToggle) {
@@ -44,8 +45,8 @@ if (shoot_cooldown <= 0) {
 		if (fireToggle) {
 			bulletFire(x, y, dir, bullet_speed*1.2, damage, oBadBullet, id);
 		} else {
-			bulletFire(x, y, dir+60, bullet_speed, damage, oBadBullet, id);
-			bulletFire(x, y, dir-60, bullet_speed, damage, oBadBullet, id);
+			bulletFire(x, y, dir+40, bullet_speed, damage, oBadBullet, id);
+			bulletFire(x, y, dir-40, bullet_speed, damage, oBadBullet, id);
 		}
 	}
 	fireToggle = !fireToggle;

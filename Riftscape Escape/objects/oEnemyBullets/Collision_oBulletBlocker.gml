@@ -1,4 +1,5 @@
-if (other.id == ignoreWall) {
+isGhosting = true;
+if (other.id == ignoreWall || isGhost) {
 	exit;
 }
 if (!canBounce) {

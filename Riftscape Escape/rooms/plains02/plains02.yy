@@ -19916,8 +19916,8 @@
   ],
   "name":"plains02",
   "parent":{
-    "name":"plains",
-    "path":"folders/ROOMS/procedualTest/tiles/plains.yy",
+    "name":"6.1plains",
+    "path":"folders/ROOMS/procedualTest/tiles/6.1plains.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

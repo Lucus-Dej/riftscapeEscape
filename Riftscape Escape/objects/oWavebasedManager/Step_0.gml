@@ -21,6 +21,8 @@ if (state == waveState.generatingWave) {
 	}
 }
 if (state == waveState.spawning) {
+	enemiesLeft = instance_number(oEnemy);
+	enemString = "Enemies Left: "+string(enemiesLeft);
 	inCombat = true;
 	if (waveWeight > 0) {
 		if (spawnCooldown > 0) {
@@ -42,23 +44,28 @@ if (state == waveState.spawning) {
 				enem.RoomID = RoomID;
 				if (other.bossRound) {
 					enem.isBoss = true;
-					enem.xp *= 2.5;
 					bossMod(enem.id);
 					enem.spawnWeight *= 2;
+					enem.xp *= 1.3;
+				} else {
+					enem.xp /= 3.5;
 				}
 				other.waveWeight -= enem.spawnWeight
 			}
 			spawnCooldown = spawnDelay
 		}
 	} else if (!instance_exists(oEnemy)) {
-		if (bossRound) {
-			startingWeight += bossBonus*6.5;
-			bossBonus++;
-			itemSpawner.spawnItem = true;
+		if (itemRound) {
 			with (itemSpawner) {
 				event_user(0);
 			}
-			roundsTillBoss = 5;
+			roundsTillItem = 8;
+			itemRound = false;
+		}
+		if (bossRound) {
+			startingWeight += bossBonus*4;
+			bossBonus++;
+			roundsTillBoss = 4;
 			bossRound = false;
 		}
 		state = waveState.inBetween;
@@ -70,9 +77,14 @@ if (state == waveState.inBetween) {
 		global.currentCharges += 1;
 	}
 	wave += 1;
+	waveTxt = "Wave: "+string(wave);
 	roundsTillBoss--;
+	roundsTillItem--;
 	if (roundsTillBoss == 0) {
 		bossRound = true;
+	}
+	if (roundsTillItem == 0) {
+		itemRound = true;
 	}
 	switch (wave) {
 		case 1:
@@ -84,7 +96,7 @@ if (state == waveState.inBetween) {
 		array_push(waveArray, oEnemBig)
 		break;
 		
-		case 3:
+		case 4:
 		array_push(waveArray, oEnemTurret)
 		break;
 		
@@ -93,59 +105,83 @@ if (state == waveState.inBetween) {
 		array_push(bossArray, oBoss3, oMiniBoss3)
 		break;
 		
-		case 7:
+		case 13:
 		array_push(waveArray, oMiniBoss, oMiniBoss2,)
 		break;
 		
-		case 8:
+		case 11:
 		array_push(waveArray, oEnemDesertBiter)
 		break;
 		
-		case 9:
-		array_push(waveArray, oEnemSandSniper,  oDesertSlammer,)
-		break;
-		
-		case 11:
-		array_push(bossArray, oMummy)
-		break;
-		
-		case 12:
-		array_push(waveArray, oWastelandBurner, oMiniBoss3)
-		break;
-		
 		case 14:
-		array_push(bossArray, oWastelandFireRunner)
+		array_push(waveArray, oEnemSandSniper)
 		break;
 		
 		case 16:
-		array_push(waveArray, oBoss3)
+		array_push(waveArray, oDesertSlammer, oMiniBoss3)
 		break;
 		
-		case 17:
-		array_push(waveArray, oPlainsShooter)
-		break;
-		
-		case 19:
-		array_push(bossArray, oRifterTank)
+		case 18:
+		array_push(bossArray, oMummy)
 		break;
 		
 		case 21:
+		array_push(waveArray, oWastelandBurner)
+		break;
+		
+		case 26:
+		array_push(bossArray, oWastelandFireRunner)
+		break;
+		
+		case 28:
+		array_push(waveArray, oBoss3)
+		break;
+		
+		case 31:
+		array_push(waveArray, oEnemRifterSpider)
+		break;
+		
+		case 33:
+		array_push(waveArray, oRifterSpitter)
+		break;
+		
+		case 34:
+		array_push(bossArray, oRifterTank)
+		break;
+		
+		case 36:
+		array_push(waveArray, oRifterTank)
+		break;
+		
+		case 37:
+		array_push(waveArray, oRifterSlammer)
+		break;
+		
+		case 38:
+		array_push(waveArray, oRifterSniper)
+		break;
+		
+		case 40:
+		array_push(bossArray, oRifterSniper, oRifterSlammer, oRifterSpitter)
+		break;
+		
+		case 41:
 		array_push(waveArray, oEnemBlackHole)
 		break;
 		
-		case 24:
-		array_push(bossArray, oWastelandDestroyer)
+		case 43:
+		array_push(waveArray, oPlainsShooter)
 		break;
 		
-		case 25:
-		array_push(waveArray, oRifterTank)
+		case 44:
+		array_push(bossArray, oWastelandDestroyer)
 		break;
 		
 		case 50: 
 		array_push(bossArray, oKrost)
 		break;
 	}
-	startingWeight *= 1.065;
+	startingWeight *= 1.06;
 	waveWeight = startingWeight;
 	waveCooldown = waveTimer;
 	state = waveState.waiting;

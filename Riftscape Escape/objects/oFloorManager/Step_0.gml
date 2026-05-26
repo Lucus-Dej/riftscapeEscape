@@ -6,6 +6,7 @@ var doNext = noone;
 
 
 if (totSize > 0 && deep > 0) {
+	
 	floorState = genState.generating;
 	var req = noone;
 	var i = irandom(100)
@@ -34,8 +35,10 @@ if (totSize > 0 && deep > 0) {
 		deep -= 1;
     }
 }
+
+
 if (totSize <= 0 && deep <= 0 && !done) {
-	instance_destroy(oRoomReserve)
+
 	floorState = genState.complete;
 	done = true;
 } else if (totSize > 0 && deep <= 0) {
@@ -83,11 +86,9 @@ if (floorState == genState.complete ) {
 			dir = newBossDoor.doorDir;
 			show_debug_message(dir)
 			BossR = findSpecialRoom(dir, "boss");
-			
-			connectRoom(newBossDoor.id, dir, BossR, Manager1);
-			if (!invalid) {
-				break;
-			}
+			//connectRoom(id, req.dir, req.room, req.owner);
+			connectRoom(newBossDoor.id, dir, BossR, newBossDoor);
+			other.retryCount++;
 		}
 		doorType = "boss";
 	}
@@ -107,14 +108,12 @@ if (floorState == genState.complete ) {
 		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 			invalid = false;
 			show_debug_message("trying again")
+			other.retryCount++;
 			var newItemRoom = other.bossDoorArray[i]; 
 			//instance_create_layer(newItemRoom.x, newItemRoom.y, "Instances", oLightWall);
 			dir = newItemRoom.doorDir;
 			BossR = findSpecialRoom(dir, "boss");
-			connectRoom(newItemRoom.id, dir, BossR, Manager1);
-			if (!invalid) {
-				break;
-			}
+			connectRoom(newItemRoom.id, dir, BossR, newItemRoom);
 		}
 		
 		doorType = "item";
@@ -152,5 +151,5 @@ if (floorState == genState.complete ) {
 	}
 	instance_destroy(oRoomReserve)
 	floorState = genState.done;
-	
+	show_debug_message(retryCount)
 }

@@ -32,6 +32,10 @@ if (!canBounce && bounceNum  <= 0) {
 		}
 		if (closest != noone && instance_exists(closest)) {
 			bounceTarget = closest;
+			with (other) {
+				other.collCheck = collision_line(other.x, other.y, closest.x, closest.y, oBulletBlocker, false, true)
+			}
+			
 		}
 	if (bounceTarget == noone || !instance_exists(bounceTarget)) {	
 		var vx = lengthdir_x(speed, direction);
@@ -79,6 +83,9 @@ if (!canBounce && bounceNum  <= 0) {
 	copy.canBounce = false;
 	copy.ignoreWall = ignoreWall;
 	copy.canSpread = canSpread;
+	copy.image_blend = image_blend;
+	copy.image_xscale = image_xscale;
+	copy.image_yscale = image_yscale;
 	copy.damagedList = ds_map_create();
 	ds_map_copy(copy.damagedList, damagedList);
 	instance_destroy()

@@ -3,7 +3,7 @@ event_inherited();
 shoot_cooldown = irandom_range(10, 25);
 enemSpeed = 0.6;
 base_speed = enemSpeed;
-bullet_speed = 5.5;
+bullet_speed = 10.5;
 shoot_delay = 200;
 recoil_cooldown = 25;
 fire_duration = 4;

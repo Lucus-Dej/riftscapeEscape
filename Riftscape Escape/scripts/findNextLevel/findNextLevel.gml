@@ -21,10 +21,22 @@ function findNextLevel(_level){
 		newLevel = wasteland0;
 		break;
 		case wasteland0:
+		newLevel = wasteland01;
+		break;
+		case wasteland01:
 		newLevel = w1;
 		break;
 		case w1:
-		newLevel = plains0;
+		newLevel = kingdom0;
+		break;
+		case kingdom0:
+		newLevel = kingdom01;
+		break;
+		case kingdom01:
+		newLevel = k1;
+		break;
+		case k1:
+		newLevel = theEnd;
 		break;
 		case plains0:
 		newLevel = plains01;

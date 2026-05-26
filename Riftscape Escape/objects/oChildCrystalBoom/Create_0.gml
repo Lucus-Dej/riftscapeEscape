@@ -1,4 +1,5 @@
 damagedList = ds_map_create();
+damage = 0;
 existance = 12;
 didColide = false;
 realityCheck = 1;

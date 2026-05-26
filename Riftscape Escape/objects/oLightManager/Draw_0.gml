@@ -112,6 +112,16 @@ for (var i = 0; i < array_length(tinyLightArray); i++) {
         draw_sprite_ext( sLight, 0, x - camX,  y - camY, 0.12, 0.12, 0, c_white, 0.2);
     }
 }
+
+gpu_set_blendmode(bm_normal);
+
+surface_reset_target();
+
+
+
+// Draw surface at camera position
+draw_surface(lightSurface, camX, camY);
+/*
 for (var i = 0; i < array_length(lightExclusionArray); i++) {
     var inst = lightExclusionArray[i];
 	if (instance_exists(inst)) {
@@ -121,11 +131,3 @@ for (var i = 0; i < array_length(lightExclusionArray); i++) {
 	}
     
 }
-gpu_set_blendmode(bm_normal);
-
-surface_reset_target();
-
-
-
-// Draw surface at camera position
-draw_surface(lightSurface, camX, camY);

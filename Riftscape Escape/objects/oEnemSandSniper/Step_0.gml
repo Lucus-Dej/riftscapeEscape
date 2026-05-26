@@ -1,16 +1,17 @@
-if (brainDead) {
-    exit;
-}
-if (!bossModApplied && isBoss) { 
+if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
 	enemSpeed *= speedMult;
 	damage *= dmgMult;
 	shoot_delay /= cooldownMult;
-	chargeCooldown /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
 path_timer--;
 
 if (!canSeePlayer) {
@@ -28,7 +29,6 @@ if (shoot_cooldown > 0 && canSeePlayer) {
 	time = (clamp(dist / bullet_speed, 0, 30))+18;
 	targetDir = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*time, oTruePlayer.y+oTruePlayer.vsp*time);
 }
-flash = max(0, flash - 0.15);
 if (chargeTime > 0) {
 	
 }

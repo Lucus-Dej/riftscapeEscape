@@ -3,7 +3,7 @@ if (ds_list_size(BossList) > 0) {
 	bossPull = BossList[| i];
 	tempEnemy = bossPull.bossName;
 
-	bossPull.bossCount--;
+	//bossPull.bossCount--;
 	
 	if (totalBoss <= 0) {
 		ds_list_delete(BossList, i);

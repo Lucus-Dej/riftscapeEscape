@@ -3,6 +3,11 @@
 var guiW = display_get_gui_width();
 var guiH = display_get_gui_height();
 
+var mouseX = device_mouse_x_to_gui(0);
+var mouseY = device_mouse_y_to_gui(0);
+
+var hoveredItem = noone;
+
 var cols = 3;
 var iconSize = 16;   
 var pad = 12;
@@ -29,9 +34,17 @@ for (var i = 0; i < array_length(itemList); i++) {
     var scale = 0.5;
 
 	draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
-
+	
+	var w = sprite_get_width(spr) * scale;
+	var h = sprite_get_height(spr) * scale;
+	
+	if (mouseX >= GUIx - w * 0.5 && mouseX <= GUIx + w * 0.5 && mouseY >= GUIy - h * 0.5 && mouseY <= GUIy + h * 0.5) {
+		hoveredItem = obj;
+	}
 }
-
+if (hoveredItem != noone) {
+	displayItemFunction(hoveredItem);
+}
 if (global.chargeItem != noone) {
     var obj = global.chargeItem.object_index;
     var spr = object_get_sprite(obj);
@@ -45,7 +58,7 @@ if (global.chargeItem != noone) {
         var sx = pad;
         var sy = display_get_gui_height() - sprH - pad;
 
-        draw_sprite_ext(spr, 0, sx, sy, scale, scale, 0, c_white, 1);
+        draw_sprite_ext(spr, 0, sx + sprW * 0.5, sy + sprH * 0.5, scale, scale, 0, c_white, 1);
 
         // charge values
         var current = global.currentCharges;
@@ -158,4 +171,25 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 	}
 	global.currentCharges = 0;
 }
-  
+
+// display item text?
+if (displayItemTimer > 0) {
+	var alpha = min(displayItemTimer / 20, 1);
+	guiW = display_get_gui_width();
+	guiH = display_get_gui_height();
+	
+	var txtW = string_width(itemDesc);
+	var txtH = string_height(itemDesc)
+	
+	var xPos = guiW * 0.5;
+	var yPos = guiH * 0.8;
+	pad = 64;
+	var sprW = sprite_get_width(sItemDescription);
+	
+	var xScale = (txtW+pad)/sprW;
+	
+	draw_sprite_ext(sItemDescription, 0, display_get_gui_width()*0.5, display_get_gui_height()*0.8, xScale, 1.5, 0, c_white, alpha);
+	draw_set_colour(c_white);
+	draw_text((guiW*0.5)-txtW/2, (guiH*0.8)-pad/2+8, itemDesc);
+	displayItemTimer--;
+}

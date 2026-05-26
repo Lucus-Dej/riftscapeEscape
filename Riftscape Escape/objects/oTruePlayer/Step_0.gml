@@ -37,12 +37,8 @@ if ((keyboard_check(vk_space) or mouse_check_button(mb_left)) && global.bullet_c
 		oMinionEssence.fire = true;
 	}
 	var dir = point_direction(x, y, mouse_x, mouse_y);
-	bulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
+	playerBulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
     global.bullet_cooldown = global.bullet_delay;
-	if (oItemManager.hasMetalOrb) {
-		bulletFire(x, y, dir+35, global.bullet_speed, global.playerDamage*0.4, global.chosenBullet, id);
-		bulletFire(x, y, dir-35, global.bullet_speed, global.playerDamage*0.4, global.chosenBullet, id);
-	}
 }
 
 if (instance_exists(visual)) {

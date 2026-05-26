@@ -1,6 +1,3 @@
-show_debug_message("I AM EXECUTING THE BUILDING PROCESS")
-
-
 if (oFloorManager.deep <= 0) 
 exit;
 

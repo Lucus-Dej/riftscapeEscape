@@ -1,2 +1,11 @@
-array_push(oItemManager.itemList, object_index);
-itemAdd(object_index);
+if (!veribroseMark) {
+	itemAdd(object_index);
+}
+
+ if (instance_exists(oItemFlag)) {
+	 with (oItemFlag) {
+		 if (veribroseItem) {
+			 veribroseCleanse = true;
+		 }
+	 }
+ }

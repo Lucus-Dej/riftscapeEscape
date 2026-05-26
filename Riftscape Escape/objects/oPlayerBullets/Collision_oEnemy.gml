@@ -16,14 +16,15 @@ if (!ds_exists(damagedList, ds_type_map)) {
         oPlayerManager.lastKilledX = hit.x;
         oPlayerManager.lastKilledY = hit.y;
 		other.flash = 1;
-		if (oItemManager.hasUnstableEnergy && canSpread) {
-			canSpread = false;
+		if (oItemManager.hasUnstableEnergy && canSpread && spreadCount > 0) {
+			//canSpread = false;
+			spreadCount--;
 			var cap = 4;
 			var doubleChance = irandom_range(1, 60)
-			if (doubleChance+global.playerLife > 60) {
+			if (doubleChance+global.playerTime > 60) {
 				cap = 7;
 			}
-			var inc = 360/3;
+			var inc = 360/cap-1;
 			var startingAng = irandom(360);
 			for (var r = 0; r < cap; r++) {
 				var unDir = startingAng + inc*r;
@@ -31,18 +32,21 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				spreadShot.ignoreEnemy = hit;
 				spreadShot.richCount = richCount;
 				spreadShot.bounceNum = bounceNum;
-				spreadShot.image_xscale = 0.75;
-				spreadShot.image_yscale = 0.75;
+				spreadShot.image_xscale *= 0.75;
+				spreadShot.image_yscale *= 0.75;
+				spreadShot.image_blend = image_blend;
 				spreadShot.damagedList = ds_map_create();
-				spreadShot.existance = existance/2;
-				spreadShot.canSpread = canSpread;
+				spreadShot.existance = existance/4;
+				spreadShot.spreadCount = spreadCount;
 				ds_map_copy(spreadShot.damagedList, damagedList);
 			}
 			
 		}
         if (oItemManager.hasWaterDamagedNote && !hit.hasDamaged) {
             hit.enemey_hp -= 1.4 * damage;
+			addDamageNumber(x, y, 1.4 * damage);
         } else {
+			addDamageNumber(x, y, damage);
             hit.enemey_hp -= damage;
         }
 		if (canLifesteal) {
@@ -94,7 +98,9 @@ audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
 				richBullet.richCount = richCount;
 				richBullet.bounceNum = bounceNum;
 				richBullet.canSpread = canSpread;
-				
+				richBullet.image_xscale *= 0.75;
+				richBullet.image_yscale *= 0.75;
+				richBullet.image_blend = image_blend;
 
 				richBullet.damagedList = ds_map_create();
 				ds_map_copy(richBullet.damagedList, damagedList);

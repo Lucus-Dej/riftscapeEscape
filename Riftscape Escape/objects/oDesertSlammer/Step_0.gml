@@ -1,21 +1,21 @@
-if (brainDead) {
-    exit;
-}
-if (!bossModApplied && isBoss) { 
+if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
 	enemSpeed *= speedMult;
 	damage *= dmgMult;
-	chargeDelay /= cooldownMult;
+	shoot_delay /= cooldownMult;
 	event_user(13);
+}
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
 }
 //path timer reduction
 path_timer--;
 
 chargeCooldown -= 0.5;
 
-flash = max(0, flash - 0.15);
 if (iFrames >= 0) {
 	iFrames--;
 }
@@ -44,7 +44,7 @@ if (state == ENEM_STATE.CHASE) {
 		chargeTargetX = oTruePlayer.x;
 		chargeTargetY = oTruePlayer.y;
 		chargeDir = point_direction(x, y, chargeTargetX, chargeTargetY);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 1, global.sfxAudio)
+		audio_play_sound(aPortalOpen, 1, 0, global.sfxAudio)
 		path_end();
 		state = ENEM_STATE.WINDUP;
 		attackDelay = 36;
@@ -57,6 +57,8 @@ if (state == ENEM_STATE.WINDUP) {
 	if (attackDelay <= 0) {
 		chargeTime = 16;
 		state = ENEM_STATE.CHARGE;
+		chargeBonus = 3.5;
+		contactDamage *= chargeBonus;
 		if (enraged) {
 			enemSpeed = 16;
 		} else {
@@ -79,22 +81,24 @@ if (state == ENEM_STATE.CHARGE) {
 	
 	var moved = false;
 	
-	if (!place_meeting(x + hsp, y + vsp, oIndestructable) || !place_meeting(x + hsp, y + vsp, oAbyss)) {
+	if (!place_meeting(x + hsp, y + vsp, oIndestructable) && !place_meeting(x + hsp, y + vsp, oAbyss)) {
         x += hsp;
 		y += vsp;
 		moved = true;
     } else {
-        if (!place_meeting(x + hsp, y, oIndestructable) || !place_meeting(x + hsp, y + vsp, oAbyss)) {
+        if (!place_meeting(x + hsp, y, oIndestructable) && !place_meeting(x + hsp, y + vsp, oAbyss)) {
 			x += hsp;
 			moved = true;
 		}
-		if (!place_meeting(x, y + vsp, oIndestructable) || !place_meeting(x + hsp, y + vsp, oAbyss)) {
+		if (!place_meeting(x, y + vsp, oIndestructable) && !place_meeting(x + hsp, y + vsp, oAbyss)) {
 			y += vsp;
 			moved = true;
 		}
 	}
 	if (chargeTime <= 0 || !moved) {
 		state = ENEM_STATE.RECOVER;
+		contactDamage /= chargeBonus;
+		chargeBonus = 0;
 		enemSpeed = 0;
 		path_timer = path_cooldown;
 	}

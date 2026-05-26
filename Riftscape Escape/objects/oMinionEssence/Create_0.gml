@@ -1,4 +1,7 @@
 event_inherited()
+minionCrownSpeedBonus = 0;
+minionCrownDmgBonus = 0;
+minionRealitySpeedBonus = 0;
 oPlayerManager.essenceMinionCount++
 existance = 600+ (global.playerEssence*60)
 minionSpeed = 65;

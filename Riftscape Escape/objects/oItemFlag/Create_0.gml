@@ -1,5 +1,4 @@
 wait = true;
-onStart = false;
 active = false;
 used = false;
 flagManager = noone;
@@ -7,3 +6,6 @@ Manager = noone;
 item = oEnemTurret;
 foundItem = oEnemBasic;
 spawnItem = false;
+summon = noone;
+veribroseCleanse = false;
+rarity = 0;

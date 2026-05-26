@@ -1,0 +1,14 @@
+event_inherited();
+infExist = false;
+accel = true;
+existance = 240;
+summon = false;
+ringSpeed = 7;
+phaseBonus = 0;
+type = 0;
+orbitSpeed = 6;
+orbitRadius = 0;
+targetRadius = 0;
+playerSummon = false;
+speed = 0;
+passedZero = true;

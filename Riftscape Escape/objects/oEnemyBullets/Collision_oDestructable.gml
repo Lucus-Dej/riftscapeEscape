@@ -1,10 +1,13 @@
+isGhosting = true;
+if (other.id == ignoreWall || isGhost) {
+	exit;
+}
 other.obHP -= damage;
 if (other.obHP <= 0) {
 	instance_destroy(other);
 }
-if (other.id == ignoreWall) {
-	exit;
-}
+
+
 if (!canBounce) {
 	instance_create_layer(x, y, "Instances", oBoom);
 	instance_destroy();

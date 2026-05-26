@@ -11,13 +11,13 @@ enemey_hp = 18;
 enemSpeed = 0.15;
 base_speed = enemSpeed;
 xp = 10;
-damage = 5;
+damage = 8;
 bullet_speed = 3;
 spawnWeight = 7.5;
 enraged = false;
 startEnragedLoop = false;
 enragedCooldown = (shoot_delay)/2;
 enragedDelay = enragedCooldown;
-phasePoint1 = enemey_hp*0.85;
+phasePoint1 = enemey_hp*0.7;
 ang = 0;
 

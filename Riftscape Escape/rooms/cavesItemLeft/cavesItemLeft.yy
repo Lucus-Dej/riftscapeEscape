@@ -205,7 +205,7 @@
   "name":"cavesItemLeft",
   "parent":{
     "name":"item",
-    "path":"folders/ROOMS/procedualTest/tiles/caves/item.yy",
+    "path":"folders/ROOMS/procedualTest/tiles/1caves/item.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

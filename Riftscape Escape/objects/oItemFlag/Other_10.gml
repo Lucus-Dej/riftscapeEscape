@@ -4,6 +4,7 @@ with (oItemManager) {
 	dropID = other.id;
 }
 if (spawnItem && item != noone) {
-	instance_create_layer(x, y, "Instances", item)
+	summon = instance_create_layer(x, y, "Instances", item);
+	summon.rarity = rarity;
 	spawnItem = false;
 }

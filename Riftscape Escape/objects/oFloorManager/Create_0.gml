@@ -1,4 +1,5 @@
 level = 1;
+retryCount = 0;
 doorList = ds_list_create();
 doorCount = 1;
 IDCount = 1;

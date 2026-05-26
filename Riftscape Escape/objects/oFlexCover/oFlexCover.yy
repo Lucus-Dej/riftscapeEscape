@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"flexWALL",
-    "path":"folders/roomstuff/wallstuff/flexWALL.yy",
+    "path":"folders/roomstuff/flexWALL.yy",
   },
   "parentObjectId":{
     "name":"oDestructable",

@@ -1,6 +1,6 @@
 event_inherited();
 
-enemey_hp = 175;
+enemey_hp = 215;
 damage = 20;
 enemSpeed = 0.85;
 base_speed = enemSpeed;

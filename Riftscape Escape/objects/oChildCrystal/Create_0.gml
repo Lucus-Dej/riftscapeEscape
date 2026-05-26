@@ -10,9 +10,11 @@ hasSpawned = false;
 
 if (variable_instance_exists(self, "chainDistance")) {
 	chainDistance --;
+} else {
+	chainDistance = 0;
 }
 target = noone;
-chaseSpeed = (global.playerTime+global.playerThought)/2;
+chaseSpeed = (global.playerTime+global.playerThought)/10;
 path = -1;
 if (oPlayerManager.hasCrystalThought  && chainDistance <= 0) {
 	target = instance_nearest(x, y, oEnemy);

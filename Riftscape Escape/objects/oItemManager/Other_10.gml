@@ -20,7 +20,7 @@ spawnSimple = false;
 if (ds_list_size(simpleItemList) > 0) {
 	simpleMin = totalPool;
 	simpleMax = totalPool + simplePool;
-	totalPool = simplePool;
+	totalPool += simplePool;
 } else {
 	simpleMax = -1;
 }
@@ -51,19 +51,25 @@ var j = irandom(totalPool - 1 + global.playerTime)+luckBonus;
 j = clamp(j, 0, totalPool - 1);
 if (simpleMax >= 0 && j < simpleMax) {
 	chosenList = simpleItemList;
+	rarity = 0;
 } else if (rareMax >= 0 && j < rareMax) {
 	chosenList = rareItemList;
+	rarity = 1;
 } else if (powerfulMax >= 0 && j < powerfulMax) {
 	chosenList = powerfulItemList;
+	rarity = 2;
 } else {
 	chosenList = mythicItemList;
+	rarity = 3;
 } 
 if (hasIceSoup && !iceSoupTriggered) {
 	var iceCheck = irandom_range(1, 3);
 	if (iceCheck >= 3) {
 		chosenList = mythicItemList;
+		rarity = 3;
 	} else {
 		chosenList = powerfulItemList;
+		rarity = 2;
 	}
 	iceSoupTriggered = true;
 	luckBonus -= 15;
@@ -82,7 +88,8 @@ if (chosenList == simpleItemList) {
 				if (i == 2) {
 				j = irandom(ds_list_size(oItemManager.simpleItemList)-1);
 				item = other.simpleItemList[| j];
-				instance_create_layer(x-32, y, "Instances", item);
+				var summon = instance_create_layer(x-32, y, "Instances", item);
+				summon.rarity = 0;
 				audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 1, global.sfxAudio)
 			}
 		}
@@ -92,6 +99,7 @@ if (chosenList == simpleItemList) {
 	item = chosenList[| i];
 	ds_list_delete(chosenList, i);
 	with (dropID) {
+		rarity = other.rarity;
 		item = other.item;
 		spawnItem = true;
 	}

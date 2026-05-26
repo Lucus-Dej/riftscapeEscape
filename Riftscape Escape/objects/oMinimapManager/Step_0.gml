@@ -1,8 +1,8 @@
 if (instance_exists(follow)) {
 	var cam = minimapCam;
 
-	var view_w = 2400; 
-	var view_h = 2400;
+	var view_w = 3200; 
+	var view_h = 3200;
 
 
 	var cx = follow.x - view_w * 0.5;

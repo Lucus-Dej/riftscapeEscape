@@ -1,6 +1,3 @@
-if (brainDead) {
-    exit;
-}
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
@@ -10,6 +7,12 @@ if (!bossModApplied && isBoss) {
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
+
 path_timer--;
 
 if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
@@ -21,7 +24,7 @@ if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
-flash = max(0, flash - 0.15);
+
 
 // fire when ready
 if (shoot_cooldown <= 0) {

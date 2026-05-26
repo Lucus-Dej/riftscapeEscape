@@ -110,6 +110,7 @@
     {"name":"inst_598C0F4F","path":"rooms/startScreen/startScreen.yy",},
     {"name":"inst_3843F9E5","path":"rooms/startScreen/startScreen.yy",},
     {"name":"inst_5C4ECE66","path":"rooms/startScreen/startScreen.yy",},
+    {"name":"inst_746A51E6","path":"roomui/RoomUI/RoomUI.yy",},
   ],
   "isDnd":false,
   "layers":[

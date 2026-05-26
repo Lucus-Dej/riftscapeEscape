@@ -6,9 +6,9 @@ fire_duration = 3;
 fire_timer = fire_duration;
 recoil_timer = 4;
 enemey_hp = 28;
-
+baseBulletSpeed = 6;
 ang = 0;
-enemSpeed = 1.8;
+enemSpeed = 2.1;
 base_speed = enemSpeed;
 xp = 7.5;
 damage = 14;

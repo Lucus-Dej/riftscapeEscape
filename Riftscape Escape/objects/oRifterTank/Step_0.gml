@@ -1,25 +1,25 @@
-if (brainDead) {
-    exit;
-}
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
+	enemSpeed *= speedMult;
 	damage *= dmgMult;
 	shoot_delay /= cooldownMult;
-	hostSearchCooldown /= cooldownMult*2.5;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
 //path timer reduction
 path_timer--;
-show_debug_message(hostSearchTimer)
 var distPlayer = point_distance(x, y, oTruePlayer.x, oTruePlayer.y)
 if (!canSeePlayer && vessel != noone || (vessel == noone  && distPlayer > 256)) {
 	enemSpeed = base_speed*12;
 } else if (canSeePlayer) {
 	enemSpeed = base_speed;
 }
-flash = max(0, flash - 0.15);
 
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer && vessel == noone) {

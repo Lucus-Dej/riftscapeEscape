@@ -7,7 +7,6 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var roomInstData = roomData.instances;
 	
 	var neededDoorObj = getMatchingDoorObject(_doorConnector.object_index);
-	show_debug_message(neededDoorObj)
 	var templateDoor = noone;
 	
 	var roomManager = noone;
@@ -20,9 +19,6 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		
 		if (asset_get_index(inst.object_index) == neededDoorObj) {
 			templateDoor = inst;
-			
-			show_debug_message("MY ORIGIN IS")
-			show_debug_message(templateDoor)
 		}
 		if (asset_get_index(inst.object_index) == oRoomClaimX) {
 			neededX = inst;
@@ -91,6 +87,10 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 		if (obj == oItemFlag && doorType == "item") {
 			newInst.onStart = true;
 		}
+		if (obj == oItemFlag && doorType == "boss") {
+			newInst.bossRoom = true;
+		}
+		
 		if (obj == oGhostBarrier) {
 			if (obj == neededDoorObj) {
 				show_debug_message("I HAVE FOUND THE MATCHING DOOR")

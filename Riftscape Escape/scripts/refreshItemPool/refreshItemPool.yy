@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"refreshItemPool",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"refreshItemPool",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

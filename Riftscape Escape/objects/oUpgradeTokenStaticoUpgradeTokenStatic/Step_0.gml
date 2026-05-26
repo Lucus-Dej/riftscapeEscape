@@ -4,6 +4,7 @@ with oAbilityToken {
 	}
 }
 
+
 /*if (upgradeID == 1 && owner.abilityID) {
 	if (oPlayerManager.fateTokenSpent && ownerID) {
 		image_index = 1;

@@ -30,7 +30,7 @@ function bossMod(_enem){
 			case oEnemBig:
 			image_xscale += 2;
 			image_yscale += 2;
-			dmgMult = 3;
+			dmgMult = 2;
 			speedMult = 2;
 			hpMult = 4.5;
 			cooldownMult = 3;
@@ -45,7 +45,7 @@ function bossMod(_enem){
 			case oBoss:
 			hpMult = 2.5;
 			dmgMult = 1.5;
-			cooldownMult = 3;
+			cooldownMult = 2;
 			phasePoint1 *= hpMult;
 			break;
 			
@@ -112,6 +112,36 @@ function bossMod(_enem){
 			case oPlainsShooter:
 			dmgMult = 1.5;
 			break;
+			
+			case oRifterSlammer:
+			hpMult = 2;
+			dmgMult = 1.3;
+			cooldownMult = 2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			
+			case oRifterSpitter:
+			hpMult = 2.5;
+			dmgMult = 1.3;
+			cooldownMult = 4;
+			break;
+			
+			case oRifterSniper:
+			hpMult = 2;
+			dmgMult = 1.3;
+			cooldownMult = 1.3;
+			break;
+			
+			case oEnemRifterSpider:
+			hpMult = 2;
+			dmgMult = 1.3;
+			speedMult = 2;
+			break;
+			
+			case oRifterKing:
+			break;
+			
 		}
 		//event_user(13);
 	}

@@ -1,16 +1,18 @@
-if (brainDead) {
-    exit;
-}
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
 	base_speed *= speedMult;
 	enemSpeed *= speedMult;
 	damage *= dmgMult;
+	shoot_delay /= cooldownMult;
 	event_user(13);
 }
-// countdown
 flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
+
+// countdown
 path_timer--;
 bite_timer --;
 if (bite_timer <= 0 && on_cooldown = true) {

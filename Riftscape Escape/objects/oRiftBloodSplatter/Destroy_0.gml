@@ -6,4 +6,7 @@ if (canHeal) {
 	if (oPlayerManager.overHealthOverheated) {
 		oPlayerManager.overhealthSuperTimer -= 25*global.playerEssence+45;
 	}
+	if (oPlayerManager.krostEssenceSpeedBouns <= 2 && oItemManager.hasKrostEssence) {
+		oPlayerManager.krostEssenceSpeedBouns += 0.33;
+	}
 }

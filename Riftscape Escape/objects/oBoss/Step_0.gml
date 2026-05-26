@@ -1,7 +1,3 @@
-if (brainDead) {
-    exit;
-}
-var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 if (!bossModApplied && isBoss) {
 	bossModApplied = true;
 	enemey_hp *= hpMult;
@@ -11,7 +7,12 @@ if (!bossModApplied && isBoss) {
 	shoot_delay /= cooldownMult;
 	event_user(13);
 }
+flash = max(0, flash - 0.15);
+if (brainDead) {
+    exit;
+}
 
+var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 //path timer reduction
 path_timer--;
 if (!canSeePlayer) {
@@ -23,7 +24,6 @@ if (!canSeePlayer) {
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
-flash = max(0, flash - 0.15);
 if (phasePoint1 >= enemey_hp && enraged == false) {
 	base_speed += 1.7;
 	bullet_speed -= 3;
@@ -50,9 +50,14 @@ if (shoot_cooldown <= 0) {
 			if (!enraged) {
 				var bullet = bulletFireAt(x, y, oTruePlayer, bullet_speed, damage, oMiniBossBullet, id)
 				} else {
-				var playerAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
-				var a =  bulletFire(x, y, playerAng - 25 - fire_timer*4, bullet_speed, damage, oBadBullet, id);
-				var b =  bulletFire(x, y, (playerAng + 25 +fire_timer*4),bullet_speed, damage, oBadBullet, id);
+					var playerAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
+					var a =  bulletFire(x, y, playerAng - 25 - fire_timer*4, bullet_speed, damage, oBadBullet, id);
+					var b =  bulletFire(x, y, (playerAng + 25 +fire_timer*4),bullet_speed, damage, oBadBullet, id);
+					if (fire_timer == 1) {
+						var c =  bulletFire(x, y, playerAng, bullet_speed*0.8, damage*2, oBadBullet, id);
+						c.image_xscale += 1;
+						c.image_yscale += 1;
+					}
 				}
 			}		
 			recoil_timer = recoil_cooldown;

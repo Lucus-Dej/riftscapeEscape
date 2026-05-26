@@ -3,6 +3,9 @@ if (Manager.combatFinished && !used) {
 	with (oItemManager) {
 		searchItem = true;
 		dropID = other.id;
+		if (other.bossRoom) {
+			bossSearch = true;
+		}
 	}
 	
 	used = true
@@ -10,18 +13,32 @@ if (Manager.combatFinished && !used) {
 	//instance_create_layer(x,y, "Instances", oBoss);
 }
 
-if (onStart && !used) {
+if (onStart && !used && !veribroseItem) {
 	with (oItemManager) {
 		searchItem = true;
 		dropID = other.id;
+		if (other.bossRoom) {
+			bossSearch = true;
+		}
 	}
-	
 	used = true
 }
+if (onStart && !used && veribroseItem) {
+	used = true
+	item = rollItem(false);
+	summon = instance_create_layer(x, y, "Instances", item);
+	summon.veribroseMark = true;
+}
 if (spawnItem && item != noone) {
-	instance_create_layer(x, y, "Instances", item)
+	summon = instance_create_layer(x, y, "Instances", item);
+	summon.rarity = rarity;
 	spawnItem = false;
 } 
 if (Manager == noone) {
 	//Manager = findManager()
+}
+if (veribroseCleanse && instance_exists(summon)) {
+	with (summon) {
+		instance_destroy();
+	}
 }

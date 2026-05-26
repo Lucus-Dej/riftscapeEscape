@@ -1,12 +1,15 @@
-if (spawning == true) {
+if (Manager == noone && instance_exists(oFloorManager)) {
+	Manager = findManager()
+}
+if (spawning == true && !hasSpawnedAll) {
 	bossCount--;
 	spawning = false;
 	Manager.totalBoss--;
+	show_debug_message("i just spawned in"+string(bossName))
+	show_debug_message("i have this many spawns left"+string(bossCount))
 }
-if (Manager == noone) {
-	Manager = findManager()
-}
-if (bossCount <= 0 && Manager != noone) {
+
+if (bossCount <= 0) {
 	hasSpawnedAll = true;
 	hasBoss = false;
 

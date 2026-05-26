@@ -2,6 +2,9 @@
 if (init)
 orbitAngle += orbitSpeed;
 
+if (oItemManager.hasLostCrown) {
+	orbitSpeed = 8;
+}
 // Calculate the new x and y positions using lengthdir functions
 var xOffset = lengthdir_x(orbitDistance, orbitAngle);
 var yOffset = lengthdir_y(orbitDistance, orbitAngle);

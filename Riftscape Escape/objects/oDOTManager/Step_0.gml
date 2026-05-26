@@ -7,14 +7,21 @@ if (array_length(dotArray) > 0) {
 		}
 		dot.time++;
 		if (dot.time >= dot.delay) {
-			dot.target.enemey_hp -= dot.damage;
-			dot.target.flash = 1
+			if (dot.target.object_index == oTruePlayer) {
+				global.player_health -= dot.damage;
+				oPlayer.flash = 1.4;
+			}
+			
 			dot.ticks--;
 			dot.time =0;
-			dotArray[i] = dot;
-			if (dot.target.enemey_hp <= 0) {
-				instance_destroy(dot.target)
-				array_delete(dotArray, i, 1);
+			
+			if (variable_instance_exists(dot.target, "enemey_hp")) {
+				dot.target.flash = 1
+				dot.target.enemey_hp -= dot.damage;
+				addDamageNumber(dot.target.x, dot.target.y, dot.damage);
+				if (dot.target.enemey_hp <= 0) {
+					instance_destroy(dot.target)
+					array_delete(dotArray, i, 1);
 				if (dot.source == oSwordLife) {
 					if (dot.target.xp > 0) {
 						oPlayerManager.swordKills += 1;
@@ -23,10 +30,13 @@ if (array_length(dotArray) > 0) {
 					if (oPlayerManager.hasSwordThought) {
 						oPlayerManager.swordCooldownBonus = 12;
 						oPlayerManager.swordCooldownBonusTime += 32;
+						}
 					}
 				}
 			}
+			
 		}
+		dotArray[i] = dot;
 		if (dot.ticks <= 0)  {
 			array_delete(dotArray, i, 1);
 		}

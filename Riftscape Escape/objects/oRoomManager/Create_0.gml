@@ -6,8 +6,20 @@ spawned = false;
 spawn_timer = spawn_cooldown;
 portal_cooldown = 35;
 portal_timer = portal_cooldown;
+
+isFloorGen = false;
+enum spawnState {
+	idle,
+	buildingArray,
+	spawning,
+	spawnFinished,
+	outOfCombat
+}
+state = spawnState.idle;
 enemies = enem1count + enem2count + enem3count + enem4count + enem5count + enem6count + enem7count + enem8count + enem9count + enem10count;
 portal_count = enemies;
+preEnemArray = [enem1, enem2, enem3, enem4, enem5, enem6, enem7, enem8, enem9, enem10];
+preEnemCount = [enem1count, enem2count, enem3count, enem4count, enem5count, enem6count, enem7count, enem8count, enem9count, enem10count];
 buffer = portal_cooldown + spawn_cooldown;
 enemyPull = 0;
 enem = noone;
@@ -63,6 +75,7 @@ with (oRoomClaimY) {
 	}
 }
 with (oFloorManager) {
+	show_debug_message("SEARCHING")
 	other.fmanager = id;
 	other.floorID = floorID;
 }
@@ -71,7 +84,7 @@ if (fmanager != noone) {
 	var arrayUnpacker = getEnemPool(floorID)
 	enemArray = arrayUnpacker.normArray;
 	bossArray = arrayUnpacker.bArray;
-}
+} 
 bossRoom = false;
 testRange = noone;
 testTop = noone;

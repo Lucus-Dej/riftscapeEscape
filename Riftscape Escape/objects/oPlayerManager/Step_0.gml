@@ -66,16 +66,30 @@ if (tookDamage) {
 	if (inOverhealth) {
 		overhealthTimer /= 3;
 	}
-	iframes = 12;
+	iframes = 16;
 	tookDamage = false;
 }
 
 if (global.player_health <= 0) {
 	if (oItemManager.hasTetheredSoul && instance_exists(oTetheredSoul)) {
 		instance_destroy(oTetheredSoul)
-		global.player_health =max_hp;
+		global.player_health = max_hp;
+	} else if (oItemManager.hasVirstEssence) {
+		global.player_health = max_hp;
+		oItemManager.hasVirstEssence = false;
+		var count = array_length(oItemManager.itemList);
+		for (var i = array_length(oItemManager.itemList) - 1; i >= 0; i--) {
+			var item = oItemManager.itemList[i];
+			itemRemove(item);
+		}
+		refreshItemPool();
+		for (var i = 0; i < count; i++) {
+			var item = rollItem(true);
+			itemAdd(item);
+		}
+		
 	} else if (room == hordeSurvival) {
-	room_goto(caves0);
+		room_goto(caves0);
 	} else {
 		room_goto(dead);
 	}
@@ -83,7 +97,7 @@ if (global.player_health <= 0) {
 }
 
 //stat calcs
-global.player_speed = sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus);
+global.player_speed = krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus);
 fireRate = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
 if (fireRate < fireRateCap) {
 	global.bullet_delay = fireRateCap - ((fireRateCap - fireRate)*0.2);
@@ -92,8 +106,11 @@ if (fireRate < fireRateCap) {
 }
 global.playerDamage = (tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff + boomerangDmg)/directorsDebuff;
 global.bullet_speed = 5+ sqrt(global.playerReality*0.8);
+global.contactDmg = krostEssenceSpeedBouns + dodgeContactDmg;
 cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + overHealthCooldownBuff + circleCooldownBonus)*0.5);
-
+if (krostEssenceSpeedBouns > 0) {
+	krostEssenceSpeedBouns -= 0.002;
+}
 
 
 //sword stuff
@@ -153,16 +170,17 @@ if (!instance_exists(oSwordFate)) {
 dodgePressed = keyboard_check_pressed(ord(dodgeKey));
 if (global.playerReality >= 5 && evilDodgeFlagIHate) {
 	dodgeLifeHP = global.player_health/4;
+	global.playerContactDmg = true;
 	dodgeCharge = dodgeTotal / 5;
 }
 if (initDodge && !evilDodgeFlagIHate) {
-	
 	dodgeState = DODGE_PHASE.onCooldown;
 	evilDodgeFlagIHate = true;
 }
 if (dodgeState == DODGE_PHASE.onCooldown) {
 	dodgeSpeed = 0;
 	dodgeLifeStart = false;
+	dodgeContactDmg = 0;
 	
 	if (dodgeTotal >= dodgeMax) {
 		dodgeState = DODGE_PHASE.onStandby;
@@ -175,7 +193,9 @@ if (iframes > 0) {
 }
 if (dodgeState == DODGE_PHASE.onStandby) {
 	inDodge = false;
+	dodgeContactDmg = 0;
 	if (dodgePressed) {
+		dodgeContactDmg = 1;
 		if (oItemManager.hasReflectiveGem) {
 			var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
 			var enem = noone;
@@ -204,6 +224,7 @@ if (dodgeState == DODGE_PHASE.onStandby) {
 }
 if (dodgeState == DODGE_PHASE.dodging) {
 	dodgeDuration -= 0.5;
+	dodgeContactDmg = 1;
 	if (hasDodgeLife && !dodgeLifeStart) {
 		dodgeLifeBonus = dodgeLifeHP;
 		dodgeLifeStart = true;
@@ -238,7 +259,7 @@ if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePre
 	dodgeState = DODGE_PHASE.blackflashing;
 	dodgeBlackFlashTimer = 100;
 	dodgeDuration = 6;
-	iframes = 2+global.playerReality+global.playerTime;
+	iframes = 24+global.playerReality+global.playerTime;
 	dodgeSpeed =  16.5 + (global.playerReality/10)
 } else if (dodgeBlackFlashTimer > 15 && inDodge && dodgePressed) {
 	trackDodgeFate = true;
@@ -255,6 +276,7 @@ if (dodgeBlackFlashTimer <= 0) {
 }
 if (dodgeState == DODGE_PHASE.blackflashing) {
 	dodgeDuration -= 0.5;
+	dodgeContactDmg = 2;
 	if (hasDodgeLife && !dodgeLifeStart) {
 		dodgeLifeBonus = dodgeLifeHP;
 		dodgeLifeStart = true;
@@ -475,10 +497,22 @@ if (inOverhealth == false) {
 		overhealthSuperTimer--;
 	}
 }
-
+overhealthCooldown = 100 + 40+global.playerEssence*5
 global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*oItemManager.sacDaggerBonus;
 
-if (inOverhealth == true) {
+if (inOverhealth) {
+	if (oItemManager.hasBloodyGem) {
+		if (bloodyGemTimer > 0) {
+			bloodyGemTimer--;
+		} else {
+			var num = irandom_range(1, 300);
+			if (num+(global.playerTime*4) >= 300) {
+				bloodyGemTimer = bloodyGemCooldown;
+				playerBulletFire(oTruePlayer.x, oTruePlayer.y, irandom(360), global.bullet_speed, global.playerDamage, global.chosenBullet*0.6, oTruePlayer);
+			}
+		}
+		
+	}
 	dodgeLifeBonus = 0;
 	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
 	overHealthBulletDelay = sqrt(global.playerEssence)*0.26;

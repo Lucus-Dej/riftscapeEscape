@@ -2,14 +2,19 @@ hit = other;
 if (!ds_exists(damagedList, ds_type_map)) {
 	damagedList = ds_map_create();
 }
-    if (!ds_map_exists(damagedList, hit.id)) {
+
+if (!ds_map_exists(damagedList, hit.id)) {
         ds_map_add(damagedList, hit.id, true);
 	if (chainDistance > 0) {
-		other.enemey_hp -= 0.1 + global.lifesteal/6;
-		global.player_health += 0.1 + global.lifesteal/6;
+		damage = 0.1 + global.lifesteal/6;
+		addDamageNumber(other.x, other.y, damage);
+		other.enemey_hp -= damage;
+		global.player_health += damage;
 	} else {
-		other.enemey_hp -= 0.65 + global.lifesteal;
-		global.player_health += 0.65 + global.lifesteal;
+		damage = 0.65 + global.lifesteal/2;
+		addDamageNumber(other.x, other.y, damage);
+		other.enemey_hp -= damage;
+		global.player_health += damage;
 	}
 }
 if (other.enemey_hp <= 0) {

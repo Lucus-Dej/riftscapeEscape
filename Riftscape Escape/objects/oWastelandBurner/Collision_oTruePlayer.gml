@@ -11,3 +11,12 @@ if (bite_timer <= 0 && on_cooldown =false && oPlayerManager.iframes <= 0) {
 	on_cooldown = true;
 	bite_timer = bite_cooldown;
 }
+if (contactIframe <= 0 && global.contactDmg > 0 && global.playerContactDmg) {
+	contactIframe = contactIframeCount;
+	self.enemey_hp -= global.contactDmg;
+	flash = 1;
+	if (enemey_hp <= 0) {
+		instance_destroy();
+		global.playerKilled = true;
+	}
+}

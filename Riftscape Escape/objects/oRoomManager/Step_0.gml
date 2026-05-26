@@ -1,5 +1,7 @@
 if (instance_exists(oFloorManager)) {
-	
+	isFloorGen = true;
+} else {
+	isFloorGen = false;
 }
 // checks if boss exists, changing count logic if so
 hasBoss = (instance_exists(workerBossSpawners));
@@ -12,6 +14,7 @@ if (portal_timer <= 0) {
 }
 if (roomStart && !ready) {
 	ready = true;
+	// lock down rooms
 	with (oGhostBarrierDirectionalParent) {
 		if (RoomID == other.RoomID) {
 			if (!instance_exists(childDoor)) {
@@ -19,6 +22,7 @@ if (roomStart && !ready) {
 			}
 		}
 	}
+	// destory husk if it exists
 	if (instance_exists(oMindHusk)) {
 		instance_destroy(oMindHusk);
 		if (oPlayerManager.hasLifeHusk) {
@@ -27,29 +31,7 @@ if (roomStart && !ready) {
 		oPlayerManager.huskCharge += 450;
 	}
 	oPlayerManager.incombat = true;
-	/*for (var i = 0; i < array_length(doorList); i++) {
-		var door = doorList[i];
-		with (door) {
-			if (!instance_exists(childDoor)) {
-				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
-			}
-		}
-	}
-	if (instance_exists(workerDoor1)) {
-		with (workerDoor1) {
-		if (!instance_exists(childDoor)) {
-				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
-			}
-		}
-	}
-	if (instance_exists(workerDoor2)) {
-		with (workerDoor2) {
-		if (!instance_exists(childDoor)) {
-				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
-			}
-		}
-	}
-	*/
+	
 	global.activeRoom = true;
 	event_user(2);
 }
@@ -57,7 +39,7 @@ if (killLifeHusk) {
 	instance_destroy(oHuskLife);
 	killLifeHusk = false;
 }
-if (ready && !spawned && portal_timer <= 0 && !instance_exists(oFloorManager)) {
+if (ready && !spawned && portal_timer <= 0 && !isFloorGen) {
 	event_user(0);
 	if (totalBoss > 0) {
 		pick = bossPull;
@@ -74,7 +56,7 @@ if (ready && !spawned && portal_timer <= 0 && !instance_exists(oFloorManager)) {
 		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 	}
 	spawned = true;
-} else if (ready && !spawned && portal_timer <= 0 && instance_exists(oFloorManager) && diffPool > 0) {
+} else if (ready && !spawned && portal_timer <= 0 && isFloorGen && diffPool > 0) {
 	if (bossRoom && totalBoss > 0) {
 		doBoss = true;
 		pick = bossSpawner;
@@ -95,13 +77,15 @@ if (spawned == true && spawn_timer <= 0) {
 	spawned = false;
 	instance_destroy(temp_portal);
 	temp_portal = noone;
-	if (instance_exists(oFloorManager) && !doBoss) {
+	if (isFloorGen && !doBoss) {
 		event_user(4);
-	} else if (instance_exists(oFloorManager) && doBoss){
+	} else if (isFloorGen && doBoss){
 		tempEnemy = bossSpawner.bossName
 		totalBoss--;
 	}
 	 enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
+	 enem.RoomID = RoomID;
+	 enem.Manager = id;
 	 if (isChallenge) {
 		enem.xp *= 1.2; 
 	 }

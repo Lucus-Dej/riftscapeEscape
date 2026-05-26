@@ -5,3 +5,4 @@ vsp = 0;
 orbitCount = 0;
 inCircle = false;
 visual = noone;
+flash = 0;
