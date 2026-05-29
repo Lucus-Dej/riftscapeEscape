@@ -8,4 +8,5 @@ enemSpeed = 3.75;
 base_speed = enemSpeed;
 xp = 2.45;
 contactDamage = 10;
+damage = contactDamage;
 spawnWeight = 0.75;

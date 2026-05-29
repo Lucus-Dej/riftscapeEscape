@@ -1,6 +1,22 @@
 existance--;
+if (oPlayerManager.hasBulletRangeRune) {
+	existance--;
+}
 if (existance <= 0) {
 	instance_destroy();
+}
+if (oItemManager.hasWeightlessHourglass) {
+	
+	if (speed > 0) {
+		speed -= 0.13;
+		if (speed < 0 && speed != 0) {
+			speed = 0;
+		}
+		image_xscale += 0.01;
+		image_yscale += 0.01;
+	
+		damage += 0.01;
+	} 
 }
 if (!is_real(x) || !is_real(y)) {
     show_debug_message("oBullet position corrupted");

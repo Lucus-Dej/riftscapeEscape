@@ -15,11 +15,11 @@ if (len > 0) {
 
 //move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);
 
-var realSpeed = global.player_speed;
+var realSpeed = global.player_speed*2;
 
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;
-move_and_collide(hsp, vsp, oSuperwalls);
+move_and_collide(hsp, vsp, oPlayerManager);
 currentSpeed = point_distance(0, 0, hsp, vsp);
 
 if (global.bullet_cooldown > 0) {

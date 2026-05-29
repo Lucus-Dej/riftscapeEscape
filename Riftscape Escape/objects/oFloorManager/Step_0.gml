@@ -30,7 +30,7 @@ if (totSize > 0 && deep > 0) {
 	if (req != undefined)
     if (instance_exists(req.door)) {
         with (req.door) {
-            connectRoom(id, req.dir, req.room, req.owner);
+            connectRoom(id, req.dir, req.room, req.owner, false);
         }
 		deep -= 1;
     }
@@ -67,6 +67,7 @@ if (floorState == genState.complete ) {
 		}
 		floorState = genState.buildingSpecialRooms;
 } else if (floorState == genState.buildingSpecialRooms) {
+	var bossFlag = false;
 	var bossIndex = irandom(array_length(bossDoorArray)-1);
 	var bossDoor = bossDoorArray[bossIndex];
 	var dir = bossDoor.doorDir;
@@ -75,49 +76,206 @@ if (floorState == genState.complete ) {
 		isBossDoor = true;
 		doorType = "boss";
 		show_debug_message("boss door made")
-		connectRoom(id, dir, BossR, Manager1);
-		if (invalid) 
-		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+		connectRoom(id, dir, BossR, Manager1, true);
+		if (invalid) {
+			//isBossDoor = false;
+			//doorType = "";
+			instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
+			for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+				if (!bossFlag) {
+					show_debug_message("trying again")
+					var newBossDoor = other.bossDoorArray[i]; 
+					bossIndex = i;
+					//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+					dir = newBossDoor.doorDir;
+					show_debug_message(dir)
+					BossR = findSpecialRoom(dir, "boss");
+					//connectRoom(id, req.dir, req.room, req.owner);
+					with (newBossDoor) {
+						invalid = false;
+						connectRoom(id, dir, BossR, Manager1, true);
+						if (!invalid) {
+							isBossDoor = true;
+							doorType = "boss";
+							bossFlag = true;
+						}
+					}
+					other.retryCount++;
+				}
+			}
+		}
+	}
 	
-			invalid = false;
-			show_debug_message("trying again")
-			var newBossDoor = other.bossDoorArray[i]; 
-			//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
-			dir = newBossDoor.doorDir;
-			show_debug_message(dir)
-			BossR = findSpecialRoom(dir, "boss");
-			//connectRoom(id, req.dir, req.room, req.owner);
-			connectRoom(newBossDoor.id, dir, BossR, newBossDoor);
-			other.retryCount++;
-		}
-		doorType = "boss";
+	var itemFlag = false;
+	var itemIndex = irandom(array_length(bossDoorArray)-1);
+	while (itemIndex == bossIndex) {
+		itemIndex = irandom(array_length(bossDoorArray)-1);
 	}
-	var itemRoomIndex = irandom(array_length(bossDoorArray)-1);
-	while (itemRoomIndex == bossIndex) {
-		itemRoomIndex = irandom(array_length(bossDoorArray)-1);
-	}
-	var itemDoor = bossDoorArray[itemRoomIndex];
+	var itemDoor = bossDoorArray[itemIndex];
 	dir = itemDoor.doorDir;
-	itemDoor.special = true;
 	var itemR = findSpecialRoom(dir, "item");
+	
+	
 	with (itemDoor) {
+		show_debug_message("item door made")
 		doorType = "item";
+		connectRoom(id, dir, itemR, Manager1, false);
 		
-		connectRoom(id, dir, itemR, Manager1);
-		if (invalid) 
-		for (var i = 0; i < array_length(other.bossDoorArray); i++) {
-			invalid = false;
-			show_debug_message("trying again")
-			other.retryCount++;
-			var newItemRoom = other.bossDoorArray[i]; 
-			//instance_create_layer(newItemRoom.x, newItemRoom.y, "Instances", oLightWall);
-			dir = newItemRoom.doorDir;
-			BossR = findSpecialRoom(dir, "boss");
-			connectRoom(newItemRoom.id, dir, BossR, newItemRoom);
+		/*if (invalid) {
+			doorType = "";
+			instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
+			for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+				if (!itemFlag) {
+					show_debug_message("trying again")
+					var newItemDoor = other.bossDoorArray[i]; 
+					//instance_create_layer(newItemDoor.x, newItemDoor.y, "Instances", oLightWall);
+					dir = newItemDoor.doorDir;
+					show_debug_message(dir)
+					itemR = findSpecialRoom(dir, "item");
+					//connectRoom(id, req.dir, req.room, req.owner);
+					with (newItemDoor) {
+						invalid = false;
+						doorType = "item";
+						connectRoom(id, dir, itemR, Manager1, true);
+						if (!invalid) {
+							doorType = "item";
+							itemFlag = true;
+						} else {
+							doorType = "";
+						}
+					}
+				}
+			}
+		} 
+		doorType = "item";
+		*/
+	}
+	
+	var ritualIndex = -1;
+	var ritualCheck = irandom_range(1, 100) + global.playerTime*0.4;
+	if (ritualCheck >= 1) {
+		var ritualFlag = false;
+		ritualIndex = irandom(array_length(bossDoorArray)-1);
+		while (ritualIndex == bossIndex || ritualIndex == itemIndex) {
+			ritualIndex = irandom(array_length(bossDoorArray)-1);
 		}
-		
-		doorType = "item";
-		
+		var ritualDoor = bossDoorArray[ritualIndex];
+		dir = ritualDoor.doorDir;
+		var ritualR = findSpecialRoom(dir, "ritual");
+		with (ritualDoor) {
+			doorType = "ritual";
+			show_debug_message("ritual door made")
+			connectRoom(id, dir, ritualR, Manager1, false);
+			if (invalid) {
+				instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
+				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+					if (!ritualFlag) {
+						show_debug_message("trying again")
+						var newRitualDoor = other.bossDoorArray[i]; 
+						ritualIndex = i;
+						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+						dir = newRitualDoor.doorDir;
+						show_debug_message(dir)
+						BossR = findSpecialRoom(dir, "ritual");
+						//connectRoom(id, req.dir, req.room, req.owner);
+						with (newRitualDoor) {
+							invalid = false;
+							connectRoom(id, dir, ritualR, Manager1, true);
+							if (!invalid) {
+								doorType = "ritual";
+								ritualFlag = true;
+							}
+						}
+						other.retryCount++;
+					}
+				}
+			}
+		}
+	}
+	
+	var arenaIndex = -1;
+	var arenaCheck = irandom_range(1, 100) + global.playerTime*0.4;
+	if (arenaCheck >= 1) {
+		var arenaFlag = false;
+		arenaIndex = irandom(array_length(bossDoorArray)-1);
+		while (arenaIndex == bossIndex || arenaIndex == itemIndex || arenaIndex == ritualIndex) {
+			arenaIndex = irandom(array_length(bossDoorArray)-1);
+		}
+		var arenaDoor = bossDoorArray[arenaIndex];
+		dir = arenaDoor.doorDir;
+		var arenaR = findSpecialRoom(dir, "arena");
+		with (arenaDoor) {
+			doorType = "arena";
+			show_debug_message("arena door made")
+			connectRoom(id, dir, arenaR, Manager1, false);
+			if (invalid) {
+				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+					if (!arenaFlag) {
+						show_debug_message("trying again")
+						var newArenaDoor = other.bossDoorArray[i]; 
+						arenaIndex = i;
+						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+						dir = newArenaDoor.doorDir;
+						show_debug_message(dir)
+						BossR = findSpecialRoom(dir, "arena");
+						//connectRoom(id, req.dir, req.room, req.owner);
+						with (newArenaDoor) {
+							doorType = "arena";
+							invalid = false;
+							connectRoom(id, dir, arenaR, Manager1, true);
+							if (!invalid) {
+								doorType = "arena";
+								arenaFlag = true;
+							} else {
+								doorType = "";
+							}
+						}
+						other.retryCount++;
+					}
+				}
+			}
+		}
+	}
+	var runeIndex = 0;
+	var runeCheck = irandom_range(1, 100) + global.playerTime*0.4;
+	if (runeCheck >= 1) {
+		var runeFlag = false;
+		runeIndex = irandom(array_length(bossDoorArray)-1);
+		while (runeIndex == bossIndex || runeIndex == itemIndex || runeIndex == ritualIndex || runeIndex = arenaIndex) {
+			runeIndex = irandom(array_length(bossDoorArray)-1);
+		}
+		var runeDoor = bossDoorArray[runeIndex];
+		dir = runeDoor.doorDir;
+		var runeR = findSpecialRoom(dir, "rune");
+		with (runeDoor) {
+			doorType = "rune";
+			show_debug_message("rune door made")
+			connectRoom(id, dir, runeR, Manager1, false);
+			if (invalid) {
+				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+					if (!runeFlag) {
+						show_debug_message("trying again")
+						var newRuneDoor = other.bossDoorArray[i]; 
+						runeIndex = i;
+						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+						dir = newRuneDoor.doorDir;
+						show_debug_message(dir)
+						BossR = findSpecialRoom(dir, "rune");
+						//connectRoom(id, req.dir, req.room, req.owner);
+						with (newRuneDoor) {
+							doorType = "rune";
+							invalid = false;
+							connectRoom(id, dir, runeR, Manager1, false);
+							if (!invalid) {
+								doorType = "rune";
+								runeFlag = true;
+							}
+						}
+						other.retryCount++;
+					}
+				}
+			}
+		}
 	}
 	floorState = genState.runRoomManagers;
 } else if (floorState == genState.runRoomManagers) {

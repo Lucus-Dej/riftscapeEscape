@@ -4,8 +4,11 @@ if (uiHealth <= 100 && !inOverhealth) {
 		instance_destroy(overheatBar);
 	}
 	draw_healthbar(16, 16, 348, 32, uiHealth, c_dkgrey, c_red, c_red, 0, true, true);
-} else if (!overHealthOverheated) {
+} else if (!overHealthOverheated && !hasOverhealthRune) {
 	draw_healthbar(16, 16, 348, 32, overhealthTimer, c_red, c_red, c_aqua, 0, true, true);
+	if (oItemManager.hasPetrifiedHeart) {
+		overhealthTimer-= 2;
+	}
 	overhealthTimer-=0.5;
 	inOverhealth = true;
 	if (overhealthTimer < 0) {
@@ -19,6 +22,11 @@ if (uiHealth <= 100 && !inOverhealth) {
 		overHealthSpeedBonus = 0;
 		overHealthBulletDelay = 0;
 		overHealthDamageBuff = 0;
+		if (oItemManager.hasPetrifiedHeart) {
+			for (var i = 0; i < 360; i += 30) {
+				playerBulletFire(oTruePlayer.x, oTruePlayer.y, i, global.bullet_speed, global.playerDamage*0.6, global.chosenBullet, oTruePlayer);
+			}
+		}
 	}
 } else overheatBar = draw_healthbar(16, 16, 348, 32, 100, c_blue, c_black, c_red, 0, true, true);
 
@@ -28,13 +36,16 @@ if (dodgeLifeBonus > 0) {
 
 if (overHealthOverheated) {
 	overHealthCooldownBuff = 0;
+	if (oItemManager.hasPetrifiedHeart) {
+		overhealthSuperTimer -= 4.5;
+	}
 	overhealthSuperTimer--;
 	overhealthCooldownUI = (overhealthSuperTimer/overhealthSuperTotal)*100;
 	draw_healthbar(16, 48, 300, 32, overhealthCooldownUI, c_yellow, c_black, c_orange, 0, true, true);
 	if (overhealthSuperTimer < 0) {
-	overhealthSuperTimer = overhealthSuperCooldown;
-	overHealthOverheated = false;
-}
+		overhealthSuperTimer = overhealthSuperCooldown;
+		overHealthOverheated = false;
+	}
 }
 abilityActive[0] = initate_sword;
 abilityActive[1] = initDodge;
@@ -72,8 +83,6 @@ for (var i = 0; i < array_length(abilityActive); i++) {
 		draw_text(startX+32, barY1, "Press "+string(abilityKey[i])); 
 	}
 }
-
-
 
 if (!inLevelMenu) {
 	draw_set_color(c_white);
@@ -132,3 +141,5 @@ draw_text (uiX, uiY + 8*16, "Damage"+string (global.playerDamage));
 //draw_text (uiX, uiY + 15*16, "thought cooldown bonus"+string (trackDodgeThoughtTimer));
 //draw_text (uiX, uiY + 16*16, "health"+string (max_hp));
 //draw_text (uiX, uiY + 17*16, "health"+string (global.player_health));
+
+

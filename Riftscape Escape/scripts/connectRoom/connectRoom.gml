@@ -1,7 +1,8 @@
-function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
+function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
+	invalid = false;
 	if (spawned) return;
-	validForSpecialRoom = false;
-	spawned = true;
+	
+	
 	if (_room == noone) return;
 	var roomData = room_get_info(_room, false, true)
 	var roomInstData = roomData.instances;
@@ -32,6 +33,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	// debug message error in case
 	if (templateDoor == noone) {
 		show_debug_message("No matching door possible");
+		invalid = true;
 		return;
 	}
 	var sep = oGhostBarrier.sprite_width;
@@ -63,17 +65,22 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var spriteOffsetX = oRoomClaimY.sprite_width;
 	var spriteOffsetY = oRoomClaimY.sprite_height;
 	
-	var testRange = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oRoomManager, false, false);
+	var testRange = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oFlexWall, false, false);
 	
 	var reserveCheck = collision_rectangle(left, top, right+spriteOffsetX, bottom+spriteOffsetY, oRoomReserve, true, true);
-	if (reserveCheck != noone || testRange != noone) {
-		show_debug_message("INVALID ROOM FOUND")
+	if ((reserveCheck != noone || testRange != noone) && !_force) {
+		show_debug_message("INVALID ROOM FOUND");
+		show_debug_message(reserveCheck);
+		show_debug_message(testRange);
 		invalid = true;
 		return;
 	}
+	spawned = true;
+	validForSpecialRoom = false;
 	var claim = instance_create_layer(left, top, "Instances", oRoomReserve);
 	claim.RoomID = oFloorManager.IDCount + 1;
 	setClaimBounds(claim, left, top, right, bottom);
+	var ritualID = 1;
 	if (!invalid)
 	for (var i = 0; i < array_length(roomInstData); i++) {
 		var inst = roomInstData[i];
@@ -116,6 +123,13 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 			newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Items", obj);
 		}
 		
+		if (obj == oRitualRoomSpawnMarker) {
+			newInst.ID = ritualID;
+			ritualID++;
+		}
+		
+		
+		
 		//show_debug_message(newInst.RoomID)
 	}
 	roomManager = instance_create_layer(_doorConnector.x, _doorConnector.y, "Instances", oRoomManager);
@@ -123,6 +137,12 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner) {
 	var ranPool = irandom_range(-2, 4);
 	roomManager.diffPool = oFloorManager.difficultyPool+ranPool;
 	roomManager.floorID = oFloorManager.floorID;
+	if (doorType == "item") {
+		roomManager.isChallenge = true;
+	}
+	if (doorType == "arena") {
+		roomManager.type = roomManagerType.arena
+	}
 	
 	
 	with (spawner) {
@@ -173,7 +193,7 @@ function findRoom (_sideAngle) {
 	for (var i = 0; i < array_length(validPool); i++) {
 		var roomCheck = validPool[i];
 		var tags = asset_get_tags(roomCheck);
-		 if (!array_contains(tags, "item") && (!array_contains(tags, "boss"))) {
+		 if (!array_contains(tags, "item") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
 			 array_push(filtered, roomCheck);
 		 }
 	}

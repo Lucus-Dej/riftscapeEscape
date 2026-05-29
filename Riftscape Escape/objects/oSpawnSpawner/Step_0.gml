@@ -24,9 +24,11 @@ if (Manager == noone ) {
 
 if (instance_exists(Manager) && Manager.isChallenge) {
 	if (instance_exists(child_spawner))
-	with child_spawner {
-		sprite_index = sStartButtonEvil
-	}
+		with child_spawner {
+			sprite_index = sStartButtonEvil
+		}
+	} else {
+	sprite_index = sStartButton;
 }
 if (instance_exists(Manager) && !con && RoomID != 0 && !childSpawned) {
 	child_spawner = instance_create_layer(x, y, "Instances", oStartRoom);
@@ -35,7 +37,11 @@ if (instance_exists(Manager) && !con && RoomID != 0 && !childSpawned) {
 	child_spawner.spawnID = RoomID;
 	if (Manager.isChallenge) {
 		with child_spawner {
+			show_debug_message("BBBBBBBBBBB")
 			sprite_index = sStartButtonEvil
 		}
+	} else {
+		sprite_index = sStartButton;
+		show_debug_message("CCCCCCCCCCCCC")
 	}
 }

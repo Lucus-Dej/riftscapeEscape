@@ -1,14 +1,10 @@
 if (Manager == noone) {
 	with (oWavebasedManager) {
-		if (other.Manager == RoomID) {
-			other.Manager = id;
-		}
+		other.Manager = id;
 	}
 }
-if (Manager.state = waveState.inBetween) {
-	
-}
-if (childSpawner == noone) {
+
+if (childSpawner == noone && instance_exists(Manager)) {
 	childSpawner = instance_create_layer(x, y, "Instances", oStartRoomWave);
 	childSpawner.host = id;
 	childSpawner.RoomID = RoomID;

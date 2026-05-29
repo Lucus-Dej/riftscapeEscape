@@ -11,6 +11,7 @@ if (searchItem == true) {
 if (global.chargeItem != noone) {
 	
 }
+
 if (hasLilFurnace && !instance_exists(oLilFurnace)) {
 	if (instance_exists(oTruePlayer)) {
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oLilFurnace);
@@ -138,11 +139,13 @@ if (hasSifterEssence) {
 		} else {
 			if (sifterTimer <= 0) {
 				if (oPlayerManager.inOverhealth) {
+					addDamageNumber(x, y, sifterEssenceDmg*2.5);
 					enem.enemey_hp -= sifterEssenceDmg*2.5;
-					oPlayerManager.overhealthTimer += 7.5;
+					oPlayerManager.overhealthTimer += 11.5;
 				} else {
+					addDamageNumber(x, y, sifterEssenceDmg);
 					enem.enemey_hp -= sifterEssenceDmg;
-					oPlayerManager.overhealthSuperTimer -= 7.5;
+					oPlayerManager.overhealthSuperTimer -= 11.5;
 					global.player_health += sifterEssenceDmg*10;
 				}
 				

@@ -1,4 +1,4 @@
-if (state == waveState.idle) {
+if (state == waveState.idle && RoomID != -1) {
 	if (!spawnChecked) {
 		with (oEnemStart) {
 			if (RoomID == other.RoomID) {
@@ -86,6 +86,7 @@ if (state == waveState.inBetween) {
 	if (roundsTillItem == 0) {
 		itemRound = true;
 	}
+	if (!restrictedArrays)
 	switch (wave) {
 		case 1:
 		array_push(waveArray, oEnemBasic)
@@ -184,7 +185,22 @@ if (state == waveState.inBetween) {
 	startingWeight *= 1.06;
 	waveWeight = startingWeight;
 	waveCooldown = waveTimer;
-	state = waveState.waiting;
+	if (wave >= waveLimit && isLimited) {
+		state = waveState.done;
+		active = false;
+		itemSpawner = noone;
+		with (oWavebasedStarter) {
+			itemSpawner = instance_nearest(x, y, oItemFlag);
+		}
+		with (itemSpawner) {
+			event_user(1);
+		}
+		oItemManager.luckBonus += 4;
+		oPlayerManager.xpMult += 0.2;
+	} else {
+		state = waveState.waiting;
+	}
+	
 }
 if (waveCooldown > 0 && state == waveState.waiting) {
 	waveCooldown--;

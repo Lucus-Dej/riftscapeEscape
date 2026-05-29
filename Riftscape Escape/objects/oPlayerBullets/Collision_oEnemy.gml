@@ -43,8 +43,10 @@ if (!ds_exists(damagedList, ds_type_map)) {
 			
 		}
         if (oItemManager.hasWaterDamagedNote && !hit.hasDamaged) {
-            hit.enemey_hp -= 1.4 * damage;
-			addDamageNumber(x, y, 1.4 * damage);
+			damage *= 1.4;
+            hit.enemey_hp -= damage;
+			addDamageNumber(x, y, damage);
+			hit.hasDamaged = true;
         } else {
 			addDamageNumber(x, y, damage);
             hit.enemey_hp -= damage;
@@ -58,7 +60,17 @@ audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
         if (hit.enemey_hp <= 0) {
             oPlayerManager.lastKilled = hit.id;
             instance_destroy(hit);
+			overkill = damage - hit.enemey_hp;
             global.playerKilled = true;
+			if (oItemManager.hasHauntedGravestone) {
+				var ghost = instance_create_layer(x, y, "Instances", oGravestoneGhost);
+				if (oItemManager.hasLostCrown) {
+					ghost.damage += overkill*1.5;
+				} else {
+					ghost.damage += overkill*1.1;
+				}
+			}
+			
 			if (object_index == oSwordLife) {
 				if (oPlayerManager.hasSwordThought) {
 					oPlayerManager.swordCooldownBonus = 22;

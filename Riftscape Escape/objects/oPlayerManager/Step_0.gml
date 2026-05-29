@@ -61,8 +61,22 @@ if (leveling && levelsPending <=0) {
 }
 
 
+
 // damage and health stuff
 if (tookDamage) {
+	if (oItemManager.hasD2) {
+		var rollCheck = irandom_range(1, 100);
+		if (rollCheck + global.playerTime >= 2) {
+			var itemLength = array_length(oItemManager.itemList)-1;
+			var itemIndex = irandom(itemLength);
+			var foundItem = oItemManager.itemList[itemIndex];
+			itemRemove(foundItem);
+			var rarity = findItemRarity(foundItem);
+			refreshItem(rarity, foundItem);
+			var newItem = rollItem(true);
+			itemAdd(newItem);
+		}
+	}
 	if (inOverhealth) {
 		overhealthTimer /= 3;
 	}
@@ -137,13 +151,8 @@ if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
+
 	}
 	moveSword = false;
 	if (hasSwordFate) {
@@ -205,13 +214,7 @@ if (dodgeState == DODGE_PHASE.onStandby) {
 			if (enem != noone) {
 				dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 			}
-			if (oItemManager.hasMetalOrb) {
-				bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-				bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-				bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			} else {
-				bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-			}
+			playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 		}
 		trackDodgeFate = true;
 		inDodge = true;
@@ -247,13 +250,7 @@ if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePre
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 	}
 	trackDodgeFate = true;
 	dodgeState = DODGE_PHASE.blackflashing;
@@ -328,13 +325,7 @@ if (crystalTotal >= crystalMax && crystalPressed && initCrystal) {
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oCrystal);
 	crystalTotal = 0;
@@ -379,13 +370,7 @@ if (initMinion && !instance_exists(oMinion)) {
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinion);
 }
@@ -399,13 +384,7 @@ if (initMinion && hasMinionTime && !instance_exists(oMinionTime)) {
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionTime);
 }
@@ -427,13 +406,7 @@ if (circleTotal >= 2250 && circlePressed && initCircle) {
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oCricleOfFate);
 }
@@ -456,13 +429,7 @@ if (huskTotal >= huskMax && huskPressed && initHusk) {
 		if (enem != noone) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir+35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir-35, global.bullet_speed, global.playerDamage*0.65, global.chosenBullet, oTruePlayer);
-		} else {
-			bulletFire(oTruePlayer.x,oTruePlayer.y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, oTruePlayer);
-		}
+		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
 	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oMindHusk);
 	huskTotal = 0;
@@ -508,7 +475,9 @@ if (inOverhealth) {
 			var num = irandom_range(1, 300);
 			if (num+(global.playerTime*4) >= 300) {
 				bloodyGemTimer = bloodyGemCooldown;
-				playerBulletFire(oTruePlayer.x, oTruePlayer.y, irandom(360), global.bullet_speed, global.playerDamage, global.chosenBullet*0.6, oTruePlayer);
+				if (instance_exists(oTruePlayer)) {
+					playerBulletFire(oTruePlayer.x, oTruePlayer.y, irandom(360), global.bullet_speed*0.6, global.playerDamage*0.7, global.chosenBullet, oTruePlayer);
+				}
 			}
 		}
 		

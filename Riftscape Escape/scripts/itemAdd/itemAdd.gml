@@ -23,6 +23,17 @@ function itemAdd(_item){
 		break;
 		
 		// rares
+		case oD2:
+		oItemManager.hasD2 = true;
+		break;
+		case oWeeklyPaycheck:
+		oItemManager.hasWeeklyPaycheck = true;
+		oItemManager.luckBonus += 8;
+		var spawn = instance_nearest(x, y, oItemFlag)
+		with (spawn) {
+			event_user(1);
+		}
+		break;
 		case oBrokenBloodVial:
 		global.chosenBullet = oBloodVialBullets;
 		break;
@@ -63,6 +74,15 @@ function itemAdd(_item){
 		break;
 		
 		// powerful
+		case oDoubleOrNothing:
+		oItemManager.hasDoubleOrNothing = true;
+		break;
+		case oHeartPendent:
+		oItemManager.hasHeartPendent = true;
+		break;
+		case oWeightlessHourglass:
+		oItemManager.hasWeightlessHourglass = true;
+		break;
 		case oCrackedEgg:
 		oItemManager.hasCrackedEgg = true;
 		break;
@@ -142,6 +162,13 @@ function itemAdd(_item){
 		realityUp();
 		break;
 		
+		case oHauntedGravestone:
+		oItemManager.hasHauntedGravestone = true;
+		break;
+		case oPetrifiedHeart:
+		oItemManager.hasPetrifiedHeart = true;
+		essenceUp();
+		break;
 		case oBrokenSnowglobe:
 		oItemManager.hasBrokenSnowglobe = true;
 		oPlayerManager.statBulletDebuff += 10;
@@ -190,164 +217,185 @@ function displayItemFunction(_item){
 	var descLength = string_length(desc)
 	switch (item) {
 		case oBloodySkull:
-		desc = "Essence Up";
+		desc = "Bloody Skull: Essence Up";
 		break;
 		case oBlueprint:
-		desc = "Reality Up";
+		desc = "Blueprint: Reality Up";
 		break;
 		case oBurntBook:
-		desc = "Fate Up";
+		desc = "Burnt Book: Fate Up";
 		break;
 		case oDeformedBrain:
-		desc = "Thought Up";
+		desc = " Deformed Brain: Thought Up";
 		break;
 		case oPottedPlant:
-		desc = "Life Up";
+		desc = "Potted Plant: Life Up";
 		break;
 		case oTornPainting:
-		desc = "Time Up";
+		desc = "Torn Painting: Time Up";
 		break;
 		
 		// rares
+		case oD2:
+		desc = "D2: Chance To Reroll An Item When Taking Damage. Gain Luck When This Occurs";
+		break;
+		case oWeeklyPaycheck:
+		desc = "Weekly Paycheck: Simple Item Now, More Luck Later";
+		break;
 		case oBloodyGem:
-		desc = "Chance To Fire Bullets While In Overhealth";
+		desc = "Bloody Gem: Chance To Fire Bullets While In Overhealth";
 		break;
 		case oBrokenBloodVial:
-		desc = "Blood Bullets, Damage Over Time";
+		desc = "Broken Blood Vial: Blood Bullets, Damage Over Time";
 		break;
 		case oBrokenBoomerang:
-		desc = "Boomerang Bullets";
+		desc = "Broken Boomerang: Boomerang Bullets";
 		break;
 		case oDirtyMirror:
-		desc = "Very Bouncy Bullets";
+		desc = "Dirty Mirror: Very Bouncy Bullets";
 		break;
 		case oGenStone:
 		desc = "???";
 		break;
 		case oHammer:
-		desc = "More Damage To Cover";
+		desc = "Hammer: More Damage To Cover";
 		break;
 		case oHollowedDice:
-		desc = "Chance For Double Simple Items";
+		desc = "Hollowed Dice: Chance For Double Simple Items";
 		break;
 		case oIceSoup:
-		desc = "Good Item Now, Bad Luck Later";
+		desc = "Ice Soup: Good Item Now, Bad Luck Later";
 		break;
 		case oRareSeed:
-		desc = "Avoiding Damage Can Increase Your Life";
+		desc = "Rare Seed: Avoiding Damage Can Increase Your Life";
 		break;
 		case oSmallSculpture:
-		desc = "Speed On Kill";
+		desc = "Small Sculpture: Speed On Kill";
 		break;
 		case oWaterDamagedNote:
-		desc = "First Hit Deals More Damage";
+		desc = "Water Damaged Note: First Hit Deals More Damage";
 		break;
 		
 		// powerful
+		case oDoubleOrNothing:
+		desc = "Double Or Nothing: Skipping An Item Can Reward You Or Could Do Nothing";
+		break;
+		case oHeartPendent:
+		desc = "Heart Pendent: Bullets Split On Bounce";
+		break;
+		case oWeightlessHourglass:
+		desc = "Weightless Hourglass: Bullets Slow, Gaining Bonus Damage And Size"
+		break;
 		case oCrackedEgg:
-		desc = "In Overhealth, Become Immune To Contact Damage And Spread Poison"
+		desc = "Cracked Egg: In Overhealth, Become Immune To Contact Damage And Spread Poison"
 		break;
 		case oActionFigure:
-		desc = "Summon Action Figure On Kill";
+		desc = "Action Figure: Summon Action Figure On Kill";
 		break;
 		case oLilFurnacePickup:
-		desc = "A Friend Who Summons More Friends";
+		desc = "Lil Furnace: A Friend Who Summons More Friends";
 		break;
 		case oBrainInAJar:
-		desc = "Chance To Increase Cooldowns When Taking Damage";
+		desc = "Brain In A Jar: Chance To Increase Cooldowns When Taking Damage";
 		break;
 		case oDirectorsNote:
-		desc = "Massive Firerate Bonus, Massive Damage Reduction";
+		desc = "Director's Note: Massive Firerate Bonus, Massive Damage Reduction";
 		break;
 		case oGunpowder:
-		desc = "Explosive Bullets";
+		desc = "Gunpowder: Explosive Bullets";
 		break;
 		case oImageOfYou:
-		desc = "Feed It...";
+		desc = "Image Of You: Feed It...";
 		break;
 		case oLostAmulent:
 		break;
 		case oMagnet:
-		desc = "Chance For Orbiting Bullets + Ghost Bullets";
+		desc = "Magnet: Chance For Orbiting Bullets + Ghost Bullets";
 		break;
 		case oMetalOrb:
-		desc = "More Shots";
+		desc = "Metal Orb: More Shots";
 		break;
 		case oMirrorShard:
-		desc = "Accurate Bouncing Bullets";
+		desc = "Mirror Shard: Accurate Bouncing Bullets";
 		break;
 		case oReflectiveGem:
-		desc = "Bullet On Item Use";
+		desc = "Reflective Gem: Bullet On Item Use";
 		break;
 		case oSingularity:
-		desc = "Homing Bullets";
+		desc = "Singularity: Homing Bullets";
 		break;
 		case oWhisperingCrystal:
-		desc = "Piercing Bullets";
+		desc = "Whispering Crystal: Piercing Bullets";
 		break;
 		case oLostCrown:
-		desc = "Powerful Minions";
+		desc = "Lost Crown: Powerful Minions";
 		break
 		
 		
 		// mythics
 		case oSifterEssence:
-		desc = "Drain Nearby Enemies For Bonuses + Essence Up";
+		desc = "Essence Of Sifter: Drain Nearby Enemies For Bonuses + Essence Up";
 		break;
 		case oAlextraEssence:
-		desc = "Enemies Are Stunned When Spawned + Thought Up";
+		desc = "Essence Of Alexta: Enemies Are Stunned When Spawned + Thought Up";
 		break;
 		case oVirstEssence:
-		desc = "An Extra Life, At A Cost + Time Up";
+		desc = "Essence Of Virst: An Extra Life, At A Cost + Time Up";
 		break;
 		case oTorzolEssence:
-		desc = "Regeneration + Life Up";
+		desc = "Essence Of Torzol: Regeneration + Life Up";
 		break;
 		case oVeribroseEssence:
-		desc = "An Upcoming Choice + Fate Up";
+		desc = "Essence Of Veribrose: An Upcoming Choice + Fate Up";
 		break;
 		case oKrostEssence:
-		desc = "Escalating Speed + Contact Damage + Reality Up";
+		desc = "Essence Of Krost: Escalating Speed + Contact Damage + Reality Up";
 		break;
 		
+		case oHauntedGravestone:
+		desc = "Haunted Gravestone: On Kill, Summon An Explosive Angry Spirit";
+		break;
+		case oPetrifiedHeart:
+		desc = "Petrified Heart: Faster Overhealth + Fire Bullets At End Of Overhealth + Essence Up";
+		break;
 		case oBrokenSnowglobe:
-		desc = "Accelerating Bullets + Time Up + Faster Bullets Deal More Damage";
+		desc = "Broken Snowglobe: Accelerating Bullets + Time Up + Faster Bullets Deal More Damage";
 		break;
 		case oElectricKite:
-		desc = "Ricochet Bullets + Time Up";
+		desc = "Electric Kite: Ricochet Bullets + Time Up";
 		break;
 		case oPoorFingerPainting:
-		desc = "All Up";
+		desc = "Poor Finger Painting: All Stat Ups";
 		break;
 		case oSacDagger:
-		desc = "Extreme Lifesteal At A Cost + Essence Up";
+		desc = "Sacrifical Dagger: Extreme Lifesteal At A Cost + Essence Up";
 		break;
 		case oTesseract:
-		desc = "Continuous Movement Grants Bonuses";
+		desc = "Tesseract: Continuous Movement Grants Bonuses";
 		break;
 		case oTetheredSoulPickup:
-		desc = "A Protective Friend + Extra Life + Fate Up";
+		desc = "Tethered Soul: A Protective Friend + Extra Life + Fate Up";
 		break;
 		case oUnstableEnergy:
-		desc = "Summon Bullets On Hit + Fate Up";
+		desc = "Unstable Energy: Summon Bullets On Hit + Fate Up";
 		break;
 		case oBlackHoleCharge:
-		desc = "Summon A Protective Blackhole";
+		desc = "Black Hole's For Dummies: Summon A Protective Blackhole";
 		break;
 		case oHarvestBook:
-		desc = "Summon A Circle Of Protective Minions";
+		desc = "Harvest: Summon A Circle Of Protective Minions";
 		break;
 		case oDictionaryCharge:
-		desc = "Random Stat Up";
+		desc = "Dictionary: Random Stat Up";
 		break;
 		case oDeathBook:
-		desc = "Kill All Non Boss Enemies";
+		desc = "Death: Kill All Non Boss Enemies";
 		break;
 		case oDreamsBook:
-		desc = "Begin Again With What You Have Gained";
+		desc = "Dreams: Begin Again With What You Have Gained";
 		break;
 		case oThePathForward:
-		desc = "Summon A Powerful Item";
+		desc = "The Path Forward: Summon A Powerful Item";
 		break;
 		
 	}
@@ -387,6 +435,13 @@ function itemRemove(_item){
 		break;
 		
 		// rares
+		case oD2:
+		oItemManager.hasD2 = false;
+		break;
+		case oWeeklyPaycheck:
+		oItemManager.hasWeeklyPaycheck = false;
+		oItemManager.luckBonus -= 8;
+		break;
 		case oBrokenBloodVial:
 		global.chosenBullet = oBullet;
 		break;
@@ -427,6 +482,15 @@ function itemRemove(_item){
 		break;
 		
 		// powerful
+		case oDoubleOrNothing:
+		oItemManager.hasDoubleOrNothing = false;
+		break;
+		case oHeartPendent:
+		oItemManager.hasHeartPendent = false;
+		break;
+		case oWeightlessHourglass:
+		oItemManager.hasWeightlessHourglass = false;
+		break;
 		case oCrackedEgg:
 		oItemManager.hasCrackedEgg = false;
 		break;
@@ -508,6 +572,13 @@ function itemRemove(_item){
 		realityDown();
 		break;
 		
+		case oHauntedGravestone:
+		oItemManager.hasHauntedGravestone = false;
+		break;
+		case oPetrifiedHeart:
+		oItemManager.hasPetrifiedHeart = false;
+		essenceDown();
+		break;
 		case oBrokenSnowglobe:
 		oItemManager.hasBrokenSnowglobe = false;
 		oPlayerManager.statBulletDebuff -= 10;
@@ -628,4 +699,23 @@ function rollItem(_chargeFilter) {
 	}
 	show_debug_message(item)
 	return item;
+}
+function findItemRarity(_item) {
+	var rarity = 0;
+	var check = -1;
+	check = ds_list_find_index(oItemManager.simpleItemCopy, _item);
+	if (check == -1) {
+		check = ds_list_find_index(oItemManager.rareItemCopy, _item);
+		rarity = 1;
+	}
+	if (check == -1) {
+		check = ds_list_find_index(oItemManager.powerfulItemCopy, _item);
+		rarity = 2;
+	}
+	if (check == -1) {
+		check = ds_list_find_index(oItemManager.mythicItemCopy, _item);
+		rarity = 3;
+	}
+	
+	return rarity;
 }

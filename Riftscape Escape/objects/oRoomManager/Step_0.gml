@@ -3,6 +3,27 @@ if (instance_exists(oFloorManager)) {
 } else {
 	isFloorGen = false;
 }
+if (type == roomManagerType.arena && !wavebasedSpawned) {
+	waveManager = instance_create_layer(x, y, "Instances", oWavebasedManager);
+	waveManager.RoomID = RoomID;
+	waveManager.isLimited = true;
+	waveManager.waveLimit = 7;
+	waveManager.roundsTillBoss = 6;
+	waveManager.restrictedArrays = true;
+	waveManager.startingWeight = diffPool+2;
+	array_copy(waveManager.waveArray, 0, enemArray, 0, array_length(enemArray));
+	wavebasedSpawned = true;
+}
+if (type == roomManagerType.arena && instance_exists(waveManager) && waveManager.wave == wavebasedAddChallenge && !addedChallenge) {
+	show_debug_message("HELP")
+	var temp = getEnemPool(floorID);
+	var startIndex = array_length(waveManager.waveArray);
+	for (var i = 0; i < array_length(temp.cArray); i++) {
+		waveManager.waveArray[startIndex + i] = temp.cArray[i];
+	}
+	waveManager.startingWeight *= 2;
+	addedChallenge = true;
+}
 // checks if boss exists, changing count logic if so
 hasBoss = (instance_exists(workerBossSpawners));
 // timers

@@ -1,3 +1,8 @@
+
+show_debug_message(irandom(100));
+show_debug_message(irandom(100));
+show_debug_message(irandom(100));
+
 global.playerFate = 1; //damage
 global.playerReality = 1; //speed
 global.playerThought = 1; //cooldown
@@ -164,6 +169,7 @@ overheatBar = noone;
 overhealthFlag = true;
 
 //xp
+xpMult = 1;
 xpTotal = 0;
 xpLevel = 1;
 xpProgress = 115;
@@ -281,3 +287,16 @@ levelArray = [caves0, caves01, f3, desert0, desert01, d3, wasteland0, wasteland0
 levelIndex = 0;
 currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];
+
+//rune stuff
+validRuneArray = [oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+activeRuneArray = [];
+hasLifestealRune = false;
+hasOverhealthRune = false;
+hasBulletRangeRune = false;
+hasBossDropRune = false;
+hasExplosiveRune = false;
+hasLuckRune = false;
+hasXPRune = false;
+
+xpRuneReduction = 1;

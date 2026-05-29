@@ -5,10 +5,10 @@ recoil_cooldown = 3;
 fire_duration = 12;
 fire_timer = fire_duration;
 recoil_timer = 0;
-enemey_hp = 16;
+enemey_hp = 12;
 
 ang = 0;
-enemSpeed = 1.25;
+enemSpeed = 1.35;
 base_speed = enemSpeed;
 xp = 9.5;
 damage = 7;

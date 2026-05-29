@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"getRuneDesc",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"getRuneDesc",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

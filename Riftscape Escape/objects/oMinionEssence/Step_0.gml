@@ -1,5 +1,5 @@
 if (oPlayerManager.hasMinionReality) {
-	minionRealitySpeedBonus = -20;
+	minionRealitySpeedBonus = -35;
 }
 if (oItemManager.hasLostCrown) {
 	minionCrownDmgBonus = 0.08;

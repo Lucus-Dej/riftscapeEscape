@@ -1,4 +1,6 @@
 searchItem = false;
+runeCheck = false;
+ritualRerollAvailable = true;
 doBrain = false;
 bossSearch = false;
 brainNum = -99999;
@@ -52,13 +54,16 @@ ds_list_add(bookList, oDeathBook, oDreamsBook, oThePathForward, oDictionaryCharg
 item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oHarvestBook, oBloodyGem, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oLilFurnacePickup, oCrackedEgg, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oReflectiveGem, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
-ds_list_add(mythicItemList, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oVirstEssence, oTorzolEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oThePathForward, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
+ds_list_add(rareItemList, oD2, oWeeklyPaycheck, oHarvestBook, oBloodyGem, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
+ds_list_add(powerfulItemList, oDoubleOrNothing, oHeartPendent, oLilFurnacePickup, oWeightlessHourglass, oCrackedEgg, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oReflectiveGem, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
+ds_list_add(mythicItemList, oHauntedGravestone, oPetrifiedHeart, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oVirstEssence, oTorzolEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oThePathForward, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 ds_list_copy(simpleItemCopy, simpleItemList);
 ds_list_copy(rareItemCopy, rareItemList);
 ds_list_copy(powerfulItemCopy, powerfulItemList);
 ds_list_copy(mythicItemCopy, mythicItemList);
+
+
+donArray = [];
 searchItem = false;
 dropID = noone;
 brainTime = 60;
@@ -67,6 +72,8 @@ seedStart = false;
 seedFailed = false;
 seedCombatCheck = false
 
+hasD2 = false;
+hasWeeklyPaycheck = false;
 hasBloodyGem = false;
 hasGenStone = false;
 hasSmallSculpture = false;
@@ -81,14 +88,16 @@ spawnSimple = false;
 hasDirtyMirror = false;
 show_debug_message("ItemManager CREATED in room: " + string(room));
 
-// powerful passive
+// powerful passiv
+hasDoubleOrNothing = false;
+hasWeightlessHourglass = false;
 hasCrackedEgg = false;
 hasActionFigure = false;
 actionFigurePower = 0
 actionFigureTargetX = 0;
 actionFigureTargetY = 0;
 hasLostCrown = false;
-
+hasHeartPendent = false;
 hasLilFurnace = false;
 hasReflectiveGem = false;
 hasSingularity = false;
@@ -120,6 +129,8 @@ hasKrostEssence = false;
 
 
 //mythic passive
+hasHauntedGravestone = false;
+hasPetrifiedHeart = false
 hasTesseract = false;
 hasTetheredSoul = false;
 hasBrokenSnowglobe = false;

@@ -16,13 +16,7 @@ y += (yTo - y)/(minionSpeed);
 
 if (fire && !oPlayerManager.hasMinionThought) {
 	var dir =  point_direction(x, y, mouse_x, mouse_y);
-	bulletFire(x, y, dir, 4.5, global.playerLife*0.045, oMinonBullet, oTruePlayer);
-	if (oPlayerManager.hasMinionFate) {
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(x, y, dir+35, 4.5, global.playerLife*0.02+minionCrownDmgBonus, oMinonBullet, oTruePlayer);
-			bulletFire(x, y, dir-35, 4.5, global.playerLife*0.02+minionCrownDmgBonus, oMinonBullet, oTruePlayer);
-		}
-	}
+	playerBulletFire(x, y, dir, 4.5, global.playerLife*0.045, oMinonBullet, oTruePlayer);
 	fire = false;
 } else if (oPlayerManager.hasMinionThought) {
 	if (instance_exists(oEnemy)) {
@@ -31,14 +25,8 @@ if (fire && !oPlayerManager.hasMinionThought) {
 			bulletDelay --;
 		}
 		if (bulletDelay <= 0) {
-			bulletFireAt(x, y, target, 4.5, global.playerLife*0.045, oMinonBullet, id);
-			if (oPlayerManager.hasMinionFate) {
-				var dir = point_direction(x, y, target.x, target.y);
-				if (oItemManager.hasMetalOrb) {
-					bulletFire(x, y, dir+35, 4.5, global.playerLife*0.02+minionCrownDmgBonus/4, oMinonBullet, oTruePlayer);
-					bulletFire(x, y, dir-35, 4.5, global.playerLife*0.02+minionCrownDmgBonus/4, oMinonBullet, oTruePlayer);
-				}
-			}
+			var dir = point_direction(x, y, target.x, target.y);
+			playerBulletFire(x, y, dir, 4.5, global.playerLife*0.045, oMinonBullet, oTruePlayer);
 			bulletDelay = bulletCoolDown;
 		}
 	} else {

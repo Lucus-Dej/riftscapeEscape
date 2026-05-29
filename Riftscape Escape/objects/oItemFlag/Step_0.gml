@@ -4,6 +4,7 @@ if (Manager.combatFinished && !used) {
 		searchItem = true;
 		dropID = other.id;
 		if (other.bossRoom) {
+			if (oPlayerManager.hasBossDropRune) exit;
 			bossSearch = true;
 		}
 	}
@@ -14,6 +15,7 @@ if (Manager.combatFinished && !used) {
 }
 
 if (onStart && !used && !veribroseItem) {
+	show_debug_message("yo just tried to spawn an item")
 	with (oItemManager) {
 		searchItem = true;
 		dropID = other.id;
@@ -26,8 +28,12 @@ if (onStart && !used && !veribroseItem) {
 if (onStart && !used && veribroseItem) {
 	used = true
 	item = rollItem(false);
-	summon = instance_create_layer(x, y, "Instances", item);
-	summon.veribroseMark = true;
+	if (object_exists(item)) {
+		summon = instance_create_layer(x, y, "Instances", item);
+		summon.veribroseMark = true;
+	}
+	
+	
 }
 if (spawnItem && item != noone) {
 	summon = instance_create_layer(x, y, "Instances", item);

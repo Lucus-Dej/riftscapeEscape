@@ -17,7 +17,7 @@ allEnemPool = [oCaveSpitter, oEnemBasic, oEnemBig, oEnemBlackHole, oEnemDesertBi
 	oMummy, oWastelandDestroyer];
 	
 enum waveState {
-	preparing, idle, generatingWave, spawning, inBetween, waiting
+	preparing, idle, generatingWave, spawning, inBetween, waiting, done
 }
 state = waveState.idle;
 spawnDelay = 30;
@@ -30,3 +30,7 @@ waveTimer = 60;
 waveCooldown = waveTimer;
 itemSpawner = noone;
 inCombat = false;
+
+restrictedArrays = false;
+isLimited = false;
+waveLimit = 999999999999999999;

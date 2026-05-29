@@ -44,6 +44,12 @@ for (var i = 0; i < array_length(itemList); i++) {
 }
 if (hoveredItem != noone) {
 	displayItemFunction(hoveredItem);
+	if (ritualRerollAvailable && mouse_check_button_pressed(mb_left)) {
+		itemRemove(hoveredItem);
+		var newItem = rollItem(true);
+		itemAdd(newItem);
+		ritualRerollAvailable = false;
+	}
 }
 if (global.chargeItem != noone) {
     var obj = global.chargeItem.object_index;

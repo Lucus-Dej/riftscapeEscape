@@ -6,7 +6,17 @@ spawned = false;
 spawn_timer = spawn_cooldown;
 portal_cooldown = 35;
 portal_timer = portal_cooldown;
+enum roomManagerType {
+	normal,
+	ritual,
+	arena
+}
+type = roomManagerType.normal;
+waveManager = noone;
+wavebasedSpawned = false;
 
+wavebasedAddChallenge = 3;
+addedChallenge = false;
 isFloorGen = false;
 enum spawnState {
 	idle,
@@ -84,6 +94,13 @@ if (fmanager != noone) {
 	var arrayUnpacker = getEnemPool(floorID)
 	enemArray = arrayUnpacker.normArray;
 	bossArray = arrayUnpacker.bArray;
+	if (instance_exists(oRitualRoomManager)) {
+		with (oRitualRoomManager) {
+			if (RoomID == other.RoomID) {
+				manager = id;
+			}
+		}
+	}
 } 
 bossRoom = false;
 testRange = noone;

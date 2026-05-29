@@ -5,8 +5,7 @@ Manager = noone;
 gone = false;
 childSpawned = false;
 childSpawner = noone;
-
-if (instance_exists(oWavebasedManager)) {
+if (instance_exists(oWavebasedManager) && !instance_exists(oFloorManager)) {
 	with (oWavebasedManager) {
 		if (RoomID == other.RoomID) {
 			other.Manager = id;

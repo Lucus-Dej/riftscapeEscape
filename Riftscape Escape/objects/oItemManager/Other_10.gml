@@ -72,8 +72,13 @@ if (hasIceSoup && !iceSoupTriggered) {
 		rarity = 2;
 	}
 	iceSoupTriggered = true;
-	luckBonus -= 15;
+	luckBonus -= 8;
 	
+}
+if (runeCheck) {
+	chosenList = powerfulItemList;
+	rarity = 2;
+	runeCheck = false;
 }
 if (chosenList == simpleItemList) {
 	var i = irandom(ds_list_size(chosenList)-1);

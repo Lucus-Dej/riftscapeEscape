@@ -1,5 +1,6 @@
 path = -1;
 RoomID = 0;
+damage = 0;
 Manager = noone;
 invincible = false;
 bossBarIndex  = 0;

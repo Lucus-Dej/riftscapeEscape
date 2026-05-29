@@ -1,1 +1,1 @@
-draw_text(x, y, fmanager)
+draw_text(x, y, isChallenge)

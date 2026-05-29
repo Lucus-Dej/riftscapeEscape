@@ -8,6 +8,10 @@ if (!bossModApplied && isBoss) {
 	event_user(13);
 }
 flash = max(0, flash - 0.15);
+if (phasePoint1 >= enemey_hp && enraged == false) {
+	enraged = true;
+	image_blend = c_aqua;
+}
 if (brainDead) {
     exit;
 }
@@ -20,10 +24,7 @@ if (iFrames >= 0) {
 	iFrames--;
 }
 
-if (phasePoint1 >= enemey_hp && enraged == false) {
-	enraged = true;
-	image_blend = c_aqua;
-}
+
 	
 
 if (dragTimer > 0) {

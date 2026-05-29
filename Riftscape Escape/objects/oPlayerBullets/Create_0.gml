@@ -6,12 +6,17 @@ canSpread = false;
 baseSpeed = 0;
 spreadCount = 0;
 collCheck = noone;
+overkill = 0;
+if (oItemManager.hasHeartPendent) {
+	canBounce = true;
+	bounceNum += 1;
+}
 if (oItemManager.hasUnstableEnergy) {
 	canSpread = true
 	spreadCount = 6+global.playerTime;
 } 
 if (oItemManager.hasMirrorShard) {
-	canBounce = true
+	canBounce = true;
 	bounceNum += 1;
 	tracking = 1;
 } 
@@ -32,7 +37,7 @@ canAccel = false;
 canDecel = false;
 canOrbit = false
 lastHit = noone;
-existance = 300;
+existance = 40+20*global.playerReality;
 orbitCenter = oTruePlayer;
 orbitRadius = 0;
 orbitTargetRadius = 90;

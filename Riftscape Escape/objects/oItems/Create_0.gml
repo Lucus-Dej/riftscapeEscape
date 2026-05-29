@@ -6,6 +6,7 @@ idleTime = 30;
 index = -1;
 rarity = 0;
 veribroseMark = false;
+displayDesc = false;
 if (ds_list_find_index(oItemManager.rareItemList, object_index) != -1) {
     rarity = 1;
 }
