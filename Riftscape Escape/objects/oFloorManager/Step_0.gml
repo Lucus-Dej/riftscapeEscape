@@ -153,7 +153,7 @@ if (floorState == genState.complete ) {
 	
 	var ritualIndex = -1;
 	var ritualCheck = irandom_range(1, 100) + global.playerTime*0.4;
-	if (ritualCheck >= 1) {
+	if (ritualCheck >= 70) {
 		var ritualFlag = false;
 		ritualIndex = irandom(array_length(bossDoorArray)-1);
 		while (ritualIndex == bossIndex || ritualIndex == itemIndex) {
@@ -195,7 +195,7 @@ if (floorState == genState.complete ) {
 	
 	var arenaIndex = -1;
 	var arenaCheck = irandom_range(1, 100) + global.playerTime*0.4;
-	if (arenaCheck >= 1) {
+	if (arenaCheck >= 80) {
 		var arenaFlag = false;
 		arenaIndex = irandom(array_length(bossDoorArray)-1);
 		while (arenaIndex == bossIndex || arenaIndex == itemIndex || arenaIndex == ritualIndex) {
@@ -238,7 +238,7 @@ if (floorState == genState.complete ) {
 	}
 	var runeIndex = 0;
 	var runeCheck = irandom_range(1, 100) + global.playerTime*0.4;
-	if (runeCheck >= 1) {
+	if (runeCheck >= 65) {
 		var runeFlag = false;
 		runeIndex = irandom(array_length(bossDoorArray)-1);
 		while (runeIndex == bossIndex || runeIndex == itemIndex || runeIndex == ritualIndex || runeIndex = arenaIndex) {
