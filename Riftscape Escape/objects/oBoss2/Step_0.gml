@@ -1,13 +1,4 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	shoot_delay /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
@@ -15,6 +6,7 @@ if (brainDead) {
 //path timer reduction
 path_timer--;
 if (phasePoint1 >= enemey_hp && enraged == false) {
+	spawnNum -= 150;
 	enemSpeed -= 1;
 	bullet_speed = 1.5;
 	fire_duration += 30;
@@ -41,18 +33,15 @@ if (shoot_cooldown <= 0) {
 			} else {
 			bulletAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 		}
-		if (bossModApplied) {
-			bulletFire(x, y, bulletAng, bullet_speed, damage, oBossBullet, id);
+		bulletFire(x, y, bulletAng, bullet_speed, damage, oMiniBossBullet, id);
+	
+		recoil_timer = recoil_cooldown;
 		} else {
-			bulletFire(x, y, bulletAng, bullet_speed, damage, oMiniBossBullet, id);
-		}
+			shoot_cooldown = shoot_delay;
 			recoil_timer = recoil_cooldown;
-			} else {
-				shoot_cooldown = shoot_delay;
-				recoil_timer = recoil_cooldown;
-				fire_timer = fire_duration;
-				if (enraged)
-				bullet_speed += 0.1;
+			fire_timer = fire_duration;
+			if (enraged)
+			bullet_speed += 0.1;
 		}
 	}
 }
@@ -68,4 +57,18 @@ if (dragTimer > 0) {
 if (path_timer <= 0) {
     path_timer = path_cooldown;
     pathfind(global.Grid, oTruePlayer, enemSpeed, id);
+}
+spawnCheck = irandom(spawnNum)
+if (isBoss) {
+	spawnCheck = irandom(spawnNum/cooldownMult)
+}
+
+if (spawnCheck == 1) {
+	var spawn = instance_create_layer(x, y, "Instances", oEnemSpider);
+	if (isBoss) {
+		spawn.base_speed += 0.2;
+		spawn.enemey_hp -= 0.5;
+		
+	}
+	spawn.xp = 0;
 }

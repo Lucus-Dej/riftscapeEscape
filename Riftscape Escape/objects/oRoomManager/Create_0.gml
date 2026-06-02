@@ -15,7 +15,7 @@ type = roomManagerType.normal;
 waveManager = noone;
 wavebasedSpawned = false;
 
-wavebasedAddChallenge = 3;
+wavebasedAddChallenge = 4;
 addedChallenge = false;
 isFloorGen = false;
 enum spawnState {
@@ -35,7 +35,7 @@ enemyPull = 0;
 enem = noone;
 tempEnemy = noone;
 hasBoss = false;
-enemySelect = oEnemBasic;
+enemySelect = oEnemMiniMummy;
 spawn = false;
 bossPull = noone;
 temp_portal = noone;

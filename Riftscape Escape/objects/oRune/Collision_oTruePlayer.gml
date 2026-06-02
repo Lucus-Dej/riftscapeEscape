@@ -1,7 +1,8 @@
 activeDuration = 90;
 
-if (keyboard_check_pressed(vk_space)) {
-	array_push(oPlayerManager.activeRuneArray, id);
+if (keyboard_check_pressed(vk_space) && object_index != oDullRune) {
+	array_push(oPlayerManager.activeRuneArray, object_index);
+	//array_delete(oPlayerManager.validRuneArray, host.runeIndex, 1);
 	enableRune(object_index);
 	with (oRune) {
 		instance_destroy();

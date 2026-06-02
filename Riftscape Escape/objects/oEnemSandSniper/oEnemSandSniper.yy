@@ -9,8 +9,8 @@
   "name":"oEnemSandSniper",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"desert",
+    "path":"folders/enemies/basics/desert.yy",
   },
   "parentObjectId":{
     "name":"oUnlitEnemy",

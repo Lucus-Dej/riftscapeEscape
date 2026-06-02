@@ -14,7 +14,8 @@ if (xpTotal >= xpProgress) {
 }
 gridDebugPressed = keyboard_check_pressed(vk_enter);
 if (gridDebugPressed) {
-	toggleGrid = !toggleGrid;
+	debug = !debug;
+	show_debug_log(debug)
 }
 checkTokenMenu = layer_get_visible(tokenMenuLayer);
 checkLevelLayer = layer_get_visible(levelMenuLayer);
@@ -111,7 +112,7 @@ if (global.player_health <= 0) {
 }
 
 //stat calcs
-global.player_speed = krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus);
+global.player_speed = krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus)*0.8;
 fireRate = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
 if (fireRate < fireRateCap) {
 	global.bullet_delay = fireRateCap - ((fireRateCap - fireRate)*0.2);
@@ -126,12 +127,19 @@ if (krostEssenceSpeedBouns > 0) {
 	krostEssenceSpeedBouns -= 0.002;
 }
 
+// rune stuff
+if (!global.activeRoom && hasCooldownRune) {
+	lockAbilities = true;
+} else {
+	lockAbilities = false;
+}
 
 //sword stuff
 swordAttPressed = keyboard_check_pressed(ord(swordAttKey));
 if (initate_sword) {
-	sword_charge = swordTotal/(swordMax/100);
+	sword_charge = swordTotal/(swordMax)*100;
 	if (swordTotal <= swordMax) {
+		if (!lockAbilities)
 		swordTotal += 1+(cooldownRate + swordCooldownBonus);
 	}
 }
@@ -141,6 +149,7 @@ if (swordCooldownBonusTime >0) {
 if (swordCooldownBonusTime <= 0) {
 	swordCooldownBonus = 0;
 }
+
 if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
 	if (oItemManager.hasReflectiveGem) {
 		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
@@ -180,7 +189,7 @@ dodgePressed = keyboard_check_pressed(ord(dodgeKey));
 if (global.playerReality >= 5 && evilDodgeFlagIHate) {
 	dodgeLifeHP = global.player_health/4;
 	global.playerContactDmg = true;
-	dodgeCharge = dodgeTotal / 5;
+	dodgeCharge = (dodgeTotal/dodgeMax)*100;
 }
 if (initDodge && !evilDodgeFlagIHate) {
 	dodgeState = DODGE_PHASE.onCooldown;
@@ -194,6 +203,7 @@ if (dodgeState == DODGE_PHASE.onCooldown) {
 	if (dodgeTotal >= dodgeMax) {
 		dodgeState = DODGE_PHASE.onStandby;
 	} else {
+		if (!lockAbilities)
 		dodgeTotal += 1 + (cooldownRate);
 	}
 }
@@ -312,6 +322,7 @@ crystalPressed = keyboard_check_pressed(ord(crystalKey));
 if (initCrystal) {
 	crystalCharge = crystalTotal/25;
 	if (crystalTotal <= crystalMax) {
+		if (!lockAbilities)
 		crystalTotal +=1+(cooldownRate)+(realityBombCooldownBoost);
 	}
 }
@@ -361,7 +372,7 @@ if (realityBombCheck == BOMB_KILL_CHECK.failed) {
 }
 //minion stuff
 if (initMinion && !instance_exists(oMinion)) {
-	if (oItemManager.hasReflectiveGem) {
+	if (oItemManager.hasReflectiveGem && instance_exists(oTruePlayer)) {
 		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
 		var enem = noone;
 		with (oTruePlayer) {
@@ -393,10 +404,11 @@ circlePressed = keyboard_check_pressed(ord(circleKey));
 if (initCircle) {
 	circleCharge = circleTotal/(circleMax/100);
 	if (circleTotal <= circleMax) {
+		if (!lockAbilities)
 		circleTotal += 1+(cooldownRate);
 	}
 }
-if (circleTotal >= 2250 && circlePressed && initCircle) {
+if (circleTotal >= circleMax && circlePressed && initCircle) {
 	if (oItemManager.hasReflectiveGem) {
 		var dir = point_direction(oTruePlayer.x, oTruePlayer.y, mouse_x, mouse_y);
 		var enem = noone;
@@ -416,6 +428,7 @@ huskPressed = keyboard_check_pressed(ord(huskKey));
 if (global.playerThought >= 5 && initHusk) {
 	huskCharge = huskTotal/(huskMax/100);
 	if (huskTotal <= huskMax) {
+		if (!lockAbilities)
 		huskTotal += 1+(cooldownRate);
 	}
 }

@@ -1,25 +1,23 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	bite_cooldown /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
 
-var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
-image_angle = playerDir+90;
+bite_timer--;
+if (bite_timer > 0) {
+	var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
+	image_angle = playerDir+90;
+	enemSpeed = base_speed;
+} 
+if (bite_timer < 0) {
+	enemSpeed = 0.2;
+}
+if (bite_timer < -1*bite_cooldown/2) {
+	bite_timer = irandom(bite_cooldown);
+}
 // countdown
 path_timer--;
-bite_timer --;
-if (bite_timer <= 0 && on_cooldown = true) {
-	on_cooldown = false;
-}
+
 
 if (dragTimer > 0) {
     applyDrag(dragPower, dragDir, oWalls);

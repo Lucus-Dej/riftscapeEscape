@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"snakeAddBody",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"snakeAddBody",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

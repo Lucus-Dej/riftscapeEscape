@@ -1,13 +1,4 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	shoot_delay /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
@@ -78,7 +69,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		if (inst == id) continue;
 		if (inst.brainDead) continue;
 			
-		 if (inst.xp < xp && inst.enemey_hp < enemey_hp && inst.object_index != oRifterTank) {
+		 if (inst.xp < xp && inst.enemey_hp < enemey_hp && inst.object_index != oRifterTank && inst.object_index != oEnemCentiBody && inst.object_index != oEnemBlackHole) {
 			 var d = point_distance(x, y, inst.x, inst.y);
 			 
 			 if (d < bestDist) {

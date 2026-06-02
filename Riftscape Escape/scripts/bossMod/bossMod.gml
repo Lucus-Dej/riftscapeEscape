@@ -1,10 +1,37 @@
 function bossMod(_enem){
 	with _enem {
 		switch object_index {
-			case oEnemBasic:
-			dmgMult = 2.5;
+			case oWaspHive:
+			dmgMult = 1.5;
+			speedMult = 2;
+			hpMult = 4;
+			count *= 2;
+			phasePoint1 *= hpMult;
+			break
+			case oEnemMiniMummy:
+			dmgMult = 2;
+			speedMult = 1.2;
+			hpMult = 3.5;
+			break;
+			case oEnemMotherCaveSpider:
+			dmgMult = 2;
+			speedMult = 1.3;
+			hpMult = 3.5;
+			count *= 3;
+			case oEnemSnakeJoke:
+			break;
+			case oEnemCentiHead:
+			dmgMult = 2;
+			speedMult = 1.2;
+			hpMult = 4;
+			bodyCount *= 12;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemBigBat:
+			dmgMult = 2;
 			speedMult = 2.25;
-			hpMult = 8;
+			hpMult = 4;
 			break;
 			
 			case oWastelandBurner:
@@ -15,7 +42,7 @@ function bossMod(_enem){
 			case oCaveSpitter:
 			dmgMult = 1.2;
 			hpMult = 5;
-			cooldownMult = 4;
+			cooldownMult = 3;
 			image_xscale += 1.5;
 			image_yscale += 1.5
 			break;
@@ -30,10 +57,10 @@ function bossMod(_enem){
 			case oEnemBig:
 			image_xscale += 2;
 			image_yscale += 2;
-			dmgMult = 2;
-			speedMult = 2;
+			dmgMult = 1;
+			speedMult = 1.1;
 			hpMult = 4.5;
-			cooldownMult = 3;
+			cooldownMult = 2;
 			break;
 			
 			case oWastelandFireRunner:
@@ -43,7 +70,7 @@ function bossMod(_enem){
 			break;
 			
 			case oBoss:
-			hpMult = 2.5;
+			hpMult = 2;
 			dmgMult = 1.5;
 			cooldownMult = 2;
 			phasePoint1 *= hpMult;
@@ -68,6 +95,7 @@ function bossMod(_enem){
 			hpMult = 2.4;
 			dmgMult = 1.5;
 			cooldownMult = 4;
+			phasePoint1 *= hpMult;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;

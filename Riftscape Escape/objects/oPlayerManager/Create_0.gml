@@ -14,6 +14,7 @@ global.damageNumbers = [];
 global.playerContactDmg = false;
 global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 mp_grid_add_instances(global.Grid, oColl, 0);
+global.flyGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 //weird enemy / damage stuff
 tookDamage = false;
 incombat = false;
@@ -232,7 +233,7 @@ krostEssenceSpeedBouns = 0;
 global.contactDmg = 0;
 dodgeContactDmg = 1;
 addHPBonus = 0;
-baseSpeed = 4.5;
+baseSpeed = 6;
 statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;
@@ -276,6 +277,7 @@ tesseractBonusDamage = 0;
 sculptureBonus = 1;
 tesseractSpeed = 0;
 
+debug = false;
 uiX = 16;
 uiY = 192;
 uiLine = 0;
@@ -289,7 +291,7 @@ currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];
 
 //rune stuff
-validRuneArray = [oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oCooldownRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
 hasLifestealRune = false;
 hasOverhealthRune = false;
@@ -298,5 +300,8 @@ hasBossDropRune = false;
 hasExplosiveRune = false;
 hasLuckRune = false;
 hasXPRune = false;
-
+hasCooldownRune = false;
+displayRuneDuration = 0;
+runeTxt = "";
 xpRuneReduction = 1;
+lockAbilities = false;

@@ -17,6 +17,6 @@ if (!levelApplied && currentLevel != "null") {
 		break;
 	}
 }
-if (instance_exists(oFloorManager) && currentLevel == "null") {
+if (currentLevel == "null" && instance_exists(oFloorManager)) {
 	currentLevel = oFloorManager.floorID;
 }

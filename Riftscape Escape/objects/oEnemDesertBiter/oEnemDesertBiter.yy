@@ -9,8 +9,8 @@
   "name":"oEnemDesertBiter",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"desert",
+    "path":"folders/enemies/basics/desert.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",
@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBadGuy4",
-    "path":"sprites/sBadGuy4/sBadGuy4.yy",
+    "name":"sDesertBeatle",
+    "path":"sprites/sDesertBeatle/sDesertBeatle.yy",
   },
   "spriteMaskId":null,
   "visible":true,

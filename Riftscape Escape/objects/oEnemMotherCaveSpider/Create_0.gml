@@ -1,0 +1,15 @@
+event_inherited();
+enemey_hp = 4;
+shoot_delay = 90;
+on_cooldown = false;
+shoot_cooldown = shoot_delay;
+enemSpeed = 3.45;
+base_speed = enemSpeed;
+xp = 8.5;
+contactDamage = 14.5;
+damage = contactDamage;
+spawnWeight = 4.5;
+image_xscale += 1;
+image_yscale += 1;
+count = irandom_range(4, 8);
+spiderArray = [oEnemSpider, oEnemCaveSpider, oEnemExplosiveSpider];

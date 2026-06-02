@@ -40,7 +40,7 @@ if (ds_list_size(bulletCheck) > 0) {
 		}
 	}
 }
-if (!instance_exists(host) && !global.activeRoom) {
+if (!instance_exists(host)) {
 	image_xscale -= 0.01;
 	image_yscale -= 0.01;
 	if (image_yscale <= 0.2) {

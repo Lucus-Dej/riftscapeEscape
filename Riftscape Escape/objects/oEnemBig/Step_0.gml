@@ -1,13 +1,4 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	shoot_delay /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
@@ -32,7 +23,7 @@ if (shoot_cooldown <= 0) {
 	} else {
 		var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
 		var bullet2 = bulletFire(x, y, dir+180, bullet_speed, damage, oBadBullet, id);
-		dir += 27;
+		dir += 37;
 	}
 	shoot_cooldown = shoot_delay
 }
@@ -49,12 +40,10 @@ if (path_timer <= 0) {
     path_timer = path_cooldown;
     pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }
-var l = irandom(750)
+
 if (isBoss) {
 	l = irandom(750/cooldownMult)
-}
-
-if (l == 1) {
+	if (l == 1) {
 	var spawn = instance_create_layer(x, y, "Instances", oEnemSpider);
 	if (isBoss) {
 		spawn.base_speed += 0.2;
@@ -63,3 +52,5 @@ if (l == 1) {
 	}
 	spawn.xp = 0;
 }
+}
+

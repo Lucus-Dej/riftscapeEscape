@@ -1,0 +1,87 @@
+event_inherited();
+if (brainDead) {
+    exit;
+}
+
+
+path_timer--;
+/*
+if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
+	enemSpeed = base_speed*4.2;
+} else if (canSeePlayer) {
+	enemSpeed = base_speed;
+} */
+// countdown
+if (shoot_cooldown > 0) {
+    shoot_cooldown--;
+}
+
+x += irandom_range(-2, 2);
+y += irandom_range(-2, 2);
+// fire when ready
+if (shoot_cooldown <= 0) {
+	var dist = point_distance(x, y, oTruePlayer.x, oTruePlayer.y);
+	var ranNum = irandom_range(1, 3);
+	if (ranNum == 1 && dist <= 320) {
+		var tth = dist/bullet_speed;
+		var futureX = oTruePlayer.x + oTruePlayer.hsp*tth*0.8;
+		var futureY = oTruePlayer.y + oTruePlayer.vsp*tth*0.8;
+		var dir = point_direction(x, y,futureX, futureY);
+		if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
+			var circdir = point_direction(x, y, mouse_x, mouse_y);
+			var bullet = bulletFire(x, y, circdir, bullet_speed, damage, oBadBullet, id);
+			with (bullet) {
+				if (layer_get_name(layer) != "Flying") {
+					layer = layer_get_id("Flying");
+				}
+				bullet.isGhost = true;
+				bullet.existance /= 2;
+			}
+		} else {
+		
+		var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
+		bullet.isGhost = true;
+		bullet.image_xscale /= 2;
+		bullet.image_yscale /= 2;
+		bullet.existance /= 2;
+		with (bullet) {
+			if (layer_get_name(layer) != "Flying") {
+				layer = layer_get_id("Flying");
+			}
+		}
+		}
+	    shoot_cooldown = shoot_delay;
+	} else {
+		isDashing = true;
+		path_end();
+		path_timer = 999;
+		pathfind(global.flyGrid, oTruePlayer, enemSpeed*8, id);
+		dashTimer = dashDuration;
+		shoot_cooldown = 999;
+	}
+}
+if (isDashing) {
+	if (dashTimer > 0) {
+		dashTimer--;
+		
+	} else {
+		isDashing = false;
+		shoot_cooldown = shoot_delay;
+		path_end();
+		path_timer = 0;
+		
+	}
+}
+if (dragTimer > 0) {
+    applyDrag(dragPower, dragDir, oWalls);
+    dragTimer--;
+
+    if (dragTimer <= 0) {
+        path_timer = 0;
+    }
+}
+
+if (path_timer <= 0 && !isDashing) {
+    path_timer = path_cooldown;
+    pathfind(global.flyGrid, oTruePlayer, enemSpeed, id);
+}

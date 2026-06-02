@@ -1,13 +1,4 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	shoot_delay /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
@@ -29,8 +20,18 @@ if (shoot_cooldown <= 0) {
 			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
 				ang = point_direction(x, y, mouse_x, mouse_y)
 			}
-			bulletFire(x, y, ang+angle, bullet_speed, damage, oMiniBossBullet, id)
-			bulletFire(x, y, ang-angle, bullet_speed, damage, oMiniBossBullet, id)
+			var b1 =bulletFire(x, y, ang+angle, bullet_speed, damage, oMiniBossBullet, id)
+			var b2 =bulletFire(x, y, ang-angle, bullet_speed, damage, oMiniBossBullet, id)
+			with (b1) {
+				if (layer_get_name(layer) != "Flying") {
+					layer = layer_get_id("Flying");
+				}
+			}
+			with (b2) {
+				if (layer_get_name(layer) != "Flying") {
+					layer = layer_get_id("Flying");
+				}
+			}
 			recoil_timer = recoil_cooldown;
 			} else {
 				shoot_cooldown = shoot_delay;

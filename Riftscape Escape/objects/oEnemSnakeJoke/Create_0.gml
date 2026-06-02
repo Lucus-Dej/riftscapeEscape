@@ -1,0 +1,18 @@
+event_inherited();
+enemey_hp = 999;
+shoot_delay = 15;
+on_cooldown = false;
+bite_timer = shoot_delay;
+enemSpeed = 5;
+base_speed = enemSpeed;
+xp = 2;
+damage = 16.5;
+contactDamage = damage;
+spawnWeight = 0.5;
+bodyCount = 100;
+bodyArray = [];
+spawnedBody = false;
+image_xscale += 0.5;
+image_yscale += 0.5;
+increaseCooldown = 12;
+increaseTimer = increaseCooldown;

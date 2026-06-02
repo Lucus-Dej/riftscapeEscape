@@ -32,3 +32,5 @@ cooldownMult = 1;
 pushTimer = 60;
 denyHP = false;
 event_inherited();
+maxHP = 1;
+maxHPSet = false;

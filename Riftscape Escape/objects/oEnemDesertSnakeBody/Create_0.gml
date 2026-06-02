@@ -1,0 +1,16 @@
+event_inherited();
+enemey_hp = 3.3;
+bite_cooldown = 75;
+on_cooldown = false;
+bite_timer = bite_cooldown;
+enemSpeed = 2.95;
+base_speed = enemSpeed;
+xp = 0;
+damage = 8.5;
+contactDamage = damage;
+spawnWeight = 4;
+head = noone;
+path_cooldown = 10;
+follow = noone;
+image_xscale = 0.75;
+image_yscale = 0.75;

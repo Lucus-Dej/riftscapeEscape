@@ -41,7 +41,7 @@ lineSpacing = 112;
 lineRotateSpeed = 0.5;
 
 lineTimer = 0;
-lineInterval = 6;
+lineInterval = 0;
 lineAngleCW = 0;
 lineAngleCCW = 0;
 

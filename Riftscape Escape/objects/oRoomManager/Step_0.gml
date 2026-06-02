@@ -143,7 +143,7 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 			}
 		}
 	}
-		
+		global.activeRoom = false;
 		combatFinished = true;
 		inCombat = false;
 		oPlayerManager.incombat = false;

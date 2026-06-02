@@ -1,13 +1,4 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	shoot_delay /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
@@ -44,8 +35,7 @@ if ((enemey_hp <= phasePoint2) && phase < 2) {
 	bullet_count += 3;
 	lineCount += 2;
 	spawnPool -= 65;
-	lineInterval -=2;
-	lineRotateSpeed += 1.25;
+	lineRotateSpeed += 0.5;
 	with oEnemStart {
 		if (RoomID == other.RoomID) {
 			var e = instance_create_layer(x, y, "Instances", oWastelandFireRunner);

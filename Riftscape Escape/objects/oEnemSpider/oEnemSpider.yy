@@ -9,8 +9,8 @@
   "name":"oEnemSpider",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"caves",
+    "path":"folders/enemies/basics/caves.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",
@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBadGuy3",
-    "path":"sprites/sBadGuy3/sBadGuy3.yy",
+    "name":"sCaveSpider",
+    "path":"sprites/sCaveSpider/sCaveSpider.yy",
   },
   "spriteMaskId":null,
   "visible":true,

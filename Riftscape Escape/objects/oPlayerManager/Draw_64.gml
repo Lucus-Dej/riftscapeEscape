@@ -60,7 +60,8 @@ abilityCharge[3] = circleCharge;
 abilityCharge[4] = huskCharge;
 // abilities
 
-
+var startY = 112;
+var startX = 32;
 for (var i = 0; i < array_length(abilityActive); i++) {
 	draw_set_color(c_white);
 	draw_set_font(fLevels);
@@ -136,10 +137,74 @@ draw_text(uiX, uiY + 6*16, "Essence"+string(global.playerEssence));
 
 //draw_text (uiX, uiY + 11*16, "OverHealth Timer"+string (overhealthTimer));
 draw_text (uiX, uiY + 8*16, "Damage"+string (global.playerDamage));
-//draw_text(uiX, uiY + 13*16,"Speed: " + string_format(point_distance(0,0,oTruePlayer.hsp,oTruePlayer.vsp), 1, 2));
+draw_text(uiX, uiY + 9*16,"Item Luck: " + string(oItemManager.luckBonus));
 //draw_text (uiX, uiY + 14*16, "Cooldown Rate (Per Frame)"+string (cooldownRate+1));
 //draw_text (uiX, uiY + 15*16, "thought cooldown bonus"+string (trackDodgeThoughtTimer));
 //draw_text (uiX, uiY + 16*16, "health"+string (max_hp));
 //draw_text (uiX, uiY + 17*16, "health"+string (global.player_health));
 
+if (array_length(activeRuneArray) > 0) {
+	var guiW = display_get_gui_width();
+	var guiH = display_get_gui_height();
 
+	var mouseX = device_mouse_x_to_gui(0);
+	var mouseY = device_mouse_y_to_gui(0);
+
+	var hoveredItem = noone;
+
+	var cols = 6;
+	var iconSize = 16;   
+	var pad = 12;
+	var cell = iconSize + pad;
+	startX = 480-112;
+	startY = 23;
+	for (var i = 0; i < array_length(activeRuneArray); i++) {
+	    var obj = activeRuneArray[i];
+		//show_debug_message(obj)
+		var spr = object_get_sprite(obj);
+		if (spr == -1) continue;
+
+	    var col = i mod cols;
+	    var row = i div cols;
+
+	    var GUIx = startX + col * cell;
+	    var GUIy = startY + row * cell;
+
+
+	    var scale = 0.5;
+
+		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
+	
+		var w = sprite_get_width(spr) * scale;
+		var h = sprite_get_height(spr) * scale;
+	
+		if (mouseX >= GUIx - w * 0.5 && mouseX <= GUIx + w * 0.5 && mouseY >= GUIy - h * 0.5 && mouseY <= GUIy + h * 0.5) {
+			hoveredItem = obj;
+		}
+	}
+	if (hoveredItem != noone) {
+		show_debug_message(hoveredItem)
+		runeTxt = getRuneDesc(hoveredItem);
+		displayRuneDuration = 60;
+	}
+}
+if (displayRuneDuration > 0) {
+	var alpha = min(displayRuneDuration / 20, 1);
+	var guiW = display_get_gui_width();
+	var guiH = display_get_gui_height();
+	
+	var txtW = string_width(runeTxt);
+	var txtH = string_height(runeTxt)
+	
+	var xPos = guiW * 0.5;
+	var yPos = guiH * 0.8;
+	var pad = 64;
+	var sprW = sprite_get_width(sItemDescription);
+	
+	var xScale = (txtW+pad)/sprW;
+	
+	draw_sprite_ext(sItemDescription, 0, display_get_gui_width()*0.5, display_get_gui_height()*0.8, xScale, 1.5, 0, c_white, alpha);
+	draw_set_colour(c_white);
+	draw_text((guiW*0.5)-txtW/2, (guiH*0.8)-pad/2+8, runeTxt);
+	displayRuneDuration--;
+}

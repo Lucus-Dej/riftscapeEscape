@@ -13,6 +13,7 @@ if (instance_exists(manager) && manager.state = waveState.done && !finished) {
 if (instance_exists(oTruePlayer) && distance_to_object(oTruePlayer) < 320 && !gaveHint) {
 	displayDuration = 240;
 	txt = "Arena Room: Defeat Waves For XP/Luck Bonus And A Simple Reward";
+	
 	gaveHint = true;
 }
 if (displayDuration > 0) {

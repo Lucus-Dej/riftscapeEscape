@@ -11,6 +11,12 @@ if (state == waveState.idle && RoomID != -1) {
 				other.itemSpawner = id;
 			}
 		}
+		with (oRoomManager) {
+			if (RoomID == other.RoomID) {
+				other.roomManager = id;
+				global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
+			}
+		}
 		spawnChecked = true;
 		
 	}
@@ -21,6 +27,9 @@ if (state == waveState.generatingWave) {
 	}
 }
 if (state == waveState.spawning) {
+	if (!gendFlyGrid)
+	with (roomManager)
+	global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
 	enemiesLeft = instance_number(oEnemy);
 	enemString = "Enemies Left: "+string(enemiesLeft);
 	inCombat = true;
@@ -63,7 +72,7 @@ if (state == waveState.spawning) {
 			itemRound = false;
 		}
 		if (bossRound) {
-			startingWeight += bossBonus*4;
+			startingWeight += bossBonus*2.5;
 			bossBonus++;
 			roundsTillBoss = 4;
 			bossRound = false;
@@ -89,29 +98,48 @@ if (state == waveState.inBetween) {
 	if (!restrictedArrays)
 	switch (wave) {
 		case 1:
-		array_push(waveArray, oEnemBasic)
+		array_push(waveArray, oEnemExplosiveSpider)
 		startingWeight += 2;
 		break;
 		
 		case 2:
-		array_push(waveArray, oEnemBig)
+		array_push(waveArray, oEnemCaveSpider)
 		break;
 		
-		case 4:
-		array_push(waveArray, oEnemTurret)
+		case 3:
+		array_push(waveArray, oEnemBat)
 		break;
 		
+		case 5:
+		array_push(waveArray, oEnemBigBat, oEnemMotherCaveSpider)
+		break;
 		
 		case 6:
+		array_push(waveArray, oEnemCentiHead)
+		break;
+		
+		case 7:
 		array_push(bossArray, oBoss3, oMiniBoss3)
 		break;
 		
-		case 13:
+		case 9:
 		array_push(waveArray, oMiniBoss, oMiniBoss2,)
+		break;
+		
+		case 8:
+		array_push(waveArray, oEnemDesertSanke)
+		break;
+		
+		case 12:
+		array_push(waveArray, oEnemDesertWasp);
 		break;
 		
 		case 11:
 		array_push(waveArray, oEnemDesertBiter)
+		break;
+		
+		case 13:
+		array_push(waveArray, oEnemMiniMummy)
 		break;
 		
 		case 14:
@@ -119,7 +147,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 16:
-		array_push(waveArray, oDesertSlammer, oMiniBoss3)
+		array_push(waveArray, oDesertSlammer, oWaspHive)
 		break;
 		
 		case 18:
@@ -182,7 +210,7 @@ if (state == waveState.inBetween) {
 		array_push(bossArray, oKrost)
 		break;
 	}
-	startingWeight *= 1.06;
+	startingWeight *= 1.04;
 	waveWeight = startingWeight;
 	waveCooldown = waveTimer;
 	if (wave >= waveLimit && isLimited) {
@@ -190,7 +218,7 @@ if (state == waveState.inBetween) {
 		active = false;
 		itemSpawner = noone;
 		with (oWavebasedStarter) {
-			itemSpawner = instance_nearest(x, y, oItemFlag);
+			other.itemSpawner = instance_nearest(x, y, oItemFlag);
 		}
 		with (itemSpawner) {
 			event_user(1);

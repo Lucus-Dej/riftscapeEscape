@@ -9,6 +9,9 @@ if (!levelApplied && currentLevel != "null") {
 		case "wasteland":
 		sprite_index = sCoverCave;
 		break;
+		case "kingdom":
+		sprite_index = sKingdomCover;
+		break;
 		case "plains":
 		sprite_index = sPlainsCover;
 		break;

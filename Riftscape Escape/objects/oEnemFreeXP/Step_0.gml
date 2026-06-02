@@ -1,3 +1,8 @@
+if (!maxHPSet) {
+	maxHP = enemey_hp;
+	maxHPSet = true;
+}
+
 if (brainDead) {
     exit;
 }

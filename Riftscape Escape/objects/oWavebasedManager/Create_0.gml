@@ -10,8 +10,8 @@ itemRound = false;
 roundsTillItem = 8;
 bossBonus = 1;
 waveArray = [ oEnemSpider]
-bossArray = [oBoss, oBoss2, oMiniBoss2, oMiniBoss, oCaveSpitter, oEnemBig];
-allEnemPool = [oCaveSpitter, oEnemBasic, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,
+bossArray = [oBoss, oBoss2, oEnemMotherCaveSpider, oMiniBoss2, oMiniBoss, oCaveSpitter, oEnemBigBat];
+allEnemPool = [oCaveSpitter, oEnemMiniMummy, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,
 	oEnemSpider, oEnemTurret, oPlainsShooter, oWastelandBurner, oWastelandFireRunner, 
 	oBoss, oBoss2, oBoss3, oDesertSlammer, oMiniBoss, oMiniBoss2, oMiniBoss3, oRifterTank, 
 	oMummy, oWastelandDestroyer];
@@ -19,6 +19,7 @@ allEnemPool = [oCaveSpitter, oEnemBasic, oEnemBig, oEnemBlackHole, oEnemDesertBi
 enum waveState {
 	preparing, idle, generatingWave, spawning, inBetween, waiting, done
 }
+gendFlyGrid = false;
 state = waveState.idle;
 spawnDelay = 30;
 waveWeight = startingWeight;
@@ -34,3 +35,4 @@ inCombat = false;
 restrictedArrays = false;
 isLimited = false;
 waveLimit = 999999999999999999;
+roomManager = noone;

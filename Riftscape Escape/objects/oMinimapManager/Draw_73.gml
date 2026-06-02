@@ -15,6 +15,15 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 	with (oItems) {
 		draw_sprite_ext(sMinimapItem, 0, x, y, 3, 3, 0, c_white, 1);
 	}
+	with (oRuneRoomFlag) {
+		draw_sprite_ext(sBlankRune, 0, x, y, 8, 8, 0, c_white, 1);
+	}
+	with (oRitualRoomManager) {
+		draw_sprite_ext(sRitualMinimap, 0, x, y, 8, 8, 0, c_white, 1);
+	}
+	with (oArenaFlag) {
+		draw_sprite_ext(sArenaMinimap, 0, x, y, 8, 8, 0, c_white, 1);
+	}
 	with (oGhostBarrierDirectionalParent) {
 		if (doorType == "boss") {
 			draw_sprite_ext(sMinimapBossDoor, 0, x, y, 3, 3, 0, c_white, 1);

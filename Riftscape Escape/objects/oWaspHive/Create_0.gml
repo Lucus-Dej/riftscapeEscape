@@ -1,0 +1,23 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 25);
+enemSpeed = 1.05;
+base_speed = enemSpeed;
+bullet_speed = 4;
+shoot_delay = 120;
+recoil_cooldown = 10;
+fire_duration = 9;
+fire_timer = fire_duration;
+recoil_timer = 0;
+enemey_hp = 13;
+spawnWeight = 10;
+phasePoint1 = enemey_hp/2;
+enraged = false;
+count = irandom_range(2, 4)
+xp = 13;
+damage = 9.5;
+enragedAngle = 0;
+spawnCheck = 0;
+spawnNum = 300;
+if (layer_get_name(layer) != "Flying") {
+	layer = layer_get_id("Flying");
+}

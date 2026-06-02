@@ -14,5 +14,5 @@ finished = false;
 displayDuration = 0;
 
 disText = "";
-
+manager = noone;
 gaveHint = false;

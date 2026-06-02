@@ -10,8 +10,8 @@
   "name":"oDesertSlammer",
   "overriddenProperties":[],
   "parent":{
-    "name":"minibosses",
-    "path":"folders/enemies/minibosses.yy",
+    "name":"desert",
+    "path":"folders/enemies/basics/desert.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

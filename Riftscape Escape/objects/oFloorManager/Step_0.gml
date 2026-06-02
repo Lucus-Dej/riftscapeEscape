@@ -222,7 +222,7 @@ if (floorState == genState.complete ) {
 						with (newArenaDoor) {
 							doorType = "arena";
 							invalid = false;
-							connectRoom(id, dir, arenaR, Manager1, true);
+							connectRoom(id, dir, arenaR, Manager1, false);
 							if (!invalid) {
 								doorType = "arena";
 								arenaFlag = true;

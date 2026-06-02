@@ -1,13 +1,4 @@
-if (!bossModApplied && isBoss) {
-	bossModApplied = true;
-	enemey_hp *= hpMult;
-	base_speed *= speedMult;
-	enemSpeed *= speedMult;
-	damage *= dmgMult;
-	shoot_delay /= cooldownMult;
-	event_user(13);
-}
-flash = max(0, flash - 0.15);
+event_inherited();
 if (brainDead) {
     exit;
 }
@@ -48,7 +39,23 @@ if (shoot_cooldown <= 0) {
 		}
 	}
 }
-//pathfinding
+shoot_cooldown--;
+if (shoot_cooldown > 0) {
+	enemSpeed = base_speed;
+} 
+if (shoot_cooldown < 0) {
+	enemSpeed = 0.2;
+}
+if (shoot_cooldown < -1*shoot_delay/2) {
+	shoot_cooldown = irandom(shoot_delay);
+}
+
+// countdown
+path_timer--;
+if (shoot_cooldown <= 0 && on_cooldown = true) {
+	on_cooldown = false;
+}
+
 if (dragTimer > 0) {
     applyDrag(dragPower, dragDir, oWalls);
     dragTimer--;

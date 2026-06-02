@@ -43,5 +43,5 @@
     "path":"sprites/sStartRoomConditionalGhost/sStartRoomConditionalGhost.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

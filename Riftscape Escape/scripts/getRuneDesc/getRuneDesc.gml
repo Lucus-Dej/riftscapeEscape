@@ -1,10 +1,13 @@
 function getRuneDesc(_rune){
-	if (array_contains(oPlayerManager.activeRuneArray, _rune)) {
-		sprite_index = sNullRune;
-		return "Dull Rune: No Effect; No Reward";
-	}
+	//if (array_contains(oPlayerManager.activeRuneArray, _rune)) {
+	//	sprite_index = sNullRune;
+	//	return "Dull Rune: No Effect; No Reward";
+	//}
 	var runeDesc = "";
 	switch (_rune) {
+		case oDullRune:
+		desc = "Dull Rune: No Effect; No Reward";
+		break;
 		case oBossDropRune:
 		desc = "Bosses No Longer Drop Items";
 		break;
@@ -26,8 +29,9 @@ function getRuneDesc(_rune){
 		case oXPReducedRune:
 		desc = "XP Gain Is Halved";
 		break;
-		
-		
+		case oCooldownRune:
+		desc = "Ability Cooldown Is Doubled And Only Recharge In Combat";
+		break;
 	}
 	return desc;
 }
@@ -56,6 +60,14 @@ function enableRune(_rune){
 		case oXPReducedRune:
 		oPlayerManager.hasXPRune = true;
 		oPlayerManager.xpRuneReduction = 2;
+		break;
+		case oCooldownRune:
+		oPlayerManager.crystalMax *= 2;
+		oPlayerManager.swordMax *= 2;
+		oPlayerManager.huskMax *= 2;
+		oPlayerManager.circleMax *= 2;
+		oPlayerManager.dodgeMax *= 2;
+		oPlayerManager.hasCooldownRune = true;
 		break;
 	}
 }

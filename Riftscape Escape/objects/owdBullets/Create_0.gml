@@ -1,7 +1,7 @@
 event_inherited();
 infExist = false;
 accel = true;
-existance = 240;
+existance = 600;
 summon = false;
 ringSpeed = 7;
 phaseBonus = 0;
