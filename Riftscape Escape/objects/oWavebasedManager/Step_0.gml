@@ -57,7 +57,7 @@ if (state == waveState.spawning) {
 					enem.spawnWeight *= 2;
 					enem.xp *= 1.3;
 				} else {
-					enem.xp /= 3.5;
+					enem.xp *= 0.4;
 				}
 				other.waveWeight -= enem.spawnWeight
 			}

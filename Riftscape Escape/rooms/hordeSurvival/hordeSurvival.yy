@@ -610,6 +610,7 @@
     {"name":"inst_3B97B29A","path":"rooms/hordeSurvival/hordeSurvival.yy",},
     {"name":"inst_394A7020","path":"rooms/hordeSurvival/hordeSurvival.yy",},
     {"name":"inst_51188AE4","path":"rooms/hordeSurvival/hordeSurvival.yy",},
+    {"name":"inst_51DD1A24","path":"rooms/hordeSurvival/hordeSurvival.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -1176,6 +1177,7 @@
         {"$GMRInstance":"v4","%Name":"inst_3B97B29A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3B97B29A","objectId":{"name":"oSpikes","path":"objects/oSpikes/oSpikes.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1024.0,"y":1152.0,},
         {"$GMRInstance":"v4","%Name":"inst_394A7020","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_394A7020","objectId":{"name":"oSpikes","path":"objects/oSpikes/oSpikes.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1248.0,"y":768.0,},
         {"$GMRInstance":"v4","%Name":"inst_51188AE4","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_51188AE4","objectId":{"name":"oSpikes","path":"objects/oSpikes/oSpikes.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2048.0,"y":832.0,},
+        {"$GMRInstance":"v4","%Name":"inst_51DD1A24","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_51DD1A24","objectId":{"name":"oMolotov","path":"objects/oMolotov/oMolotov.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1504.0,"y":480.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[
         {"$GMRTextItem":"v3","%Name":"text_6D2EE905","alignment":0,"charSpacing":0.0,"colour":4294967295,"fontId":{"name":"fLevels","path":"fonts/fLevels/fLevels.yy",},"frameH":0.0,"frameW":0.0,"frozen":false,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"lineSpacing":0.0,"name":"text_6D2EE905","paragraphSpacing":0.0,"resourceType":"GMRTextItem","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":2.0,"text":"Enter to begin\r\n\r\nor exit for some fun\r\n\r\nEnter red portal for test room","wrap":false,"x":1408.0,"y":224.0,},

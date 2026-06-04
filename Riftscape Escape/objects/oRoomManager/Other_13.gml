@@ -40,11 +40,15 @@ with (oBossStart) {
 with (oRoomClaimX) {
 	if (RoomID == other.RoomID) {
 		other.workerX = id;
+		other.claimX = x;
+		other.claimY = y;
 	}
 }
 with (oRoomClaimY) {
 	if (RoomID == other.RoomID) {
 		other.workerY = id;
+		other.claimX2 = x;
+		other.claimY2 = y;
 	}
 }
 with (oBossBarrierKey) {

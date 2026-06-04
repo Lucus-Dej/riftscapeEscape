@@ -20,21 +20,30 @@ if (array_length(dotArray) > 0) {
 				dot.target.enemey_hp -= dot.damage;
 				addDamageNumber(dot.target.x, dot.target.y, dot.damage);
 				if (dot.target.enemey_hp <= 0) {
+					if (dot.type == dotType.fire && oItemManager.hasMolotov) {
+						with (dot.target) {
+							with (oEnemy) {
+								var dist = point_distance(x, y, other.x, other.y);
+								if (dist < 320) {
+									callDOT(id, dot.damage*2, 8, 12, dotType.fire, other);
+								}
+							}
+						}
+					}
 					instance_destroy(dot.target)
 					array_delete(dotArray, i, 1);
-				if (dot.source == oSwordLife) {
-					if (dot.target.xp > 0) {
-						oPlayerManager.swordKills += 1;
-						oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*1.3 - 1.2;
-					}
-					if (oPlayerManager.hasSwordThought) {
-						oPlayerManager.swordCooldownBonus = 12;
-						oPlayerManager.swordCooldownBonusTime += 32;
+					if (dot.source == oSwordLife) {
+						if (dot.target.xp > 0) {
+							oPlayerManager.swordKills += 1;
+							oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*1.3 - 1.2;
+						}
+						if (oPlayerManager.hasSwordThought) {
+							oPlayerManager.swordCooldownBonus = 12;
+							oPlayerManager.swordCooldownBonusTime += 32;
 						}
 					}
 				}
-			}
-			
+			}	
 		}
 		dotArray[i] = dot;
 		if (dot.ticks <= 0)  {

@@ -52,6 +52,6 @@ if (path_timer <= 0) {
 var l = irandom(shoot_delay*0.5)
 if (l == 1) {
 	var sand = instance_create_layer(x, y, "Instances", oMiniMummyQuicksand);
-	sand.image_xscale = 0.01;
-	sand.image_yscale = 0.01;
+	sand.image_xscale = 0.1;
+	sand.image_yscale = 0.1;
 }

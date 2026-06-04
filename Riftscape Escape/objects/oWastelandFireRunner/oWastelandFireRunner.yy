@@ -9,8 +9,8 @@
   "name":"oWastelandFireRunner",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"wasteland",
+    "path":"folders/enemies/basics/wasteland.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

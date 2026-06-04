@@ -49,6 +49,7 @@ if (state == doorState.init) {
 	} else {
 		//show_debug_message("wall placed")
 		wall = instance_create_layer(x, y, "Instances", oFlexWall);
+		wall.RoomID = RoomID1;
 		instance_destroy(childDoor)
 		state = doorState.done
 	}

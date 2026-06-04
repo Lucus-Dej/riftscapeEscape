@@ -47,6 +47,7 @@ workerSpawners = noone;
 workerBossSpawners = noone;
 workerX = noone;
 workerY = noone;
+
 destroyWalls = false;
 checkFor = false;
 evilWallList = ds_list_create();
@@ -109,5 +110,6 @@ testBottom = noone;
 testLeft = noone;
 testRight = noone;
 
-
+discovered = false;
+hinted = false;
 // checks for x and y markers (needed for evil walls)

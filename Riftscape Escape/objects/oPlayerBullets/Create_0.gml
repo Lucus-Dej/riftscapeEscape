@@ -1,4 +1,5 @@
 damage = global.playerDamage;
+critShot = false;
 bounceNum = 0;
 tracking = 0;
 canBounce = false
@@ -38,6 +39,9 @@ canDecel = false;
 canOrbit = false
 lastHit = noone;
 existance = 40+20*global.playerReality;
+if (oItemManager.hasBrokenBoomerang) {
+	existance *= 1.6;
+}
 orbitCenter = oTruePlayer;
 orbitRadius = 0;
 orbitTargetRadius = 90;

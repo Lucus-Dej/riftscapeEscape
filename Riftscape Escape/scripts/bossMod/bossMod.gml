@@ -17,7 +17,7 @@ function bossMod(_enem){
 			dmgMult = 2;
 			speedMult = 1.3;
 			hpMult = 3.5;
-			count *= 3;
+			count *= 2;
 			case oEnemSnakeJoke:
 			break;
 			case oEnemCentiHead:
@@ -39,7 +39,7 @@ function bossMod(_enem){
 			speedMult = 2;
 			break;
 			
-			case oCaveSpitter:
+			case oWastelandSpitter:
 			dmgMult = 1.2;
 			hpMult = 5;
 			cooldownMult = 3;

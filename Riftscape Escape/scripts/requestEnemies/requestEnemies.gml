@@ -18,24 +18,24 @@ function getEnemPool(_currentFloor) {
 		
 		case "desert":
 		enemArray = [oEnemDesertWasp, oEnemCaveSpider, oEnemDesertSanke, oEnemSandSniper, oEnemDesertBiter, oEnemMiniMummy];
-		bossArray = [oBoss3, oDesertSlammer, oEnemSandSniper, oDesertSlammer, oEnemMiniMummy, oWaspHive]; 
+		bossArray = [oDesertSlammer, oEnemSandSniper, oEnemMiniMummy, oWaspHive]; 
 		evilArray = [oDesertSlammer, oWaspHive]
 		break;
 		
 		case "wasteland":
-		enemArray = [oEnemBig, oEnemMotherCaveSpider, oCaveSpitter, oRifterTank, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oMiniBoss, oMiniBoss3]
-		bossArray = [oBoss3, oWastelandFireRunner, oRifterTank, oEnemBlackHole];
+		enemArray = [oWastelandSpitter, oEnemTurret, oWastelandBurner, oMiniBoss3, oWastelandFireRunner, oRifterDrone]
+		bossArray = [oBoss3, oMiniBoss3, oEnemBlackHole];
 		evilArray = [oBoss, oBoss2, oWastelandFireRunner, oEnemBlackHole]
 		break;
 		
 		case "kingdom":
-		enemArray = [oRifterTank, oRifterSlammer, oRifterSniper, oEnemRifterSpider, oEnemMotherCaveSpider, oEnemTurret, oEnemBig];
+		enemArray = [oRifterTank, oRifterDrone, oRifterSlammer, oRifterSniper, oEnemRifterSpider, oEnemTurret, oEnemBig];
 		bossArray = [oRifterTank, oRifterSlammer, oRifterSpitter];
 		evilArray = [oRifterSpitter];
 		break;
 		
 		case "plains":
-		enemArray = [oEnemCaveSpider, oPlainsShooter, oCaveSpitter, oEnemBig,oEnemMotherCaveSpider, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
+		enemArray = [oEnemCaveSpider, oPlainsShooter, oWastelandSpitter, oEnemBig,oEnemMotherCaveSpider, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
 		bossArray = [oRifterTank, oEnemBlackHole, oMummy, oWastelandDestroyer];
 		evilArray = [oRifterTank]
 		break;

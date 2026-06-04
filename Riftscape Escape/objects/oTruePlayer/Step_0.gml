@@ -19,7 +19,12 @@ var realSpeed = global.player_speed;
 
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;
-move_and_collide(hsp, vsp, oSuperwalls);
+if (debug_mode) {
+	move_and_collide(hsp, vsp, oAbilityGive);
+} else {
+	move_and_collide(hsp, vsp, oSuperwalls);
+}
+
 currentSpeed = point_distance(0, 0, hsp, vsp);
 
 if (global.bullet_cooldown > 0) {

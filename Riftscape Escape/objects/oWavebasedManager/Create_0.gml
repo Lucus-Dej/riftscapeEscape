@@ -10,8 +10,8 @@ itemRound = false;
 roundsTillItem = 8;
 bossBonus = 1;
 waveArray = [ oEnemSpider]
-bossArray = [oBoss, oBoss2, oEnemMotherCaveSpider, oMiniBoss2, oMiniBoss, oCaveSpitter, oEnemBigBat];
-allEnemPool = [oCaveSpitter, oEnemMiniMummy, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,
+bossArray = [oBoss, oBoss2, oEnemMotherCaveSpider, oMiniBoss2, oMiniBoss, oWastelandSpitter, oEnemBigBat];
+allEnemPool = [oWastelandSpitter, oEnemMiniMummy, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,
 	oEnemSpider, oEnemTurret, oPlainsShooter, oWastelandBurner, oWastelandFireRunner, 
 	oBoss, oBoss2, oBoss3, oDesertSlammer, oMiniBoss, oMiniBoss2, oMiniBoss3, oRifterTank, 
 	oMummy, oWastelandDestroyer];

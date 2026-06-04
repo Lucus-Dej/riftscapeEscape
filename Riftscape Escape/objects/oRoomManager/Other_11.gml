@@ -11,6 +11,12 @@ if instance_exists(workerX) {
 			ds_list_add(other.evilWallList, id);
 		}
 	}
+	with (oSuperwalls) {
+		if (x > other.claimX && x < other.claimX2 && y > other.claimY && y < other.claimY2) {
+			RoomID = other.RoomID;
+		}
+		
+	}
 }
 if (isChallenge) {
 	var request = getEnemPool(floorID)

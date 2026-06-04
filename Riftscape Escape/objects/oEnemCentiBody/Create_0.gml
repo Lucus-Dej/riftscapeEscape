@@ -14,3 +14,4 @@ path_cooldown = 10;
 follow = noone;
 image_xscale = 0.75;
 image_yscale = 0.75;
+denyHP = true;

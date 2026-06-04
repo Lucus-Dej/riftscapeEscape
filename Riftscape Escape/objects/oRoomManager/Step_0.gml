@@ -3,6 +3,13 @@ if (instance_exists(oFloorManager)) {
 } else {
 	isFloorGen = false;
 }
+if (!discovered && instance_exists(workerX)) {
+	with (oTruePlayer) {
+		if (x > other.claimX && x < other.claimX2 && y > other.claimY && y < other.claimY2) {
+			other.discovered = true;
+		}
+	}
+}
 if (type == roomManagerType.arena && !wavebasedSpawned) {
 	waveManager = instance_create_layer(x, y, "Instances", oWavebasedManager);
 	waveManager.RoomID = RoomID;
@@ -138,6 +145,9 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy))) {
 		with (oGhostBarrierDirectionalParent) {
 		if ((RoomID1 == other.RoomID) || (RoomID2 == other.RoomID)) {
+			if (instance_exists(Manager2)){
+				Manager2.hinted = true;
+			}
 			if (!instance_exists(childDoor)) {
 				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
 			}

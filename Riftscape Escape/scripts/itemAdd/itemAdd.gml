@@ -74,6 +74,9 @@ function itemAdd(_item){
 		break;
 		
 		// powerful
+		case oMolotov:
+		oItemManager.hasMolotov = true;
+		break;
 		case oDoubleOrNothing:
 		oItemManager.hasDoubleOrNothing = true;
 		break;
@@ -98,7 +101,7 @@ function itemAdd(_item){
 		break;
 		case oDirectorsNote:
 		oPlayerManager.directorsDebuff += 1.8;
-		oPlayerManager.statBulletDebuff -= 36;
+		oPlayerManager.statBulletDebuff -= 22;
 		oPlayerManager.fireRateCap -= 4;
 		break;
 		case oGunpowder:
@@ -115,11 +118,11 @@ function itemAdd(_item){
 		oPlayerManager.boomerangDmg += 0.1;
 		break;
 		case oMetalOrb:
-		oPlayerManager.statBulletDebuff += 20;
+		oPlayerManager.statBulletDebuff += 6;
 		oItemManager.hasMetalOrb = true;
 		break;
 		case oMirrorShard:
-		oPlayerManager.statBulletDebuff += 20;
+		oPlayerManager.statBulletDebuff += 6;
 		oItemManager.hasMirrorShard = true;
 		break;
 		case oReflectiveGem:
@@ -171,12 +174,12 @@ function itemAdd(_item){
 		break;
 		case oBrokenSnowglobe:
 		oItemManager.hasBrokenSnowglobe = true;
-		oPlayerManager.statBulletDebuff += 10;
+		oPlayerManager.statBulletDebuff += 6;
 		timeUp();
 		break;
 		case oElectricKite:
 		oPlayerManager.canRich = true
-		oPlayerManager.statBulletDebuff += 20;
+		oPlayerManager.statBulletDebuff += 12;
 		timeUp();
 		break;
 		case oPoorFingerPainting:
@@ -191,6 +194,8 @@ function itemAdd(_item){
 		oItemManager.sacDaggerPenalty += 1.3;
 		essenceUp();
 		oItemManager.sacDaggerBonus += 3;
+		lifeUp();
+		lifeDown();
 		break;
 		case oTesseract:
 		oItemManager.hasTesseract = true;
@@ -202,7 +207,7 @@ function itemAdd(_item){
 		break;
 		case oUnstableEnergy:
 		oItemManager.hasUnstableEnergy = true;
-		oPlayerManager.statBulletDebuff += 20;
+		oPlayerManager.statBulletDebuff += 12;
 		timeUp();
 		break;
 		
@@ -277,6 +282,9 @@ function displayItemFunction(_item){
 		break;
 		
 		// powerful
+		case oMolotov:
+		desc = "Molotov: Critical Hits Apply A Fire DoT. Enemies Spread Fire DoT Upon Death";
+		break;
 		case oDoubleOrNothing:
 		desc = "Double Or Nothing: Skipping An Item Can Reward You Or Could Do Nothing";
 		break;
@@ -482,6 +490,9 @@ function itemRemove(_item){
 		break;
 		
 		// powerful
+		case oMolotov:
+		oItemManager.hasMolotov = false;
+		break;
 		case oDoubleOrNothing:
 		oItemManager.hasDoubleOrNothing = false;
 		break;
@@ -506,7 +517,7 @@ function itemRemove(_item){
 		break;
 		case oDirectorsNote:
 		oPlayerManager.directorsDebuff -= 1.8;
-		oPlayerManager.statBulletDebuff += 36;
+		oPlayerManager.statBulletDebuff += 18;
 		oPlayerManager.fireRateCap += 4;
 		break;
 		case oGunpowder:
@@ -526,11 +537,11 @@ function itemRemove(_item){
 		oPlayerManager.boomerangDmg -= 0.1;
 		break;
 		case oMetalOrb:
-		oPlayerManager.statBulletDebuff -= 20;
+		oPlayerManager.statBulletDebuff -= 6;
 		oItemManager.hasMetalOrb = false;
 		break;
 		case oMirrorShard:
-		oPlayerManager.statBulletDebuff -= 20;
+		oPlayerManager.statBulletDebuff -= 6;
 		oItemManager.hasMirrorShard = false;
 		break;
 		case oReflectiveGem:
@@ -581,12 +592,12 @@ function itemRemove(_item){
 		break;
 		case oBrokenSnowglobe:
 		oItemManager.hasBrokenSnowglobe = false;
-		oPlayerManager.statBulletDebuff -= 10;
+		oPlayerManager.statBulletDebuff -= 6;
 		timeDown();
 		break;
 		case oElectricKite:
 		oPlayerManager.canRich = false
-		oPlayerManager.statBulletDebuff -= 20;
+		oPlayerManager.statBulletDebuff -= 12;
 		timeDown();
 		break;
 		case oPoorFingerPainting:
@@ -617,9 +628,21 @@ function itemRemove(_item){
 		break;
 		case oUnstableEnergy:
 		oItemManager.hasUnstableEnergy = false;
-		oPlayerManager.statBulletDebuff -= 20;
+		oPlayerManager.statBulletDebuff -= 12;
 		timeDown();
 		break;
+		
+		case oDepictionOfSeraphim:
+		for (var l = 0; l <= 2; l++) {
+			fateUp();
+			lifeUp();
+			timeUp();
+			thoughtUp();
+			realityUp();
+			essenceUp();
+		}
+		break;
+		
 		}
 	}
 }

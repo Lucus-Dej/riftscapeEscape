@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"sCaveSpitter",
+  "%Name":"sWastelandDrone",
   "bboxMode":0,
   "bbox_bottom":41,
   "bbox_left":22,
@@ -23,7 +23,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"4e39fb77-7de9-4003-a1d0-c8fa49f97a06","blendMode":0,"displayName":"default","isLocked":false,"name":"4e39fb77-7de9-4003-a1d0-c8fa49f97a06","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"sCaveSpitter",
+  "name":"sWastelandDrone",
   "nineSlice":null,
   "origin":4,
   "parent":{
@@ -35,7 +35,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"sCaveSpitter",
+    "%Name":"sWastelandDrone",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -59,7 +59,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"sCaveSpitter",
+    "name":"sWastelandDrone",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -71,13 +71,13 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"976a72e1-ec10-4d45-b45e-c96377c06695","path":"sprites/sCaveSpitter/sCaveSpitter.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"976a72e1-ec10-4d45-b45e-c96377c06695","path":"sprites/sWastelandDrone/sWastelandDrone.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a0ec85f1-a78b-42bf-8b18-a6d7de463bc5","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6b463ca1-25ac-479f-90d7-f4570e01969c","path":"sprites/sCaveSpitter/sCaveSpitter.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6b463ca1-25ac-479f-90d7-f4570e01969c","path":"sprites/sWastelandDrone/sWastelandDrone.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"b0b97e2d-a004-463f-8039-03d0e9863034","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2d7bc588-573d-42c3-8bd3-6b790c03d979","path":"sprites/sCaveSpitter/sCaveSpitter.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2d7bc588-573d-42c3-8bd3-6b790c03d979","path":"sprites/sWastelandDrone/sWastelandDrone.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"6704bf49-399b-4a8b-a847-20685d244f84","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

@@ -55,7 +55,7 @@ item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 ds_list_add(rareItemList, oD2, oWeeklyPaycheck, oHarvestBook, oBloodyGem, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oDoubleOrNothing, oHeartPendent, oLilFurnacePickup, oWeightlessHourglass, oCrackedEgg, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oReflectiveGem, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
+ds_list_add(powerfulItemList, oMolotov, oDoubleOrNothing, oHeartPendent, oLilFurnacePickup, oWeightlessHourglass, oCrackedEgg, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oReflectiveGem, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
 ds_list_add(mythicItemList, oHauntedGravestone, oPetrifiedHeart, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oVirstEssence, oTorzolEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oThePathForward, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
 ds_list_copy(simpleItemCopy, simpleItemList);
 ds_list_copy(rareItemCopy, rareItemList);
@@ -89,6 +89,7 @@ hasDirtyMirror = false;
 show_debug_message("ItemManager CREATED in room: " + string(room));
 
 // powerful passiv
+hasMolotov = false;
 hasDoubleOrNothing = false;
 hasWeightlessHourglass = false;
 hasCrackedEgg = false;

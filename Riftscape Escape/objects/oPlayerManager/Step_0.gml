@@ -372,7 +372,7 @@ if (realityBombCheck == BOMB_KILL_CHECK.failed) {
 }
 //minion stuff
 if (initMinion && !instance_exists(oMinion)) {
-	if (oItemManager.hasReflectiveGem && instance_exists(oTruePlayer)) {
+	/*if (oItemManager.hasReflectiveGem && instance_exists(oTruePlayer)) {
 		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
 		var enem = noone;
 		with (oTruePlayer) {
@@ -382,7 +382,7 @@ if (initMinion && !instance_exists(oMinion)) {
 			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
 		}
 		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
-	}
+	} */
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinion);
 }
 if (initMinion && hasMinionTime && !instance_exists(oMinionTime)) {

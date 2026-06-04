@@ -75,8 +75,14 @@ if (!canBounce && bounceNum <= 0) {
 	var nx = x + lengthdir_x(2, newDir);
 	var ny = y + lengthdir_y(2, newDir);
 	var newSpeed = max(abs(speed), 0.01);
+	if (oItemManager.hasDirtyMirror) {
+		damage*= 1.1;
+	} else {
+		damage *= 0.9;
+	}
 	if (oItemManager.hasHeartPendent) {
-		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage*0.8, object_index, oTruePlayer);
+		
+		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage, object_index, oTruePlayer);
 		copy.bounceNum = bounceNum;
 		copy.canBounce = false;
 		copy.ignoreWall = ignoreWall;
@@ -88,7 +94,7 @@ if (!canBounce && bounceNum <= 0) {
 		ds_map_copy(copy.damagedList, damagedList);
 		newDir -= 15;
 	}
-	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage*0.8, object_index, oTruePlayer);
+	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage, object_index, oTruePlayer);
 	copy.bounceNum = bounceNum;
 	copy.boucned = true;
 	copy.canSpread = canSpread;

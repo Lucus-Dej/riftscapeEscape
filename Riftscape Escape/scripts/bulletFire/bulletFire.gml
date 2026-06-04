@@ -61,6 +61,7 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 			c.orbitRadius = 0;
 			c.orbitAngle = _dir;
 			c.orbitSpeed = _speed;
+			
 		}
 	}
 	b.baseSpeed = _dir;
@@ -69,12 +70,13 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
     b.speed = _speed;
 	b.damage = _damage;
     b.owner = _owner;
-	var critNum = irandom_range(1, 100) + global.playerTime;
+	var critNum = irandom_range(100, 100) + global.playerTime;
 	if (critNum >= 100) {
 		b.damage = b.damage * (1.3+(global.playerTime*0.015));
 		b.image_xscale += 0.5;
 		b.image_yscale += 0.5;
 		b.image_blend = c_aqua;
+		b.critShot = true;
 		audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
 	}
 	if (instance_exists(oItemManager)) {

@@ -31,6 +31,7 @@ if (onStart && !used && veribroseItem) {
 	if (object_exists(item)) {
 		summon = instance_create_layer(x, y, "Instances", item);
 		summon.veribroseMark = true;
+		summon.RoomID = RoomID;
 	}
 	
 	
@@ -39,6 +40,7 @@ if (spawnItem && item != noone) {
 	summon = instance_create_layer(x, y, "Instances", item);
 	summon.rarity = rarity;
 	spawnItem = false;
+	summon.RoomID = RoomID;
 } 
 if (Manager == noone) {
 	//Manager = findManager()
