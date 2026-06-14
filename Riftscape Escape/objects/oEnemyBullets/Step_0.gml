@@ -14,7 +14,11 @@ if (canAccel) {
 	currentSpeed += 0.2;
 }
 if (canDecel) {
-	currentSpeed -= decelRate;
+	if (decelLockedToZero && speed > 0) {
+		currentSpeed -= decelRate;
+	} else if (!decelLockedToZero)  {
+		currentSpeed -= decelRate;
+	}
 }
 
 if (isGhost && isGhosting) {

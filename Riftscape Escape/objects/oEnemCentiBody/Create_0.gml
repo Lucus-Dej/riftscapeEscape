@@ -1,5 +1,5 @@
 event_inherited();
-enemey_hp = 5.4;
+enemey_hp = 4.9;
 bite_cooldown = 75;
 on_cooldown = false;
 bite_timer = bite_cooldown;
@@ -7,7 +7,7 @@ enemSpeed = 3.45;
 base_speed = enemSpeed;
 xp = 0;
 damage = 16.5;
-contactDamage = damage;
+contactDamage = 2;
 spawnWeight = 4;
 head = noone;
 path_cooldown = 10;

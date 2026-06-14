@@ -1,6 +1,6 @@
 searchItem = false;
 runeCheck = false;
-ritualRerollAvailable = true;
+ritualRerollAvailable = false;
 doBrain = false;
 bossSearch = false;
 brainNum = -99999;
@@ -36,6 +36,7 @@ rarity = 0;
 randomise();
 
 // rare passive
+hasOilBarrel = false;
 hasIceSoup = false;
 iceSoupTriggered = false;
 hasRareSeed = false;
@@ -54,9 +55,9 @@ ds_list_add(bookList, oDeathBook, oDreamsBook, oThePathForward, oDictionaryCharg
 item = oEnemSpider;
 itemList = [];
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oD2, oWeeklyPaycheck, oHarvestBook, oBloodyGem, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oMolotov, oDoubleOrNothing, oHeartPendent, oLilFurnacePickup, oWeightlessHourglass, oCrackedEgg, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oReflectiveGem, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oMirrorShard);
-ds_list_add(mythicItemList, oHauntedGravestone, oPetrifiedHeart, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oVirstEssence, oTorzolEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oThePathForward, oTesseract, oPoorFingerPainting, oTetheredSoulPickup, oBrokenSnowglobe, oElectricKite);
+ds_list_add(rareItemList, oOilBarrel, oDoubleOrNothing, oD2, oWeeklyPaycheck, oHarvestBook, oBloodyGem, oCrackedEgg, oGenStone, oBlackHoleCharge, oIceSoup, oReflectiveGem, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
+ds_list_add(powerfulItemList, oHeartPendent, oPetrifiedHeart, oLilFurnacePickup, oWeightlessHourglass, oDirectorsNote, oLostCrown, oDictionaryCharge, oDeathBook, oMagnet, oSingularity, oBrainInAJar, oActionFigure, oMetalOrb, oWhisperingCrystal, oImageOfYou, oGunpowder, oTetheredSoulPickup, oMirrorShard);
+ds_list_add(mythicItemList, oHauntedGravestone, oMolotov, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oVirstEssence, oTorzolEssence, oUnstableEnergy, oSacDagger , oDreamsBook, oThePathForward, oTesseract, oPoorFingerPainting, oBrokenSnowglobe, oElectricKite);
 ds_list_copy(simpleItemCopy, simpleItemList);
 ds_list_copy(rareItemCopy, rareItemList);
 ds_list_copy(powerfulItemCopy, powerfulItemList);
@@ -136,3 +137,4 @@ hasTesseract = false;
 hasTetheredSoul = false;
 hasBrokenSnowglobe = false;
 hasUnstableEnergy = false;
+hasDartGun = false;

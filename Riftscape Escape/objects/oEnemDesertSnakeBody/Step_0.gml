@@ -10,7 +10,7 @@ if (instance_exists(head)) {
 	enemSpeed = head.enemSpeed;
 	if (enemey_hp < head.enemey_hp) {
 		var dmgDiff = head.enemey_hp - enemey_hp;
-		head.enemey_hp -= dmgDiff/2;
+		enemyTakeDamage(dmgDiff/2, head);
 	}
 	enemey_hp = head.enemey_hp;
 } else {

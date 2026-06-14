@@ -6,3 +6,6 @@ damage = 2.5;
 if (oItemManager.hasLostCrown) {
 	damage = 4;
 }
+if (layer_get_name(layer) != "Flying") {
+	layer = layer_get_id("Flying");
+}

@@ -31,7 +31,6 @@ if (!canBounce && bounceNum <= 0) {
 			}
 			
 		}
-	show_debug_message(collCheck)
 	if (bounceTarget == noone || !instance_exists(bounceTarget) || collCheck != noone) {	
 		var vx = lengthdir_x(speed, direction);
 		var vy = lengthdir_y(speed, direction);
@@ -82,24 +81,28 @@ if (!canBounce && bounceNum <= 0) {
 	}
 	if (oItemManager.hasHeartPendent) {
 		
-		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage, object_index, oTruePlayer);
+		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage, object_index, self);
 		copy.bounceNum = bounceNum;
 		copy.canBounce = false;
 		copy.ignoreWall = ignoreWall;
 		copy.canSpread = canSpread;
 		copy.image_blend = image_blend;
 		copy.image_xscale = image_xscale;
+		copy.turretApplied = turretApplied;
 		copy.image_yscale = image_yscale;
 		copy.damagedList = ds_map_create();
+		copy.critShot = critShot;
 		ds_map_copy(copy.damagedList, damagedList);
 		newDir -= 15;
 	}
-	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage, object_index, oTruePlayer);
+	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage, object_index, self);
 	copy.bounceNum = bounceNum;
 	copy.boucned = true;
 	copy.canSpread = canSpread;
 	copy.canBounce = false;
 	copy.ignoreWall = ignoreWall;
+	copy.turretApplied = turretApplied;
+	copy.critShot = critShot;
 	copy.image_blend = image_blend;
 	copy.image_xscale = image_xscale;
 	copy.image_yscale = image_yscale;

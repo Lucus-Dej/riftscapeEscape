@@ -6,10 +6,15 @@ if (uiHealth <= 100 && !inOverhealth) {
 	draw_healthbar(16, 16, 348, 32, uiHealth, c_dkgrey, c_red, c_red, 0, true, true);
 } else if (!overHealthOverheated && !hasOverhealthRune) {
 	draw_healthbar(16, 16, 348, 32, overhealthTimer, c_red, c_red, c_aqua, 0, true, true);
-	if (oItemManager.hasPetrifiedHeart) {
-		overhealthTimer-= 2;
-	}
-	overhealthTimer-=0.5;
+	if (!global.inCombat) {
+		overhealthTimer -= 0.1;
+	} else {
+		if (oItemManager.hasPetrifiedHeart) {
+			overhealthTimer-= 2;
+		}
+		overhealthTimer-=0.5;
+	} 
+	
 	inOverhealth = true;
 	if (overhealthTimer < 0) {
 		overhealthTimer = overhealthCooldown;

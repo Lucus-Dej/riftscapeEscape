@@ -67,7 +67,7 @@ if (spawnCheck == 1) {
 	var spawn = instance_create_layer(x, y, "Instances", oEnemSpider);
 	if (isBoss) {
 		spawn.base_speed += 0.2;
-		spawn.enemey_hp -= 0.5;
+		spawn.maxHP -= 0.5;
 		
 	}
 	spawn.xp = 0;

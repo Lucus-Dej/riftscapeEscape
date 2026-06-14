@@ -24,6 +24,7 @@ primeContact = false;
 startCount = false;
 isBoss = false;
 bossModApplied = false;
+sub = false;
 // boss stats
 hpMult = 1;
 speedMult = 1;

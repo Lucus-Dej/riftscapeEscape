@@ -73,61 +73,46 @@ if (ready && !spawned && portal_timer <= 0 && !isFloorGen) {
 		pick = bossPull;
 		pick.spawning = true;
 		doBoss = true;
-		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oBossPortal);
-		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio);
 	} else {
 		var i = irandom(ds_list_size(spawnerList) - 1);
 		pick = spawnerList[| i];
-		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);
-		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 	}
 	spawned = true;
 } else if (ready && !spawned && portal_timer <= 0 && isFloorGen && diffPool > 0) {
 	if (bossRoom && totalBoss > 0) {
 		doBoss = true;
 		pick = bossSpawner;
-		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oBossPortal);
-		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
+		//temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oBossPortal);
 	} else {
 		var f = irandom(ds_list_size(spawnerList) - 1);
 		pick = spawnerList[| f];
-		temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);
-		audio_listener_position(temp_portal.x, temp_portal.y, 0);
-		audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
+		//temp_portal = instance_create_layer(pick.x, pick.y, "Instances", oPortal);
+		
 		
 	}
 	spawned = true;
 }
 if (spawned == true && spawn_timer <= 0) {
 	spawned = false;
-	instance_destroy(temp_portal);
-	temp_portal = noone;
+	//instance_destroy(temp_portal);
+	//temp_portal = noone;
 	if (isFloorGen && !doBoss) {
 		event_user(4);
 	} else if (isFloorGen && doBoss){
 		tempEnemy = bossSpawner.bossName
 		totalBoss--;
 	}
-	 enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
-	 enem.RoomID = RoomID;
-	 enem.Manager = id;
-	 if (isChallenge) {
-		enem.xp *= 1.2; 
-	 }
-	 if (doBoss) {
-		 with (enem) {
-			 isBoss = true;
-			 xp *= 1.5;
-			 bossMod(id);
-			 //event_user(13)
-		 }
-		 doBoss = false;
-	 }
-	 enem.RoomID = RoomID;
-	 diffPool -= enem.spawnWeight;
+	enem = spawnEnemViaEgg(spawn_cooldown, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
+	//enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
+	//enem.RoomID = RoomID;
+	//enem.Manager = id;
+	 //if (isChallenge) {
+	//	enem.xp *= 1.2; 
+	 //}
+	 //if (doBoss) {
+	//	 doBoss = false;
+	 //}
+	// diffPool -= enem;
 	//temp_portal = noone;
 	spawn_timer = spawn_cooldown;
 	portal_timer = portal_cooldown;
@@ -142,7 +127,7 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 }
 
 if (inCombat && !combatFinished && temp_portal == noone) {
-	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy))) {
+	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy) && !instance_exists(oEnemPortalEgg))) {
 		with (oGhostBarrierDirectionalParent) {
 		if ((RoomID1 == other.RoomID) || (RoomID2 == other.RoomID)) {
 			if (instance_exists(Manager2)){

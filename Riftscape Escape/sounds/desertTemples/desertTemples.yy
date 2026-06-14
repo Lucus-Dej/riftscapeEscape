@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"desertTemples",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"agMusic",
+    "path":"audiogroups/agMusic",
   },
   "bitDepth":1,
   "channelFormat":1,

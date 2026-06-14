@@ -15,9 +15,7 @@ heldHP = enemey_hp;
 invincible = false;
 enrage_point = enemey_hp/2;
 enraged = false;
-xp = 20;
-spawnWeight = 12.5;
-damage = 2.5;
+damage = 4.5;
 path_cooldown = 30;
 
 hostSearchCooldown = 300;

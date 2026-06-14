@@ -9,7 +9,7 @@ if (purpose == 1) {
     }
 	if (!ds_map_exists(boomDamageList, hit.id)) {
         ds_map_add(boomDamageList, hit.id, true);
-            hit.obHP -= global.playerDamage*1.5;
+            hit.obHP -= global.playerDamage*2;
         if (hit.obHP <= 0) {
             instance_destroy(hit);
         }

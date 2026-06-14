@@ -11,6 +11,7 @@ global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal
 
 global.damageNumbers = [];
+global.inCombat = false;
 global.playerContactDmg = false;
 global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 mp_grid_add_instances(global.Grid, oColl, 0);
@@ -27,7 +28,7 @@ global.bossBarCount = 0;
 global.activeRoom = false;
 bloodyGemCooldown = 12;
 bloodyGemTimer = bloodyGemCooldown;
-
+trueCrit = false;
 //sword stuff
 swordMax = 1100;
 gridDebugPressed = keyboard_check_pressed(vk_decimal)
@@ -73,7 +74,7 @@ hasDodgeThought = false;
 hasDodgeEssence = false;
 hasDodgeTime = false;
 iframes = 0;
-
+iframeTotal = 40;
 trackDodgeFate = false;
 dodgeFateCheck = noone;
 trackDodgeThoughtTimer = 0;
@@ -173,6 +174,7 @@ overhealthFlag = true;
 xpMult = 1;
 xpTotal = 0;
 xpLevel = 1;
+totalXP = 0;
 xpProgress = 115;
 xpUI = 100;
 overXP = 0;

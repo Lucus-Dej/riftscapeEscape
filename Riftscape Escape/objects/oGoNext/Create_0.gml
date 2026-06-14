@@ -1,1 +1,2 @@
 owned = noone;
+drawDesc = "";

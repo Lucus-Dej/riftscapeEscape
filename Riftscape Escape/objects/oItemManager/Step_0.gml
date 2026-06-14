@@ -139,20 +139,12 @@ if (hasSifterEssence) {
 		} else {
 			if (sifterTimer <= 0) {
 				if (oPlayerManager.inOverhealth) {
-					addDamageNumber(x, y, sifterEssenceDmg*2.5);
-					enem.enemey_hp -= sifterEssenceDmg*2.5;
+					enemyTakeDamage(sifterEssenceDmg*2.5, other);
 					oPlayerManager.overhealthTimer += 11.5;
 				} else {
-					addDamageNumber(x, y, sifterEssenceDmg);
-					enem.enemey_hp -= sifterEssenceDmg;
+					enemyTakeDamage(sifterEssenceDmg, other);
 					oPlayerManager.overhealthSuperTimer -= 11.5;
 					global.player_health += sifterEssenceDmg*10;
-				}
-				
-				enem.flash = 1;
-				
-				if (enem.enemey_hp <= 0) {
-					instance_destroy(enem)
 				}
 			}
 		}

@@ -27,11 +27,9 @@ shoot_delay = 160;
 enemey_hp = 18;
 phasePoint1 = enemey_hp/2;
 enraged = false;
-xp = 13;
 damage = 14;
 contactDamage = damage;
 chargeBonus = 0;
-spawnWeight = 9;
 
 
 

@@ -13,9 +13,12 @@ if (len > 0) {
     _yinput /= len;
 }
 
-//move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);
-
+//move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);\
 var realSpeed = global.player_speed;
+if (!instance_exists(oEnemy)) {
+	realSpeed = global.player_speed+2;
+} 
+
 
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;
@@ -42,6 +45,7 @@ if ((keyboard_check(vk_space) or mouse_check_button(mb_left)) && global.bullet_c
 		oMinionEssence.fire = true;
 	}
 	var dir = point_direction(x, y, mouse_x, mouse_y);
+	
 	playerBulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
     global.bullet_cooldown = global.bullet_delay;
 }

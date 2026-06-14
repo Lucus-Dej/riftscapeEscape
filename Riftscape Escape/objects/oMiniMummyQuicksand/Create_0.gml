@@ -1,1 +1,2 @@
-existance = 480;
+existance = 60;
+existanceTotal = existance;

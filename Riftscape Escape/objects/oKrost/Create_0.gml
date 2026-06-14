@@ -20,9 +20,7 @@ tpArray = [];
 with (oKrostTp) {
 	array_push(other.tpArray, id);
 }
-xp = 250;
 
 searchPlayer();
-spawnWeight = 33.5;
 image_xscale = 1.5;
 image_yscale = 1.5;

@@ -54,4 +54,7 @@ if (l == 1) {
 	var sand = instance_create_layer(x, y, "Instances", oMiniMummyQuicksand);
 	sand.image_xscale = 0.1;
 	sand.image_yscale = 0.1;
+	if (isBoss) {
+		sand.existance *= hpMult*1.5;
+	}
 }

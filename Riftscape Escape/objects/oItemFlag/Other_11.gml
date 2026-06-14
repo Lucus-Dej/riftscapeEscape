@@ -1,3 +1,4 @@
+// boss search
 if (oPlayerManager.hasBossDropRune) exit;
 item = noone;
 with (oItemManager) {

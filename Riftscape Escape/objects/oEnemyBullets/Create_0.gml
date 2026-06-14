@@ -17,7 +17,7 @@ existance = 300;
 baseSpeed = 0;
 currentSpeed = baseSpeed;
 isGhosting = false;
-
+decelLockedToZero = false;
 dotTarget = noone;
 dotDamage = 0;
 dotTicks = 0;

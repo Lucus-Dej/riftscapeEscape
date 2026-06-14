@@ -4,7 +4,7 @@ if (Manager.combatFinished && !used) {
 		searchItem = true;
 		dropID = other.id;
 		if (other.bossRoom) {
-			if (oPlayerManager.hasBossDropRune) exit;
+			event_user(2);
 			bossSearch = true;
 		}
 	}

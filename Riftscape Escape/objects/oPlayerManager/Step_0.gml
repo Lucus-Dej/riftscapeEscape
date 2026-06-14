@@ -65,9 +65,24 @@ if (leveling && levelsPending <=0) {
 
 // damage and health stuff
 if (tookDamage) {
+	if (oItemManager.hasOilBarrel) {
+		var barrelCheck = irandom_range(1, 8);
+		if (barrelCheck + global.playerTime*0.5 >= 10) {
+			with (oTruePlayer) {
+				var enemDistCheck = 240;
+				
+				with (oEnemy) {
+					var enemDist = point_distance(x, y, other.x, other.y);
+					if (enemDist <= enemDistCheck) {
+						callDOT(self, 0.065, 8, 12, dotType.fire, other);
+					}
+				}
+			}
+		}
+	}
 	if (oItemManager.hasD2) {
-		var rollCheck = irandom_range(1, 100);
-		if (rollCheck + global.playerTime >= 2) {
+		var rollCheck = irandom_range(1, 2);
+		if (rollCheck == 2) {
 			var itemLength = array_length(oItemManager.itemList)-1;
 			var itemIndex = irandom(itemLength);
 			var foundItem = oItemManager.itemList[itemIndex];
@@ -81,10 +96,14 @@ if (tookDamage) {
 	if (inOverhealth) {
 		overhealthTimer /= 3;
 	}
-	iframes = 16;
+	iframes = 24;
 	tookDamage = false;
 }
-
+if (instance_exists(oEnemy)) {
+	global.inCombat = true;
+} else {
+	global.inCombat = false;
+}
 if (global.player_health <= 0) {
 	if (oItemManager.hasTetheredSoul && instance_exists(oTetheredSoul)) {
 		instance_destroy(oTetheredSoul)
@@ -232,7 +251,7 @@ if (dodgeState == DODGE_PHASE.onStandby) {
 		dodgeState = DODGE_PHASE.dodging;
 		dodgeSpeed =  18.5 + (global.playerReality/10);
 		dodgeDuration = 6;
-		iframes = 25+global.playerReality;
+		iframes = 22+global.playerReality*2;
 	}
 }
 if (dodgeState == DODGE_PHASE.dodging) {
@@ -266,7 +285,7 @@ if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePre
 	dodgeState = DODGE_PHASE.blackflashing;
 	dodgeBlackFlashTimer = 100;
 	dodgeDuration = 6;
-	iframes = 24+global.playerReality+global.playerTime;
+	iframes = 22+(global.playerReality+global.playerTime)*2;
 	dodgeSpeed =  16.5 + (global.playerReality/10)
 } else if (dodgeBlackFlashTimer > 15 && inDodge && dodgePressed) {
 	trackDodgeFate = true;
@@ -478,7 +497,8 @@ if (inOverhealth == false) {
 	}
 }
 overhealthCooldown = 100 + 40+global.playerEssence*5
-global.lifesteal = (global.playerEssence/2+(global.playerDamage/3))*oItemManager.sacDaggerBonus;
+
+global.lifesteal = global.playerDamage* 0.35 + max_hp * (0.0025 + (global.playerEssence*0.0075))*oItemManager.sacDaggerBonus;
 
 if (inOverhealth) {
 	if (oItemManager.hasBloodyGem) {

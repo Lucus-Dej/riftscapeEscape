@@ -10,8 +10,8 @@ function getEnemPool(_currentFloor) {
 	var challengeArray = [];
 	switch (_currentFloor) {
 		case "caves":
-		enemArray = [oEnemExplosiveSpider, oEnemBat, oEnemCentiHead, oEnemCaveSpider, oEnemSpider];
-		bossArray = [oEnemCentiHead, oBoss, oBoss2, oMiniBoss, oMiniBoss2, oEnemBigBat, oEnemMotherCaveSpider];
+		enemArray = [oCavesStoneGolem, oEnemExplosiveSpider, oEnemBat, oEnemCentiHead, oEnemCaveSpider, oEnemSpider];
+		bossArray = [oEnemCentiHead, oBoss, oBoss2, oCavesStoneGolem, oMiniBoss, oMiniBoss2, oEnemBigBat, oEnemMotherCaveSpider];
 		evilArray = [oMiniBoss, oMiniBoss2, oEnemBigBat]
 		
 		break;
@@ -23,7 +23,7 @@ function getEnemPool(_currentFloor) {
 		break;
 		
 		case "wasteland":
-		enemArray = [oWastelandSpitter, oEnemTurret, oWastelandBurner, oMiniBoss3, oWastelandFireRunner, oRifterDrone]
+		enemArray = [oWastelandSpitter, oEnemTurret, oWastelandBurner, oEnemRifterSpider, oMiniBoss3, oWastelandFireRunner, oWastelandFireSpirit, oRifterDrone]
 		bossArray = [oBoss3, oMiniBoss3, oEnemBlackHole];
 		evilArray = [oBoss, oBoss2, oWastelandFireRunner, oEnemBlackHole]
 		break;

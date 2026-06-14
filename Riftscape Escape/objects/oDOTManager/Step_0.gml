@@ -17,15 +17,14 @@ if (array_length(dotArray) > 0) {
 			
 			if (variable_instance_exists(dot.target, "enemey_hp")) {
 				dot.target.flash = 1
-				dot.target.enemey_hp -= dot.damage;
-				addDamageNumber(dot.target.x, dot.target.y, dot.damage);
+				enemyTakeDamage(dot.damage, dot.target)
 				if (dot.target.enemey_hp <= 0) {
-					if (dot.type == dotType.fire && oItemManager.hasMolotov) {
+					if (oItemManager.hasMolotov) {
 						with (dot.target) {
 							with (oEnemy) {
 								var dist = point_distance(x, y, other.x, other.y);
 								if (dist < 320) {
-									callDOT(id, dot.damage*2, 8, 12, dotType.fire, other);
+									callDOT(id, dot.damage*2, 16, 12, dotType.fire, other);
 								}
 							}
 						}

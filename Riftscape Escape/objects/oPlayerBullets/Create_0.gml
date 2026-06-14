@@ -8,23 +8,12 @@ baseSpeed = 0;
 spreadCount = 0;
 collCheck = noone;
 overkill = 0;
-if (oItemManager.hasHeartPendent) {
-	canBounce = true;
-	bounceNum += 1;
-}
-if (oItemManager.hasUnstableEnergy) {
-	canSpread = true
-	spreadCount = 6+global.playerTime;
-} 
-if (oItemManager.hasMirrorShard) {
-	canBounce = true;
-	bounceNum += 1;
-	tracking = 1;
-} 
-if (oItemManager.hasDirtyMirror) {
-	canBounce = true;
-	bounceNum += 3;
-}
+decayRate = (global.playerReality + 4)/24
+increaseRate = (global.playerReality + 2)/32
+pierceDebuffed = false;
+deceyToZero = false;
+isTurret = false;
+
 bounced = false;
 
 inCircle = false;
@@ -63,11 +52,32 @@ damagedList = ds_map_create();
 ignoreEnemy = noone;
 ignoreWall = noone;
 target = noone;
+turretCooldown = global.bullet_delay*0.7;
+turretDelay = turretCooldown;
+turretApplied = false;
+firedFromTurret = false;
+if (oItemManager.hasDartGun) {
+	isTurret = true;
+}
 if (oPlayerManager.canRich) {
 	richCount = 1;
 } else {
 	richCount = 0;
 }
-decayRate = (global.playerReality + 4)/24
-increaseRate = (global.playerReality + 2)/32
-pierceDebuffed = false;
+if (oItemManager.hasHeartPendent) {
+	canBounce = true;
+	bounceNum += 1;
+}
+if (oItemManager.hasUnstableEnergy) {
+	canSpread = true
+	spreadCount = 6+global.playerTime;
+} 
+if (oItemManager.hasMirrorShard) {
+	canBounce = true;
+	bounceNum += 1;
+	tracking = 1;
+} 
+if (oItemManager.hasDirtyMirror) {
+	canBounce = true;
+	bounceNum += 3;
+}

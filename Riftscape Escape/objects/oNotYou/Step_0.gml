@@ -4,3 +4,4 @@ if (follow != noone) {
 }
 x += (xTo - x)/50;
 y += (yTo - y)/50;
+if (timer >= 0) timer--;

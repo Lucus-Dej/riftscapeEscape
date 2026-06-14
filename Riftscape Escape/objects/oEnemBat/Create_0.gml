@@ -4,13 +4,11 @@ shoot_delay = 90;
 enemey_hp = 3.5;
 enemSpeed = 0.5;
 base_speed = enemSpeed;
-xp = 3.6;
 damage = 12.5;
 bullet_speed = 7.5;
 searchPlayer();
-spawnWeight = 1.5;
 isDashing = false;
-dashDuration = 40;
+dashDuration = 32;
 dashTimer = 0;
 if (layer_get_name(layer) != "Flying") {
 	layer = layer_get_id("Flying");

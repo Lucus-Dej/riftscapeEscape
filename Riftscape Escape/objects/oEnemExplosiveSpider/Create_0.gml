@@ -5,7 +5,5 @@ on_cooldown = false;
 bite_timer = bite_cooldown;
 enemSpeed = 5.2;
 base_speed = enemSpeed;
-xp = 2.1;
 damage = 5;
 contactDamage = damage;
-spawnWeight = 1.2;

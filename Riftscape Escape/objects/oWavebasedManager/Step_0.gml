@@ -64,17 +64,27 @@ if (state == waveState.spawning) {
 			spawnCooldown = spawnDelay
 		}
 	} else if (!instance_exists(oEnemy)) {
+		if (!runeRound && instance_exists(oRuneSpawner)) {
+			instance_destroy(oRuneSpawner)
+		}
+		if (runeRound) {
+			with (oRuneFlag) {
+				instance_create_layer(x, y, "Instances", oRuneSpawner);
+			}
+			roundsTillRune = 10;
+			runeRound = false;
+		}
 		if (itemRound) {
 			with (itemSpawner) {
 				event_user(0);
 			}
-			roundsTillItem = 8;
+			roundsTillItem = 10;
 			itemRound = false;
 		}
 		if (bossRound) {
 			startingWeight += bossBonus*2.5;
 			bossBonus++;
-			roundsTillBoss = 4;
+			roundsTillBoss = 5;
 			bossRound = false;
 		}
 		state = waveState.inBetween;
@@ -89,25 +99,29 @@ if (state == waveState.inBetween) {
 	waveTxt = "Wave: "+string(wave);
 	roundsTillBoss--;
 	roundsTillItem--;
+	roundsTillRune--;
 	if (roundsTillBoss == 0) {
 		bossRound = true;
 	}
 	if (roundsTillItem == 0) {
 		itemRound = true;
 	}
+	if (roundsTillRune == 0) {
+		runeRound = true;
+	}
 	if (!restrictedArrays)
 	switch (wave) {
 		case 1:
-		array_push(waveArray, oEnemExplosiveSpider)
+		array_push(waveArray, oEnemExplosiveSpider, oEnemCaveSpider)
 		startingWeight += 2;
 		break;
 		
 		case 2:
-		array_push(waveArray, oEnemCaveSpider)
+		array_push(waveArray, oEnemBat)
 		break;
 		
-		case 3:
-		array_push(waveArray, oEnemBat)
+		case 4:
+		array_push(waveArray, oCavesStoneGolem)
 		break;
 		
 		case 5:
@@ -155,7 +169,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 21:
-		array_push(waveArray, oWastelandBurner)
+		array_push(waveArray, oWastelandBurner, oRifterDrone)
 		break;
 		
 		case 26:
@@ -163,7 +177,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 28:
-		array_push(waveArray, oBoss3)
+		array_push(waveArray, oWastelandFireSpirit)
 		break;
 		
 		case 31:

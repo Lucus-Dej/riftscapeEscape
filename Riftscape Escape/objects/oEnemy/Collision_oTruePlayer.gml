@@ -6,12 +6,7 @@ if (oItemManager.hasCrackedEgg) {
 	}
 	if (contactIframe <= 0 && global.contactDmg > 0 && global.playerContactDmg) {
 		contactIframe = contactIframeCount;
-		self.enemey_hp -= global.contactDmg;
-		flash = 1;
-		if (enemey_hp <= 0) {
-			instance_destroy();
-			global.playerKilled = true;
-		}
+		enemyTakeDamage(global.contactDmg, self);
 	}
 } else {
 	if (oPlayerManager.iframes <= 0) {
@@ -22,11 +17,6 @@ if (oItemManager.hasCrackedEgg) {
 	}
 	if (contactIframe <= 0 && global.contactDmg > 0 && global.playerContactDmg) {
 		contactIframe = contactIframeCount;
-		self.enemey_hp -= global.contactDmg;
-		flash = 1;
-		if (enemey_hp <= 0) {
-			instance_destroy();
-			global.playerKilled = true;
-		}
+		enemyTakeDamage(global.contactDmg, self);
 	}
 }

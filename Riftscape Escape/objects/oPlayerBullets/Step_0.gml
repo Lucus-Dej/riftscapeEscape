@@ -1,3 +1,12 @@
+if (!firedFromTurret && !turretApplied && isTurret) {
+	image_xscale += 0.5;
+	image_yscale += 0.5;
+	existance *= 5;
+	canDecel = true;
+	deceyToZero = true;
+	decayRate *= 1.2;
+	turretApplied = true;
+}
 existance--;
 if (oPlayerManager.hasBulletRangeRune) {
 	existance--;
@@ -8,7 +17,7 @@ if (existance <= 0) {
 if (oItemManager.hasWeightlessHourglass) {
 	
 	if (speed > 0) {
-		speed -= 0.13;
+		speed -= decayRate;
 		if (speed < 0 && speed != 0) {
 			speed = 0;
 		}
@@ -47,13 +56,41 @@ if (canOrbit && instance_exists(orbitCenter)) {
 } else {
 	if (oItemManager.hasBrokenSnowglobe) {
 		speed += increaseRate;
-		damage += 0.025;
+		//damage += speed*1.001;
 	}
 	if (canAccel) {
 		speed += increaseRate;
 	}
 	if (canDecel) {
-		speed -= decayRate
+		if (!deceyToZero) {
+			speed -= decayRate
+		} else if (deceyToZero && speed > 0) {
+			speed -= decayRate;
+			if (speed < 0) {
+				speed = 0;
+			}
+		}
+	}
+	if (isTurret && !firedFromTurret && turretApplied) {
+		turretDelay--;
+		if (turretDelay <= 0 && instance_exists(oEnemy)) {
+			var tar = instance_nearest(x, y, oEnemy);
+			var tarDir = point_direction(x, y, tar.x, tar.y)
+			var f = bulletFire(x, y, tarDir, global.bullet_speed*0.5, damage*0.4, object_index, self);
+			f.bounceNum = bounceNum;
+			f.canBounce = false;
+			f.ignoreWall = ignoreWall;
+			f.canSpread = canSpread;
+			f.image_blend = image_blend;
+			f.turretApplied = turretApplied;
+			f.damagedList = ds_map_create();
+			f.critShot = critShot;
+			if (ds_exists(damagedList, ds_type_map)) {
+				ds_map_copy(f.damagedList, damagedList);
+			}
+			
+			turretDelay = turretCooldown;
+		}
 	}
 	if (oItemManager.hasSingularity) {
 		var dist = 160;

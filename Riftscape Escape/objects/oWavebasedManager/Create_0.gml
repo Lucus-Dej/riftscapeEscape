@@ -4,13 +4,15 @@ waveTxt = "Wave: 0";
 enemiesLeft = 0;
 enemString = "Enemies Left: "+string(enemiesLeft);
 startingWeight = 3;
-roundsTillBoss = 4;
+roundsTillBoss = 5;
 bossRound = false;
 itemRound = false;
-roundsTillItem = 8;
+roundsTillItem = 10;
+roundsTillRune = 15;
+runeRound = false;
 bossBonus = 1;
 waveArray = [ oEnemSpider]
-bossArray = [oBoss, oBoss2, oEnemMotherCaveSpider, oMiniBoss2, oMiniBoss, oWastelandSpitter, oEnemBigBat];
+bossArray = [oBoss, oBoss2, oEnemMotherCaveSpider, oMiniBoss2, oMiniBoss, oEnemBigBat, oCavesStoneGolem];
 allEnemPool = [oWastelandSpitter, oEnemMiniMummy, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,
 	oEnemSpider, oEnemTurret, oPlainsShooter, oWastelandBurner, oWastelandFireRunner, 
 	oBoss, oBoss2, oBoss3, oDesertSlammer, oMiniBoss, oMiniBoss2, oMiniBoss3, oRifterTank, 

@@ -23,6 +23,9 @@ function itemAdd(_item){
 		break;
 		
 		// rares
+		case oOilBarrel:
+		oItemManager.hasOilBarrel = true;
+		break;
 		case oD2:
 		oItemManager.hasD2 = true;
 		break;
@@ -140,6 +143,11 @@ function itemAdd(_item){
 		
 		
 		// mythics
+		case oElectricDartGun:
+		oItemManager.hasDartGun = true;
+		oPlayerManager.statBulletDebuff += 32;
+		thoughtUp();
+		break;
 		case oSifterEssence:
 		oItemManager.hasSifterEssence = true;
 		essenceUp();
@@ -167,6 +175,7 @@ function itemAdd(_item){
 		
 		case oHauntedGravestone:
 		oItemManager.hasHauntedGravestone = true;
+		essenceUp();
 		break;
 		case oPetrifiedHeart:
 		oItemManager.hasPetrifiedHeart = true;
@@ -241,6 +250,9 @@ function displayItemFunction(_item){
 		break;
 		
 		// rares
+		case oOilBarrel:
+		desc = "Oil Barrel: Taking Damage Has A Chance To Cause A Small DoT To Nearby Enemies";
+		break;
 		case oD2:
 		desc = "D2: Chance To Reroll An Item When Taking Damage. Gain Luck When This Occurs";
 		break;
@@ -283,7 +295,7 @@ function displayItemFunction(_item){
 		
 		// powerful
 		case oMolotov:
-		desc = "Molotov: Critical Hits Apply A Fire DoT. Enemies Spread Fire DoT Upon Death";
+		desc = "Molotov: Critical Hits Apply A Fire DoT. Enemies Killed By DoT Spread It Upon Death";
 		break;
 		case oDoubleOrNothing:
 		desc = "Double Or Nothing: Skipping An Item Can Reward You Or Could Do Nothing";
@@ -348,7 +360,7 @@ function displayItemFunction(_item){
 		desc = "Essence Of Alexta: Enemies Are Stunned When Spawned + Thought Up";
 		break;
 		case oVirstEssence:
-		desc = "Essence Of Virst: An Extra Life, At A Cost + Time Up";
+		desc = "Essence Of Virst: An Extra Life At A Cost + Rift Essence Grants Crit + Time Up";
 		break;
 		case oTorzolEssence:
 		desc = "Essence Of Torzol: Regeneration + Life Up";
@@ -360,8 +372,11 @@ function displayItemFunction(_item){
 		desc = "Essence Of Krost: Escalating Speed + Contact Damage + Reality Up";
 		break;
 		
+		case oElectricDartGun:
+		desc = "Dart Gun: Bullets Become Piercing Turrets + Thought Up";
+		break;
 		case oHauntedGravestone:
-		desc = "Haunted Gravestone: On Kill, Summon An Explosive Angry Spirit";
+		desc = "Haunted Gravestone: On Kill, Summon An Explosive Angry Spirit + Essence Up";
 		break;
 		case oPetrifiedHeart:
 		desc = "Petrified Heart: Faster Overhealth + Fire Bullets At End Of Overhealth + Essence Up";
@@ -443,6 +458,10 @@ function itemRemove(_item){
 		break;
 		
 		// rares
+		case oOilBarrel:
+		oItemManager.hasOilBarrel = false;
+		break;
+		
 		case oD2:
 		oItemManager.hasD2 = false;
 		break;
@@ -583,6 +602,10 @@ function itemRemove(_item){
 		realityDown();
 		break;
 		
+		case oElectricDartGun:
+		oPlayerManager.statBulletDebuff -= 32;
+		oItemManager.hasDartGun = false;
+		essenceDown();
 		case oHauntedGravestone:
 		oItemManager.hasHauntedGravestone = false;
 		break;
@@ -634,12 +657,12 @@ function itemRemove(_item){
 		
 		case oDepictionOfSeraphim:
 		for (var l = 0; l <= 2; l++) {
-			fateUp();
-			lifeUp();
-			timeUp();
-			thoughtUp();
-			realityUp();
-			essenceUp();
+			fateDown();
+			lifeDown();
+			timeDown();
+			thoughtDown();
+			realityDown();
+			essenceDown();
 		}
 		break;
 		
@@ -689,9 +712,7 @@ function rollItem(_chargeFilter) {
 		mythicMax = totalPool;
 	}
 
-	if (totalPool <= 0) return noone;
-
-	var j = irandom(totalPool - 1 + global.playerTime) + oItemManager.luckBonus;
+	var j = irandom(totalPool - 1) + oItemManager.luckBonus + global.playerTime;
 	j = clamp(j, 0, totalPool - 1);
 
 	var chosenList;
@@ -720,7 +741,9 @@ function rollItem(_chargeFilter) {
 	if (!check && chosenList != oItemManager.simpleItemList) {
 		ds_list_delete(chosenList, i);
 	}
-	show_debug_message(item)
+	if (item == -4) {
+		item = oDepictionOfSeraphim;
+	}
 	return item;
 }
 function findItemRarity(_item) {

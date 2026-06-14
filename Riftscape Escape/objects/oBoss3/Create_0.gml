@@ -12,7 +12,5 @@ recoil_timer = 0;
 enemey_hp = 36;
 phasePoint1 = enemey_hp/2;
 enraged = false;
-xp = 18.5;
 damage = 19;
-spawnWeight = 12;
 ang = irandom_range(35, 60);

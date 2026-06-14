@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"aPlayerFire",
+  "audioGroupId":{
+    "name":"agSFX",
+    "path":"audiogroups/agSFX",
+  },
+  "bitDepth":0,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.7314949,
+  "exportDir":"",
+  "name":"aPlayerFire",
+  "parent":{
+    "name":"audio",
+    "path":"folders/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":5512,
+  "soundFile":"aPlayerFire.mp3",
+  "volume":0.68,
+}

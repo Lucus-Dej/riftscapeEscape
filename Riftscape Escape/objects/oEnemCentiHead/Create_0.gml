@@ -1,14 +1,12 @@
 event_inherited();
-enemey_hp = 5.4;
+enemey_hp = 4.9;
 shoot_delay = 15;
 on_cooldown = false;
 bite_timer = shoot_delay;
 enemSpeed = 3.45;
 base_speed = enemSpeed;
-xp = 2;
 damage = 16.5;
 contactDamage = damage;
-spawnWeight = 2;
 bodyCount = 8;
 bodyArray = [];
 spawnedBody = false;

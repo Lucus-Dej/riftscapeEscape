@@ -11,7 +11,5 @@ recoil_timer = 0;
 enemey_hp = 25;
 phasePoint1 = enemey_hp/2;
 enraged = false;
-xp = 11.5;
 damage = 8.5;
-spawnWeight = 10;
 searchPlayer();

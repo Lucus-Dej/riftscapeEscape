@@ -6,12 +6,10 @@ if (!ds_exists(damagedList, ds_type_map)) {
         ds_map_add(damagedList, hit.id, true);
 	if (chainDistance > 0) {
 		damage = 0.3 + global.playerDamage/20 + global.playerTime/12;
-		other.enemey_hp -= damage;
-		addDamageNumber(other.x, other.y, damage);
+		enemyTakeDamage(damage, other);
 	} else {
 		damage = 1 + global.playerDamage/4 + global.playerTime/10;
-		other.enemey_hp -= damage;
-		addDamageNumber(other.x, other.y, damage);
+		enemyTakeDamage(damage, other);
 	}
 }
 if (other.enemey_hp <= 0) {

@@ -2,7 +2,7 @@ if (instance_exists(target)) {
 	pathfindTimer--;
 	if (pathfindTimer <= 0) {
 		pathfindTimer = 10;
-		pathfind(global.Grid, target, 7.5, id);
+		pathfind(global.flyGrid, target, 7.5, id);
 	}
 	
 } else {

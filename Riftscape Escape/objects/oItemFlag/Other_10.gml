@@ -1,3 +1,4 @@
+// amy rarity pull
 item = noone;
 with (oItemManager) {
 	searchItem = true;

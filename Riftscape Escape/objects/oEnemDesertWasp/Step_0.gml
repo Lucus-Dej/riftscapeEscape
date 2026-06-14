@@ -36,7 +36,7 @@ if (shoot_cooldown <= 0) {
 				}
 				bullet.isGhost = true;
 				bullet.existance /= 2;
-				bullet.dotDamage = damage*0.5;
+				bullet.dotDamage = damage*0.1;
 				bullet.source = id;
 				bullet.dotTicks = 4;
 				bullet.dotDelay = 12;
@@ -49,7 +49,7 @@ if (shoot_cooldown <= 0) {
 			bullet.image_xscale /= 2;
 			bullet.image_yscale /= 2;
 			bullet.existance /= 2;
-			bullet.dotDamage = damage*0.5;
+			bullet.dotDamage = damage*0.1;
 			bullet.source = id;
 			bullet.dotTicks = 4;
 			bullet.dotDelay = 12;

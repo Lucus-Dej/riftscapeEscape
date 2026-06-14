@@ -4,6 +4,7 @@ if (variable_instance_exists(other, "invincible")) {
 		exit; 
 	 }
 }
+var parent = object_get_parent(other.object_index);
 if (ignoreEnemy != other) {
     var hit = other;
 	lastHit = hit;
@@ -16,22 +17,23 @@ if (!ds_exists(damagedList, ds_type_map)) {
         oPlayerManager.lastKilledX = hit.x;
         oPlayerManager.lastKilledY = hit.y;
 		other.flash = 1;
-		if (oItemManager.hasUnstableEnergy && canSpread && spreadCount > 0) {
+		if (oItemManager.hasUnstableEnergy && canSpread && spreadCount > 0 && parent != oSubEnemy) {
 			//canSpread = false;
 			spreadCount--;
-			var cap = 4;
+			var cap = 3;
 			var doubleChance = irandom_range(1, 60)
 			if (doubleChance+global.playerTime > 60) {
-				cap = 7;
+				cap = 6;
 			}
 			var inc = 360/cap-1;
 			var startingAng = irandom(360);
 			for (var r = 0; r < cap; r++) {
 				var unDir = startingAng + inc*r;
-				var spreadShot = bulletFire(lastHit.x, lastHit.y, unDir, speed/2, damage/5, object_index, oTruePlayer);
+				var spreadShot = bulletFire(lastHit.x, lastHit.y, unDir, speed/2, damage/5, object_index, self);
 				spreadShot.ignoreEnemy = hit;
 				spreadShot.richCount = richCount;
 				spreadShot.bounceNum = bounceNum;
+				spreadShot.critShot = critShot;
 				spreadShot.image_xscale *= 0.75;
 				spreadShot.image_yscale *= 0.75;
 				spreadShot.image_blend = image_blend;
@@ -41,50 +43,14 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				ds_map_copy(spreadShot.damagedList, damagedList);
 			}
 			
+		} 
+		if (critShot && oItemManager.hasMolotov) {
+			callDOT(other, 0.25, 8, 12, dotType.fire, oTruePlayer);
 		}
-        if (oItemManager.hasWaterDamagedNote && !hit.hasDamaged) {
-			if (critShot && oItemManager.hasMolotov) {
-				callDOT(other, 0.1, 8, 12, dotType.fire, oTruePlayer);
-			}
-			damage *= 1.4;
-            hit.enemey_hp -= damage;
-			addDamageNumber(x, y, damage);
-			hit.hasDamaged = true;
-        } else {
-			addDamageNumber(x, y, damage);
-			if (critShot && oItemManager.hasMolotov) {
-				callDOT(other, 0.25, 8, 12, dotType.fire, oTruePlayer);
-			}
-            hit.enemey_hp -= damage;
-        }
+		enemyTakeDamage(damage, hit);
 		if (canLifesteal) {
-			global.player_health += global.lifesteal+damage/6;
+			global.player_health += global.lifesteal;
 		}
-		z = 0;
-audio_listener_position(x, y, z);
-audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
-        if (hit.enemey_hp <= 0) {
-            oPlayerManager.lastKilled = hit.id;
-            instance_destroy(hit);
-			overkill = damage - hit.enemey_hp;
-            global.playerKilled = true;
-			if (oItemManager.hasHauntedGravestone) {
-				var ghost = instance_create_layer(x, y, "Instances", oGravestoneGhost);
-				if (oItemManager.hasLostCrown) {
-					ghost.damage += overkill*1.1;
-				} else {
-					ghost.damage += overkill*1.02;
-				}
-			}
-			
-			if (object_index == oSwordLife) {
-				if (oPlayerManager.hasSwordThought) {
-					oPlayerManager.swordCooldownBonus = 22;
-					oPlayerManager.swordCooldownBonusTime = 30;
-				}
-			}
-        }
-
         // RICOCHET
        if (oPlayerManager.canRich && richCount > 0) {
 		   richCount--;
@@ -107,11 +73,13 @@ audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
 					closest = id;
 				}
 			}
-			if (closest != noone && instance_exists(closest)) {
+			
+			if (closest != noone && instance_exists(closest) && parent != oSubEnemy) {
 
 				var dir = point_direction(x, y, closest.x, closest.y);
 
-				var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, oTruePlayer)
+				var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, self);
+				richBullet.critShot = critShot;
 				richBullet.ignoreEnemy = hit;
 				richBullet.richCount = richCount;
 				richBullet.bounceNum = bounceNum;
@@ -119,7 +87,7 @@ audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
 				richBullet.image_xscale *= 0.75;
 				richBullet.image_yscale *= 0.75;
 				richBullet.image_blend = image_blend;
-
+				richBullet.turretApplied = turretApplied;
 				richBullet.damagedList = ds_map_create();
 				ds_map_copy(richBullet.damagedList, damagedList);
 			}

@@ -7,13 +7,11 @@ if (!ds_map_exists(damagedList, hit.id)) {
         ds_map_add(damagedList, hit.id, true);
 	if (chainDistance > 0) {
 		damage = 0.1 + global.lifesteal/6;
-		addDamageNumber(other.x, other.y, damage);
-		other.enemey_hp -= damage;
+		enemyTakeDamage(damage, other);
 		global.player_health += damage;
 	} else {
 		damage = 0.65 + global.lifesteal/2;
-		addDamageNumber(other.x, other.y, damage);
-		other.enemey_hp -= damage;
+		enemyTakeDamage(damage, other);
 		global.player_health += damage;
 	}
 }

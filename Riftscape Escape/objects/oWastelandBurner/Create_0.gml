@@ -5,7 +5,8 @@ on_cooldown = false;
 bite_timer = bite_cooldown;
 enemSpeed = 5.5;
 base_speed = enemSpeed;
-xp = 3;
 damage = 12.5;
-spawnWeight = 0.85;
 denyHP = true;
+if (layer_get_name(layer) != "Flying") {
+	layer = layer_get_id("Flying");
+}

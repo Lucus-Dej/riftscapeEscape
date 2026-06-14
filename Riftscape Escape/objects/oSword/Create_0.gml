@@ -5,7 +5,7 @@ damagedList = ds_map_create();
 if (instance_exists(oSwordFate)) {
 	instance_destroy(oSwordFate)
 }
-damage = global.playerDamage + oPlayerManager.swordDmgBonus;
+damage = global.playerDamage + oPlayerManager.swordDmgBonus + sqrt(global.playerEssence) * 0.45;
 if (oPlayerManager.hasSwordLife) {
 		bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y), global.bullet_speed*2, damage, oSwordLife, oTruePlayer);
 		if (oItemManager.hasMetalOrb) {

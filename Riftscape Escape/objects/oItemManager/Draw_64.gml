@@ -21,6 +21,11 @@ var startY = guiH * 0.35;
 
 for (var i = 0; i < array_length(itemList); i++) {
     var obj = itemList[i];
+	if (obj == -4) {
+		show_debug_message(i);
+		show_debug_message(itemList[i]);
+		show_debug_message(itemList);
+	}
 	var spr = object_get_sprite(obj);
 	if (spr == -1) continue;
 
@@ -45,9 +50,11 @@ for (var i = 0; i < array_length(itemList); i++) {
 if (hoveredItem != noone) {
 	displayItemFunction(hoveredItem);
 	if (ritualRerollAvailable && mouse_check_button_pressed(mb_left)) {
+		show_debug_message("hovered item is "+string(hoveredItem));
 		itemRemove(hoveredItem);
 		var newItem = rollItem(true);
 		itemAdd(newItem);
+		show_debug_message("newItem item is "+string(newItem));
 		ritualRerollAvailable = false;
 	}
 }
@@ -134,11 +141,11 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		break;
 		
 		case oThePathForward:
-		dropID = oTruePlayer;
+		//dropID = instance_create_layer(x, y, "Instances", oItemFlag);
 		luckBonus += 10;
-		event_user(0);
-		instance_create_layer(dropID.x, dropID.y, "Instances", dropID.item)
+		var newItem = rollItem(true);
 		luckBonus -= 10;
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", newItem);
 		global.itemCharges += 2;
 		break;
 		

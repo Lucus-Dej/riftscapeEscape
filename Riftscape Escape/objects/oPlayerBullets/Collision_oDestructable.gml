@@ -79,23 +79,27 @@ if (!canBounce && bounceNum  <= 0) {
 	var ny = y + lengthdir_y(2, newDir);
 	var newSpeed = max(abs(speed), 0.01);
 	if (oItemManager.hasHeartPendent) {
-		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage*0.8, object_index, oTruePlayer);
+		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage*0.8, object_index, self);
 		copy.bounceNum = bounceNum;
 		copy.canBounce = false;
 		copy.ignoreWall = ignoreWall;
+		copy.turretApplied = turretApplied;
 		copy.canSpread = canSpread;
 		copy.image_blend = image_blend;
 		copy.image_xscale = image_xscale;
 		copy.image_yscale = image_yscale;
 		copy.damagedList = ds_map_create();
+		copy.critShot = critShot;
 		ds_map_copy(copy.damagedList, damagedList);
 		newDir -= 15;
 	}
-	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage*0.8, object_index, oTruePlayer);
+	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage*0.8, object_index, self);
 	copy.bounceNum = bounceNum;
 	copy.canBounce = false;
 	copy.ignoreWall = ignoreWall;
 	copy.canSpread = canSpread;
+	copy.critShot = critShot;
+	copy.turretApplied = turretApplied;
 	copy.image_blend = image_blend;
 	copy.image_xscale = image_xscale;
 	copy.image_yscale = image_yscale;

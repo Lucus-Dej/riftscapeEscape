@@ -1,18 +1,34 @@
 function bossMod(_enem){
 	with _enem {
 		switch object_index {
-			case oWaspHive:
-			dmgMult = 1.5;
-			speedMult = 2;
-			hpMult = 4;
-			count *= 2;
-			phasePoint1 *= hpMult;
-			break
+			case oCavesStoneGolem:
+			dmgMult = 1.2;
+			speedMult = 1.2;
+			hpMult = 5.5;
+			rageBreak *= hpMult*1.1;
+			break;
+			
 			case oEnemMiniMummy:
 			dmgMult = 2;
-			speedMult = 1.2;
-			hpMult = 3.5;
+			speedMult = 1.4;
+			hpMult = 4;
+			cooldownMult = 3;
 			break;
+			
+			case oWastelandFireSpirit:
+			hpMult = 4;
+			cooldownMult = 2;
+			speedMult = 1.5;
+			dmgMult =  1.3;
+			break;
+			
+			case oWaspHive:
+			speedMult = 2;
+			hpMult = 3.5;
+			count *= 2;
+			phasePoint1 *= hpMult;
+			break;
+			
 			case oEnemMotherCaveSpider:
 			dmgMult = 2;
 			speedMult = 1.3;

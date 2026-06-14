@@ -26,11 +26,12 @@ if (attack == 0) {
 }
 
 if (enraged && distance_to_object(oTruePlayer) < 120) {
-	spiralArc += 20;
-	bulletFire(x, y, spiralArc, bullet_speed+1, damage/5, oFireBullet, id);
-	if (spiralArc > 360) {
-		spiralArc -= 360;
-	}
+	spiralArc += 57;
+	var f = bulletFire(x, y, spiralArc, bullet_speed+1, damage/5, oFireBullet, id);
+	f.canDecel = true;
+	f.decelRate = 0.01;
+	f.decelLockedToZero = true;
+	f.existance = 120;
 } 
 // fire when ready
 if (shoot_cooldown <= 0) {
