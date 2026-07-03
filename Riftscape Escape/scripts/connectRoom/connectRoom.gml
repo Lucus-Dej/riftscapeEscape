@@ -72,6 +72,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 		show_debug_message("INVALID ROOM FOUND");
 		show_debug_message(reserveCheck);
 		show_debug_message(testRange);
+		instance_destroy(reserveCheck);
 		invalid = true;
 		return;
 	}
@@ -81,6 +82,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 	claim.RoomID = oFloorManager.IDCount + 1;
 	setClaimBounds(claim, left, top, right, bottom);
 	var ritualID = 1;
+	var specialRoom = false;
 	if (!invalid)
 	for (var i = 0; i < array_length(roomInstData); i++) {
 		var inst = roomInstData[i];
@@ -127,7 +129,9 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 			newInst.ID = ritualID;
 			ritualID++;
 		}
-		
+		if (obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
+			specialRoom = true;	
+		}
 		
 		
 		//show_debug_message(newInst.RoomID)
@@ -137,6 +141,9 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 	var ranPool = irandom_range(-2, 4);
 	roomManager.diffPool = oFloorManager.difficultyPool+ranPool;
 	roomManager.floorID = oFloorManager.floorID;
+	if (specialRoom) {
+		roomManager.specialRoom = true;
+	}
 	if (doorType == "item") {
 		roomManager.isChallenge = true;
 	}

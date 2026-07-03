@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"aLongDrawnBreath",
+  "audioGroupId":{
+    "name":"agMusic",
+    "path":"audiogroups/agMusic",
+  },
+  "bitDepth":0,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":26.226938,
+  "exportDir":"",
+  "name":"aLongDrawnBreath",
+  "parent":{
+    "name":"audio",
+    "path":"folders/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"aLongDrawnBreath.mp3",
+  "volume":1.0,
+}

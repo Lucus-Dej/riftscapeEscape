@@ -8,6 +8,9 @@ function getRuneDesc(_rune){
 		case oDullRune:
 		desc = "Dull Rune: No Effect; No Reward";
 		break;
+		case oAlextraRune:
+		desc = "Your Mind Grows Weak. Your Vision Is Reduced";
+		break;
 		case oBossDropRune:
 		desc = "Bosses No Longer Drop Items";
 		break;
@@ -38,6 +41,10 @@ function getRuneDesc(_rune){
 
 function enableRune(_rune){
 	switch (_rune) {
+		case oAlextraRune:
+		oPlayerManager.hasAlextraRune = true;
+		oLightManager.darkLevel = 1;
+		break;
 		case oBossDropRune:
 		oPlayerManager.hasBossDropRune = true;
 		break;
@@ -73,6 +80,10 @@ function enableRune(_rune){
 }
 function disableRune(_rune){
 	switch (_rune) {
+		case oAlextraRune:
+		oPlayerManager.hasAlextraRune = false;
+		oLightManager.darkLevel = 0.5;
+		break;
 		case oBossDropRune:
 		oPlayerManager.hasBossDropRune = false;
 		break;

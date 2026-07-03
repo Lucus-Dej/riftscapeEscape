@@ -29,7 +29,7 @@ if (uiHealth <= 100 && !inOverhealth) {
 		overHealthDamageBuff = 0;
 		if (oItemManager.hasPetrifiedHeart) {
 			for (var i = 0; i < 360; i += 30) {
-				playerBulletFire(oTruePlayer.x, oTruePlayer.y, i, global.bullet_speed, global.playerDamage*0.6, global.chosenBullet, oTruePlayer);
+				playerBulletFire(oTruePlayer.x, oTruePlayer.y, i, global.bullet_speed, global.playerDamage*0.4, global.chosenBullet, oTruePlayer);
 			}
 		}
 	}
@@ -142,7 +142,7 @@ draw_text(uiX, uiY + 6*16, "Essence"+string(global.playerEssence));
 
 //draw_text (uiX, uiY + 11*16, "OverHealth Timer"+string (overhealthTimer));
 draw_text (uiX, uiY + 8*16, "Damage"+string (global.playerDamage));
-draw_text(uiX, uiY + 9*16,"Item Luck: " + string(oItemManager.luckBonus));
+draw_text(uiX, uiY + 9*16,"Item Luck: " + string(oItemManager.luckBonus + oItemManager.reflectiveGemLuckBonus));
 //draw_text (uiX, uiY + 14*16, "Cooldown Rate (Per Frame)"+string (cooldownRate+1));
 //draw_text (uiX, uiY + 15*16, "thought cooldown bonus"+string (trackDodgeThoughtTimer));
 //draw_text (uiX, uiY + 16*16, "health"+string (max_hp));

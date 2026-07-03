@@ -20,6 +20,7 @@ if (type == roomManagerType.arena && !wavebasedSpawned) {
 	waveManager.startingWeight = diffPool+2;
 	array_copy(waveManager.waveArray, 0, enemArray, 0, array_length(enemArray));
 	wavebasedSpawned = true;
+	waveManager.manager = id;
 }
 if (type == roomManagerType.arena && instance_exists(waveManager) && waveManager.wave == wavebasedAddChallenge && !addedChallenge) {
 	show_debug_message("HELP")
@@ -102,16 +103,16 @@ if (spawned == true && spawn_timer <= 0) {
 		tempEnemy = bossSpawner.bossName
 		totalBoss--;
 	}
-	enem = spawnEnemViaEgg(spawn_cooldown, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
+	enem = spawnEnemViaEgg(6, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
 	//enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
 	//enem.RoomID = RoomID;
 	//enem.Manager = id;
 	 //if (isChallenge) {
 	//	enem.xp *= 1.2; 
 	 //}
-	 //if (doBoss) {
-	//	 doBoss = false;
-	 //}
+	 if (doBoss) {
+		 doBoss = false;
+	 }
 	// diffPool -= enem;
 	//temp_portal = noone;
 	spawn_timer = spawn_cooldown;
@@ -127,7 +128,7 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 }
 
 if (inCombat && !combatFinished && temp_portal == noone) {
-	if ((!instance_exists(oEnemy) && enemies <= 0) || (instance_exists(oFloorManager) && !instance_exists(oEnemy) && !instance_exists(oEnemPortalEgg))) {
+	if ((!instance_exists(oEnemy) && enemies <= 0 && diffPool <= 0) || (instance_exists(oFloorManager) && diffPool <= 0 && !instance_exists(oEnemy) && !instance_exists(oEnemPortalEgg))) {
 		with (oGhostBarrierDirectionalParent) {
 		if ((RoomID1 == other.RoomID) || (RoomID2 == other.RoomID)) {
 			if (instance_exists(Manager2)){
@@ -142,6 +143,44 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 		combatFinished = true;
 		inCombat = false;
 		oPlayerManager.incombat = false;
+		
+		if (instance_exists(floorManager)) {
+			with (floorManager) {
+				event_user(0);
+			}
+			if (oItemManager.hasReflectiveGem) {
+				oItemManager.reflectiveGemLuckBonus += 3;
+			}
+			if (!floorManager.floorCompleteFlag) {
+				rollConsumable(spawner);
+			} else {
+				var floorClearReward = irandom_range(1, 4);
+				switch (floorClearReward) {
+					case 1:
+					instance_create_layer(spawner.x, spawner.y, "Instances", oPowerUpHPHigh);
+					break;
+					case 2:
+					instance_create_layer(spawner.x, spawner.y, "Instances", oPowerUpLuckHigh);
+					break;
+					case 3:
+					instance_create_layer(spawner.x, spawner.y, "Instances", oPowerUpHPHigh);
+					break;
+					case 4:
+					var funCheck = irandom_range(1, 50) + global.playerTime;
+					if (funCheck >= 50) {
+						var item = rollItem(false);
+						instance_create_layer(spawner.x, spawner.y, "Instances", item);
+					} else {
+						var i = ds_list_size(oItemManager.simpleItemList)-1;
+						instance_create_layer(spawner.x, spawner.y, "Instances", oItemManager.simpleItemList[| i]);
+					}
+					break;
+				}
+			}
+		} else {
+			rollConsumable(spawner);
+		}
+		//audio_play_sound(aRoomClear, 1, false, global.sfxAudio);
 		if (global.chargeItem != noone && global.currentCharges < global.itemCharges) {
 			global.currentCharges += 1;
 		}

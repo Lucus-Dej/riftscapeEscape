@@ -44,6 +44,7 @@
     {"name":"inst_4D5F3ABF","path":"rooms/cavesItemRight/cavesItemRight.yy",},
     {"name":"inst_5208C889","path":"rooms/cavesItemRight/cavesItemRight.yy",},
     {"name":"inst_3ADD9402","path":"rooms/cavesItemRight/cavesItemRight.yy",},
+    {"name":"inst_141FF02D","path":"rooms/cavesItemRight/cavesItemRight.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -90,6 +91,7 @@
         {"$GMRInstance":"v4","%Name":"inst_4D5F3ABF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4D5F3ABF","objectId":{"name":"oDesertTorch","path":"objects/oDesertTorch/oDesertTorch.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1120.0,"y":128.0,},
         {"$GMRInstance":"v4","%Name":"inst_5208C889","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5208C889","objectId":{"name":"oDesertTorch","path":"objects/oDesertTorch/oDesertTorch.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":896.0,"y":384.0,},
         {"$GMRInstance":"v4","%Name":"inst_3ADD9402","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3ADD9402","objectId":{"name":"oDesertTorch","path":"objects/oDesertTorch/oDesertTorch.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1120.0,"y":608.0,},
+        {"$GMRInstance":"v4","%Name":"inst_141FF02D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_141FF02D","objectId":{"name":"oItemRoomFlag","path":"objects/oItemRoomFlag/oItemRoomFlag.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":928.0,"y":160.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_1","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_1","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":48,"SerialiseWidth":88,"TileSerialiseData":[
           5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,

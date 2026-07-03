@@ -1,8 +1,8 @@
 event_inherited();
 enemey_hp = 1.1;
-bite_cooldown = 75;
+shoot_delay = 75;
 on_cooldown = false;
-bite_timer = bite_cooldown;
+bite_timer = shoot_delay;
 enemSpeed = 3.45;
 base_speed = enemSpeed;
 damage = 16.5;

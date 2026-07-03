@@ -31,7 +31,7 @@ if (ds_list_size(mythicItemList) > 0) {
 	mythicMax = -1;
 }
 
-var j = irandom(totalPool - 1 + global.playerTime)+luckBonus;
+var j = irandom(totalPool - 1) + global.playerTime +luckBonus+reflectiveGemLuckBonus;
 
 j = clamp(j, 0, totalPool - 1);
 if (simpleMax >= 0 && j < simpleMax) {

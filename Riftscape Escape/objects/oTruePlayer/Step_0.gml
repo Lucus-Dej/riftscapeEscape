@@ -22,8 +22,8 @@ if (!instance_exists(oEnemy)) {
 
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;
-if (debug_mode) {
-	move_and_collide(hsp, vsp, oAbilityGive);
+if (is_debug_overlay_open()) {
+	move_and_collide(hsp*2, vsp*2, oAbilityGive);
 } else {
 	move_and_collide(hsp, vsp, oSuperwalls);
 }

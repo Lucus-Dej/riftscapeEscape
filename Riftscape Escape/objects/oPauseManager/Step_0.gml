@@ -1,7 +1,10 @@
 if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
+	resW = window_get_width();
+		resH = window_get_height();
 	unpause = false;
     pause = !pause;
     if (pause) {
+		
 		var cam = view_camera[0];
 		var camW = camera_get_view_width(cam);
 		var camH = camera_get_view_height(cam);

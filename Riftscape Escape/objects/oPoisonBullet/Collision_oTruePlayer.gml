@@ -1,5 +1,4 @@
 if (oPlayerManager.iframes <= 0) {
-	other.flash = 1;
 instance_create_layer(x, y, "Instances", oBoom);
 if (oPlayerManager.dodgeLifeBonus > 0) {
 	oPlayerManager.dodgeLifeBonus -= damage;
@@ -8,7 +7,7 @@ if (oPlayerManager.dodgeLifeBonus > 0) {
 } else {
 	dotTarget = other;
 	callDOT(dotTarget, dotDamage, dotTicks, dotDelay, type, source)
-	global.player_health -= damage;
+	playerTakeDamage(damage);
 }
 oPlayerManager.tookDamage = true;
 instance_destroy();

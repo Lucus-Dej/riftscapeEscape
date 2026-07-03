@@ -12,3 +12,9 @@ if (!maxHPSet) {
 	maxHP = enemey_hp;
 	maxHPSet = true;
 }
+if (respawnTimer <= 0) {
+	var respawn = instance_nearest(x, y, oEnemStart)
+	x = respawn.x;
+	y = respawn.y;
+	respawnTimer = 30;
+}

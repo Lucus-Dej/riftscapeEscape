@@ -42,7 +42,9 @@ if (!canBounce) {
 	// summon secondary projectile with everything this projectile has
 	var nx = x + lengthdir_x(2, newDir);
 	var ny = y + lengthdir_y(2, newDir);
-	
+	if (!instance_exists(owner)) {
+		owner = id;
+	}
 	var copy = bulletFire(nx, ny, newDir, speed, damage, object_index, owner);
 	copy.ignoreWall = ignoreWall;
 	instance_destroy()

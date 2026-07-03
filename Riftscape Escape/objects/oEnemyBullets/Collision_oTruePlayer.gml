@@ -10,7 +10,8 @@ if (oPlayerManager.dodgeLifeBonus > 0) {
 	if (dotDamage > 0 && instance_exists(dotTarget)) {
 		callDOT(dotTarget, dotDamage, dotTicks, dotDelay, type, source);
 	}
-	global.player_health -= damage;
+	playerTakeDamage(damage);
+	//global.player_health -= damage;
 }
 oPlayerManager.tookDamage = true;
 instance_destroy();

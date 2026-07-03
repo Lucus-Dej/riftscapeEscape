@@ -1,7 +1,7 @@
 if (!firedFromTurret && !turretApplied && isTurret) {
 	image_xscale += 0.5;
 	image_yscale += 0.5;
-	existance *= 5;
+	existance *= 3;
 	canDecel = true;
 	deceyToZero = true;
 	decayRate *= 1.2;
@@ -27,12 +27,33 @@ if (oItemManager.hasWeightlessHourglass) {
 		damage += 0.01;
 	} 
 }
+if (isTurret && !firedFromTurret && turretApplied) {
+		turretDelay--;
+		if (turretDelay <= 0 && instance_exists(oEnemy)) {
+			var tar = instance_nearest(x, y, oEnemy);
+			var tarDir = point_direction(x, y, tar.x, tar.y)
+			var f = bulletFire(x, y, tarDir, global.bullet_speed*0.7, damage*0.3, object_index, self);
+			f.bounceNum = bounceNum;
+			f.canBounce = false;
+			f.ignoreWall = ignoreWall;
+			f.canSpread = canSpread;
+			f.image_blend = image_blend;
+			f.turretApplied = turretApplied;
+			f.damagedList = ds_map_create();
+			f.critShot = critShot;
+			if (ds_exists(damagedList, ds_type_map)) {
+				ds_map_copy(f.damagedList, damagedList);
+			}
+			
+			turretDelay = turretCooldown;
+		}
+	}
 if (!is_real(x) || !is_real(y)) {
     show_debug_message("oBullet position corrupted");
     instance_destroy();
     exit;
 }
-if (startReset && !hasReversed && speed <= 0) {
+if (!hasReversed && speed <= 0) {
 	show_debug_message("Rest Bullet")
 	if (ds_exists(damagedList, ds_type_map)) {
 		ds_map_clear(damagedList)
@@ -54,10 +75,6 @@ if (canOrbit && instance_exists(orbitCenter)) {
     x = orbitCenter.x + lengthdir_x(orbitRadius, orbitAngle);
     y = orbitCenter.y + lengthdir_y(orbitRadius, orbitAngle);
 } else {
-	if (oItemManager.hasBrokenSnowglobe) {
-		speed += increaseRate;
-		//damage += speed*1.001;
-	}
 	if (canAccel) {
 		speed += increaseRate;
 	}
@@ -71,27 +88,7 @@ if (canOrbit && instance_exists(orbitCenter)) {
 			}
 		}
 	}
-	if (isTurret && !firedFromTurret && turretApplied) {
-		turretDelay--;
-		if (turretDelay <= 0 && instance_exists(oEnemy)) {
-			var tar = instance_nearest(x, y, oEnemy);
-			var tarDir = point_direction(x, y, tar.x, tar.y)
-			var f = bulletFire(x, y, tarDir, global.bullet_speed*0.5, damage*0.4, object_index, self);
-			f.bounceNum = bounceNum;
-			f.canBounce = false;
-			f.ignoreWall = ignoreWall;
-			f.canSpread = canSpread;
-			f.image_blend = image_blend;
-			f.turretApplied = turretApplied;
-			f.damagedList = ds_map_create();
-			f.critShot = critShot;
-			if (ds_exists(damagedList, ds_type_map)) {
-				ds_map_copy(f.damagedList, damagedList);
-			}
-			
-			turretDelay = turretCooldown;
-		}
-	}
+	
 	if (oItemManager.hasSingularity) {
 		var dist = 160;
 		var nearestDist = dist;
@@ -115,12 +112,7 @@ if (canOrbit && instance_exists(orbitCenter)) {
 			target = noone;
 		}
 	}
-	if (oItemManager.hasBrokenBoomerang) {
-		boomerangTime--;
-		if (boomerangTime <= 0) {
-			speed -= decayRate
-		}
-	}
+	
 }
 if (oPlayerManager.canPierce && !pierceDebuffed) {
 	speed *= 0.8
@@ -131,3 +123,4 @@ if (!ds_exists(damagedList, ds_type_map)) {
 }
 x += lengthdir_x(speed, direction);
 y += lengthdir_y(speed, direction);
+speedBonus = speed*0.1-0.55;

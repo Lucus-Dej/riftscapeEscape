@@ -1,3 +1,36 @@
+function consumableAdd (_item) {
+	switch (_item) {
+		case oPowerUpXP:
+		oPlayerManager.xpMult += 0.5;
+		break;
+		case oPowerUpXPHigh:
+		oPlayerManager.xpMult += 2;
+		break;
+		case oPowerUpLuck:
+		oItemManager.luckBonus += 0.5;
+		break;
+		case oPowerUpLuckHigh:
+		oItemManager.luckBonus += 2;
+		break;
+		case oPowerUpHP:
+		global.player_health += (oPlayerManager.max_hp*0.1);
+		break;
+		case oPowerUpHPHigh:
+		global.player_health = oPlayerManager.max_hp;
+		break;
+	}
+}
+function rollConsumable(_mngr) {
+	var ranCheck = irandom_range(1, 100) + global.playerTime*1.5 - 1.5;
+	if (ranCheck >= 50) {
+		var consumableArray = [oPowerUpHP, oPowerUpLuck, oPowerUpXP];
+		var i = irandom(array_length(consumableArray)-1);
+		var powerUp = consumableArray[i];
+		with (_mngr) {
+			instance_create_layer(x, y, "Instances", powerUp);
+		}
+	}
+}
 function itemAdd(_item){
 	var item = _item;
 	array_push(oItemManager.itemList, item);
@@ -23,6 +56,12 @@ function itemAdd(_item){
 		break;
 		
 		// rares
+		case oPropheticRune:
+		oItemManager.hasPropheticRune = true;
+		break;
+		case oAntidote:
+		oItemManager.hasAntidote = true;
+		break;
 		case oOilBarrel:
 		oItemManager.hasOilBarrel = true;
 		break;
@@ -230,6 +269,26 @@ function displayItemFunction(_item){
 	var desc = "null";
 	var descLength = string_length(desc)
 	switch (item) {
+		// power ups:
+		case oPowerUpXP:
+		desc = "+0.5% XP Gained";
+		break;
+		case oPowerUpXPHigh:
+		desc = "+2% XP Gained";
+		break;
+		case oPowerUpLuck:
+		desc = "+0.5 Item Luck";
+		break;
+		case oPowerUpLuckHigh:
+		desc = "+2 Item Luck";
+		break;
+		case oPowerUpHP:
+		desc = "Heal 10% Max Health";
+		break;
+		case oPowerUpHPHigh:
+		desc = "Heal All Health";
+		break;
+		
 		case oBloodySkull:
 		desc = "Bloody Skull: Essence Up";
 		break;
@@ -250,6 +309,12 @@ function displayItemFunction(_item){
 		break;
 		
 		// rares
+		case oPropheticRune:
+		desc = "Prophetic Rune: Graze Bullets For Cooldown Bonus";
+		break;
+		case oAntidote:
+		desc = "Antidote: Gain Immunity To Poison DoT";
+		break;
 		case oOilBarrel:
 		desc = "Oil Barrel: Taking Damage Has A Chance To Cause A Small DoT To Nearby Enemies";
 		break;
@@ -339,7 +404,7 @@ function displayItemFunction(_item){
 		desc = "Mirror Shard: Accurate Bouncing Bullets";
 		break;
 		case oReflectiveGem:
-		desc = "Reflective Gem: Bullet On Item Use";
+		desc = "Reflective Gem: Completing A Room Without Taking Damage Rewards Luck. Taking Damage Reduces Luck.";
 		break;
 		case oSingularity:
 		desc = "Singularity: Homing Bullets";
@@ -373,7 +438,7 @@ function displayItemFunction(_item){
 		break;
 		
 		case oElectricDartGun:
-		desc = "Dart Gun: Bullets Become Piercing Turrets + Thought Up";
+		desc = "Dart Gun: Bullets Become Turrets + Thought Up";
 		break;
 		case oHauntedGravestone:
 		desc = "Haunted Gravestone: On Kill, Summon An Explosive Angry Spirit + Essence Up";
@@ -458,6 +523,12 @@ function itemRemove(_item){
 		break;
 		
 		// rares
+		case oPropheticRune:
+		oItemManager.hasPropheticRune = false;
+		break;
+		case oAntidote:
+		oItemManager.hasAntidote = false;
+		break;
 		case oOilBarrel:
 		oItemManager.hasOilBarrel = false;
 		break;
@@ -712,7 +783,7 @@ function rollItem(_chargeFilter) {
 		mythicMax = totalPool;
 	}
 
-	var j = irandom(totalPool - 1) + oItemManager.luckBonus + global.playerTime;
+	var j = irandom(totalPool - 1) + oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + global.playerTime;
 	j = clamp(j, 0, totalPool - 1);
 
 	var chosenList;

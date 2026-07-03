@@ -103,6 +103,10 @@ if (fmanager != noone) {
 		}
 	}
 } 
+spawner = noone;
+floorManager = noone;
+specialRoom = false;
+floorCleared = false;
 bossRoom = false;
 testRange = noone;
 testTop = noone;

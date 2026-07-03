@@ -4,13 +4,13 @@ function realityUp() {
 }
 function fateUp() {
 	global.playerFate++;
-	oPlayerManager.statDamage = sqrt(global.playerFate)*0.25-0.2;
+	oPlayerManager.statDamage = sqrt(global.playerFate)*0.22-0.23;
 }
 function thoughtUp() {
 	global.playerThought++;
 	oPlayerManager.statCooldown += 1;
 	
-	var raw = (global.playerThought * 0.2) + power(global.playerThought, 0.5) * 0.2;
+	var raw = (global.playerThought * 0.1) + power(global.playerThought, 0.35) * 0.1;
 	oPlayerManager.statBulletDelay = raw/ (1+raw/6)
 
 }
@@ -49,7 +49,7 @@ function realityDown() {
 function fateDown() {
 	if (global.playerFate > 0) {
 		global.playerFate--;
-		oPlayerManager.statDamage = sqrt(global.playerFate) * 0.25 - 0.2;
+		oPlayerManager.statDamage = sqrt(global.playerFate)*0.22-0.23;
 	}
 }
 function thoughtDown() {
@@ -58,7 +58,7 @@ function thoughtDown() {
 		
 		oPlayerManager.statCooldown -= 1;
 		
-		var raw = (global.playerThought * 0.2) + power(global.playerThought, 0.5) * 0.2;
+		var raw = (global.playerThought * 0.1) + power(global.playerThought, 0.35) * 0.1;
 		oPlayerManager.statBulletDelay = raw / (1 + raw / 6);
 	}
 }

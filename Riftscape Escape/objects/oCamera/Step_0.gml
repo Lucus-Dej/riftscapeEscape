@@ -48,8 +48,9 @@ x = lerp(x, targetX, camFollowSpeed);
 y = lerp(y, targetY, camFollowSpeed);
 
 
-camX = x;
-camY = y;
+round(camX = x);
+round(camY = y);
+
 
 
 camera_set_view_pos(

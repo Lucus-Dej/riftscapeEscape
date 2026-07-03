@@ -23,7 +23,7 @@ lastKilled = noone;
 lastKilledX = 0;
 lastKilledY = 0;
 fireRate = 0;
-fireRateCap = 12;
+fireRateCap = 10;
 global.bossBarCount = 0;
 global.activeRoom = false;
 bloodyGemCooldown = 12;
@@ -175,7 +175,7 @@ xpMult = 1;
 xpTotal = 0;
 xpLevel = 1;
 totalXP = 0;
-xpProgress = 115;
+xpProgress = 200;
 xpUI = 100;
 overXP = 0;
 canLevel = false;
@@ -231,16 +231,17 @@ statCooldown = 0;
 overHealthCooldownBuff = 0;
 tesseractSpeedBonus = 0;
 krostEssenceSpeedBouns = 0;
+deltaItemBuff = 0;
 
 global.contactDmg = 0;
 dodgeContactDmg = 1;
 addHPBonus = 0;
-baseSpeed = 6;
+baseSpeed = 7;
 statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;
 
-global.bullet_delay = 50;
+global.bullet_delay = 35;
 baseBulletDelay = global.bullet_delay;
 overHealthBulletDelay = global.playerEssence/4;
 statBulletDelay = 0;
@@ -250,7 +251,7 @@ baseDamage = 0.95;
 statDamage = 0;
 overHealthDamageBuff = 0;
 
-
+global.playerSpeedPenalty = 0;
 global.player_speed = baseSpeed;
 global.playerSword = false;
 global.playerKilled = false;
@@ -279,6 +280,7 @@ tesseractBonusDamage = 0;
 sculptureBonus = 1;
 tesseractSpeed = 0;
 
+
 debug = false;
 uiX = 16;
 uiY = 192;
@@ -293,8 +295,9 @@ currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];
 
 //rune stuff
-validRuneArray = [oCooldownRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oAlextraRune, oCooldownRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
+hasAlextraRune = false;
 hasLifestealRune = false;
 hasOverhealthRune = false;
 hasBulletRangeRune = false;

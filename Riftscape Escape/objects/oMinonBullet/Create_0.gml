@@ -1,6 +1,7 @@
 if (oPlayerManager.hasMinionFate) {
 	event_inherited();
 } else {
+	speedBonus = 0;
 	damage = global.playerDamage;
 critShot = false;
 bounceNum = 0;

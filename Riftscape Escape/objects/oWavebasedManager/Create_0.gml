@@ -34,6 +34,7 @@ waveCooldown = waveTimer;
 itemSpawner = noone;
 inCombat = false;
 
+manager = noone;
 restrictedArrays = false;
 isLimited = false;
 waveLimit = 999999999999999999;

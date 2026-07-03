@@ -239,6 +239,7 @@ if (state == waveState.inBetween) {
 		}
 		oItemManager.luckBonus += 4;
 		oPlayerManager.xpMult += 0.2;
+		manager.combatFinished = true;
 	} else {
 		state = waveState.waiting;
 	}

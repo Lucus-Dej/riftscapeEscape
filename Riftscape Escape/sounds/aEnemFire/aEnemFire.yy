@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":5512,
   "soundFile":"aEnemFire.mp3",
-  "volume":0.58,
+  "volume":0.35,
 }

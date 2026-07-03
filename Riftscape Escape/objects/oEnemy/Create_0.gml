@@ -35,3 +35,4 @@ denyHP = false;
 event_inherited();
 maxHP = 1;
 maxHPSet = false;
+respawnTimer = 30;

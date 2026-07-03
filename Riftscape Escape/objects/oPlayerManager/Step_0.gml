@@ -7,7 +7,7 @@ if (global.grid_cool == false) {
 }
 if (xpTotal >= xpProgress) {
 	xpTotal -= xpProgress;
-	xpProgress *= 1.15;
+	xpProgress *= 1.25;
 	canLevel = true;
 	levelsPending++;
 	xpLevel++;
@@ -65,37 +65,6 @@ if (leveling && levelsPending <=0) {
 
 // damage and health stuff
 if (tookDamage) {
-	if (oItemManager.hasOilBarrel) {
-		var barrelCheck = irandom_range(1, 8);
-		if (barrelCheck + global.playerTime*0.5 >= 10) {
-			with (oTruePlayer) {
-				var enemDistCheck = 240;
-				
-				with (oEnemy) {
-					var enemDist = point_distance(x, y, other.x, other.y);
-					if (enemDist <= enemDistCheck) {
-						callDOT(self, 0.065, 8, 12, dotType.fire, other);
-					}
-				}
-			}
-		}
-	}
-	if (oItemManager.hasD2) {
-		var rollCheck = irandom_range(1, 2);
-		if (rollCheck == 2) {
-			var itemLength = array_length(oItemManager.itemList)-1;
-			var itemIndex = irandom(itemLength);
-			var foundItem = oItemManager.itemList[itemIndex];
-			itemRemove(foundItem);
-			var rarity = findItemRarity(foundItem);
-			refreshItem(rarity, foundItem);
-			var newItem = rollItem(true);
-			itemAdd(newItem);
-		}
-	}
-	if (inOverhealth) {
-		overhealthTimer /= 3;
-	}
 	iframes = 24;
 	tookDamage = false;
 }
@@ -124,14 +93,19 @@ if (global.player_health <= 0) {
 		
 	} else if (room == hordeSurvival) {
 		room_goto(caves0);
+		global.player_health = max_hp*0.3;
 	} else {
 		room_goto(dead);
+		global.player_health = max_hp*0.3;
 	}
-	global.player_health = 12;
+	
 }
 
 //stat calcs
-global.player_speed = krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus)*0.8;
+global.player_speed = krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus + global.playerSpeedPenalty)*0.8;
+if (global.player_speed < 0) {
+	global.player_speed = 0;
+}
 fireRate = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
 if (fireRate < fireRateCap) {
 	global.bullet_delay = fireRateCap - ((fireRateCap - fireRate)*0.2);
@@ -141,9 +115,12 @@ if (fireRate < fireRateCap) {
 global.playerDamage = (tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff + boomerangDmg)/directorsDebuff;
 global.bullet_speed = 5+ sqrt(global.playerReality*0.8);
 global.contactDmg = krostEssenceSpeedBouns + dodgeContactDmg;
-cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + overHealthCooldownBuff + circleCooldownBonus)*0.5);
+cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + deltaItemBuff + overHealthCooldownBuff + circleCooldownBonus)*0.5);
 if (krostEssenceSpeedBouns > 0) {
 	krostEssenceSpeedBouns -= 0.002;
+}
+if (deltaItemBuff > 0) {
+	deltaItemBuff--;
 }
 
 // rune stuff
@@ -233,6 +210,7 @@ if (dodgeState == DODGE_PHASE.onStandby) {
 	inDodge = false;
 	dodgeContactDmg = 0;
 	if (dodgePressed) {
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
 		dodgeContactDmg = 1;
 		if (oItemManager.hasReflectiveGem) {
 			var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
@@ -288,6 +266,7 @@ if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePre
 	iframes = 22+(global.playerReality+global.playerTime)*2;
 	dodgeSpeed =  16.5 + (global.playerReality/10)
 } else if (dodgeBlackFlashTimer > 15 && inDodge && dodgePressed) {
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
 	trackDodgeFate = true;
 	dodgeState = DODGE_PHASE.onCooldown;
 	inDodge = false;

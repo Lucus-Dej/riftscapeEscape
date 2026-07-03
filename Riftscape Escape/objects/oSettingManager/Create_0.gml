@@ -10,6 +10,8 @@ if (audio_group_is_loaded(agMusic)) {
 	audio_play_sound(global.currentTrack, 1000, true, global.musicAudio);
 	control = true;
 }
+//window_set_fullscreen(true);
+
 
 sfxLoaded = false;
 control = false;

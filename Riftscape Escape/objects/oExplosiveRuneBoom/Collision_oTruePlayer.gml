@@ -1,4 +1,4 @@
 if (damage > 0 && !hitPlayer) {
-	global.player_health -= damage;
+	playerTakeDamage(damage);
 	hitPlayer = true;
 }

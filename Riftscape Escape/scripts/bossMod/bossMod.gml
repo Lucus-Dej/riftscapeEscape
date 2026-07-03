@@ -5,7 +5,9 @@ function bossMod(_enem){
 			dmgMult = 1.2;
 			speedMult = 1.2;
 			hpMult = 5.5;
-			rageBreak *= hpMult*1.1;
+			rageBreak *= hpMult*0.9;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oEnemMiniMummy:
@@ -13,20 +15,26 @@ function bossMod(_enem){
 			speedMult = 1.4;
 			hpMult = 4;
 			cooldownMult = 3;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oWastelandFireSpirit:
-			hpMult = 4;
-			cooldownMult = 2;
+			hpMult = 3;
+			cooldownMult = 3;
 			speedMult = 1.5;
 			dmgMult =  1.3;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oWaspHive:
 			speedMult = 2;
-			hpMult = 3.5;
-			count *= 2;
+			hpMult = 3;
 			phasePoint1 *= hpMult;
+			image_xscale += 1;
+			image_yscale += 1;
+			
 			break;
 			
 			case oEnemMotherCaveSpider:
@@ -34,6 +42,10 @@ function bossMod(_enem){
 			speedMult = 1.3;
 			hpMult = 3.5;
 			count *= 2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			
 			case oEnemSnakeJoke:
 			break;
 			case oEnemCentiHead:
@@ -44,10 +56,13 @@ function bossMod(_enem){
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
+			
 			case oEnemBigBat:
 			dmgMult = 2;
 			speedMult = 2.25;
 			hpMult = 4;
+			image_xscale += 2;
+			image_yscale += 2;
 			break;
 			
 			case oWastelandBurner:
@@ -83,6 +98,8 @@ function bossMod(_enem){
 			hpMult = 1.3;
 			dmgMult = 2.5;
 			phasePoint1 *= hpMult;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oBoss:
@@ -90,6 +107,8 @@ function bossMod(_enem){
 			dmgMult = 1.5;
 			cooldownMult = 2;
 			phasePoint1 *= hpMult;
+			image_xscale += 2;
+			image_yscale += 2;
 			break;
 			
 			case oBoss2:
@@ -120,24 +139,33 @@ function bossMod(_enem){
 			hpMult = 2;
 			dmgMult = 1.3;
 			cooldownMult = 3.6;
+			speedMult = 2;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oMiniBoss2:
 			hpMult = 1.3;
 			dmgMult = 1.3;
 			cooldownMult = 2;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oMiniBoss3:
 			hpMult = 2;
 			dmgMult = 1.5;
 			phasePoint1 *= hpMult;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oRifterTank:
 			hpMult = 2.5;
 			dmgMult = 1.2;
 			cooldownMult = 4.5;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oMummy:
@@ -175,6 +203,8 @@ function bossMod(_enem){
 			hpMult = 2;
 			dmgMult = 1.3;
 			cooldownMult = 1.3;
+			image_xscale += 0.5;
+			image_yscale += 0.5;
 			break;
 			
 			case oEnemRifterSpider:

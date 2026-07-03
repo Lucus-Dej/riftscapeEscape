@@ -5,6 +5,8 @@ for (var i = 0; i < array_length(donArray); i++) {
 		luckBonus += 1;
 		var item = rollItem(false);
 		var spawn = instance_create_layer(oPlayerSpawnPoint.x, oPlayerSpawnPoint.y, "Instances", item);
+		var item2 = rollItem(false);
+		var spawn2 = instance_create_layer(oPlayerSpawnPoint.x, oPlayerSpawnPoint.y, "Instances", item2);
 	} else {
 		luckBonus -= 4;
 	}

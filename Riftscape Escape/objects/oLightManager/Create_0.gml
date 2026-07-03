@@ -6,6 +6,8 @@ lightList = array_create(0);
 litEntity = noone;
 unlitEntity = noone
 
+darkLevel =0.5;
+
 array_push(lightList, oTruePlayer);
 array_push(lightList, oTruePlayer);
 lightSurface = surface_create(room_width, room_height)
@@ -13,7 +15,10 @@ shadowSurface = surface_create(room_width, room_height)
 
 lightObjArray[0] = (oLightEmmiter);
 lightObjArray[1] = (oLightWall);
-
+lightObjArray[2] = (oItems);
+lightObjArray[3] = (oStartRoom);
+lightObjArray[4] = (oStartRoomWave);
+lightObjArray[5] = (oRitualRoomSpawner);
 
 smallLightArray[0] = (oTruePlayer);
 smallLightArray[1] = (oPlayerAbilities);

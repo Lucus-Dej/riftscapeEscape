@@ -66,6 +66,7 @@ if (floorState == genState.complete ) {
 			}
 		}
 		floorState = genState.buildingSpecialRooms;
+		//instance_destroy(oRoomReserve)
 } else if (floorState == genState.buildingSpecialRooms) {
 	var bossFlag = false;
 	var bossIndex = irandom(array_length(bossDoorArray)-1);
@@ -83,7 +84,7 @@ if (floorState == genState.complete ) {
 			instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
 			for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 				if (!bossFlag) {
-					show_debug_message("trying again")
+					show_debug_message("trying again: BOSS")
 					var newBossDoor = other.bossDoorArray[i]; 
 					bossIndex = i;
 					//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
@@ -121,12 +122,12 @@ if (floorState == genState.complete ) {
 		doorType = "item";
 		connectRoom(id, dir, itemR, Manager1, false);
 		
-		/*if (invalid) {
+		if (invalid) {
 			doorType = "";
-			instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
+			//instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
 			for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 				if (!itemFlag) {
-					show_debug_message("trying again")
+					show_debug_message("trying again: ITEM")
 					var newItemDoor = other.bossDoorArray[i]; 
 					//instance_create_layer(newItemDoor.x, newItemDoor.y, "Instances", oLightWall);
 					dir = newItemDoor.doorDir;
@@ -137,18 +138,20 @@ if (floorState == genState.complete ) {
 						invalid = false;
 						doorType = "item";
 						connectRoom(id, dir, itemR, Manager1, true);
-						if (!invalid) {
-							doorType = "item";
-							itemFlag = true;
+						if (invalid) {
+							doorType = "";
+							
 						} else {
 							doorType = "";
+							itemFlag = true;
 						}
 					}
 				}
 			}
-		} 
+		} else {
+			doorType = "item";
+		}
 		doorType = "item";
-		*/
 	}
 	
 	var ritualIndex = -1;
@@ -170,7 +173,7 @@ if (floorState == genState.complete ) {
 				instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
 				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 					if (!ritualFlag) {
-						show_debug_message("trying again")
+						show_debug_message("trying again: RITUAL")
 						var newRitualDoor = other.bossDoorArray[i]; 
 						ritualIndex = i;
 						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
@@ -180,7 +183,7 @@ if (floorState == genState.complete ) {
 						//connectRoom(id, req.dir, req.room, req.owner);
 						with (newRitualDoor) {
 							invalid = false;
-							connectRoom(id, dir, ritualR, Manager1, true);
+							connectRoom(id, dir, ritualR, Manager1, false);
 							if (!invalid) {
 								doorType = "ritual";
 								ritualFlag = true;
@@ -195,7 +198,7 @@ if (floorState == genState.complete ) {
 	
 	var arenaIndex = -1;
 	var arenaCheck = irandom_range(1, 100) + global.playerTime*0.4;
-	if (arenaCheck >= 80) {
+	if (arenaCheck >= 1) {
 		var arenaFlag = false;
 		arenaIndex = irandom(array_length(bossDoorArray)-1);
 		while (arenaIndex == bossIndex || arenaIndex == itemIndex || arenaIndex == ritualIndex) {
@@ -211,7 +214,7 @@ if (floorState == genState.complete ) {
 			if (invalid) {
 				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 					if (!arenaFlag) {
-						show_debug_message("trying again")
+						show_debug_message("trying again: ARENA")
 						var newArenaDoor = other.bossDoorArray[i]; 
 						arenaIndex = i;
 						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
@@ -254,7 +257,7 @@ if (floorState == genState.complete ) {
 			if (invalid) {
 				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 					if (!runeFlag) {
-						show_debug_message("trying again")
+						show_debug_message("trying again: RUNE")
 						var newRuneDoor = other.bossDoorArray[i]; 
 						runeIndex = i;
 						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
@@ -283,6 +286,9 @@ if (floorState == genState.complete ) {
 		state = doorState.init;
 	}
 	with (oRoomManager) {
+		if (!specialRoom) {
+			array_push(other.roomManagerArray, id);
+		}
 		floorID = other.floorID;
 		var modifier = irandom_range(9, 15)
 		diffPool = other.difficultyPool*(modifier/10);
@@ -296,6 +302,7 @@ if (floorState == genState.complete ) {
 		}
 		event_user(1);
 		event_user(3);
+		floorManager = other.id;
 	}
 	if (instance_exists(oBossStart)) {
 		with (oBossStart) {

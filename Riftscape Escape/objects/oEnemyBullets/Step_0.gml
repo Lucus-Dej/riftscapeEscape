@@ -27,3 +27,11 @@ if (isGhost && isGhosting) {
 	speed = currentSpeed;
 }
 isGhosting = false;
+if (oItemManager.hasPropheticRune) {
+	var playerDist = point_distance(x, y, oTruePlayer.x, oTruePlayer.y);
+	if (playerDist < 40) {
+		oPlayerManager.deltaItemBuff += 4;
+		audio_play_sound_at(aSniper, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio)
+	}
+	
+}

@@ -1,5 +1,9 @@
 function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
-	var parent = object_get_parent(_owner.object_index);
+	var parent = noone;
+	if (instance_exists(_owner)) {
+		parent = object_get_parent(_owner.object_index);
+	}
+	
     var b = instance_create_layer(_x, _y, "Instances", _bulletType);
 	if (variable_instance_exists(b, "currentSpeed")) {
 		b.currentSpeed = _speed;
@@ -33,6 +37,7 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 			if (oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
 			var rand = irandom_range(1, 15);
 			if (rand+global.playerTime >= 15) {
+				b.existance *= 3;
 				b.canOrbit = true;
 				b.orbitCenter = oTruePlayer;
 				b.orbitAngle = point_direction(oTruePlayer.x, oTruePlayer.y, _x, _y);
@@ -77,12 +82,13 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 			 
 			var c = instance_create_layer(_x, _y, "Instances", _bulletType);
 			if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
-				 show_debug_message("we shooting turret bullets now")
+				 show_debug_message("we shooting orbit turrets now")
 				 if (turretApplied) {
 					 c.isTurret = false;
 					 c.turretApplied = true;
 				 }
 			 }
+			c.existance *= 3;
 			c.canOrbit = true;
 			c.orbitCenter = oTruePlayer;
 			c.orbitAngle = point_direction(oTruePlayer.x, oTruePlayer.y, _x, _y);

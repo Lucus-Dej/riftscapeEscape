@@ -11,8 +11,8 @@ if (bite_timer > 0) {
 if (bite_timer < 0) {
 	enemSpeed = 0.2;
 }
-if (bite_timer < -1*bite_cooldown/2) {
-	bite_timer = irandom(bite_cooldown);
+if (bite_timer < -1*shoot_delay/2) {
+	bite_timer = irandom(shoot_delay);
 }
 
 // countdown

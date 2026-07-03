@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":5512,
   "soundFile":"aPlayerFire.mp3",
-  "volume":0.68,
+  "volume":0.31,
 }

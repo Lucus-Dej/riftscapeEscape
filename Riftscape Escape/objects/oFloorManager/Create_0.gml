@@ -23,7 +23,15 @@ doorStart = false;
 levelArray = [caves0, caves01, f3]
 startingIndex = 0;
 nextLevel = levelArray[startingIndex];
+initGenComplete = false;
 switch (room) {
 	case desert0:
 	changeTrack(desertTemples)
+	break;
+	
+	case kingdom0:
+	changeTrack(aLongDrawnBreath)
+	break;
 }
+floorCompleteFlag = false;
+roomManagerArray = [];

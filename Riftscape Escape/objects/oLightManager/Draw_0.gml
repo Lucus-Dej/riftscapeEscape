@@ -79,7 +79,7 @@ if (surface_get_width(lightSurface) != camW || surface_get_height(lightSurface) 
 // Draw lighting
 surface_set_target(lightSurface);
 
-draw_clear_alpha(c_black, 0.5);
+draw_clear_alpha(c_black, darkLevel);
 
 gpu_set_blendmode_ext(bm_zero, bm_inv_src_colour);
 
@@ -99,7 +99,12 @@ for (var i = 0; i < array_length(smallLightArray); i++) {
 		
 		with (inst) {
 			if (isLightExcluded) continue;
-			draw_sprite_ext( sLight, 0, x - camX,  y - camY, .5, .5, 0, c_white, 0.4);
+			if (inst.object_index == oTruePlayer) {
+				var coneScale = 5 + sqrt(global.playerReality * 0.4) * 0.3;
+				draw_sprite_ext(sLightCone, 0, x - camX,  y - camY, coneScale, coneScale, oPlayer.image_angle-90, c_white, 0.8);
+			} //else {
+				draw_sprite_ext( sLight, 0, x - camX,  y - camY, .5, .5, 0, c_white, 0.4);
+			//}
 		}
 		inst = noone;
 	}

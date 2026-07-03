@@ -129,20 +129,20 @@ if (hasSifterEssence) {
 	for (var i = array_length(sifterLinkArray)-1; i >= 0; i--) {
 		var enem = sifterLinkArray[i];
 		if (!instance_exists(enem) || point_distance(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y) > sifterEssenceRange) {
-			if (instance_exists(sifterLinks[i])) {
+			/*if (instance_exists(sifterLinks[i])) {
 				with (sifterLinks[i]) {
 					instance_destroy();
 				}
-			}
+			}*/
 			array_delete(sifterLinkArray,i,1);
 			array_delete(sifterLinks,i,1);
 		} else {
 			if (sifterTimer <= 0) {
 				if (oPlayerManager.inOverhealth) {
-					enemyTakeDamage(sifterEssenceDmg*2.5, other);
+					enemyTakeDamage(sifterEssenceDmg*2.5, enem);
 					oPlayerManager.overhealthTimer += 11.5;
 				} else {
-					enemyTakeDamage(sifterEssenceDmg, other);
+					enemyTakeDamage(sifterEssenceDmg, enem);
 					oPlayerManager.overhealthSuperTimer -= 11.5;
 					global.player_health += sifterEssenceDmg*10;
 				}

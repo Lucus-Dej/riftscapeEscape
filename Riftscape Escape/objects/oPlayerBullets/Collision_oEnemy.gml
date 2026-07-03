@@ -38,7 +38,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				spreadShot.image_yscale *= 0.75;
 				spreadShot.image_blend = image_blend;
 				spreadShot.damagedList = ds_map_create();
-				spreadShot.existance = existance/4;
+				spreadShot.existance = existance*0.5;
 				spreadShot.spreadCount = spreadCount;
 				ds_map_copy(spreadShot.damagedList, damagedList);
 			}
@@ -46,6 +46,9 @@ if (!ds_exists(damagedList, ds_type_map)) {
 		} 
 		if (critShot && oItemManager.hasMolotov) {
 			callDOT(other, 0.25, 8, 12, dotType.fire, oTruePlayer);
+		}
+		if (oItemManager.hasBrokenSnowglobe) {
+			damage += speedBonus;
 		}
 		enemyTakeDamage(damage, hit);
 		if (canLifesteal) {
@@ -79,6 +82,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				var dir = point_direction(x, y, closest.x, closest.y);
 
 				var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, self);
+				richBullet.spreadCount = spreadCount;
 				richBullet.critShot = critShot;
 				richBullet.ignoreEnemy = hit;
 				richBullet.richCount = richCount;
@@ -95,8 +99,6 @@ if (!ds_exists(damagedList, ds_type_map)) {
 		 if (!oPlayerManager.canPierce) {
             instance_destroy();
         }
-		if (oItemManager.hasBrokenBoomerang) {
-			startReset = true;
-		}
+		
     }
 }

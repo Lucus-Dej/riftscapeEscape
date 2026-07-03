@@ -6,8 +6,8 @@
   "name":"oDoubleOrNothing",
   "overriddenProperties":[],
   "parent":{
-    "name":"powerful",
-    "path":"folders/items/passive/powerful.yy",
+    "name":"rare",
+    "path":"folders/items/passive/rare.yy",
   },
   "parentObjectId":{
     "name":"oItems",

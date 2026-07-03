@@ -6,3 +6,6 @@ orbitCount = 0;
 inCircle = false;
 visual = noone;
 flash = 0;
+show_debug_message("Window: " + string(window_get_width()) + " x " + string(window_get_height()));
+show_debug_message("GUI: " + string(display_get_gui_width()) + " x " + string(display_get_gui_height()));
+show_debug_message("App Surface: " + string(surface_get_width(application_surface)) + " x " + string(surface_get_height(application_surface)));

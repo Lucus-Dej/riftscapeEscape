@@ -8,6 +8,11 @@ if (array_length(dotArray) > 0) {
 		dot.time++;
 		if (dot.time >= dot.delay) {
 			if (dot.target.object_index == oTruePlayer) {
+				if (dot.type == dotType.poison && oItemManager.hasAntidote) {
+					dot.ticks--;
+					dot.time =0;
+					break;	
+				}
 				global.player_health -= dot.damage;
 				oPlayer.flash = 1.4;
 			}
@@ -17,13 +22,14 @@ if (array_length(dotArray) > 0) {
 			
 			if (variable_instance_exists(dot.target, "enemey_hp")) {
 				dot.target.flash = 1
-				enemyTakeDamage(dot.damage, dot.target)
+				
 				if (dot.target.enemey_hp <= 0) {
 					if (oItemManager.hasMolotov) {
+						show_debug_message("I AM MOLOTOVING SO GOOD")
 						with (dot.target) {
 							with (oEnemy) {
 								var dist = point_distance(x, y, other.x, other.y);
-								if (dist < 320) {
+								if (dist < 360) {
 									callDOT(id, dot.damage*2, 16, 12, dotType.fire, other);
 								}
 							}
@@ -41,6 +47,8 @@ if (array_length(dotArray) > 0) {
 							oPlayerManager.swordCooldownBonusTime += 32;
 						}
 					}
+				} else {
+					enemyTakeDamage(dot.damage, dot.target, true)
 				}
 			}	
 		}

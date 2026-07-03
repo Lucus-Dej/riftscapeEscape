@@ -1,7 +1,7 @@
 {
   "$GMFont":"",
   "%Name":"fLevels",
-  "AntiAlias":1,
+  "AntiAlias":0,
   "applyKerning":0,
   "ascender":16,
   "ascenderOffset":0,
@@ -107,12 +107,12 @@
     "124":{"character":124,"h":21,"offset":3,"shift":8,"w":1,"x":224,"y":2,},
     "125":{"character":125,"h":21,"offset":0,"shift":5,"w":4,"x":218,"y":2,},
     "126":{"character":126,"h":21,"offset":0,"shift":8,"w":7,"x":35,"y":71,},
-    "9647":{"character":9647,"h":21,"offset":3,"shift":17,"w":11,"x":44,"y":71,},
+    "9647":{"character":9647,"h":21,"offset":3,"shift":17,"w":10,"x":44,"y":71,},
   },
   "hinting":0,
   "includeTTF":false,
   "interpreter":0,
-  "italic":true,
+  "italic":false,
   "kerningPairs":[
     {"amount":-1,"first":65,"second":84,},
     {"amount":-1,"first":65,"second":89,},

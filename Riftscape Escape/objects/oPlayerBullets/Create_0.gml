@@ -28,9 +28,7 @@ canDecel = false;
 canOrbit = false
 lastHit = noone;
 existance = 40+20*global.playerReality;
-if (oItemManager.hasBrokenBoomerang) {
-	existance *= 1.6;
-}
+
 orbitCenter = oTruePlayer;
 orbitRadius = 0;
 orbitTargetRadius = 90;
@@ -56,6 +54,7 @@ turretCooldown = global.bullet_delay*0.7;
 turretDelay = turretCooldown;
 turretApplied = false;
 firedFromTurret = false;
+speedBonus = 0;
 if (oItemManager.hasDartGun) {
 	isTurret = true;
 }
@@ -80,4 +79,18 @@ if (oItemManager.hasMirrorShard) {
 if (oItemManager.hasDirtyMirror) {
 	canBounce = true;
 	bounceNum += 3;
+}
+if (oItemManager.hasBrokenSnowglobe) {
+	canAccel = true;
+}
+if (oItemManager.hasWeightlessHourglass) {
+	decayRate*= 0.7;
+}
+if (oItemManager.hasBrokenBoomerang) {
+	existance *= 1.6;
+	canDecel = true;
+	if (!oItemManager.hasDartGun) {
+		
+		deceyToZero = false;
+	}
 }

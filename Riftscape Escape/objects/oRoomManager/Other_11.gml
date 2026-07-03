@@ -1,8 +1,8 @@
 if instance_exists(workerX) {
 	claimX = workerX.x;
-	claimX2 = workerY.x;
+	claimX2 = workerY.x + 64;
 	claimY = workerX.y;
-	claimY2 = workerY.y;
+	claimY2 = workerY.y +64;
 	width = abs(workerX.x - workerY.x - 64);
 	
 	evilWallList = ds_list_create();

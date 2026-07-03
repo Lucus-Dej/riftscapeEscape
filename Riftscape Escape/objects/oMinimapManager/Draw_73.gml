@@ -9,13 +9,22 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 
 	camera_apply(minimapCam);
 	with (oRoomManager) {
-		if (discovered || hinted || oItemManager.hasGenStone) {
-			draw_self();
-			with (oSuperwalls) {
-				if (RoomID == other.RoomID) {
-					draw_sprite_ext(sMinimapWall, 0, x, y, 1, 1, 0, c_white, 1);
+		if ((discovered || hinted || oItemManager.hasGenStone)) {
+			//draw_self();
+			if (combatFinished) {
+				with (oSuperwalls) {
+					if (RoomID == other.RoomID) {
+						draw_sprite_ext(sMinimapWallFinished, 0, x, y, 1, 1, 0, c_white, 1);
+					}
+				}
+			} else {
+				with (oSuperwalls) {
+					if (RoomID == other.RoomID) {
+						draw_sprite_ext(sMinimapWall, 0, x, y, 1, 1, 0, c_black, 1);
+					}
 				}
 			}
+			
 			with (oItems) {
 				if (RoomID == other.RoomID) {
 					draw_sprite_ext(sMinimapItem, 0, x, y, 3, 3, 0, c_white, 1);
@@ -47,7 +56,7 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 	}
 	with (oSuperwalls) {
 		if (RoomID == -1) {
-			draw_sprite_ext(sMinimapWall, 0, x, y, 1, 1, 0, c_white, 1);
+			//draw_sprite_ext(sMinimapWall, 0, x, y, 1, 1, 0, c_white, 1);
 		}
 		
 	}
