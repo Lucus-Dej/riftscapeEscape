@@ -1,5 +1,38 @@
 switch (buttonID) {
 	case (1):
+	if (levelThreshold > global.playerFate) {
+	levelMet = false;
+	}
+	break;
+	case (2):
+	if (levelThreshold > global.playerLife) {
+	levelMet = false;
+	}
+	break;
+	case (3):
+	if (levelThreshold > global.playerReality) {
+	levelMet = false;
+	}
+	break;
+	case (4):
+	if (levelThreshold > global.playerThought) {
+	levelMet = false;
+	}
+	break;
+	case (5):
+	if (levelThreshold > global.playerTime) {
+	levelMet = false;
+	}
+	break;
+	case (6):
+	if (levelThreshold > global.playerEssence) {
+	levelMet = false;
+	}
+	break;
+}
+
+switch (buttonID) {
+	case (1):
 	if (levelThreshold <= global.playerFate) {
 	levelMet = true;
 	}

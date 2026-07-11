@@ -15,9 +15,9 @@ function findNextLevel(_level){
 		newLevel = desert01;
 		break;
 		case desert01:
-		newLevel = d3;
+		newLevel = d1;
 		break;
-		case d3:
+		case d1:
 		newLevel = wasteland0;
 		break;
 		case wasteland0:

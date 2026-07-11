@@ -15,7 +15,8 @@ type = roomManagerType.normal;
 waveManager = noone;
 wavebasedSpawned = false;
 
-wavebasedAddChallenge = 4;
+wavebasedAddChallenge = 3;
+wavebasedAddTurret = 1;
 addedChallenge = false;
 isFloorGen = false;
 enum spawnState {
@@ -89,6 +90,11 @@ with (oFloorManager) {
 	show_debug_message("SEARCHING")
 	other.fmanager = id;
 	other.floorID = floorID;
+}
+with (oEnemyTurrets) {
+	if (RoomID == other.RoomID) {
+		other.manager = id;
+	}
 }
 if (fmanager != noone) {
 	startBuildRoom(fmanager, id)

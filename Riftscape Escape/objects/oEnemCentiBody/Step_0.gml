@@ -1,6 +1,6 @@
 event_inherited();
 if (brainDead) {
-    exit;
+//    exit;
 }
 bite_timer--; 
 
@@ -12,7 +12,10 @@ if (instance_exists(head)) {
 		var dmgDiff = head.enemey_hp - enemey_hp;
 		enemyTakeDamage(dmgDiff/2, head);
 	}
-	enemey_hp = head.enemey_hp;
+	if (instance_exists(head)) {
+		enemey_hp = head.enemey_hp;
+	}
+	
 } else {
 	instance_destroy();
 }

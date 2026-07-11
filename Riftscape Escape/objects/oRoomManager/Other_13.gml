@@ -5,6 +5,11 @@ with (oGhostBarrier) {
 		other.workerDoor1 = id;
 	}
 }
+with (oEnemyTurrets) {
+	if (RoomID == other.RoomID) {
+		other.manager = id;
+	}
+}
 with (oGhostBarrier) {
 	if (RoomID2 == other.RoomID) {
 		other.workerDoor2 = id;

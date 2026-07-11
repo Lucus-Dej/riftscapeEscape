@@ -1,3 +1,8 @@
+damagedList = ds_map_create();
+
+makeTime = global.gameSteps;
+connecter = noone;
+connected = false;
 damage = global.playerDamage;
 critShot = false;
 bounceNum = 0;
@@ -13,9 +18,8 @@ increaseRate = (global.playerReality + 2)/32
 pierceDebuffed = false;
 deceyToZero = false;
 isTurret = false;
-
 bounced = false;
-
+canPush = false;
 inCircle = false;
 canParry = true;
 parried = false;
@@ -46,7 +50,6 @@ image_angle = point_direction(
     oTruePlayer.x + oTruePlayer._xinput,
     oTruePlayer.y + oTruePlayer._yinput
 );
-damagedList = ds_map_create();
 ignoreEnemy = noone;
 ignoreWall = noone;
 target = noone;
@@ -55,6 +58,9 @@ turretDelay = turretCooldown;
 turretApplied = false;
 firedFromTurret = false;
 speedBonus = 0;
+if (oItemManager.hasLaserPointer) {
+	existance *= 2;
+}
 if (oItemManager.hasDartGun) {
 	isTurret = true;
 }
@@ -82,9 +88,10 @@ if (oItemManager.hasDirtyMirror) {
 }
 if (oItemManager.hasBrokenSnowglobe) {
 	canAccel = true;
+	existance *= 1.3;
 }
 if (oItemManager.hasWeightlessHourglass) {
-	decayRate*= 0.7;
+	decayRate*= 0.6;
 }
 if (oItemManager.hasBrokenBoomerang) {
 	existance *= 1.6;
@@ -93,4 +100,8 @@ if (oItemManager.hasBrokenBoomerang) {
 		
 		deceyToZero = false;
 	}
+}
+var pbCount = instance_number(oPlayerBullets);
+if (pbCount > 999) {
+	existance = 4;
 }

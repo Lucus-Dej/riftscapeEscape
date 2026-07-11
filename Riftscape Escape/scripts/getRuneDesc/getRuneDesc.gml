@@ -5,6 +5,9 @@ function getRuneDesc(_rune){
 	//}
 	var runeDesc = "";
 	switch (_rune) {
+		case oKrostRune:
+		desc = "Movement Speed Is Halved";
+		break;
 		case oDullRune:
 		desc = "Dull Rune: No Effect; No Reward";
 		break;
@@ -12,7 +15,7 @@ function getRuneDesc(_rune){
 		desc = "Your Mind Grows Weak. Your Vision Is Reduced";
 		break;
 		case oBossDropRune:
-		desc = "Bosses No Longer Drop Items";
+		desc = "Simple Items No Longer Spawn";
 		break;
 		case oBulletRangeRune:
 		desc = "Bullet Existance Is Halved";
@@ -40,7 +43,12 @@ function getRuneDesc(_rune){
 }
 
 function enableRune(_rune){
+	oItemManager.dustCount++;
 	switch (_rune) {
+		case oKrostRune: 
+		oPlayerManager.hasKrostRune = true;
+		oPlayerManager.krostRuneDebuff = 2;
+		break;
 		case oAlextraRune:
 		oPlayerManager.hasAlextraRune = true;
 		oLightManager.darkLevel = 1;
@@ -80,6 +88,10 @@ function enableRune(_rune){
 }
 function disableRune(_rune){
 	switch (_rune) {
+		case oKrostRune:
+		oPlayerManager.hasKrostRune = false;
+		oPlayerManager.krostRuneDebuff = 1;
+		break;
 		case oAlextraRune:
 		oPlayerManager.hasAlextraRune = false;
 		oLightManager.darkLevel = 0.5;

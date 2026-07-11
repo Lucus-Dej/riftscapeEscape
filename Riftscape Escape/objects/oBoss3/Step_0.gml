@@ -24,9 +24,6 @@ if (shoot_cooldown <= 0) {
 		fire_timer --;
 		if (fire_timer > 0) {
 			var ang = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
-			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				ang = point_direction(x, y, mouse_x, mouse_y);
-			} 
 			if (enraged) {
 				var angBonus = irandom_range(35,55);
 				bulletFire(x, y, (ang-angBonus), bullet_speed, damage, oBossBullet, id);

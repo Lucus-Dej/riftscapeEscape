@@ -14,16 +14,21 @@ if (type == roomManagerType.arena && !wavebasedSpawned) {
 	waveManager = instance_create_layer(x, y, "Instances", oWavebasedManager);
 	waveManager.RoomID = RoomID;
 	waveManager.isLimited = true;
-	waveManager.waveLimit = 7;
-	waveManager.roundsTillBoss = 6;
+	waveManager.waveLimit = 5;
+	waveManager.roundsTillBoss = 4;
 	waveManager.restrictedArrays = true;
 	waveManager.startingWeight = diffPool+2;
+	with (oEnemyTurrets) {
+		if (RoomID == other.RoomID) {
+			passiveSwitch = false;
+			levelReq = irandom_range(2, 4);//other.wavebasedAddTurret;
+		}
+	}
 	array_copy(waveManager.waveArray, 0, enemArray, 0, array_length(enemArray));
 	wavebasedSpawned = true;
 	waveManager.manager = id;
 }
 if (type == roomManagerType.arena && instance_exists(waveManager) && waveManager.wave == wavebasedAddChallenge && !addedChallenge) {
-	show_debug_message("HELP")
 	var temp = getEnemPool(floorID);
 	var startIndex = array_length(waveManager.waveArray);
 	for (var i = 0; i < array_length(temp.cArray); i++) {
@@ -42,6 +47,18 @@ if (portal_timer <= 0) {
 	spawn_timer--;
 }
 if (roomStart && !ready) {
+	with (oReverseTrappedSpikes) {
+		if (RoomID == other.RoomID) {
+			active = true;
+			image_index = 1;
+		}
+	}
+	with (oAlternatingSpikes) {
+		if (RoomID == other.RoomID) {
+			active = true;
+			image_index = 1;
+		}
+	}
 	ready = true;
 	// lock down rooms
 	with (oGhostBarrierDirectionalParent) {
@@ -139,6 +156,19 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 			}
 		}
 	}
+	with (oReverseTrappedSpikes) {
+		if (RoomID == other.RoomID) {
+			active = false;
+			image_index = 0;
+		}
+	}
+	with (oReverseTrappedSpikes) {
+		if (RoomID == other.RoomID) {
+			active = false;
+			swap = false;
+			image_index = 0;
+		}
+	}
 		global.activeRoom = false;
 		combatFinished = true;
 		inCombat = false;
@@ -198,7 +228,6 @@ if (destroyWalls) {
     var w = evilWallList[| i];
 	if (instance_exists(w)) {
 		instance_create_layer(x, y, "Instances", oBoom)
-		show_debug_message("THISISANEVILWALL" +string(w));
 		instance_destroy(w);
 		}
 	}

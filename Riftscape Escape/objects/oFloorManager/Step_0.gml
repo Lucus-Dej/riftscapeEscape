@@ -198,7 +198,7 @@ if (floorState == genState.complete ) {
 	
 	var arenaIndex = -1;
 	var arenaCheck = irandom_range(1, 100) + global.playerTime*0.4;
-	if (arenaCheck >= 1) {
+	if (arenaCheck >= 55) {
 		var arenaFlag = false;
 		arenaIndex = irandom(array_length(bossDoorArray)-1);
 		while (arenaIndex == bossIndex || arenaIndex == itemIndex || arenaIndex == ritualIndex) {
@@ -239,9 +239,11 @@ if (floorState == genState.complete ) {
 			}
 		}
 	}
+		
+	
 	var runeIndex = 0;
-	var runeCheck = irandom_range(1, 100) + global.playerTime*0.4;
-	if (runeCheck >= 65) {
+	var runeCheck = irandom_range(1, 100) + global.playerTime*0.4 + oItemManager.dustCount;
+	if (runeCheck >= 60) {
 		var runeFlag = false;
 		runeIndex = irandom(array_length(bossDoorArray)-1);
 		while (runeIndex == bossIndex || runeIndex == itemIndex || runeIndex == ritualIndex || runeIndex = arenaIndex) {
@@ -280,6 +282,51 @@ if (floorState == genState.complete ) {
 			}
 		}
 	}
+	
+	
+	var confluxIndex = 0;
+	var confluxCheck = irandom_range(1, 100) + global.playerTime*0.4 + global.playerFate*0.2;
+	if (confluxCheck >= 90) {
+		var confluxFlag = false;
+		confluxIndex = irandom(array_length(bossDoorArray)-1);
+		while (confluxIndex == bossIndex || confluxIndex == itemIndex || confluxIndex == ritualIndex || confluxIndex == arenaIndex || confluxIndex == runeIndex) {
+			confluxIndex = irandom(array_length(bossDoorArray)-1);
+		}
+		var confluxDoor = bossDoorArray[confluxIndex];
+		dir = confluxDoor.doorDir;
+		var confluxR = findSpecialRoom(dir, "conflux");
+		with (confluxDoor) {
+			doorType = "conflux";
+			show_debug_message("conflux door made")
+			connectRoom(id, dir, confluxR, Manager1, false);
+			if (invalid) {
+				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+					if (!confluxFlag) {
+						show_debug_message("trying again: conflux")
+						var newconfluxDoor = other.bossDoorArray[i]; 
+						confluxIndex = i;
+						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+						dir = newconfluxDoor.doorDir;
+						show_debug_message(dir)
+						BossR = findSpecialRoom(dir, "conflux");
+						//connectRoom(id, req.dir, req.room, req.owner);
+						with (newconfluxDoor) {
+							doorType = "conflux";
+							invalid = false;
+							connectRoom(id, dir, confluxR, Manager1, false);
+							if (!invalid) {
+								doorType = "conflux";
+								confluxFlag = true;
+							}
+						}
+						other.retryCount++;
+					}
+				}
+			}
+		}
+	}
+	
+	
 	floorState = genState.runRoomManagers;
 } else if (floorState == genState.runRoomManagers) {
 	with (oGhostBarrierDirectionalParent ) {

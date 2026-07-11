@@ -10,16 +10,15 @@ function enemyTakeDamage(_dmg, _source, _isDot = false) {
 		addDamageNumber(_source.x, _source.y, _dmg);
 		_source.flash = 1;
 	}
-	if (_source.enemey_hp <= 0) {
+	if (_source.enemey_hp <= 0 && !_source.sub) {
 		oPlayerManager.lastKilled = _source
 		oPlayerManager.lastKilledX = _source.x;
 		oPlayerManager.lastKilledY = _source.y;
 		if (oItemManager.hasMolotov) {
-			show_debug_message("I AM MOLOTOVING SO GOOD")
 			with (_source) {
 				with (oEnemy) {
 					var dist = point_distance(x, y, other.x, other.y);
-					if (dist < 120) {
+					if (dist < 140) {
 						callDOT(id, _dmg*2, 16, 12, dotType.fire, other);
 					}
 				}
@@ -52,13 +51,13 @@ function playerTakeDamage(_dmg) {
 	if (oPlayerManager.iframes <= 0) {
 		if (oPlayerManager.dodgeLifeBonus > 0) {
 			oPlayerManager.dodgeLifeBonus -= _dmg;
-		} else if (!oPlayerManager.inOverhealth || !oPlayerManager.hasOverhealthRune) {
+		} else if (oPlayerManager.inOverhealth) {
+			oPlayerManager.overhealthTimer /= 3;
+		} else {
 			global.player_health -= _dmg;
 			if (oItemManager.hasReflectiveGem && oItemManager.reflectiveGemLuckBonus > 12) {
 				oItemManager.reflectiveGemLuckBonus--;
 			}
-		} else {
-			oPlayerManager.overhealthTimer /= 3;
 		}
 		oTruePlayer.flash = 1.5;
 		oPlayerManager.tookDamage = true;

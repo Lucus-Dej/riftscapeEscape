@@ -17,7 +17,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
         oPlayerManager.lastKilledX = hit.x;
         oPlayerManager.lastKilledY = hit.y;
 		other.flash = 1;
-		if (oItemManager.hasUnstableEnergy && canSpread && spreadCount > 0 && parent != oSubEnemy) {
+		if (oItemManager.hasUnstableEnergy && canSpread && spreadCount > 0 && other.sub != true) {
 			//canSpread = false;
 			spreadCount--;
 			var cap = 3;
@@ -34,12 +34,13 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				spreadShot.richCount = richCount;
 				spreadShot.bounceNum = bounceNum;
 				spreadShot.critShot = critShot;
+				spreadShot.canSpread = canSpread;
 				spreadShot.image_xscale *= 0.75;
 				spreadShot.image_yscale *= 0.75;
 				spreadShot.image_blend = image_blend;
 				spreadShot.damagedList = ds_map_create();
 				spreadShot.existance = existance*0.5;
-				spreadShot.spreadCount = spreadCount;
+				spreadShot.spreadCount = 0;
 				ds_map_copy(spreadShot.damagedList, damagedList);
 			}
 			
@@ -55,7 +56,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
 			global.player_health += global.lifesteal;
 		}
         // RICOCHET
-       if (oPlayerManager.canRich && richCount > 0) {
+       if (oPlayerManager.canRich && richCount > 0 && other.sub != true) {
 		   richCount--;
 		   var searchRadius = 960;
 		   var closest = noone;
@@ -77,7 +78,7 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				}
 			}
 			
-			if (closest != noone && instance_exists(closest) && parent != oSubEnemy) {
+			if (closest != noone && instance_exists(closest) && other.sub != true) {
 
 				var dir = point_direction(x, y, closest.x, closest.y);
 

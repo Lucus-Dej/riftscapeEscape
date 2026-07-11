@@ -16,13 +16,13 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "";
 			break;
 			case (3):
-			desc = "Bonus Bullet Damage And Speed Inside Circle";
+			desc = "Fire Additional Child Bullets While Inside";
 			break;
 			case (4):
 			desc = "Faster Ability Charge Rate While Inside Circle";
 			break;
 			case (5):
-			desc = "Control Enemy Bullets + Friendly Fire On Enemies";
+			desc = "Double Crit Chance While Inside";
 			break;
 			case (6):
 			desc = "Kills Extend Duration";
@@ -161,8 +161,8 @@ function displayAbilityDesc(_ability, _upgrade){
 		break;
 		
 	}
-	show_debug_message(_ability);
-	show_debug_message("break")
-	show_debug_message(_upgrade)
+	//show_debug_message(_ability);
+	//show_debug_message("break")
+	//show_debug_message(_upgrade)
 	return desc;
 }

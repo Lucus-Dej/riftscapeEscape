@@ -26,38 +26,45 @@ if (phasePoint1 >= enemey_hp && enraged == false) {
 }
 // countdown
 shoot_cooldown--;
+if (move = -1) {
+	move = irandom_range(1, 10);
+}
 // fire when ready, fires default bullet
-if (shoot_cooldown <= 0) {
-	recoil_timer--;
+if (shoot_cooldown <= 0 && move > -1) {
+	var playerAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
+	if (enraged) {
+		//move++;
+	}
+	if (move >= 7) {
+		var c =  bulletFire(x, y, playerAng+20, bullet_speed*2, damage*2, oBossBullet, id);
+		var d =  bulletFire(x, y, playerAng-20, bullet_speed*2, damage*2, oBossBullet, id);
+		move = -1;
+		shoot_cooldown = shoot_delay;
+	} else {
+		recoil_timer--;
 	if (recoil_timer <= 0) {
 		fire_timer --;
 		if (fire_timer > 0) {
-			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				var circleAng = point_direction(x, y, mouse_x, mouse_y);
-				var a = bulletFire(x, y, circleAng, bullet_speed, damage, oBadBullet, id);
-				if (enraged) {
-					var b = bulletFire(x, y, circleAng, bullet_speed, damage, oBadBullet, id);
-				}
-		} else {
 			if (!enraged) {
 				var bullet = bulletFireAt(x, y, oTruePlayer, bullet_speed, damage, oMiniBossBullet, id)
-				} else {
-					var playerAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
-					var a =  bulletFire(x, y, playerAng - 25 - fire_timer*4, bullet_speed, damage, oBadBullet, id);
-					var b =  bulletFire(x, y, (playerAng + 25 +fire_timer*4),bullet_speed, damage, oBadBullet, id);
-					if (fire_timer == 1) {
-						var c =  bulletFire(x, y, playerAng, bullet_speed*0.8, damage*2, oBadBullet, id);
-						c.image_xscale += 1;
-						c.image_yscale += 1;
-					}
+			} else {
+				var a =  bulletFire(x, y, playerAng - 25 - fire_timer*4, bullet_speed, damage, oBadBullet, id);
+				var b =  bulletFire(x, y, (playerAng + 25 +fire_timer*4),bullet_speed, damage, oBadBullet, id);
+				if (fire_timer == 1) {
+					var c =  bulletFire(x, y, playerAng, bullet_speed*0.4, damage*2, oBadBullet, id);
+					c.image_xscale += 1;
+					c.image_yscale += 1;
+					c.canAccel = true;
 				}
 			}		
 			recoil_timer = recoil_cooldown;
 	} else {
+		move = -1;
 		shoot_cooldown = shoot_delay;
 		recoil_timer = recoil_cooldown;
 		fire_timer = fire_duration;
 		}
+	}
 	}
 }
 //pathfinding

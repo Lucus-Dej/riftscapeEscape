@@ -32,7 +32,17 @@ if (state == waveState.spawning) {
 	global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
 	enemiesLeft = instance_number(oEnemy);
 	enemString = "Enemies Left: "+string(enemiesLeft);
-	inCombat = true;
+	inCombat = true; 
+	with (oEnemyTurrets) {
+		if (RoomID == other.RoomID && levelReq <= other.wave) {
+			if (!active) {
+				active = true;
+				if (object_index == oEnemyTurretsRandSpawner) {
+					event_user(0);
+				}
+			}
+		}
+	}
 	if (waveWeight > 0) {
 		if (spawnCooldown > 0) {
 			spawnCooldown--;
@@ -54,10 +64,10 @@ if (state == waveState.spawning) {
 				if (other.bossRound) {
 					enem.isBoss = true;
 					bossMod(enem.id);
-					enem.spawnWeight *= 2;
-					enem.xp *= 1.3;
+					enem.spawnWeight *= 4;
+					enem.xp *= 1.5;
 				} else {
-					enem.xp *= 0.4;
+					enem.xp *= 0.6;
 				}
 				other.waveWeight -= enem.spawnWeight
 			}
@@ -67,7 +77,15 @@ if (state == waveState.spawning) {
 		if (!runeRound && instance_exists(oRuneSpawner)) {
 			instance_destroy(oRuneSpawner)
 		}
+		with (oEnemyTurrets) {
+			if (RoomID == other.RoomID) {
+				if (active) {
+					active = false;
+				}
+			}
+		}
 		if (runeRound) {
+			rollConsumable(id);
 			with (oRuneFlag) {
 				instance_create_layer(x, y, "Instances", oRuneSpawner);
 			}
@@ -75,6 +93,7 @@ if (state == waveState.spawning) {
 			runeRound = false;
 		}
 		if (itemRound) {
+			rollConsumable(id);
 			with (itemSpawner) {
 				event_user(0);
 			}
@@ -133,14 +152,14 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 7:
-		array_push(bossArray, oBoss3, oMiniBoss3)
+		array_push(bossArray, oBoss3, oMiniBoss3, oEnemCentiHead)
 		break;
 		
 		case 9:
-		array_push(waveArray, oMiniBoss, oMiniBoss2,)
+		array_push(waveArray, oMiniBoss, oMiniBoss2)
 		break;
 		
-		case 8:
+		case 10:
 		array_push(waveArray, oEnemDesertSanke)
 		break;
 		
@@ -153,27 +172,39 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 13:
-		array_push(waveArray, oEnemMiniMummy)
+		array_push(waveArray, oEnemMiniMummy, oEnemSandSniper)
 		break;
 		
 		case 14:
-		array_push(waveArray, oEnemSandSniper)
+		array_push(bossArray, oDesertSlammer)
 		break;
 		
-		case 16:
-		array_push(waveArray, oDesertSlammer, oWaspHive)
+		case 15:
+		array_push(waveArray, oDesertSlammer)
+		break;
+		
+		case 17:
+		array_push(waveArray, oWaspHive)
 		break;
 		
 		case 18:
-		array_push(bossArray, oMummy)
+		array_push(bossArray, oMummy, oWaspHive, oEnemMiniMummy)
 		break;
 		
 		case 21:
 		array_push(waveArray, oWastelandBurner, oRifterDrone)
 		break;
 		
+		case 23:
+		array_push(waveArray, oRifterSniper)
+		break;
+		
+		case 24:
+		array_push(bossArray, oWastelandFireRunner, oWastelandFireSpirit)
+		break;
+		
 		case 26:
-		array_push(bossArray, oWastelandFireRunner)
+		array_push(waveArray, oWastelandFireRunner)
 		break;
 		
 		case 28:
@@ -189,23 +220,15 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 34:
-		array_push(bossArray, oRifterTank)
+		array_push(bossArray, oRifterTank, oRifterSpitter, oRifterSlammer)
 		break;
 		
 		case 36:
 		array_push(waveArray, oRifterTank)
 		break;
 		
-		case 37:
-		array_push(waveArray, oRifterSlammer)
-		break;
-		
 		case 38:
-		array_push(waveArray, oRifterSniper)
-		break;
-		
-		case 40:
-		array_push(bossArray, oRifterSniper, oRifterSlammer, oRifterSpitter)
+		array_push(waveArray, oRifterSlammer)
 		break;
 		
 		case 41:
@@ -237,8 +260,8 @@ if (state == waveState.inBetween) {
 		with (itemSpawner) {
 			event_user(1);
 		}
-		oItemManager.luckBonus += 4;
-		oPlayerManager.xpMult += 0.2;
+		oItemManager.luckBonus += 2;
+		oPlayerManager.xpMult += 0.1;
 		manager.combatFinished = true;
 	} else {
 		state = waveState.waiting;

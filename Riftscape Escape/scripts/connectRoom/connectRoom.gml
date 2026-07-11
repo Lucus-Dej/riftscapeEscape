@@ -129,7 +129,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 			newInst.ID = ritualID;
 			ritualID++;
 		}
-		if (obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
+		if (obj == oPowerUpConflux || obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
 			specialRoom = true;	
 		}
 		
@@ -200,14 +200,13 @@ function findRoom (_sideAngle) {
 	for (var i = 0; i < array_length(validPool); i++) {
 		var roomCheck = validPool[i];
 		var tags = asset_get_tags(roomCheck);
-		 if (!array_contains(tags, "item") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
+		 if (!array_contains(tags, "conflux") && !array_contains(tags, "item") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
 			 array_push(filtered, roomCheck);
 		 }
 	}
 	if (array_length(filtered) == 0) {
 		return noone;
 	}
-	show_debug_message(filtered)
 	return filtered[irandom(array_length(filtered)-1)];
 }
 function setClaimBounds(_id, _left, _top, _right, _bottom) {

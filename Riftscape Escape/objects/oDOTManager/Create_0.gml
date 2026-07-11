@@ -1,4 +1,4 @@
 dotArray = [];
 enum dotType {
-	blood, poison, fire
+	blood, poison, fire, ice
 }

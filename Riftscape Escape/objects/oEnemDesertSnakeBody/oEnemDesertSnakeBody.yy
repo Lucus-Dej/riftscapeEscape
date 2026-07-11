@@ -15,8 +15,8 @@
     "path":"folders/enemies/basics/desert.yy",
   },
   "parentObjectId":{
-    "name":"oEnemy",
-    "path":"objects/oEnemy/oEnemy.yy",
+    "name":"oSubEnemy",
+    "path":"objects/oSubEnemy/oSubEnemy.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

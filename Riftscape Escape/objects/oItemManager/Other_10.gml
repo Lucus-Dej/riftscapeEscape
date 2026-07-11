@@ -76,7 +76,7 @@ if (hasIceSoup && !iceSoupTriggered) {
 	
 }
 if (runeCheck) {
-	chosenList = powerfulItemList;
+	chosenList = runeItemList;
 	rarity = 2;
 	runeCheck = false;
 }

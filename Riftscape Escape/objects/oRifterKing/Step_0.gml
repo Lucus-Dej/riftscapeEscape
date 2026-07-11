@@ -101,7 +101,7 @@ if (shoot_cooldown <= 0) {
 		with (oRifterKingFlag) {
 			if (ID <= other.phase-1) {
 				array_push(other.flagArray, id);
-				show_debug_message(other.flagArray)
+				//show_debug_message(other.flagArray)
 			}
 		}
 		array_push(flagArray, id);

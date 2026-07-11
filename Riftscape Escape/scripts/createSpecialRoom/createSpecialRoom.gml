@@ -31,6 +31,6 @@ function findSpecialRoom (_sideAngle, _tag) {
 		show_debug_message("no special room found i guess?")
 		return noone;
 	}
-	show_debug_message(realPool)
+	//show_debug_message(realPool)
 	return realPool[irandom(array_length(realPool)-1)];
 }

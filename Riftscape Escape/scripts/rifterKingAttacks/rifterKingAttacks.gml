@@ -27,7 +27,7 @@ function rkBlackOut(_count) {
 	var placed = 0;
 	var attempts = 0;
 	var maxAttempts = array_length(flagArray) * 3;
-	show_debug_message(string(placed)+string(_count)+string(attempts)+string(maxAttempts));
+	//show_debug_message(string(placed)+string(_count)+string(attempts)+string(maxAttempts));
 	while ((placed < _count) && (attempts < maxAttempts)) {
 		attempts++;
 

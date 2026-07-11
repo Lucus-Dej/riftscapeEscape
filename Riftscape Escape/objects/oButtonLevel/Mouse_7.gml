@@ -14,23 +14,27 @@ switch (buttonID) {
 	if (oPlayerManager.levelsPending > 0) {
 	fateUp();
 	oPlayerManager.levelsPending--;
+	oPlayerManager.fateLeveled++;
 	}
 	break;
 	case 2: // life up
 	if (oPlayerManager.levelsPending > 0) {
 	lifeUp();
 	oPlayerManager.levelsPending--;
+	oPlayerManager.lifeLeveled++;
 	}
 	break;
 	case 3: // reality up
 	if (oPlayerManager.levelsPending > 0) {
 	realityUp();
 	oPlayerManager.levelsPending--;
+	oPlayerManager.realityLeveled++;
 	}
 	break;
 	case 4: // thought up
 	if (oPlayerManager.levelsPending > 0) {
 	thoughtUp();
+	oPlayerManager.thoughtLeveled++;
 	oPlayerManager.levelsPending--;
 	}
 	break;
@@ -38,11 +42,13 @@ switch (buttonID) {
 	if (oPlayerManager.levelsPending > 0) {
 	timeUp();
 	oPlayerManager.levelsPending--;
+	oPlayerManager.timeLeveled++;
 	}
 	break;
 	case 6: // essence up
 	if (oPlayerManager.levelsPending > 0) {
 	essenceUp();
+	oPlayerManager.essenceLeveled++;
 	oPlayerManager.levelsPending--;
 	}
 	break;

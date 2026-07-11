@@ -6,11 +6,13 @@ if (global.grid_cool == false) {
 	global.grid_cool = true;
 }
 if (xpTotal >= xpProgress) {
+	array_push(xpThreshdolds, xpProgress);
 	xpTotal -= xpProgress;
 	xpProgress *= 1.25;
 	canLevel = true;
 	levelsPending++;
 	xpLevel++;
+	
 }
 gridDebugPressed = keyboard_check_pressed(vk_enter);
 if (gridDebugPressed) {
@@ -102,7 +104,7 @@ if (global.player_health <= 0) {
 }
 
 //stat calcs
-global.player_speed = krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus + global.playerSpeedPenalty)*0.8;
+global.player_speed = (krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus + global.playerSpeedPenalty)*0.8);
 if (global.player_speed < 0) {
 	global.player_speed = 0;
 }
@@ -147,18 +149,6 @@ if (swordCooldownBonusTime <= 0) {
 }
 
 if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
-	if (oItemManager.hasReflectiveGem) {
-		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
-		var enem = noone;
-		with (oTruePlayer) {
-			enem = instance_nearest(x, y, oEnemy) 
-		}
-		if (enem != noone) {
-			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
-		}
-		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
-
-	}
 	moveSword = false;
 	if (hasSwordFate) {
 		fateSwordCount = global.playerFate;

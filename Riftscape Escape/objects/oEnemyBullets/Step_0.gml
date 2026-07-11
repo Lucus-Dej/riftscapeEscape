@@ -10,6 +10,9 @@ if (instance_exists(owner) &&rotate) {
 	x = orbitCenter.x + lengthdir_x(orbitRadius, orbitAngle);
 	y = orbitCenter.y + lengthdir_y(orbitRadius, orbitAngle);
 }
+
+
+
 if (canAccel) {
 	currentSpeed += 0.2;
 }
@@ -21,12 +24,21 @@ if (canDecel) {
 	}
 }
 
-if (isGhost && isGhosting) {
-    speed = currentSpeed * 0.6;
-} else {
-	speed = currentSpeed;
+var finalSpeed = currentSpeed;
+
+if (place_meeting(x, y, oCricleOfFate)) {
+	//show_debug_message("Bullet in circle");
+	finalSpeed *= 0.1;
 }
+if (isGhost && isGhosting) {
+    finalSpeed *= 0.6;
+} 
+
+speed = finalSpeed;
+
 isGhosting = false;
+//inCircle = false;
+//currentSpeed = baseSpeed;
 if (oItemManager.hasPropheticRune) {
 	var playerDist = point_distance(x, y, oTruePlayer.x, oTruePlayer.y);
 	if (playerDist < 40) {

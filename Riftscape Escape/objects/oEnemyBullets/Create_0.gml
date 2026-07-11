@@ -24,3 +24,5 @@ dotTicks = 0;
 dotDelay = 0;
 type = dotType.poison;
 source = 0;
+inCircle = false;
+solidBullet = false;

@@ -5,13 +5,9 @@ damagedList = ds_map_create();
 if (instance_exists(oSwordFate)) {
 	instance_destroy(oSwordFate)
 }
+var dir = point_direction(x, y, mouse_x, mouse_y);
 damage = global.playerDamage + oPlayerManager.swordDmgBonus + sqrt(global.playerEssence) * 0.45;
 if (oPlayerManager.hasSwordLife) {
-		bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y), global.bullet_speed*2, damage, oSwordLife, oTruePlayer);
-		if (oItemManager.hasMetalOrb) {
-			bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y)-35, global.bullet_speed*2, damage, oSwordLife, oTruePlayer);
-			bulletFire(x, y, point_direction(x, y, mouse_x, mouse_y)+35, global.bullet_speed*2, damage, oSwordLife, oTruePlayer);
-		}
-		
+	playerBulletFire(x, y, dir, global.bullet_speed*2, damage, oSwordLife, oTruePlayer);
 }
 

@@ -1,17 +1,48 @@
-function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
+function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent = false, _skipMagnet = false) {
 	var parent = noone;
+	
 	if (instance_exists(_owner)) {
 		parent = object_get_parent(_owner.object_index);
 	}
-	
     var b = instance_create_layer(_x, _y, "Instances", _bulletType);
 	if (variable_instance_exists(b, "currentSpeed")) {
 		b.currentSpeed = _speed;
 	}
-	if (parent == oEnemy || oSubEnemy) {
-		audio_play_sound(aEnemFire, 1, false, global.sfxAudio)
+	if (instance_exists(_owner))
+	if ((parent == oEnemy || oSubEnemy) && _owner.object_index != oTruePlayer) {
+		
+		if (!_silent) {
+			if (global.enemBulletCount < 4) {
+				global.enemBulletCount++;
+			}
+			if (global.enemBulletCount <= 2) {
+				audio_play_sound(aEnemFire, 1, false, global.sfxAudio)
+			}
+			
+		}
+		
+	}
+	if (instance_exists(_owner))
+	if (_owner.object_index == oTruePlayer) {
+		var critNum = irandom_range(1, 100) + global.playerTime;
+		if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleTime) {
+			critNum *= 2;
+		}
+		if (critNum >= 100 || oPlayerManager.trueCrit) {
+			oPlayerManager.trueCrit = false;
+			b.damage = b.damage * (1.3+(global.playerTime*0.015));
+			b.image_xscale += 0.5;
+			b.image_yscale += 0.5;
+			b.image_blend = c_aqua;
+			b.critShot = true;
+			if (!_silent) {
+				audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
+			}
+			
+		}
 	}
 	if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
+		
 		 if (turretApplied) {
 			 b.isTurret = false;
 			 b.turretApplied = true;
@@ -24,8 +55,7 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
     b.damage = _damage;
     b.owner = _owner;
 	if (instance_exists(_owner) && instance_exists(id))
-	if (id.object_index == oTruePlayer) {
-		show_debug_message(oPlayerManager.trueCrit)
+	if (id.object_index == oTruePlayer && !_skipMagnet) {
 		var critNum = irandom_range(1, 100) + global.playerTime;
 		if (critNum >= 100 || oPlayerManager.trueCrit) {
 			oPlayerManager.trueCrit = false;
@@ -37,15 +67,18 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 			if (oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
 			var rand = irandom_range(1, 15);
 			if (rand+global.playerTime >= 15) {
-				b.existance *= 3;
-				b.canOrbit = true;
-				b.orbitCenter = oTruePlayer;
-				b.orbitAngle = point_direction(oTruePlayer.x, oTruePlayer.y, _x, _y);
-				b.orbitTargetRadius = 64;
+				var c =  bulletFire(_x, _y, _dir, _speed, _damage*.4, _bulletType, _owner, false, true);
+				c.image_xscale -= 0.25;
+				c.image_yscale -= 0.25;
+				c.existance *= 3;
+				c.canOrbit = true;
+				c.orbitCenter = _owner;
+				c.orbitAngle = point_direction(_owner.x, _owner.y, _x, _y);
+				c.orbitTargetRadius = 64;
 				oTruePlayer.orbitCount++;
-				b.orbitRadius = 0;
-				b.orbitAngle = _dir;
-				b.orbitSpeed = _speed;
+				c.orbitRadius = 0;
+				c.orbitAngle = _dir;
+				c.orbitSpeed = _speed;
 			}
 		}
 	}
@@ -60,27 +93,23 @@ function bulletFireAt(_x, _y, _target, _speed, _damage, _bulletType, _owner) {
     return bulletFire(_x, _y, dir, _speed, _damage, _bulletType, _owner);
 }
 function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
+	audio_play_sound(aPlayerFire, 1, false, global.sfxAudio)
 	var parent = object_get_parent(_owner.object_index);
-	 var b = instance_create_layer(_x, _y, "Instances", _bulletType);
+	 var b =  bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner);   //instance_create_layer(_x, _y, "Instances", _bulletType);
 	 if (variable_instance_exists(b, "currentSpeed")) {
 		 b.currentSpeed = _speed;
 	 }
-	
-	 show_debug_message(_owner.object_index); 
-	 
-	 show_debug_message(parent);
 	 if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
-		 show_debug_message("we shooting turret bullets now")
 		 if (turretApplied) {
 			 b.isTurret = false;
 			 b.turretApplied = true;
 		 }
 	 }
-	if (oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
+	/*if (oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
 		var rand = irandom_range(1, 15);
 		if (rand+global.playerTime >= 15) {
 			 
-			var c = instance_create_layer(_x, _y, "Instances", _bulletType);
+			var c = bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner);
 			if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
 				 show_debug_message("we shooting orbit turrets now")
 				 if (turretApplied) {
@@ -100,13 +129,19 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 			
 		}
 	}
+	*/
 	b.baseSpeed = _dir;
     b.direction = _dir;
     b.image_angle = _dir;
     b.speed = _speed;
 	b.damage = _damage;
     b.owner = _owner;
-	var critNum = irandom_range(1, 100) + global.playerTime;
+	if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality) {
+		var t = bulletFire(_x, _y, _dir, _speed*0.6, _damage*0.3, _bulletType, _owner);
+		t.image_xscale /= 1.5;
+		t.image_yscale /= 1.5;
+	}
+	/*var critNum = irandom_range(1, 100) + global.playerTime;
 	if (critNum >= 100 || oPlayerManager.trueCrit) {
 		oPlayerManager.trueCrit = false;
 		b.damage = b.damage * (1.3+(global.playerTime*0.015));
@@ -117,12 +152,12 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 		audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
 	} else {
 		audio_play_sound(aPlayerFire, 1, false, global.sfxAudio)
-	}
+	}*/
 	if (instance_exists(oItemManager)) {
 		if (oItemManager.hasMetalOrb) {
 			var orbAngOffset = 25;
 			b.damage = _damage*0.65;
-			var sideBulletA = instance_create_layer(_x, _y, "Instances", _bulletType);
+			var sideBulletA = bulletFire(_x, _y, _dir-orbAngOffset, _speed, _damage*0.65, _bulletType, _owner);
 			if (instance_exists(sideBulletA)) {
 				if (variable_instance_exists(sideBulletA, "currentSpeed")) {
 					sideBulletA.currentSpeed = _speed;
@@ -133,7 +168,8 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 						sideBulletA.turretApplied = true;
 					}
 				}
-				sideBulletA.baseSpeed = _dir;
+				/*
+				sideBulletA.baseSpeed = _speed;
 				sideBulletA.direction = _dir+orbAngOffset;
 				sideBulletA.image_angle = _dir+orbAngOffset;
 				sideBulletA.speed = _speed;
@@ -147,12 +183,17 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 					sideBulletA.image_yscale += 0.5;
 					sideBulletA.image_blend = c_aqua;
 					audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
-				}
+				}*/
+				if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality) {
+					 var t = bulletFire(_x, _y, _dir+orbAngOffset, _speed*0.6, _damage*0.3, _bulletType, _owner);
+						t.image_xscale /= 1.5;
+						t.image_yscale /= 1.5;
+				 }
 			}
 			
 			
 			
-			var sideBulletB = instance_create_layer(_x, _y, "Instances", _bulletType);
+			var sideBulletB = bulletFire(_x, _y, _dir+orbAngOffset, _speed, _damage*0.65, _bulletType, _owner);
 			if (instance_exists(sideBulletB)) {
 					if (variable_instance_exists(sideBulletB, "currentSpeed")) {
 					sideBulletB.currentSpeed = _speed;
@@ -162,7 +203,7 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 						sideBulletB.isTurret = false;
 						sideBulletB.turretApplied = true;
 					}
-				}
+				}/*
 				sideBulletB.baseSpeed = _dir;
 				sideBulletB.direction = _dir-orbAngOffset;
 				sideBulletB.image_angle = _dir-orbAngOffset;
@@ -178,7 +219,12 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 					sideBulletB.image_yscale += 0.5;
 					sideBulletB.image_blend = c_aqua;
 					audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
-				}
+				}*/
+				if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality) {
+					 var t = bulletFire(_x, _y, _dir-orbAngOffset, _speed*0.6, _damage*0.3, _bulletType, _owner);
+						t.image_xscale /= 1.5;
+						t.image_yscale /= 1.5;
+				 }
 			}
 		}
 	}

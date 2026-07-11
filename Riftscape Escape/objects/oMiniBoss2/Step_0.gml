@@ -17,9 +17,6 @@ if (shoot_cooldown <= 0) {
 		fire_timer ++
 		if (fire_timer < fire_duration) {
 			var ang = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*bullet_speed*0.2, oTruePlayer.y+oTruePlayer.vsp*bullet_speed*0.2);
-			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				ang = point_direction(x, y, mouse_x, mouse_y);
-			}
 			if (isBoss) {
 				var bullet = bulletFire(x, y, ang+180, bullet_speed, damage, oMiniBossBullet, id);
 				bullet.canDecel = true;

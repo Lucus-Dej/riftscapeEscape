@@ -25,7 +25,7 @@ if (array_length(dotArray) > 0) {
 				
 				if (dot.target.enemey_hp <= 0) {
 					if (oItemManager.hasMolotov) {
-						show_debug_message("I AM MOLOTOVING SO GOOD")
+						//show_debug_message("I AM MOLOTOVING SO GOOD")
 						with (dot.target) {
 							with (oEnemy) {
 								var dist = point_distance(x, y, other.x, other.y);

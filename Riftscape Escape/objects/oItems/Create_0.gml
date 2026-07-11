@@ -7,15 +7,16 @@ index = -1;
 rarity = 0;
 veribroseMark = false;
 displayDesc = false;
-if (ds_list_find_index(oItemManager.rareItemList, object_index) != -1) {
+flag = noone;
+if (ds_list_find_index(oItemManager.rareItemCopy, object_index) != -1) {
     rarity = 1;
 }
-else if (ds_list_find_index(oItemManager.powerfulItemList, object_index) != -1) {
+else if (ds_list_find_index(oItemManager.powerfulItemCopy, object_index) != -1) {
     rarity = 2;
 }
-else if (ds_list_find_index(oItemManager.mythicItemList, object_index) != -1) {
+else if (ds_list_find_index(oItemManager.mythicItemCopy, object_index) != -1) {
     rarity = 3;
 }
 
-
+isLightExcluded = false;
 

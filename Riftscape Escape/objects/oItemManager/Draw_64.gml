@@ -21,11 +21,11 @@ var startY = guiH * 0.35;
 
 for (var i = 0; i < array_length(itemList); i++) {
     var obj = itemList[i];
-	if (obj == -4) {
-		show_debug_message(i);
-		show_debug_message(itemList[i]);
-		show_debug_message(itemList);
-	}
+	//if (obj == -4) {
+		//show_debug_message(i);
+		//show_debug_message(itemList[i]);
+		//show_debug_message(itemList);
+	//}
 	var spr = object_get_sprite(obj);
 	if (spr == -1) continue;
 
@@ -50,11 +50,11 @@ for (var i = 0; i < array_length(itemList); i++) {
 if (hoveredItem != noone) {
 	displayItemFunction(hoveredItem);
 	if (ritualRerollAvailable && mouse_check_button_pressed(mb_left)) {
-		show_debug_message("hovered item is "+string(hoveredItem));
+		//show_debug_message("hovered item is "+string(hoveredItem));
 		itemRemove(hoveredItem);
 		var newItem = rollItem(true);
 		itemAdd(newItem);
-		show_debug_message("newItem item is "+string(newItem));
+		//show_debug_message("newItem item is "+string(newItem));
 		ritualRerollAvailable = false;
 	}
 }

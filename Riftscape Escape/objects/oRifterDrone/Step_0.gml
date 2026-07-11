@@ -27,17 +27,6 @@ if (shoot_cooldown <= 0) {
 		var futureX = oTruePlayer.x + oTruePlayer.hsp*tth*0.9;
 		var futureY = oTruePlayer.y + oTruePlayer.vsp*tth*0.9;
 		var dir = point_direction(x, y,futureX, futureY);
-		if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-			var circdir = point_direction(x, y, mouse_x, mouse_y);
-			var bullet = bulletFire(x, y, circdir, bullet_speed, damage, oBadBullet, id);
-			with (bullet) {
-				if (layer_get_name(layer) != "Flying") {
-					layer = layer_get_id("Flying");
-				}
-				bullet.isGhost = true;
-				bullet.existance /= 2;
-			}
-		} else {
 		
 		var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
 		bullet.isGhost = true;
@@ -46,7 +35,6 @@ if (shoot_cooldown <= 0) {
 			if (layer_get_name(layer) != "Flying") {
 				layer = layer_get_id("Flying");
 			}
-		}
 		}
 	    shoot_cooldown = shoot_delay;
 	} else {

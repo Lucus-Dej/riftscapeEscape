@@ -16,6 +16,7 @@ if (Manager.combatFinished && !used) {
 
 if (onStart && !used && !veribroseItem) {
 	show_debug_message("yo just tried to spawn an item")
+	//Manager.combatFinished = true;
 	with (oItemManager) {
 		searchItem = true;
 		dropID = other.id;
@@ -37,10 +38,12 @@ if (onStart && !used && veribroseItem) {
 	
 }
 if (spawnItem && item != noone) {
+	show_debug_message("yo just tried to spawn an item 2")
 	summon = instance_create_layer(x, y, "Instances", item);
 	summon.rarity = rarity;
 	spawnItem = false;
 	summon.RoomID = RoomID;
+	summon.flag = id;
 } 
 if (Manager == noone) {
 	//Manager = findManager()

@@ -1,3 +1,30 @@
+var pbCount = instance_number(oPlayerBullets);
+if (pbCount > 99) {
+	existance -= 0.1*pbCount;
+}
+if (oItemManager.hasConRift)
+with (oPlayerBullets) {
+	// abs(makeTime - other.makeTime) <= 12)
+	var hostID = id;
+	var targetID = other.id;
+	var makeLink = true;
+	var dist = point_distance(x, y, other.x, other.y);
+	if (id != other.id && dist <= 128) {
+		
+		with (oBulletLightningLink) {
+			if ((connector == hostID && host == targetID) || (host == hostID && connector == targetID)) {
+				makeLink = false;
+			}
+		}
+		if (makeLink) {
+			show_debug_message("I AM CONNECTING")
+			//other.connected = true;
+			var link = instance_create_layer(x, y, "Instances", oBulletLightningLink);
+			link.host = id;
+			link.connector = other.id;
+		}
+	}
+}
 if (!firedFromTurret && !turretApplied && isTurret) {
 	image_xscale += 0.5;
 	image_yscale += 0.5;
@@ -88,39 +115,41 @@ if (canOrbit && instance_exists(orbitCenter)) {
 			}
 		}
 	}
-	
-	if (oItemManager.hasSingularity) {
-		var dist = 160;
-		var nearestDist = dist;
-		with (oEnemy) {
-			if (ds_exists(other.damagedList, ds_type_map))
-			if (!ds_map_exists(other.damagedList, id)) {
-				var d = point_distance(other.x, other.y, x, y);
-				if (d < 160) {
-					nearestDist = d;
-					other.target = id;
-				}
+
+if (oItemManager.hasLaserPointer) {
+	target = oMouseTracker;
+	canPush = true;
+}
+if (oItemManager.hasSingularity) {
+	canPush = false;
+	var dist = 160;
+	var nearestDist = dist;
+	with (oEnemy) {
+		if (ds_exists(other.damagedList, ds_type_map))
+		if (!ds_map_exists(other.damagedList, id)) {
+			var d = point_distance(other.x, other.y, x, y);
+			if (d < 160) {
+				nearestDist = d;
+				other.target = id;
 			}
 		}
-	if (instance_exists(target) && lastHit != target) {
-		var turnSpeed = 6;
+	}
+}
+if (instance_exists(target) && lastHit != target) {
+		var turnSpeed = 12;
 		var dir = point_direction(x, y, target.x, target.y);
 			direction  -= clamp(angle_difference(direction, dir), -turnSpeed, turnSpeed)
-		}
-		if (ds_exists(other.damagedList, ds_type_map))
-		if (!instance_exists(target) || ds_map_exists(damagedList, target)) {
-			target = noone;
-		}
 	}
-	
+	if (ds_exists(other.damagedList, ds_type_map))
+	if (!instance_exists(target) || ds_map_exists(damagedList, target)) {
+			target = noone;
+	}
 }
+
 if (oPlayerManager.canPierce && !pierceDebuffed) {
 	speed *= 0.8
 	pierceDebuffed = true;
 }
-if (!ds_exists(damagedList, ds_type_map)) {
-    show_debug_message("MAP DIED in " + string(object_index) + " id:" + string(id));
-}
 x += lengthdir_x(speed, direction);
 y += lengthdir_y(speed, direction);
-speedBonus = speed*0.1-0.55;
+speedBonus = abs(speed*0.13-0.55);

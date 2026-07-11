@@ -32,10 +32,6 @@ if (shoot_cooldown <= 0) {
 	chargeTime--;
 	modifiedAlpha += 0.06;
 	if (chargeTime <= 0) {
-	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-		var dir = point_direction(x, y, mouse_x, mouse_y);
-		bulletFire(x, y, dir, bullet_speed, damage, oSniperBullet, id);
-	} else {
 		var bul = bulletFire(x, y, targetDir+25, bullet_speed*0.9, damage, oSniperBullet, id);
 		var bul1 = bulletFire(x, y, targetDir, bullet_speed, damage, oSniperBullet, id);
 		var bul3 = bulletFire(x, y, targetDir, bullet_speed*0.4, damage, oSniperBullet, id);
@@ -44,10 +40,10 @@ if (shoot_cooldown <= 0) {
 		bul3.bounceTarget = oTruePlayer;
 		bul3.tracking = 0.8;
 		var bul2 = bulletFire(x, y, targetDir-25, bullet_speed*0.9, damage, oSniperBullet, id);
-	}
-	chargeTime = chargeCooldown;
+		chargeTime = chargeCooldown;
     shoot_cooldown = shoot_delay;
 	}
+	
 }
 if (dragTimer > 0) {
     applyDrag(dragPower, dragDir, oWalls);

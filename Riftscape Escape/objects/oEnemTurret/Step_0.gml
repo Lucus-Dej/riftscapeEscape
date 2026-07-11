@@ -22,16 +22,6 @@ if (shoot_cooldown == 12 && fireToggle) {
 	flash = 2;
 }
 if (shoot_cooldown <= 0) {
-	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-		var dir = point_direction(x, y, mouse_x, mouse_y);
-		
-		if (fireToggle) {
-			bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
-		} else {
-			bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
-			bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
-		}
-	} else {
 		var dir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 		if (fireToggle) {
 			bulletFire(x, y, dir, bullet_speed*1.2, damage, oBadBullet, id);
@@ -39,7 +29,6 @@ if (shoot_cooldown <= 0) {
 			bulletFire(x, y, dir+40, bullet_speed, damage, oBadBullet, id);
 			bulletFire(x, y, dir-40, bullet_speed, damage, oBadBullet, id);
 		}
-	}
 	fireToggle = !fireToggle;
     shoot_cooldown = shoot_delay;
 }

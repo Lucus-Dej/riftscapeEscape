@@ -1,5 +1,5 @@
 if (canHeal) {
-	global.player_health += global.lifesteal*12.5*image_xscale;
+	global.player_health += global.lifesteal*9.5*image_xscale;
 	if (oPlayerManager.inOverhealth && oPlayerManager.overhealthTimer < 100+20*global.playerEssence) {
 			oPlayerManager.overhealthTimer += 45+global.playerEssence*5;
 	}

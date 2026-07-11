@@ -6,20 +6,20 @@ if (uiHealth <= 100 && !inOverhealth) {
 	draw_healthbar(16, 16, 348, 32, uiHealth, c_dkgrey, c_red, c_red, 0, true, true);
 } else if (!overHealthOverheated && !hasOverhealthRune) {
 	draw_healthbar(16, 16, 348, 32, overhealthTimer, c_red, c_red, c_aqua, 0, true, true);
-	if (!global.inCombat) {
+	if (!global.inCombat && overhealthTimer > 75) {
 		overhealthTimer -= 0.1;
 	} else {
 		if (oItemManager.hasPetrifiedHeart) {
 			overhealthTimer-= 2;
 		}
-		overhealthTimer-=0.5;
+		overhealthTimer -= 0.5;
 	} 
-	
+	global.player_health = max_hp;
 	inOverhealth = true;
 	if (overhealthTimer < 0) {
 		overhealthTimer = overhealthCooldown;
 		dodgeLifeBonus = 0;
-		global.player_health = max_hp;
+		
 		overhealthCooldownUI = (overhealthSuperTimer/overhealthSuperTotal)*100;
 		inOverhealth = false;
 		overHealthOverheated = true;
@@ -143,6 +143,7 @@ draw_text(uiX, uiY + 6*16, "Essence"+string(global.playerEssence));
 //draw_text (uiX, uiY + 11*16, "OverHealth Timer"+string (overhealthTimer));
 draw_text (uiX, uiY + 8*16, "Damage"+string (global.playerDamage));
 draw_text(uiX, uiY + 9*16,"Item Luck: " + string(oItemManager.luckBonus + oItemManager.reflectiveGemLuckBonus));
+draw_text(uiX, uiY + 10*16,"XP Multiplier: " + string(xpMult));
 //draw_text (uiX, uiY + 14*16, "Cooldown Rate (Per Frame)"+string (cooldownRate+1));
 //draw_text (uiX, uiY + 15*16, "thought cooldown bonus"+string (trackDodgeThoughtTimer));
 //draw_text (uiX, uiY + 16*16, "health"+string (max_hp));
@@ -188,7 +189,7 @@ if (array_length(activeRuneArray) > 0) {
 		}
 	}
 	if (hoveredItem != noone) {
-		show_debug_message(hoveredItem)
+		//show_debug_message(hoveredItem)
 		runeTxt = getRuneDesc(hoveredItem);
 		displayRuneDuration = 60;
 	}

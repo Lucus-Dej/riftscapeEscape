@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"runes",
-    "path":"folders/sprites/ASSETS/UNIVERSAL/runes.yy",
+    "path":"folders/sprites/runes.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

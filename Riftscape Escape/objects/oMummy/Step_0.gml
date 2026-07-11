@@ -61,9 +61,6 @@ if (shoot_cooldown <= 0) {
             if (!enraged2) {
                 if (fireDelay <= 0) {
                     var ang = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
-                    if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-                        ang = point_direction(x, y, mouse_x, mouse_y);
-                    }
                     bulletFire(x, y, ang + roundDiraction, bullet_speed * 1.5, damage, oBossBullet, id);
                     bulletFire(x, y, ang - roundDiraction, bullet_speed * 1.5, damage, oBossBullet, id);
                     shotsFired++;
@@ -75,10 +72,6 @@ if (shoot_cooldown <= 0) {
 				
                 switch (enragedRan) {
                     case 1:
-
-                        if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-                            ang = point_direction(x, y, mouse_x, mouse_y);
-                        }
 
                         bulletFire(x, y, ang + roundDiraction, bullet_speed, damage, oBossBullet, id);
                         bulletFire(x, y, ang - roundDiraction, bullet_speed, damage, oBossBullet, id);

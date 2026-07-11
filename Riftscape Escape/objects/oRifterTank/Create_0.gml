@@ -18,7 +18,7 @@ enraged = false;
 damage = 4.5;
 path_cooldown = 30;
 
-hostSearchCooldown = 300;
+hostSearchCooldown = 260;
 hostSearchTimer = 60;
 enemySearchList = ds_list_create();
 

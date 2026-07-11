@@ -22,10 +22,6 @@ if (shoot_cooldown <= 0) {
 	if (recoil_timer <= 0) {
 		fire_timer --;
 		if (fire_timer > 0) {
-			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				var circleAng = point_direction(x, y, mouse_x, mouse_y);
-				var a = bulletFire(x, y, circleAng, bullet_speed, damage, oMiniBossBullet, id);
-		} else {
 			var playerAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 			var a =  bulletFire(x, y, playerAng - 65, bullet_speed, damage, oMiniBossBullet, id);
 			a.canBounce = true;
@@ -38,8 +34,7 @@ if (shoot_cooldown <= 0) {
 			b.bounceTarget = oTruePlayer;
 			b.tracking = 1;
 			b.canAccel = true;
-		}
-		recoil_timer = recoil_cooldown;
+			recoil_timer = recoil_cooldown;
 	} else {
 		shoot_cooldown = shoot_delay;
 		recoil_timer = recoil_cooldown;
@@ -55,7 +50,7 @@ if (hostSearchTimer > 0 && vessel == noone) {
 }
 
 if (hostSearchTimer <= 0 && vessel == noone) {
-	show_debug_message("SEARCHING FOR VESSEL");
+	//show_debug_message("SEARCHING FOR VESSEL");
 	best = noone;
 	bestDist = 999999;
 	
@@ -78,7 +73,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 			 }
 		 }
 	}
-	show_debug_message("VESSEL FOUND");
+	//show_debug_message("VESSEL FOUND");
 	vessel = best;
 	linkLine = instance_create_layer(x, y, "Instances", oEnemyLink);
 	linkLine.enemyA = id;
@@ -108,7 +103,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		}
 // ------------- VESSEL "STEP CODE" --------
 		with (vessel) {
-			show_debug_message(VesselPath_timer)
+			//show_debug_message(VesselPath_timer)
 			//path timer reduction
 			VesselPath_timer--;
 			

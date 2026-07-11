@@ -1,16 +1,22 @@
 function consumableAdd (_item) {
 	switch (_item) {
+		case oPowerUpConflux:
+		initConflux();
+		break;
+		case oDust:
+		oItemManager.dustCount++;
+		break;
 		case oPowerUpXP:
-		oPlayerManager.xpMult += 0.5;
+		oPlayerManager.xpMult += 0.02;
 		break;
 		case oPowerUpXPHigh:
-		oPlayerManager.xpMult += 2;
+		oPlayerManager.xpMult += 0.2;
 		break;
 		case oPowerUpLuck:
-		oItemManager.luckBonus += 0.5;
+		oItemManager.luckBonus += 0.25;
 		break;
 		case oPowerUpLuckHigh:
-		oItemManager.luckBonus += 2;
+		oItemManager.luckBonus += 1;
 		break;
 		case oPowerUpHP:
 		global.player_health += (oPlayerManager.max_hp*0.1);
@@ -116,6 +122,9 @@ function itemAdd(_item){
 		break;
 		
 		// powerful
+		case oCondensedRift:
+		oItemManager.hasConRift = true;
+		break;
 		case oMolotov:
 		oItemManager.hasMolotov = true;
 		break;
@@ -182,6 +191,9 @@ function itemAdd(_item){
 		
 		
 		// mythics
+		case oLaserPointer:
+		oItemManager.hasLaserPointer = true;
+		break;
 		case oElectricDartGun:
 		oItemManager.hasDartGun = true;
 		oPlayerManager.statBulletDebuff += 32;
@@ -269,18 +281,28 @@ function displayItemFunction(_item){
 	var desc = "null";
 	var descLength = string_length(desc)
 	switch (item) {
+		
+		// conflux? 
+		case oPowerUpConflux:
+		desc = "Conflux: Reset Abilities And Restart Room At A Level Cost. Current Cost: "+string(oPlayerManager.confluxCost);
+		break;
+		
+		case oDust:
+		desc = "Dust: Does Nothing.";
+		break;
+		
 		// power ups:
 		case oPowerUpXP:
-		desc = "+0.5% XP Gained";
+		desc = "+0.2% XP Gained";
 		break;
 		case oPowerUpXPHigh:
 		desc = "+2% XP Gained";
 		break;
 		case oPowerUpLuck:
-		desc = "+0.5 Item Luck";
+		desc = "+0.25 Item Luck";
 		break;
 		case oPowerUpLuckHigh:
-		desc = "+2 Item Luck";
+		desc = "+1 Item Luck";
 		break;
 		case oPowerUpHP:
 		desc = "Heal 10% Max Health";
@@ -359,6 +381,9 @@ function displayItemFunction(_item){
 		break;
 		
 		// powerful
+		case oCondensedRift:
+		desc = "Condensed Rift: Nearby Bullets Arc Energy Between Them";
+		break;
 		case oMolotov:
 		desc = "Molotov: Critical Hits Apply A Fire DoT. Enemies Killed By DoT Spread It Upon Death";
 		break;
@@ -418,6 +443,9 @@ function displayItemFunction(_item){
 		
 		
 		// mythics
+		case oLaserPointer:
+		desc = "Laser Pointer: Bullets Follow Your Mouse";
+		break;
 		case oSifterEssence:
 		desc = "Essence Of Sifter: Drain Nearby Enemies For Bonuses + Essence Up";
 		break;
@@ -502,6 +530,10 @@ function itemRemove(_item){
 		
 		
 		switch (item) {
+			
+		case oDust:
+		oItemManager.dustCount--;
+		break;
 		// commons
 		case oBlueprint:
 		realityDown()
@@ -580,6 +612,9 @@ function itemRemove(_item){
 		break;
 		
 		// powerful
+		case oCondensedRift:
+		oItemManager.hasConRift = false;
+		break;
 		case oMolotov:
 		oItemManager.hasMolotov = false;
 		break;
@@ -648,6 +683,9 @@ function itemRemove(_item){
 		break
 		
 		// mythics
+		case oLaserPointer:
+		oItemManager.hasLaserPointer = false;
+		break;
 		case oSifterEssence:
 		oItemManager.hasSifterEssence = false;
 		essenceDown();

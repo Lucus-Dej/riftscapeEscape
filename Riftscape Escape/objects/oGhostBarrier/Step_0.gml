@@ -28,8 +28,8 @@ if (state == doorState.init) {
 	}
 	if (Manager1 == noone) {
 		state = doorState.done;
-		show_debug_message("i can't find a manamager"+string(RoomID1))
-		show_debug_message(RoomID)
+		//show_debug_message("i can't find a manamager"+string(RoomID1))
+		//show_debug_message(RoomID)
 	} else {
 		state = doorState.searchingForDoor2;
 	}

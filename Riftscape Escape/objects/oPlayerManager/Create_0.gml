@@ -9,7 +9,7 @@ global.playerThought = 1; //cooldown
 global.playerLife = 1; //health
 global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal
-
+event_user(0);
 global.damageNumbers = [];
 global.inCombat = false;
 global.playerContactDmg = false;
@@ -29,131 +29,21 @@ global.activeRoom = false;
 bloodyGemCooldown = 12;
 bloodyGemTimer = bloodyGemCooldown;
 trueCrit = false;
-//sword stuff
-swordMax = 1100;
 gridDebugPressed = keyboard_check_pressed(vk_decimal)
 toggleGrid = false;
-sword_charge = swordMax;
-swordTotal = swordMax;
-swordDmgBonus = 0;
-swordKills = 0;
-swordCooldown = 100;
-initate_sword = false;
-swordAttKey = "Q";
-swordAttPressed = false;
-hasSwordReality = false;
-hasSwordTime = false;
-hasSwordThought = false;
-hasSwordFate = false;
-hasSwordLife = false;
-swordCooldownBonus = 0;
-swordCooldownBonusTime = 0;
-moveSword = false;
-fateSwordCount = 0
-summonedSword = 0;
-swordAng = 0;
-count = 0;
-swordAng = 0;
-realitySwordBonus = 0;
 
-//dodge stuff
-initDodge = false;
-dodgeMax = 500;
-evilDodgeFlagIHate = false;
-dodgeCharge = dodgeMax;
-dodgeTotal = dodgeMax;
-dodgeCooldown = 100;
-dodgeKey = "E";
-isDodge = false;
-inDodge = false;
-dodgeDuration = 5.5;
-dodgeFlag = true;
-hasDodgeFate = false;
-hasDodgeLife = false;
-hasDodgeThought = false;
-hasDodgeEssence = false;
-hasDodgeTime = false;
+
+
 iframes = 0;
 iframeTotal = 40;
-trackDodgeFate = false;
-dodgeFateCheck = noone;
-trackDodgeThoughtTimer = 0;
-thoughtDodgeCooldownBoost = 0;
-dodgeEssenceTimer = 2;
-dodgeLifeHP = 0
-dodgeLifeStart = false;
-dodgeLifeBonus = 0
-dodgeBlackFlashTimer = 0;
-dodgeBlackFlashCheck = false;
-dodgeChainFailed = false;
-enum DODGE_PHASE {
-	locked, onCooldown, onStandby, dodging, blackflashing, blackflashRecovery, blackFlashChecking
-}
-dodgeState = DODGE_PHASE.locked;
+
 	
 	
 	
 
-//crystal stuff
-initCrystal = false;
-crystalMax = 2500;
-crystalCharge = crystalMax;
-crystalTotal = crystalMax;
-crystalCooldown = 100;
-crystalKey = "R";
-hasCrystalReality = false;
-hasCrystalThought = false;
-hasCrystalFate = false;
-hasCrystalEssence = false;
-hasCrystalLife = false;
 
-bombActive = false;
-hasBombKilled = false;
-
-enum BOMB_KILL_CHECK {
-	checking, failed, waiting, success
-}
-realityBombCheck = BOMB_KILL_CHECK.failed;
-realityBombCooldownBoost = 0;
-
-//minon stuff
-initMinion = false;
-hasMinionTime = false;
-hasMinionReality = false;
-hasMinionThought = false;
-hasMinionEssence = false;
-hasMinionFate = false;
-essenceMinionCount = 0;
 global.activeEssenceClones = 0;
 
-// fate circle stuff
-circleMax = 2250;
-initCircle = false;
-circleCharge = circleMax;
-circleTotal = circleMax;
-circleCooldown = 100;
-circleKey = "C";
-circleThoughtUpgrade = false;
-circleCooldownBonus = 0;
-hasCircleThought = false;
-hasCircleReality = false;
-hasCircleTime = false;
-hasCircleLife = false;
-hasCircleEssence = false;
-
-// mind husk
-initHusk = false;
-huskMax = 1600;
-huskCharge = huskMax;
-huskTotal = huskMax;
-huskCooldown = 100;
-huskKey = "T";
-hasFateHusk = false;
-hasEssenceHusk = false;
-hasLifeHusk = false;
-hasTimeHusk = false;
-hasRealityHusk = false;
-realityHuskSpeedBonus = 0;
 
 // health stuff
 healthTotal = 100;
@@ -190,19 +80,7 @@ inTokenMenu = false;
 tokenMenuLayer = "tokenMenu";
 checkTokenMenu = layer_get_visible(tokenMenuLayer);
 checkLevelLayer = layer_get_visible(levelMenuLayer);
-hasFateToken = false;
-hasLifeToken = false;
-hasRealityToken = false;
-hasThoughtToken = false;
-hasTimeToken = false;
-hasEssenceToken = false;
 
-fateTokenSpent = false;
-lifeTokenSpent = false;
-realityTokenSpent = false;
-thoughtTokenSpent = false;
-timeTokenSpent = false;
-essenceTokenSpent = false;
 
 startX = 22;
 startY = 48;
@@ -241,7 +119,7 @@ statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;
 
-global.bullet_delay = 35;
+global.bullet_delay = 36;
 baseBulletDelay = global.bullet_delay;
 overHealthBulletDelay = global.playerEssence/4;
 statBulletDelay = 0;
@@ -266,6 +144,14 @@ global.bullet_cooldown = 0;
 global.chosenBullet = oBullet;
 global.explosionBullet = oBoom;
 global.bullet_speed = 5+ global.playerReality;
+
+lifeLeveled = 0;
+fateLeveled = 0;
+thoughtLeveled = 0;
+timeLeveled = 0;
+realityLeveled = 0;
+essenceLeveled = 0;
+
 canRich = false;
 canPierce = false;
 inOverhealth = false;
@@ -283,7 +169,7 @@ tesseractSpeed = 0;
 
 debug = false;
 uiX = 16;
-uiY = 192;
+uiY = 192+64;
 uiLine = 0;
 resW = 1366;
 resH = 768;
@@ -293,10 +179,13 @@ levelArray = [caves0, caves01, f3, desert0, desert01, d3, wasteland0, wasteland0
 levelIndex = 0;
 currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];
+confluxCost = 2;
+xpThreshdolds = [];
 
 //rune stuff
-validRuneArray = [oAlextraRune, oCooldownRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oAlextraRune, oKrostRune, oCooldownRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
+hasKrostRune = false;
 hasAlextraRune = false;
 hasLifestealRune = false;
 hasOverhealthRune = false;
@@ -309,4 +198,5 @@ hasCooldownRune = false;
 displayRuneDuration = 0;
 runeTxt = "";
 xpRuneReduction = 1;
+krostRuneDebuff = 1;
 lockAbilities = false;

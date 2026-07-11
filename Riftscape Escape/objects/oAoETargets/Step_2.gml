@@ -4,6 +4,11 @@ if (variable_instance_exists(self, "fatedCircle")) {
         fatedCircle = false;
     }
 }
+if (variable_instance_exists(self, "inCircle") && variable_instance_exists(self, "currentSpeed")  ) {
+    if (inCircle) {
+        //inCircle = false;
+    }
+}
 if (variable_instance_exists(self, "enemSpeed") && variable_instance_exists(self, "fatedCircle")) {
 	if (fatedCircle && !inCircle) {
        path_speed = base_speed;

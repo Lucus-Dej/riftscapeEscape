@@ -62,15 +62,18 @@ if (hasIceSoup && !iceSoupTriggered) {
 	
 }
 if (chosenList == simpleItemList) {
-	var i = irandom(ds_list_size(chosenList)-1);
-	item = chosenList[| i];
-	
+	if (oPlayerManager.hasBossDropRune) {
+		item = oDust;
+	} else {
+		var i = irandom(ds_list_size(chosenList)-1);
+		item = chosenList[| i];
+	}
 	with (dropID) {
 		item = other.item;
 		spawnItem = true;
 		spawnSimple = true;
 		if (other.hasHollowedDice) {
-			i = irandom_range(1,3)
+			var i = irandom_range(1,3)
 				if (i == 2) {
 				j = irandom(ds_list_size(oItemManager.simpleItemList)-1);
 				item = other.simpleItemList[| j];

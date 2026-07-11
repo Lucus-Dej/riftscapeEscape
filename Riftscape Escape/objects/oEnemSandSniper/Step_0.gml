@@ -15,10 +15,11 @@ if (!canSeePlayer) {
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
-	modifiedAlpha = 0.25;
+	modifiedAlpha = 0.35;
 	var dist = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 	time = (clamp(dist / bullet_speed, 0, 30))+18;
 	targetDir = point_direction(x, y, oTruePlayer.x+oTruePlayer.hsp*time, oTruePlayer.y+oTruePlayer.vsp*time);
+	image_angle = targetDir-90;
 }
 if (chargeTime > 0) {
 	
@@ -29,12 +30,7 @@ if (shoot_cooldown <= 0) {
 	chargeTime--;
 	modifiedAlpha += 0.06;
 	if (chargeTime <= 0) {
-	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-		var dir = point_direction(x, y, mouse_x, mouse_y);
-		bulletFire(x, y, dir, bullet_speed, damage, oSniperBullet, id);
-	} else {
 		bulletFire(x, y, targetDir, bullet_speed, damage, oSniperBullet, id);
-	}
 	chargeTime = chargeCooldown;
     shoot_cooldown = shoot_delay;
 	}

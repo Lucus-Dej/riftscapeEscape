@@ -9,9 +9,9 @@ if (phasePoint1 >= enemey_hp && enraged == false) {
 	spawnNum -= 150;
 	enemSpeed -= 1;
 	bullet_speed = 1.5;
-	fire_duration += 30;
-	shoot_delay = 1;
-	recoil_cooldown -= 6;
+	fire_duration = 16;
+	shoot_delay = 30;
+	recoil_cooldown = 2;
 	enraged = true;
 	enragedAngle = 1;
 }
@@ -28,8 +28,6 @@ if (shoot_cooldown <= 0) {
 		if (fire_timer > 0) {
 			if (enraged) {
 				bulletAng = enragedAngle;
-			} else if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				bulletAng = point_direction(x, y, mouse_x, mouse_y);
 			} else {
 			bulletAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 		}

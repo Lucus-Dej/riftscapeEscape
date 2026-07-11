@@ -29,11 +29,6 @@ if (shoot_cooldown <= 0) {
 		if (fire_timer > 0) {
 			enragedAngle = irandom_range(0, 359);
 			bulletAng = enragedAngle;
-			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				bulletAng = point_direction(x, y, mouse_x, mouse_y);
-			} else {
-			bulletAng = enragedAngle;
-		}
 		
 		var bullet = bulletFire(x, y, bulletAng, bullet_speed, damage, oPoisonBullet, id);
 		with (bullet) {

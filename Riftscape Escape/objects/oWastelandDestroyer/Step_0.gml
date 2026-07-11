@@ -96,7 +96,7 @@ if (shoot_cooldown <= 0) {
 				
 				var angle = nadoAngle;
 				if (phase == 1) {
-					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					d.type = 1;
 					d.spinDir = sign(nadoSpin);
 					d.dir = angle;
@@ -110,7 +110,7 @@ if (shoot_cooldown <= 0) {
 					d.image_xscale = 2;
 					d.image_yscale = 2;
 					
-					var f = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var f = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					f.type = 1;
 					f.spinDir = sign(nadoSpin);
 					f.dir = angle+120;
@@ -124,7 +124,7 @@ if (shoot_cooldown <= 0) {
 					f.image_xscale = 2;
 					f.image_yscale = 2;
 					
-					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					c.type = 1;
 					c.spinDir = sign(nadoSpin);
 					c.dir = angle+240;
@@ -139,7 +139,7 @@ if (shoot_cooldown <= 0) {
 					c.image_yscale = 2;
 				}
 				if (phase == 2) {
-					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					c.type = 1;
 					c.spinDir = sign(nadoSpin);
 					c.dir = angle + 90;
@@ -153,7 +153,7 @@ if (shoot_cooldown <= 0) {
 					c.image_xscale = 2;
 					c.image_yscale = 2;
 					
-					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					d.type = 1;
 					d.spinDir = sign(nadoSpin);
 					d.dir = angle + 270;
@@ -168,7 +168,7 @@ if (shoot_cooldown <= 0) {
 					d.image_yscale = 2;
 				}
 				if (phase == 0 || phase == 2) {
-					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var c = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					c.type = 1;
 					c.spinDir = sign(nadoSpin);
 					c.dir = angle;
@@ -182,7 +182,7 @@ if (shoot_cooldown <= 0) {
 					c.image_xscale = 2;
 					c.image_yscale = 2;
 				
-					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id);
+					var d = bulletFire(x, y, 0, 0, damage, owdBullets, id, true);
 					d.type = 1;
 					d.spinDir = sign(nadoSpin);
 					d.dir = angle + 180;

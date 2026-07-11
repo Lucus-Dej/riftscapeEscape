@@ -22,7 +22,7 @@ if (owner != noone && !used && instance_exists(oFloorManager)) {
 	}
 	}
 	//width = abs(owner.workerY.x - owner.workerX.x - 64 - 128);
-	show_debug_message(width)
+	//show_debug_message(width)
 	//show_debug_message(newRoom)
 	event_user(0)
 	

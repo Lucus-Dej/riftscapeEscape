@@ -11,5 +11,6 @@ recoil_timer = 0;
 enemey_hp = 25;
 phasePoint1 = enemey_hp/2;
 enraged = false;
+move = -1;
 damage = 8.5;
 searchPlayer();

@@ -1,4 +1,4 @@
-if (oPlayerManager.hasCircleReality) {
+/*if (oPlayerManager.hasCircleReality) {
 other.inCircle = true;
 
 if (!variable_instance_exists(other, "fatedCircle")) {

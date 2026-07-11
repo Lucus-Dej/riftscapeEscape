@@ -1,7 +1,9 @@
 if (searchItem == true) {
 	if (bossSearch) {
-		event_user(1);
+		show_debug_message("BOSS ITEM SEARCH")
 		bossSearch = false;
+		//if (oPlayerManager.hasBossDropRune) exit;
+		event_user(1);
 	} else {
 		event_user(0);
 	}

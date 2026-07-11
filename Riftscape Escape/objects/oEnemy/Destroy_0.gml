@@ -1,4 +1,6 @@
-oPlayerManager.xpTotal += xp*oPlayerManager.xpMult/oPlayerManager.xpRuneReduction;
+if (!sub) {
+	oPlayerManager.xpTotal += xp*oPlayerManager.xpMult/oPlayerManager.xpRuneReduction;
+}
 if (path_exists(path)) {
     path_delete(path);
 }
@@ -10,13 +12,13 @@ if (isBoss) {
 		}
 	}
 }
-if (!denyHP) {
+if (!denyHP || !sub) {
 	var blood = instance_create_layer(x, y, "Items", oRiftBloodSplatter)
 
 	blood.image_xscale = image_xscale;
 	blood.image_yscale = image_yscale;
 }
-if (oPlayerManager.hasExplosiveRune) {
+if (oPlayerManager.hasExplosiveRune && !sub) {
 	var explodeRune = instance_create_layer(x, y, "Instances", oExplosiveRuneBomb);
-	explodeRune.damage = (damage+2)*1.5;
+	explodeRune.damage = 30 + (damage);
 }

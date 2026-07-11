@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"initConflux",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"initConflux",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

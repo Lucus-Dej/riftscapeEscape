@@ -27,7 +27,7 @@ if (attack == 0) {
 
 if (enraged && distance_to_object(oTruePlayer) < 120) {
 	spiralArc += 57;
-	var f = bulletFire(x, y, spiralArc, bullet_speed+1, damage/5, oFireBullet, id);
+	var f = bulletFire(x, y, spiralArc, bullet_speed+1, damage/2, oFireBullet, id);
 	f.canDecel = true;
 	f.decelRate = 0.01;
 	f.decelLockedToZero = true;
@@ -40,6 +40,7 @@ if (shoot_cooldown <= 0) {
 			arcFire = point_direction(x, y, oTruePlayer.x, oTruePlayer.y) + currentArc;
 			var f = bulletFire(x, y, arcFire, bullet_speed+1.5, damage, oFireBullet, id)
 			f.accel = true;
+			f.solidBullet = true;
 			currentArc -= 15;
 			} else {
 			shoot_cooldown = shoot_delay;

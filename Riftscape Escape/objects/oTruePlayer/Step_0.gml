@@ -14,11 +14,16 @@ if (len > 0) {
 }
 
 //move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);\
-var realSpeed = global.player_speed;
-if (!instance_exists(oEnemy)) {
-	realSpeed = global.player_speed+2;
-} 
-
+var realSpeed = global.player_speed+2;
+if (instance_exists(oEnemy)) {
+	realSpeed = global.player_speed/oPlayerManager.krostRuneDebuff;
+}
+var trap = instance_place(x, y, oTurretDOT);
+if (trap != noone) {
+	if (trap.type == "ice") {
+		realSpeed *= 0.4;
+	}
+}
 
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;

@@ -1,4 +1,4 @@
-show_debug_message(spawnID)
+//show_debug_message(spawnID)
 if (spawnID == 0) {
 	spawnID = owner.RoomID;
 }

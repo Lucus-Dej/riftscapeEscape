@@ -17,14 +17,9 @@ if (shoot_cooldown > 0) {
 
 // fire when ready
 if (shoot_cooldown <= 0) {
-	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-		var circdir = point_direction(x, y, mouse_x, mouse_y);
-		var bullet = bulletFire(x, y, circdir, bullet_speed, damage, oBadBullet, id);
-	} else {
 		var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
 		var bullet2 = bulletFire(x, y, dir+180, bullet_speed, damage, oBadBullet, id);
 		dir += 37;
-	}
 	shoot_cooldown = shoot_delay
 }
 if (dragTimer > 0) {

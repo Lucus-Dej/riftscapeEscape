@@ -17,9 +17,6 @@ if (shoot_cooldown <= 0) {
 		angle += 2 + angleAdd;
 		if (fire_timer > 0) {
 			var ang = point_direction(x, y, oTruePlayer.x, oTruePlayer.y)
-			if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-				ang = point_direction(x, y, mouse_x, mouse_y)
-			}
 			var b1 =bulletFire(x, y, ang+angle, bullet_speed, damage, oMiniBossBullet, id)
 			var b2 =bulletFire(x, y, ang-angle, bullet_speed, damage, oMiniBossBullet, id)
 			with (b1) {

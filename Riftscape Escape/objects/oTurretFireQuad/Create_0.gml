@@ -1,0 +1,10 @@
+event_inherited();
+cooldown = 90;
+delay = cooldown;
+type = TURRET_TYPE.NULL;
+dir = 0;
+lineLength = 640;
+lineSpacing = 12;
+damage = 15;
+lineInterval = 1;
+image_angle = dir-90;

@@ -24,14 +24,7 @@ if (shoot_cooldown <= 0) {
 	var futureX = oTruePlayer.x + oTruePlayer.hsp*tth*0.8;
 	var futureY = oTruePlayer.y + oTruePlayer.vsp*tth*0.8;
 	var dir = point_direction(x, y,futureX, futureY);
-	if (oPlayerManager.hasCircleTime && oTruePlayer.inCircle) {
-		var circdir = point_direction(x, y, mouse_x, mouse_y);
-		var bullet = bulletFire(x, y, circdir, bullet_speed, damage, oBadBullet, id);
-	} else {
-		
 	var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
-
-	}
     shoot_cooldown = shoot_delay;
 }
 if (dragTimer > 0) {
