@@ -1,5 +1,6 @@
 if (oPlayerManager.hasMinionReality) {
 	minionRealitySpeedBonus = -35;
+	bulletSpeed = baseBulletSpeed * global.playerReality*0.1 - 0.3;
 }
 if (oItemManager.hasLostCrown) {
 	minionCrownDmgBonus = 0.08;
@@ -19,14 +20,11 @@ if (follow != noone) {
 }
 x += (xTo - x)/(minionSpeed);
 y += (yTo - y)/(minionSpeed);
-var dmg = ((0.025 * global.playerEssence + minionCrownDmgBonus)/instance_number(oMinionEssence))*1.1;
+var dmg = ((0.025 * global.playerEssence + minionCrownDmgBonus)/(instance_number(oMinionEssence) + instance_number(oMinionFateEssence))*1.1);
+dmg = max(dmg, 0.01)
 if (fire && !oPlayerManager.hasMinionThought) {
 	var dir =  point_direction(x, y, mouse_x, mouse_y);
-	if (oPlayerManager.hasMinionFate) {
-		playerBulletFire(x, y, dir, 4.5, dmg, oMinonBullet, oTruePlayer);
-	} else {
-		bulletFire(x, y, dir, 4.5, dmg, oMinonBullet, oTruePlayer);
-	}
+	playerBulletFire(x, y, dir, bulletSpeed, dmg, oMinonBullet, oTruePlayer);
 	fire = false;
 } else if (oPlayerManager.hasMinionThought) {
 	if (instance_exists(oEnemy)) {
@@ -36,11 +34,7 @@ if (fire && !oPlayerManager.hasMinionThought) {
 		}
 		if (bulletDelay <= 0) {
 			var dir =  point_direction(x, y, target.x, target.y);
-			if (oPlayerManager.hasMinionFate) {
-				playerBulletFire(x, y, dir, 4.5, dmg, oMinonBullet, oTruePlayer);
-			} else {
-				bulletFire(x, y, dir, 4.5, dmg, oMinonBullet, oTruePlayer);
-			}
+			playerBulletFire(x, y, dir, bulletSpeed, dmg, oMinonBullet, oTruePlayer);
 			bulletDelay = bulletCoolDown;
 		}
 	} else {

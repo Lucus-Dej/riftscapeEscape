@@ -2,7 +2,7 @@ function searchPlayer() {
 
     canSeePlayer = false; 
 
-    if (!instance_exists(oTruePlayer)) {
+    if (!instance_exists(oTruePlayer) || global.playerInvis) {
 		return false;
 	}
 

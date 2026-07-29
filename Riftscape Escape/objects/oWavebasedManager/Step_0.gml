@@ -27,6 +27,9 @@ if (state == waveState.generatingWave) {
 	}
 }
 if (state == waveState.spawning) {
+	if (isLimited) {
+		powerDoor(RoomID);
+	}
 	if (!gendFlyGrid)
 	with (roomManager)
 	global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
@@ -74,7 +77,7 @@ if (state == waveState.spawning) {
 			spawnCooldown = spawnDelay
 		}
 	} else if (!instance_exists(oEnemy)) {
-		if (!runeRound && instance_exists(oRuneSpawner)) {
+		if (!runeRound && instance_exists(oRuneSpawner) && !restrictedArrays) {
 			instance_destroy(oRuneSpawner)
 		}
 		with (oEnemyTurrets) {
@@ -86,16 +89,19 @@ if (state == waveState.spawning) {
 		}
 		if (runeRound) {
 			rollConsumable(id);
+			var runeSpawner = noone;
 			with (oRuneFlag) {
-				instance_create_layer(x, y, "Instances", oRuneSpawner);
+				runeSpawner = instance_create_layer(x, y, "Instances", oRuneSpawner);
 			}
+			runeSpawner.RoomID = RoomID;
 			roundsTillRune = 10;
 			runeRound = false;
 		}
 		if (itemRound) {
 			rollConsumable(id);
+			var item = rollItem(false);
 			with (itemSpawner) {
-				event_user(0);
+				instance_create_layer(x, y, "Instances", item);
 			}
 			roundsTillItem = 10;
 			itemRound = false;
@@ -251,15 +257,21 @@ if (state == waveState.inBetween) {
 	waveWeight = startingWeight;
 	waveCooldown = waveTimer;
 	if (wave >= waveLimit && isLimited) {
+		unpowerDoor(RoomID);
+		powerTorzol();
+		with (oGhostBarrier) {
+			if (RoomID == other.RoomID) {
+				revealNearbyRooms(id);
+			}
+		}
 		state = waveState.done;
 		active = false;
 		itemSpawner = noone;
 		with (oWavebasedStarter) {
 			other.itemSpawner = instance_nearest(x, y, oItemFlag);
 		}
-		with (itemSpawner) {
-			event_user(1);
-		}
+		//var newItem = rollItem(true,,true);
+		//spawnItem(newItem, itemSpawner, RoomID);
 		oItemManager.luckBonus += 2;
 		oPlayerManager.xpMult += 0.1;
 		manager.combatFinished = true;

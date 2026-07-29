@@ -17,7 +17,7 @@ if (!spawnedBody) {
 		body.image_xscale = image_xscale;
 		body.image_yscale = image_yscale;
 		if (isBoss) {
-			body.enemey_hp *= hpMult;
+			body. enemyHP *= hpMult;
 			body.maxHP *= hpMult;
 		}
 		if (i == 0) {

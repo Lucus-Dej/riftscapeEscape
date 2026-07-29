@@ -4,9 +4,8 @@ if (brainDead) {
 }
 
 var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
-//path timer reduction
-path_timer--;
-if (phasePoint1 >= enemey_hp && enraged == false) {
+
+if (phasePoint1 >=  enemyHP && enraged == false) {
 	enemSpeed += 1.6;
 	bullet_speed -= 2;
 	fire_duration += 6;
@@ -37,18 +36,4 @@ if (shoot_cooldown <= 0) {
 				fire_timer = fire_duration;
 		}
 	}
-}
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

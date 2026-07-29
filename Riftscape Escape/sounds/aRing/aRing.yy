@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"aRing",
+  "audioGroupId":{
+    "name":"agSFX",
+    "path":"audiogroups/agSFX",
+  },
+  "bitDepth":0,
+  "channelFormat":2,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.9926531,
+  "exportDir":"",
+  "name":"aRing",
+  "parent":{
+    "name":"audio",
+    "path":"folders/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":11025,
+  "soundFile":"aRing.mp3",
+  "volume":1.0,
+}

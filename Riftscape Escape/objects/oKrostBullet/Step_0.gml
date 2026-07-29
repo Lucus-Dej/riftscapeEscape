@@ -19,10 +19,9 @@ if (canDecel && speed > 0 && !refireFlag) {
 }
 if (refireFlag) {
 	var bullet = bulletFireAt(x, y, oTruePlayer, 2.25, 12, oSniperBullet, owner);
-	
+	bullet.canAccel = true;
 	if (bounceBullet) {
 		bullet.canBounce = true;
-		bullet.canAccel = true;
 	}
 	instance_destroy();
 }

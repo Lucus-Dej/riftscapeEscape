@@ -11,8 +11,8 @@
   "name":"oTetheredSoulBoom",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"3mythic",
+    "path":"folders/items/passive/3mythic.yy",
   },
   "parentObjectId":null,
   "persistent":false,

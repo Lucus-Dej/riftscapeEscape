@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"copyBullet",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"copyBullet",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

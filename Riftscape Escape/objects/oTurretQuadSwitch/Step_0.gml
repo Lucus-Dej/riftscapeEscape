@@ -6,6 +6,9 @@ if (cooldown > 0) {
 		image_angle += 45;
 		flash = 1;
 	}
+	if (oPlayerManager.hasTrapRune) {
+		cooldown--;
+	}
 } else {
 		for (var i = 0; i < 4; i++) {
 			var dir = 90*i+image_angle;

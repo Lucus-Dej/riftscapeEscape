@@ -1,9 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"oMinionFateBullet",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"oMinionFateBullet",
   "overriddenProperties":[],
@@ -11,7 +9,10 @@
     "name":"MINION",
     "path":"folders/playerstuff/Abilities/MINION.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oPlayerBullets",
+    "path":"objects/oPlayerBullets/oPlayerBullets.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

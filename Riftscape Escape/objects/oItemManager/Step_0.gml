@@ -18,7 +18,7 @@ if (hasLilFurnace && !instance_exists(oLilFurnace)) {
 	if (instance_exists(oTruePlayer)) {
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oLilFurnace);
 	}
-}
+} 
 //brain in a jar
 if (oPlayerManager.hasBrainInAJar && oPlayerManager.tookDamage) {
 	brainNum = irandom_range(0,4);
@@ -38,20 +38,7 @@ if (brainNum+global.playerTime/2 >= 4) {
 if (oPlayerManager.brainJarBonus > 1) {
 	oPlayerManager.brainJarBonus -= 0.1;
 }
-if (hasVeribroseEssence && !veriFlagTP) {
-	if (instance_exists(oGoNext)) {
-		with (oGoNext) {
-			other.savedRoom = owned.goFloor;
-			owned.goFloor = other.veriRoom;
-		}
-		veriFlagTP = true;
-	}
-}
-if (veriFlagTP && savedRoom != noone && room = veribroseItemRoom) {
-	with (oGoNext) {
-		owned.goFloor = other.savedRoom;
-	}
-}
+
 // rare seed
 if (hasRareSeed) {
 	with oPlayerManager {
@@ -131,20 +118,20 @@ if (hasSifterEssence) {
 	for (var i = array_length(sifterLinkArray)-1; i >= 0; i--) {
 		var enem = sifterLinkArray[i];
 		if (!instance_exists(enem) || point_distance(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y) > sifterEssenceRange) {
-			/*if (instance_exists(sifterLinks[i])) {
+			if (instance_exists(sifterLinks[i])) {
 				with (sifterLinks[i]) {
 					instance_destroy();
 				}
-			}*/
+			}
 			array_delete(sifterLinkArray,i,1);
 			array_delete(sifterLinks,i,1);
 		} else {
 			if (sifterTimer <= 0) {
 				if (oPlayerManager.inOverhealth) {
-					enemyTakeDamage(sifterEssenceDmg*2.5, enem);
+					enemyTakeDamage(sifterEssenceDmg*2.5, enem,,,damageType.playerBlood);
 					oPlayerManager.overhealthTimer += 11.5;
 				} else {
-					enemyTakeDamage(sifterEssenceDmg, enem);
+					enemyTakeDamage(sifterEssenceDmg, enem,,,damageType.playerBlood);
 					oPlayerManager.overhealthSuperTimer -= 11.5;
 					global.player_health += sifterEssenceDmg*10;
 				}
@@ -179,9 +166,9 @@ if (hasAlextraEssence) {
 		}
 	}
 }
-if (hasTorzolEssence && global.player_health < oPlayerManager.max_hp*0.95 && global.activeRoom) {
+if (hasTorzolEssence && global.player_health < oPlayerManager.max_hp*0.75 && global.activeRoom) {
 	var missingHP = (oPlayerManager.max_hp - global.player_health);
-	var torzBonus = (missingHP*0.0008)*global.playerLife/4;
+	var torzBonus = (missingHP*0.0008);
 	global.player_health += torzBonus;
 }
 // tesseract stuff
@@ -206,4 +193,45 @@ if (hasTetheredSoul) {
 	if (!instance_exists(oTetheredSoul)) {
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oTetheredSoul)
 	}
+}
+if !(freedomFlyFlag && global.playerCanFly) {
+	with (oTruePlayer) {
+		if (!place_meeting(x, y, oSuperwalls)) {
+			global.playerCanFly = false;
+		}
+	}
+}
+
+if (oSettingManager.queueEvilRuneAdd) {
+	oSettingManager.queueEvilRuneAdd = false;
+	var r = irandom(array_length(oPlayerManager.validRuneArray)-1);
+	var rune = oPlayerManager.validRuneArray[r];
+	var e = rollItem(true, itemSearchType.simple);
+	itemAdd(e)
+	enableRune(rune);
+	show_debug_message(rune)
+	array_delete(oPlayerManager.validRuneArray, r, 1);
+	array_push(oPlayerManager.activeRuneArray, rune);
+}
+if (hasBloodyGem && !instance_exists(oBloodyGemMinion)) {
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oBloodyGemMinion)
+}
+if (hasHorseWar && !instance_exists(oJavWarMinion)) {
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oJavWarMinion)
+}
+if (hasHorseDeath && !instance_exists(oSyDeathMinion)) {
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oSyDeathMinion)
+}
+if (hasHorsePest && !instance_exists(oDaggPestMinion)) {
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDaggPestMinion)
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDaggPestMinion)
+}
+if (hasHorseFamine && !instance_exists(oSickFamineMinion)) {
+	var l = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oSickFamineMinion);
+	l.rotation = 1;
+	l.sprite_index = sSickleFamineMirrored;
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oSickFamineMinion);
+}
+if (hasHorseCon && !instance_exists(oSwordConquestMinion)) {
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oSwordConquestMinion)
 }

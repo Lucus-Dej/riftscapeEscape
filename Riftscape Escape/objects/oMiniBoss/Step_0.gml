@@ -3,9 +3,6 @@ if (brainDead) {
     exit;
 }
 
-//path timer reduction
-path_timer--;
-
 // countdown
 shoot_cooldown--;
 
@@ -37,18 +34,4 @@ if (shoot_cooldown <= 0) {
 				angleAdd += 3;
 		}
 	}
-}
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

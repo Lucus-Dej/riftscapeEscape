@@ -1,15 +1,15 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 25);
 enemSpeed = 1.05;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 bullet_speed = 12;
 shoot_delay = 120;
 recoil_cooldown = 6;
 fire_duration = 6;
 fire_timer = fire_duration;
 recoil_timer = 0;
-enemey_hp = 13;
-phasePoint1 = enemey_hp/2;
+ enemyHP = 7;
+phasePoint1 =  enemyHP/2;
 enraged = false;
 damage = 9.5;
 enragedAngle = 0;

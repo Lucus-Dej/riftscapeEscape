@@ -4,10 +4,10 @@ if (brainDead) {
 }
 
 if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 320) {
-	enemSpeed = base_speed*2.8;
+	enemSpeed = initalSpeed*2.8;
 	bullet_speed = 9.5;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 	bullet_speed = baseBulletSpeed;
 }
 

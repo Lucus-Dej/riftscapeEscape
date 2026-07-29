@@ -1,13 +1,13 @@
 function snakeAddBody() {
 	var body = instance_create_layer(x, y, "Instances", oEnemCentiBody);
-	body.enemey_hp = enemey_hp;
+	body. enemyHP =  enemyHP;
 	body.xp = 0;
 	body.head = id;
 	body.image_xscale = image_xscale;
 	body.image_yscale = image_yscale;
 
 	if (isBoss) {
-		body.enemey_hp *= hpMult;
+		body. enemyHP *= hpMult;
 		body.maxHP *= hpMult;
 	}
 

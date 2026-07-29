@@ -8,6 +8,7 @@ if (active) {
 			flash = 0.6;
 		}
 	} else {
+		if (!swap)
 		if (instance_exists(child_coll)) {
 			instance_destroy(child_coll)
 		} else {

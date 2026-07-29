@@ -67,11 +67,13 @@ switch (buttonID) {
 	break;
 	
 	case 9:
+	saveGame();
 	game_restart();
+	loadGame();
 	break;
 	
 	case 10:
-	game_end();
+	endGameAndSave();
 	break;
 	
 	case 11:
@@ -86,4 +88,32 @@ switch (buttonID) {
 	
 	callSettings();
 	break;
+	
+	case 14:
+	room_goto(hordeSurvival);
+	var diffLayer = "difficultyMenu";
+	layer_set_visible(diffLayer, false);
+	if (global.difficulty == 4) {
+		oSettingManager.queueEvilRuneAdd = true;
+	}
+	break;
+	
+	
+	case 15: // set to easy difficulty;
+	global.difficulty = 1;
+	break;
+	
+	case 16: // set to normal difficulty;
+	global.difficulty = 2;
+	break;
+	
+	case 17: // set to hard difficulty;
+	global.difficulty = 3;
+	break;
+	
+	case 18: // set to extreme difficulty;
+	global.difficulty = 4;
+	break;
+	
+	
 }

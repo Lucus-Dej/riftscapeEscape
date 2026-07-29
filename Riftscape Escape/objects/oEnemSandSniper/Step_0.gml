@@ -3,10 +3,8 @@ if (brainDead) {
     exit;
 }
 
-path_timer--;
-
 if (!canSeePlayer) {
-	enemSpeed = base_speed*15;
+	enemSpeed = initalSpeed*15;
 	image_alpha = 1;
 } else if (canSeePlayer) {
 	image_alpha = modifiedAlpha;
@@ -34,16 +32,4 @@ if (shoot_cooldown <= 0) {
 	chargeTime = chargeCooldown;
     shoot_cooldown = shoot_delay;
 	}
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

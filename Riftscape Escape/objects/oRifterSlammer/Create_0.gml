@@ -7,7 +7,7 @@ chargeTime = 12;
 chargeDir = 0;
 charging = false;
 enemSpeed = 0.3
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 attackDelay = 60;
 
 
@@ -24,8 +24,8 @@ impactDelay = 36;
 iFrames = 0;
 bullet_speed = 1.5;
 shoot_delay = 160;
-enemey_hp = 21
-phasePoint1 = enemey_hp/2;
+ enemyHP = 21
+phasePoint1 =  enemyHP/2;
 enraged = false;
 damage = 14;
 contactDamage = damage;

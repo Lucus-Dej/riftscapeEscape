@@ -1,18 +1,28 @@
-if (ignoreWall != other) {
+if (!array_contains(damageArray, other.id)) {
+	array_push(damageArray, other.id);
+	array_push(damageTimerArray, 0);
+	//show_debug_message("HITTING BREAKABLE WALL "+string(other.obHP))
 	if (oItemManager.hasHammer) {
 		other.obHP -= damage*8;
 	} else {
 		other.obHP -= damage;
 	}
-	
-}
-if (!canBounce && bounceNum  <= 0) {
-	if (!oItemManager.hasMagnet) {
-		instance_create_layer(x, y, "Instances", oBoom);
-	instance_destroy();
-	
+	if (other.obHP <= 0) {
+		var t = instance_create_layer(x, y, "Instances", global.explosionBullet);
+		if (oItemManager.hasGunpowder) {
+			t.purpose = 1;
+		}
+		instance_destroy(other)
 	}
 } else {
+	exit;
+}
+
+if (!canBounce && bounceNum  <= 0) {
+	if (!oItemManager.hasMagnet) {
+		instance_destroy();
+	}
+} else if (bounceNum > 0) {
 	// mark the wall that it bounced from via other.id
 	ignoreWall = other.id;
 	var searchRadius = 960;
@@ -22,11 +32,12 @@ if (!canBounce && bounceNum  <= 0) {
 	if (tracking > 0)
 	with (oEnemy) {
 		// Skip enemies already damaged
-		if (ds_map_exists(other.damagedList, id)) {
+		if (array_contains(other.damageArray, id)) {
 			continue;
 		}
+		var dCheck = collision_line(x, y, other.x, other.y, oBulletBlocker, false, false)
 		var d = point_distance(other.x, other.y, x, y)
-			if (d < searchRadius && d < closestDist) {
+			if (d < searchRadius && d < closestDist && dCheck == noone) {
 				closestDist = d;
 				closest = id;
 			}
@@ -81,38 +92,13 @@ if (!canBounce && bounceNum  <= 0) {
 	var newSpeed = max(abs(speed), 0.01);
 	if (oItemManager.hasHeartPendent) {
 		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage*0.8, object_index, self);
-		copy.bounceNum = bounceNum;
-		copy.canBounce = false;
-		copy.ignoreWall = ignoreWall;
-		copy.turretApplied = turretApplied;
-		copy.canSpread = canSpread;
-		copy.image_blend = image_blend;
-		copy.image_xscale = image_xscale;
-		copy.image_yscale = image_yscale;
-		copy.damagedList = ds_map_create();
-		copy.critShot = critShot;
-		ds_map_copy(copy.damagedList, damagedList);
+		copyBullet(id, copy)
 		newDir -= 15;
 	}
 	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage*0.8, object_index, self);
-	copy.bounceNum = bounceNum;
-	copy.canBounce = false;
-	copy.ignoreWall = ignoreWall;
-	copy.canSpread = canSpread;
-	copy.critShot = critShot;
-	copy.turretApplied = turretApplied;
-	copy.image_blend = image_blend;
-	copy.image_xscale = image_xscale;
-	copy.image_yscale = image_yscale;
-	copy.damagedList = ds_map_create();
-	ds_map_copy(copy.damagedList, damagedList);
+	copyBullet(id, copy)
 	instance_destroy()
-}
-z = 0;
-audio_listener_position(x, y, z);
-audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
-
-
-if (other.obHP <= 0) {
-	instance_destroy(other);
+	
+} else {
+	instance_destroy()
 }

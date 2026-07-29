@@ -2,10 +2,7 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-//path timer reduction
-path_timer--;
-if (phasePoint1 >= enemey_hp && enraged == false) {
+if (phasePoint1 >=  enemyHP && enraged == false) {
 	//enemSpeed -= 0.2;
 	enraged = true;
 }
@@ -64,18 +61,4 @@ if (enragedDelay <= 0 && enraged) {
 			enragedDelay = shoot_delay;
 		}
 	}
-}
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

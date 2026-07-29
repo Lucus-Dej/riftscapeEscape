@@ -1,4 +1,4 @@
-visual = instance_create_layer(x, y, "Instances", oPlayer);
+visual = instance_create_layer(x, y, "Flying", oPlayer);
 visual.owner = id;
 global.shot = false;
 currentSpeed = 0;

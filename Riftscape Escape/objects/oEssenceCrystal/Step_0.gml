@@ -1,4 +1,4 @@
-if (oPlayerManager.hasCrystalThought  && chainDistance <= 0) {
+if (oPlayerManager.hasCrystalThought) {
 	target = instance_nearest(x, y, oEnemy);
 	pathTimer--;
 	if (target != noone && instance_exists(target) && pathTimer <= 0) {

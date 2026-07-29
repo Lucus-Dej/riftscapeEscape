@@ -1,3 +1,10 @@
+view_w = 3200;
+view_h = 3200;
+
+zoomSpeed = 400;
+scale = 1;
+minZoom = 800;
+maxZoom = 8000;
 
 follow = oTruePlayer;
 minimapSurface = surface_create(200, 200);

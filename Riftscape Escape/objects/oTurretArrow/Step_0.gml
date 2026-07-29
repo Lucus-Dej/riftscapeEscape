@@ -1,6 +1,9 @@
 event_inherited();
 if (!active) exit;
 if (cooldown > 0) {
+	if (oPlayerManager.hasTrapRune) {
+		cooldown--;
+	}
 	cooldown--;
 	fire = false;
 	if (cooldown == 12) {

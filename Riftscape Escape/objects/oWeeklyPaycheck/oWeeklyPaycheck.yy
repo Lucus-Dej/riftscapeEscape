@@ -6,8 +6,8 @@
   "name":"oWeeklyPaycheck",
   "overriddenProperties":[],
   "parent":{
-    "name":"rare",
-    "path":"folders/items/passive/rare.yy",
+    "name":"1rare",
+    "path":"folders/items/passive/1rare.yy",
   },
   "parentObjectId":{
     "name":"oItems",

@@ -2,7 +2,10 @@
 xpUI = (xpTotal/xpProgress)*100;
 if (global.grid_cool == false) {
 	global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
-	mp_grid_add_instances(global.Grid, oColl, 0);
+	mp_grid_add_instances(global.Grid, oColl, true);
+	 
+	global.flyGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
+	mp_grid_add_instances(global.flyGrid, oIndestructable, true);
 	global.grid_cool = true;
 }
 if (xpTotal >= xpProgress) {
@@ -16,6 +19,7 @@ if (xpTotal >= xpProgress) {
 }
 gridDebugPressed = keyboard_check_pressed(vk_enter);
 if (gridDebugPressed) {
+	toggleGrid = !toggleGrid;
 	debug = !debug;
 	show_debug_log(debug)
 }
@@ -89,7 +93,7 @@ if (global.player_health <= 0) {
 		}
 		refreshItemPool();
 		for (var i = 0; i < count; i++) {
-			var item = rollItem(true);
+			var item = rollItem(true, itemSearchType.random);
 			itemAdd(item);
 		}
 		
@@ -102,34 +106,67 @@ if (global.player_health <= 0) {
 	}
 	
 }
-
+if (hasTorzolRune && global.player_health > oPlayerManager.max_hp*0.4) {
+	var torzDrain = global.player_health * 0.002;
+	global.player_health -= torzDrain;
+}
 //stat calcs
 global.player_speed = (krostEssenceSpeedBouns + sculptureBonus*(baseSpeed + tesseractSpeed + realitySwordBonus + realityHuskSpeedBonus +statSpeed + dodgeSpeed+ overHealthSpeedBonus + global.playerSpeedPenalty)*0.8);
 if (global.player_speed < 0) {
 	global.player_speed = 0;
 }
-fireRate = (baseBulletDelay+statBulletDebuff)/(1 + ((statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
+if (invisTimer > 0) {
+	global.playerInvis = true;
+	if (instance_exists(oPlayer)) {
+		oPlayer.image_alpha = 0.4;
+	}
+	invisTimer --;
+	if (invisTimer <= 0) {
+		global.playerInvis = false;
+		if (instance_exists(oPlayer)) {
+		oPlayer.image_alpha = 1;
+	}
+	}
+}
+fireRate = (baseBulletDelay+statBulletDebuff)/(1 + ((thoughtDodgeFireRateBoost) + (oItemManager.effectiveYinBonus) + (statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
 if (fireRate < fireRateCap) {
 	global.bullet_delay = fireRateCap - ((fireRateCap - fireRate)*0.2);
 } else {
 	global.bullet_delay = fireRate;
 }
-global.playerDamage = (tesseractBonusDamage + baseDamage + statDamage + overHealthDamageBuff + boomerangDmg)/directorsDebuff;
+global.playerDamage = (tesseractBonusDamage + baseDamage + oItemManager.effectiveYangBonus + statDamage + overHealthDamageBuff + boomerangDmg)/directorsDebuff;
 global.bullet_speed = 5+ sqrt(global.playerReality*0.8);
 global.contactDmg = krostEssenceSpeedBouns + dodgeContactDmg;
-cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + thoughtDodgeCooldownBoost + deltaItemBuff + overHealthCooldownBuff + circleCooldownBonus)*0.5);
+cooldownRate = superCoolCooldownBonus + brainJarBonus*(sqrt(baseCooldown + statCooldown + deltaItemBuff + overHealthCooldownBuff + circleCooldownBonus)*0.5);
 if (krostEssenceSpeedBouns > 0) {
 	krostEssenceSpeedBouns -= 0.002;
 }
 if (deltaItemBuff > 0) {
 	deltaItemBuff--;
 }
+if (sifterRunePauseTimer > 0) {
+	sifterRunePauseTimer--;
+	cooldownRate = 1;
+}
 
 // rune stuff
-if (!global.activeRoom && hasCooldownRune) {
-	lockAbilities = true;
-} else {
-	lockAbilities = false;
+if (hasSifterRune && sifterRunePauseTimer <= 0) {
+	cooldownRate = -1;
+	if (swordTotal > 0) {
+		swordTotal -= 0.6;
+	}
+	if (circleTotal > 0) {
+		circleTotal -= 0.6;
+	}
+	if (dodgeTotal > 0) {
+		dodgeTotal -= 0.6;
+	}
+	if (crystalTotal > 0) {
+		crystalTotal -= 0.6;
+	}
+	if (huskTotal > 0) {
+		huskTotal -= 0.6;
+	}
 }
 
 //sword stuff
@@ -155,6 +192,11 @@ if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
 		summonedSword = 0;
 	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oSword);
+	if (hasSwordReality) {
+		instance_destroy(oSwordReality)
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oSwordReality);
+	}
+	
 	swordTotal = 0;
 }
 if (hasSwordFate) {
@@ -189,7 +231,6 @@ if (dodgeState == DODGE_PHASE.onCooldown) {
 	if (dodgeTotal >= dodgeMax) {
 		dodgeState = DODGE_PHASE.onStandby;
 	} else {
-		if (!lockAbilities)
 		dodgeTotal += 1 + (cooldownRate);
 	}
 }
@@ -197,23 +238,14 @@ if (iframes > 0) {
 	iframes--;
 }
 if (dodgeState == DODGE_PHASE.onStandby) {
+	if (dodgeTotal < dodgeMax) {
+		dodgeState = DODGE_PHASE.onCooldown;
+	}
 	inDodge = false;
 	dodgeContactDmg = 0;
-	if (dodgePressed) {
+	if (dodgePressed && dodgeTotal >= dodgeMax) {
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
 		dodgeContactDmg = 1;
-		if (oItemManager.hasReflectiveGem) {
-			var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
-			var enem = noone;
-			with (oTruePlayer) {
-				enem = instance_nearest(x, y, oEnemy) 
-			}
-			if (enem != noone) {
-				dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
-			}
-			playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
-		}
-		trackDodgeFate = true;
 		inDodge = true;
 		dodgeTotal = 0;
 		dodgeState = DODGE_PHASE.dodging;
@@ -237,19 +269,8 @@ if (dodgeState == DODGE_PHASE.dodging) {
 		dodgeState = DODGE_PHASE.onCooldown;
 	}
 }
-if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePressed) {
-	if (oItemManager.hasReflectiveGem) {
-		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
-		var enem = noone;
-		with (oTruePlayer) {
-			enem = instance_nearest(x, y, oEnemy) 
-		}
-		if (enem != noone) {
-			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
-		}
-		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
-	}
-	trackDodgeFate = true;
+if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 20 && inDodge && dodgePressed) {
+
 	dodgeState = DODGE_PHASE.blackflashing;
 	dodgeBlackFlashTimer = 100;
 	dodgeDuration = 6;
@@ -257,7 +278,6 @@ if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 15 && inDodge && dodgePre
 	dodgeSpeed =  16.5 + (global.playerReality/10)
 } else if (dodgeBlackFlashTimer > 15 && inDodge && dodgePressed) {
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
-	trackDodgeFate = true;
 	dodgeState = DODGE_PHASE.onCooldown;
 	inDodge = false;
 	dodgeBlackFlashTimer = 0;
@@ -284,26 +304,8 @@ if (dodgeState == DODGE_PHASE.blackflashing) {
 if (hasDodgeEssence && dodgeDuration > 0 && inDodge) {
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oBloodSpill);
 }
-if (trackDodgeFate) {
-	if (hasDodgeThought) {
-		trackDodgeThoughtTimer = 240;
-	}
-	if (hasDodgeFate) {
-		with (oEnemy) {
-			if (point_distance(x, y, oTruePlayer.x, oTruePlayer.y) <= 256) {
-				dragDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
-				dragPower = 24;
-				dragTimer = 6;
-				path_end();
-			}
-		}
-	}
-	trackDodgeFate = false;
-}
 
-if (trackDodgeThoughtTimer > 0) {
-trackDodgeThoughtTimer--;	
-}
+
 
 //crystal stuff
 crystalPressed = keyboard_check_pressed(ord(crystalKey));
@@ -315,17 +317,6 @@ if (initCrystal) {
 	}
 }
 if (crystalTotal >= crystalMax && crystalPressed && initCrystal) {
-	if (oItemManager.hasReflectiveGem) {
-		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
-		var enem = noone;
-		with (oTruePlayer) {
-			enem = instance_nearest(x, y, oEnemy) 
-		}
-		if (enem != noone) {
-			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
-		}
-		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
-	}
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oCrystal);
 	crystalTotal = 0;
 }
@@ -338,7 +329,7 @@ if ((instance_exists(oCrystalBoom) || instance_exists(oChildCrystalBoom)) && rea
 	}
 }
 if (!instance_exists(oCrystalBoom) && !instance_exists(oChildCrystalBoom) && hasCrystalThought && realityBombCheck == BOMB_KILL_CHECK.checking && bombActive) {
-	realityBombCheck = BOMB_KILL_CHECK.success;
+	//realityBombCheck = BOMB_KILL_CHECK.success;
 	bombActive = false;
 }
 if (realityBombCheck == BOMB_KILL_CHECK.success && hasCrystalThought) {
@@ -373,19 +364,9 @@ if (initMinion && !instance_exists(oMinion)) {
 	} */
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinion);
 }
-if (initMinion && hasMinionTime && !instance_exists(oMinionTime)) {
-	if (oItemManager.hasReflectiveGem) {
-		var dir = point_direction(oTruePlayer.x,oTruePlayer.y, mouse_x, mouse_y);
-		var enem = noone;
-		with (oTruePlayer) {
-			enem = instance_nearest(x, y, oEnemy) 
-		}
-		if (enem != noone) {
-			dir = point_direction(oTruePlayer.x, oTruePlayer.y, enem.x, enem.y)
-		}
-		playerBulletFire(oTruePlayer.x, oTruePlayer.y, dir, global.bullet_speed*0.85, global.playerDamage*2, global.chosenBullet, oTruePlayer);
-	}
-	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionTime);
+if (initMinion && hasMinionFate && !instance_exists(oMinionFate)) {
+	
+	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionFate);
 }
 // fate circle stuff
 circlePressed = keyboard_check_pressed(ord(circleKey));
@@ -451,8 +432,8 @@ if (uiHealth > 100) {
 //if (global.playerKilled == true && inOverhealth) {
 //	overhealthTimer += 20+global.playerEssence*10;
 //}
-if (thoughtDodgeCooldownBoost > 0) {
-	thoughtDodgeCooldownBoost -= 0.1;
+if (thoughtDodgeFireRateBoost > 0) {
+	thoughtDodgeFireRateBoost -= 0.1;
 }
 
 //healthRatio = power(1.02, global.playerLife - 1);
@@ -465,25 +446,22 @@ if (inOverhealth == false) {
 		overhealthSuperTimer--;
 	}
 }
-overhealthCooldown = 100 + 40+global.playerEssence*5
 
-global.lifesteal = global.playerDamage* 0.35 + max_hp * (0.0025 + (global.playerEssence*0.0075))*oItemManager.sacDaggerBonus;
+
+if (global.difficulty == 1) {
+	overhealthCooldown = 100 + 50+global.playerEssence*8
+	global.lifesteal = (global.playerDamage* 0.5 + max_hp * (0.005 + (global.playerEssence*0.01))*oItemManager.sacDaggerBonus);
+} else if (global.difficulty == 2) {
+	overhealthCooldown = 100 + 40+global.playerEssence*5
+	global.lifesteal = (global.playerDamage* 0.35 + max_hp * (0.0025 + (global.playerEssence*0.0075))*oItemManager.sacDaggerBonus);
+} else if (global.difficulty >= 3) {
+	overhealthCooldown = 100 + 40+global.playerEssence*5
+	global.lifesteal = (global.playerDamage* 0.12 + max_hp * (0.0015 + (global.playerEssence*0.0035))*oItemManager.sacDaggerBonus);
+}
+
+
 
 if (inOverhealth) {
-	if (oItemManager.hasBloodyGem) {
-		if (bloodyGemTimer > 0) {
-			bloodyGemTimer--;
-		} else {
-			var num = irandom_range(1, 300);
-			if (num+(global.playerTime*4) >= 300) {
-				bloodyGemTimer = bloodyGemCooldown;
-				if (instance_exists(oTruePlayer)) {
-					playerBulletFire(oTruePlayer.x, oTruePlayer.y, irandom(360), global.bullet_speed*0.6, global.playerDamage*0.7, global.chosenBullet, oTruePlayer);
-				}
-			}
-		}
-		
-	}
 	dodgeLifeBonus = 0;
 	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
 	overHealthBulletDelay = sqrt(global.playerEssence)*0.26;

@@ -43,9 +43,11 @@ if (simpleMax >= 0 && j < simpleMax) {
 } else if (powerfulMax >= 0 && j < powerfulMax) {
 	chosenList = powerfulItemList;
 	rarity = 2;
-} else {
+} else if (mythicMax >= 0 && j < mythicMax) {
 	chosenList = mythicItemList;
 	rarity = 3;
+} else if (ultraMax >= 0 && j > mythicMax) {
+	chosenList = ultraItemList;
 }
 chosenList = simpleItemList;
 if (hasIceSoup && !iceSoupTriggered) {

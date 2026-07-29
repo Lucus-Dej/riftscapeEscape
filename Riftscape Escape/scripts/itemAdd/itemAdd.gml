@@ -7,13 +7,13 @@ function consumableAdd (_item) {
 		oItemManager.dustCount++;
 		break;
 		case oPowerUpXP:
-		oPlayerManager.xpMult += 0.02;
+		oPlayerManager.xpMult += 0.01;
 		break;
 		case oPowerUpXPHigh:
-		oPlayerManager.xpMult += 0.2;
+		oPlayerManager.xpMult += 0.1;
 		break;
 		case oPowerUpLuck:
-		oItemManager.luckBonus += 0.25;
+		oItemManager.luckBonus += 0.15;
 		break;
 		case oPowerUpLuckHigh:
 		oItemManager.luckBonus += 1;
@@ -28,18 +28,33 @@ function consumableAdd (_item) {
 }
 function rollConsumable(_mngr) {
 	var ranCheck = irandom_range(1, 100) + global.playerTime*1.5 - 1.5;
+	if (global.difficulty == 1) {
+		ranCheck += 15;
+	}
+	
 	if (ranCheck >= 50) {
 		var consumableArray = [oPowerUpHP, oPowerUpLuck, oPowerUpXP];
 		var i = irandom(array_length(consumableArray)-1);
 		var powerUp = consumableArray[i];
+		if (oPlayerManager.hasPowerUpRune) {
+			powerUp = oDust;
+		}
 		with (_mngr) {
 			instance_create_layer(x, y, "Instances", powerUp);
 		}
 	}
 }
-function itemAdd(_item){
+function itemAdd(_item, _addToInventory = true){
 	var item = _item;
-	array_push(oItemManager.itemList, item);
+	var r = findItemRarity(item);
+	show_debug_message("ADDING "+ string(item));
+	var f = array_get_index(oItemManager.deniedItemArray, item)
+	if (r > 0 && f == -1) {
+		array_push(oItemManager.virstTargetArray, item);
+	}
+	if (_addToInventory) {
+		array_push(oItemManager.itemList, item);
+	}
 	switch (item) {
 		// commons
 		case oBlueprint:
@@ -62,6 +77,9 @@ function itemAdd(_item){
 		break;
 		
 		// rares
+		case oBottleOil:
+		oItemManager.hasBottleOil = true;
+		break;
 		case oPropheticRune:
 		oItemManager.hasPropheticRune = true;
 		break;
@@ -77,12 +95,11 @@ function itemAdd(_item){
 		case oWeeklyPaycheck:
 		oItemManager.hasWeeklyPaycheck = true;
 		oItemManager.luckBonus += 8;
-		var spawn = instance_nearest(x, y, oItemFlag)
-		with (spawn) {
-			event_user(1);
-		}
+		var newItem = rollItem(true, itemSearchType.simple);
+		spawnItem(newItem, oTruePlayer, -1);
 		break;
 		case oBrokenBloodVial:
+		oItemManager.hasBloodVial = true;
 		global.chosenBullet = oBloodVialBullets;
 		break;
 		case oBrokenBoomerang:
@@ -103,10 +120,9 @@ function itemAdd(_item){
 		break;
 		case oIceSoup:
 		oItemManager.hasIceSoup = true;
-		var spawner = instance_nearest(x, y, oItemFlag)
-		with (spawner) {
-			event_user(0);
-		}
+		var newItems = rollItem(true, itemSearchType.iceSoup);
+		spawnItem(newItems, oTruePlayer, -1);
+		oItemManager.luckBonus -= 8;
 		break;
 		case oRareSeed:
 		oItemManager.hasRareSeed = true;
@@ -118,10 +134,29 @@ function itemAdd(_item){
 		oItemManager.hasWaterDamagedNote = true;
 		break;
 		case oBloodyGem:
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oBloodyGemMinion)
 		oItemManager.hasBloodyGem = true;
 		break;
 		
-		// powerful
+		// powerful'
+		case oPlasmaOrb:
+		oItemManager.hasPlasmaOrb = true;
+		break;
+		case oLightningCharm:
+		oItemManager.hasLightningCharm = true;
+		break;
+		case oFireCharm:
+		oItemManager.hasFireCharm = true;
+		break;
+		case oIceCharm:
+		oItemManager.hasIceCharm = true;
+		break;
+		case oYin: 
+		oItemManager.hasYin = true;
+		break;
+		case oYang:
+		oItemManager.hasYang = true;
+		break;
 		case oCondensedRift:
 		oItemManager.hasConRift = true;
 		break;
@@ -187,7 +222,11 @@ function itemAdd(_item){
 		break;
 		case oLostCrown:
 		oItemManager.hasLostCrown = true;
-		break
+		break;
+		
+		case oFoolsGold:
+		oItemManager.hasFoolsGold = true;
+		break;
 		
 		
 		// mythics
@@ -217,6 +256,7 @@ function itemAdd(_item){
 		break;
 		case oVeribroseEssence:
 		oItemManager.hasVeribroseEssence = true;
+		oItemManager.veriFlagTP = true;
 		fateUp();
 		break;
 		case oKrostEssence:
@@ -271,17 +311,35 @@ function itemAdd(_item){
 		timeUp();
 		break;
 		
-		
+		// ultra
+		case oHorseWar:
+		oItemManager.hasHorseWar = true;
+		break;
+		case oHorseDeath:
+		oItemManager.hasHorseDeath = true;
+		break;
+		case oHorseFamine:
+		oItemManager.hasHorseFamine = true;
+		break;
+		case oHorsePest:
+		oItemManager.hasHorsePest = true;
+		break;
+		case oHorseConquest:
+		oItemManager.hasHorseCon = true;
+		break;
 		
 	}
 }
-
 function displayItemFunction(_item){
 	var item = _item;
 	var desc = "null";
 	var descLength = string_length(desc)
 	switch (item) {
 		
+		// random item
+		case "ran":
+		desc = "Give Into Chaos";
+		break;
 		// conflux? 
 		case oPowerUpConflux:
 		desc = "Conflux: Reset Abilities And Restart Room At A Level Cost. Current Cost: "+string(oPlayerManager.confluxCost);
@@ -293,13 +351,13 @@ function displayItemFunction(_item){
 		
 		// power ups:
 		case oPowerUpXP:
-		desc = "+0.2% XP Gained";
+		desc = "+0.1% XP Gained";
 		break;
 		case oPowerUpXPHigh:
-		desc = "+2% XP Gained";
+		desc = "+1% XP Gained";
 		break;
 		case oPowerUpLuck:
-		desc = "+0.25 Item Luck";
+		desc = "+0.15 Item Luck";
 		break;
 		case oPowerUpLuckHigh:
 		desc = "+1 Item Luck";
@@ -331,6 +389,9 @@ function displayItemFunction(_item){
 		break;
 		
 		// rares
+		case oBottleOil:
+		desc = "Bottle Of Oil: Chance For Bullets To Leave Oil Spill Behind";
+		break;
 		case oPropheticRune:
 		desc = "Prophetic Rune: Graze Bullets For Cooldown Bonus";
 		break;
@@ -380,7 +441,29 @@ function displayItemFunction(_item){
 		desc = "Water Damaged Note: First Hit Deals More Damage";
 		break;
 		
+
 		// powerful
+		case oIceCharm:
+		desc = "Ice Charm: Chance To Launch A Slow Moving Snowstorm When Firing + Amplifies Ice Damage";
+		break;
+		case oPlasmaOrb:
+		desc = "Plasma Orb: Chance To Spawn Lightning On Enemies Who Strike You";
+		break;
+		case oLightningCharm:
+		desc = "Lightning Charm: Chance For Bullets To Become Electrified + Amplifies Lightning Damage";
+		break;
+		case oFireCharm:
+		desc = "Fire Charm: Chance To Launch A Shotgun Of Fire When Firing + Amplifies Fire Damage";
+		break;
+		case oYin: 
+		desc = "Yin: Hitting The Same Enemy Grants A Fire Rate Bonus";
+		break;
+		case oYang:
+		desc = "Yang: Hitting Different Enemies Grants A Damage Bonus";
+		break;
+		case oFreedom:
+		desc = "Freedom: Obtain Flight Until The End Of The Next Room";
+		break;
 		case oCondensedRift:
 		desc = "Condensed Rift: Nearby Bullets Arc Energy Between Them";
 		break;
@@ -440,6 +523,9 @@ function displayItemFunction(_item){
 		case oLostCrown:
 		desc = "Lost Crown: Powerful Minions";
 		break
+		case oFoolsGold:
+		desc = "Fool's Gold: Grants A Free Mythic Item 100% Guarantee";
+		break;
 		
 		
 		// mythics
@@ -514,19 +600,47 @@ function displayItemFunction(_item){
 		desc = "The Path Forward: Summon A Powerful Item";
 		break;
 		
+		
+		// ultra
+		case oHorseWar:
+		desc = "The Javelin Of War: Powerful Minion That Thrives In Battle";
+		break;
+		case oHorseDeath:
+		desc = "The Scythe Of Death: Inevitable Minion That Feeds On Death";
+		break;
+		case oHorseFamine:
+		desc = "The Sickle Of Famine: Hungry Minion That Feeds On Enemies";
+		break;
+		case oHorsePest:
+		desc = "The Daggers Of Pestilence: Poisonous Minion That Devourers Enemies";
+		break;
+		case oHorseConquest:
+		desc = "The Sword Of Conquest: A Powerful Minion That Arrives Only After A Victory";
+		break;
+		
+		
+		
 	}
 	descLength = string_length(desc)
 	oItemManager.displayItemTimer = oItemManager.displayItemDuration;
 	oItemManager.itemDesc = desc;
 	oItemManager.itemDescLength = descLength;
 }
-
-function itemRemove(_item){
+function itemRemove(_item, _removeFromInventory = true){
 	var item = _item;
 	var i = array_get_index(oItemManager.itemList, item);
+	var v = array_get_index(oItemManager.virstTargetArray, item);
+	show_debug_message("REMOVING "+ string(item));
+	show_debug_message(v)
+	if (v != 1) {
+		array_delete(oItemManager.virstTargetArray, v, 1);
+	}
+	
 	if (i != -1) {
+		if (_removeFromInventory) {
+			array_delete(oItemManager.itemList, i, 1);
+		}
 		
-		array_delete(oItemManager.itemList, i, 1);
 		
 		
 		switch (item) {
@@ -555,6 +669,9 @@ function itemRemove(_item){
 		break;
 		
 		// rares
+		case oBottleOil:
+		oItemManager.hasBottleOil = false;
+		break;
 		case oPropheticRune:
 		oItemManager.hasPropheticRune = false;
 		break;
@@ -573,6 +690,7 @@ function itemRemove(_item){
 		oItemManager.luckBonus -= 8;
 		break;
 		case oBrokenBloodVial:
+		oItemManager.hasBloodVial = false;
 		global.chosenBullet = oBullet;
 		break;
 		case oBrokenBoomerang:
@@ -608,10 +726,33 @@ function itemRemove(_item){
 		oItemManager.hasWaterDamagedNote = false;
 		break;
 		case oBloodyGem:
+		instance_destroy(oBloodyGemMinion);
 		oItemManager.hasBloodyGem = false;
 		break;
 		
 		// powerful
+		case oPlasmaOrb:
+		oItemManager.hasPlasmaOrb = false;
+		break;
+		case oIceCharm:
+		oItemManager.hasIceCharm = false;
+		break;
+		case oLightningCharm:
+		oItemManager.hasLightningCharm = false;
+		break;
+		case oFireCharm:
+		oItemManager.hasFireCharm = false;
+		break;
+		case oYin: 
+		oItemManager.hasYin = false;
+		oItemManager.effectiveYinBonus = 0;
+		oItemManager.yinFireRateBonus = 0;
+		break;
+		case oYang:
+		oItemManager.hasYang = false;
+		oItemManager.effectiveYangBonus = 0;
+		oItemManager.yangDmgBonus = 0;
+		break;
 		case oCondensedRift:
 		oItemManager.hasConRift = false;
 		break;
@@ -680,7 +821,11 @@ function itemRemove(_item){
 		break;
 		case oLostCrown:
 		oItemManager.hasLostCrown = false;
-		break
+		break;
+		case oFoolsGold:
+		oItemManager.hasFoolsGold = false;
+		break;
+		
 		
 		// mythics
 		case oLaserPointer:
@@ -704,6 +849,7 @@ function itemRemove(_item){
 		break;
 		case oVeribroseEssence:
 		oItemManager.hasVeribroseEssence = false;
+		oItemManager.veriFlagTP = false;
 		fateDown();
 		break;
 		case oKrostEssence:
@@ -764,6 +910,40 @@ function itemRemove(_item){
 		timeDown();
 		break;
 		
+		
+		// ultra
+		case oHorseWar:
+		oItemManager.hasHorseWar = false;
+		if (instance_exists(oJavWarMinion)) {
+			instance_destroy(oJavWarMinion);
+		}
+		break;
+		case oHorseDeath:
+		oItemManager.hasHorseDeath = false;
+		if (instance_exists(oSyDeathMinion)) {
+			instance_destroy(oSyDeathMinion)
+		}
+		break;
+		case oHorseFamine:
+		oItemManager.hasHorseFamine = false;
+		if (instance_exists(oSickFamineMinion)) {
+			instance_destroy(oSickFamineMinion)
+		}
+		break;
+		case oHorsePest:
+		oItemManager.hasHorsePest = false;
+		if (instance_exists(oDaggPestMinion)) {
+			instance_destroy(oDaggPestMinion)
+		}
+		break;
+		case oHorseConquest:
+		oItemManager.hasHorseCon = false;
+		if (instance_exists(oSwordConquestMinion)) {
+			instance_destroy(oSwordConquestMinion)
+		}
+		break;
+		
+		
 		case oDepictionOfSeraphim:
 		for (var l = 0; l <= 2; l++) {
 			fateDown();
@@ -793,12 +973,13 @@ function refreshItem (_rairty, _item) {
 		break;
 	}
 }
-function rollItem(_chargeFilter) {
+function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPool = true) {
 	var totalPool = 0;
 	var simpleMax = -1;
 	var rareMax = -1;
 	var powerfulMax = -1;
 	var mythicMax = -1;
+	var ultraMax = -1;
 	var attempts = 10;
 
 	if (ds_list_size(oItemManager.simpleItemList) > 0) {
@@ -820,40 +1001,167 @@ function rollItem(_chargeFilter) {
 		totalPool += oItemManager.mythicPool;
 		mythicMax = totalPool;
 	}
+	
+	if (ds_list_size(oItemManager.ultraItemList) > 0) {
+		totalPool += oItemManager.ultraPool;
+		ultraMax = totalPool;
+	}
 
-	var j = irandom(totalPool - 1) + oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + global.playerTime;
-	j = clamp(j, 0, totalPool - 1);
+	var j = irandom(100) + oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + global.playerTime;
+	//j = clamp(j, 0, totalPool - 1);
+	//show_debug_message(j)
+	if (j <0) {
+		j = 1;
+	}
 
-	var chosenList;
-
-	if (simpleMax != -1 && j < simpleMax) {
+	var chosenList = oItemManager.simpleItemList;
+	
+	if (j >= ultraMax && ds_list_size(oItemManager.ultraItemList) > 0) {
+		chosenList = oItemManager.ultraItemList;
+	} else if (j >= mythicMax && ds_list_size(oItemManager.mythicItemList) > 0) {
+		chosenList = oItemManager.mythicItemList;
+	} else if (j >= powerfulMax && ds_list_size(oItemManager.powerfulItemList) > 0) {
+		chosenList = oItemManager.powerfulItemList;
+	} else if (j >= rareMax && ds_list_size(oItemManager.rareItemList) > 0) {
+		chosenList = oItemManager.rareItemList;
+	} else if (j >= simpleMax) {
 		chosenList = oItemManager.simpleItemList;
 	}
-	else if (rareMax != -1 && j < rareMax) {
-		chosenList = oItemManager.rareItemList;
+	if (_typeOfSeach == itemSearchType.boss || _typeOfSeach == itemSearchType.simple) {
+		chosenList = oItemManager.simpleItemList;
 	}
-	else if (powerfulMax != -1 && j < powerfulMax) {
-		chosenList = oItemManager.powerfulItemList;
+	if (_typeOfSeach == itemSearchType.iceSoup) {
+		var iceCheck = irandom_range(1, 20);
+		if (iceCheck == 1 && ds_list_size(oItemManager.ultraItemList) > 0) {
+			chosenList = oItemManager.ultraItemList;
+		} else if (iceCheck <= 8  && ds_list_size(oItemManager.mythicItemList) > 0) {
+			chosenList = oItemManager.mythicItemList;
+		} else if (ds_list_size(oItemManager.powerfulItemList) > 0) {
+			chosenList = oItemManager.powerfulItemList;
+		} else {
+			chosenList = oItemManager.simpleItemList;
+		}
 	}
-	else {
-		chosenList = oItemManager.mythicItemList;
+	if (_typeOfSeach == itemSearchType.foolsGold) {
+		show_debug_message("DIGGING FOR GOLD")
+		if (ds_list_size(oItemManager.mythicItemList) > 0) {
+			chosenList = oItemManager.mythicItemList;
+		} else if (ds_list_size(oItemManager.powerfulItemList) > 0) {
+			chosenList = oItemManager.powerfulItemList;
+		} else {
+			chosenList = oItemManager.simpleItemList;
+		}
+		show_debug_message(chosenList[| 1])
 	}
-
+	if (_typeOfSeach == itemSearchType.rune && ds_list_size(oItemManager.runeItemList) > 0) {
+		chosenList = oItemManager.runeItemList;
+	} else if (j >= ultraMax && ds_list_size(oItemManager.ultraItemList) > 0) {
+		chosenList = oItemManager.ultraItemList;
+	}
+	show_debug_message(chosenList[| 1])
+	if (_typeOfSeach == itemSearchType.random && ds_list_size(oItemManager.masterItemList) > 0) {
+		chosenList = oItemManager.masterItemList;
+	} else {
+		chosenList = oItemManager.simpleItemList;
+	}
+	show_debug_message(chosenList[| 1])
 	var i = irandom(ds_list_size(chosenList) - 1);
 	var item = chosenList[| i];
-	var check = false;
-	if (ds_list_find_index(oItemManager.bookList, item) != -1 && _chargeFilter) {
-		var l = irandom(ds_list_size(oItemManager.simpleItemList) - 1);
-		item = oItemManager.simpleItemList[| l];
-		check = true;
+	var deleteIndex = i;
+	show_debug_message(chosenList[| 1])
+	if (ds_list_find_index(oItemManager.bookList, item) != -1 && _allowBooks) {
+		var rerollFlag = true;
+		
+		for (var q = 0; q < ds_list_size(chosenList); q++) {
+			var candidate = chosenList[| q];
+			if (rerollFlag) {
+				if (ds_list_find_index(oItemManager.bookList, candidate) == -1) {
+					item = candidate;
+					rerollFlag = false;
+					deleteIndex = q;
+					break;
+				}
+			}
+		}
+		show_debug_message(chosenList[| 1])
+		if (rerollFlag) {
+			var l = irandom(ds_list_size(oItemManager.simpleItemList) - 1);
+			item = oItemManager.simpleItemList[| l];
+		}
 	}
-	if (!check && chosenList != oItemManager.simpleItemList) {
-		ds_list_delete(chosenList, i);
+	show_debug_message(chosenList[| 1])
+	if (chosenList == oItemManager.ultraItemList) {
+		oItemManager.ultraPool += 10;
+	}
+	if (chosenList != oItemManager.simpleItemList && _takeOutOfPool) {
+		ds_list_delete(chosenList, deleteIndex);
 	}
 	if (item == -4) {
 		item = oDepictionOfSeraphim;
 	}
-	return item;
+	if (_typeOfSeach == itemSearchType.boss && oPlayerManager.hasBossDropRune) {
+		return oDust;
+	} else {
+		return item;
+	}
+}
+function removeFromItemPool (_item) {
+	var r = findItemRarity(_item);
+	var t = ds_list_find_index(oItemManager.masterItemList, _item);
+	if (t != -1) {
+		ds_list_delete(oItemManager.masterItemList, t)
+	}
+	switch (r) {
+		case 1:
+		var i = ds_list_find_index(oItemManager.rareItemList, _item);
+		if (i != -1) {
+			ds_list_delete(oItemManager.rareItemList, i)
+		}
+		break;
+		
+		case 2:
+		var p = ds_list_find_index(oItemManager.powerfulItemList, _item);
+		if (p != -1) {
+			ds_list_delete(oItemManager.powerfulItemList, p)
+		}
+		break;
+		
+		case 3:
+		var m = ds_list_find_index(oItemManager.mythicItemList, _item);
+		if (m != -1) {
+			ds_list_delete(oItemManager.mythicItemList, m)
+		}
+		break;
+		case 4:
+		var r = ds_list_find_index(oItemManager.runeItemList, _item);
+		if (r != -1) {
+			ds_list_delete(oItemManager.runeItemList, r)
+		}
+		break;
+		case 5:
+		var u = ds_list_find_index(oItemManager.ultraItemList, _item);
+		if (u != -1) {
+			ds_list_delete(oItemManager.ultraItemList, u)
+		}
+		break;
+	}
+}
+function spawnItem(_item, _location, _rID, _allowDuplicating = false) {
+	
+	if (_item != noone) {
+		var newItem = instance_create_layer(_location.x, _location.y, "Instances", _item);
+		newItem.RoomID = _rID;
+		var rare = findItemRarity(newItem.object_index)
+		newItem.rarity = rare;
+		var hallowedDiceCheck = irandom_range(1, 6);
+		if (rare == 0 && oItemManager.hasHollowedDice && hallowedDiceCheck == 6) {
+			var newerItem = instance_create_layer(_location.x, _location.y, "Instances", _item);
+			newerItem.RoomID = _rID;
+			var newRare = findItemRarity(newerItem.object_index)
+			newerItem.rarity = newRare;
+		}
+		return newItem;
+	}
 }
 function findItemRarity(_item) {
 	var rarity = 0;
@@ -870,6 +1178,14 @@ function findItemRarity(_item) {
 	if (check == -1) {
 		check = ds_list_find_index(oItemManager.mythicItemCopy, _item);
 		rarity = 3;
+	}
+	if (check == -1) {
+		check = ds_list_find_index(oItemManager.runeItemCopy, _item);
+		rarity = 4;
+	}
+	if (check == -1) {
+		check = ds_list_find_index(oItemManager.ultraItemCopy, _item);
+		rarity = 5;
 	}
 	
 	return rarity;

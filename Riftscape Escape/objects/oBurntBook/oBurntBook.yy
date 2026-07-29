@@ -6,8 +6,8 @@
   "name":"oBurntBook",
   "overriddenProperties":[],
   "parent":{
-    "name":"simple",
-    "path":"folders/items/passive/simple.yy",
+    "name":"0simple",
+    "path":"folders/items/passive/0simple.yy",
   },
   "parentObjectId":{
     "name":"oItems",

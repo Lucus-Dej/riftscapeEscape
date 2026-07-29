@@ -1,18 +1,18 @@
 // Inherit the parent event
 event_inherited();
 RoomID = 1;
-enemey_hp = 450;
-healthTotal = enemey_hp;
+ enemyHP = 450;
+healthTotal =  enemyHP;
 accel = 0;
 spawnPool = 350;
-phasePoint1 = enemey_hp*(2/3);
-phasePoint2 = enemey_hp*(1/3);
+phasePoint1 =  enemyHP*(2/3);
+phasePoint2 =  enemyHP*(1/3);
 phase = 0;
 linePhase = 0;
 damage = 18;
 attack = 0;
 enemSpeed = 0.35;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 shoot_cooldown = 60;
 shoot_delay = 460;
 bullet_count = 6;

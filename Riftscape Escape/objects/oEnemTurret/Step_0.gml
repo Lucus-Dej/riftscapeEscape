@@ -5,9 +5,8 @@ if (brainDead) {
 var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 image_angle = playerDir+90;
 
-path_timer--;
 if (!canSeePlayer) {
-	enemSpeed = base_speed*2;
+	enemSpeed = initalSpeed*2;
 	shoot_cooldown = shoot_delay;
 } else if (canSeePlayer) {
 	enemSpeed = 0;
@@ -31,18 +30,4 @@ if (shoot_cooldown <= 0) {
 		}
 	fireToggle = !fireToggle;
     shoot_cooldown = shoot_delay;
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-if (path_timer <= 0) {
-	var dir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
-	image_angle = dir+90;
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

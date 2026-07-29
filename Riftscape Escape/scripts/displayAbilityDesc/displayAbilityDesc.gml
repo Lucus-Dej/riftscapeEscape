@@ -16,7 +16,7 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "";
 			break;
 			case (3):
-			desc = "Fire Additional Child Bullets While Inside";
+			desc = "Fire Additional Bullets While Inside";
 			break;
 			case (4):
 			desc = "Faster Ability Charge Rate While Inside Circle";
@@ -36,19 +36,19 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "A Minion That Follows And Mimics You";
 			break;
 			case (1):
-			desc = "Minions Inherit Your Bullet Effects";
+			desc = "Gain A Second Minion That Bites Nearby Foes";
 			break;
 			case (2):
 			desc = "";
 			break;
 			case (3):
-			desc = "Minions Follow Much Closer";
+			desc = "Minions Follow Much Closer And Fire Faster";
 			break;
 			case (4):
-			desc = "Minions Automatically Fire At Closest Enemies";
+			desc = "Minions Automatically Attack The Closest Enemies";
 			break;
 			case (5):
-			desc = "Gain Second Minion";
+			desc = "Minions Gain Extreme Crit Chance";
 			break;
 			case (6):
 			desc = "On Kill, Enemy Joins Your Ranks";
@@ -62,19 +62,19 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "Briefly Dodge Forward While Avoiding Damage";
 			break;
 			case (1):
-			desc = "Pull Enemies When Dodging";
+			desc = "Imploding Shockwaves And Enemies Killed Spawn Shockwaves";
 			break;
 			case (2):
-			desc = "Gain Temporary HP On Dodge";
+			desc = "Gain Bouns HP Upon Dodging Through Enemies And Shockwave Poisons";
 			break;
 			case (3):
-			desc = "null";
+			desc = "";
 			break;
 			case (4):
-			desc = "Dodging Into Blood Grants Bonus Cooldown";
+			desc = "Dodging Through Enemies And Bullets Grant Bonus Fire Rate";
 			break;
 			case (5):
-			desc = "Grants A Special Dodge If Timed Correctly";
+			desc = "Grants An Additonal Dodge If Timed Correctly";
 			break;
 			case (6):
 			desc = "Drop Blood That Damages Enemy When Dodging";
@@ -88,22 +88,22 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "Place A Husk. Use Again To Teleport Back";
 			break;
 			case (1):
-			desc = "Husk Fires Bullets At Nearby Enemies";
+			desc = "Husk Fires Volleys Of Bullets On Additional Trigger";
 			break;
 			case (2):
-			desc = "On The Husk's Death, Spawn A Second Husk";
+			desc = "On The Husk's True Death, Spawn A Second Husk";
 			break;
 			case (3):
-			desc = "Grant Extreme Movement Buff On Husk Death";
+			desc = "Husk Grants Major Speed On Additional Trigger";
 			break;
 			case (4):
 			desc = "";
 			break;
 			case (5):
-			desc = "Teleporting To Husk No Longer Destroys It";
+			desc = "Teleporting To Husk No Longer Destroys";
 			break;
 			case (6):
-			desc = "Kills Extend Duration Of Husk";
+			desc = "Killing An Enemy While Active Drops An Invisibility Powerup";
 			break;
 		}
 		break;
@@ -120,7 +120,7 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "On Explosion, Spawn Slowing Field";
 			break;
 			case (3):
-			desc = "On Explosion, Fire Mini Bombs In All Directions";
+			desc = "On Explosion, Fire Spinning Lasers";
 			break;
 			case (4):
 			desc = "Bombs Chase The Nearest Enemy";
@@ -146,10 +146,10 @@ function displayAbilityDesc(_ability, _upgrade){
 			desc = "Fire A Sword Projectile That Deals Poison Damage";
 			break;
 			case (3):
-			desc = "Destroying Bullets Grants Speed Bonus";
+			desc = "Fires A Controllable Sword. Click Again To TP";
 			break;
 			case (4):
-			desc = "Killing An Enemy Reduces Its Cooldown";
+			desc = "Killing An Enemy With A Sword Reduces Its Cooldown";
 			break;
 			case (5):
 			desc = "Parry Bullets Instead Of Destroying Them";

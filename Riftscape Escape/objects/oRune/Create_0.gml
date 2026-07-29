@@ -4,3 +4,4 @@ host = noone;
 desc = getRuneDesc(object_index);
 active = false;
 activeDuration = 0;
+RoomID = -2;

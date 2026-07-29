@@ -5,18 +5,65 @@ if (variable_instance_exists(other, "invincible")) {
 	 }
 }
 var parent = object_get_parent(other.object_index);
-if (ignoreEnemy != other) {
+if (!array_contains(damageArray, other.id)) {
+	skipDeath = false;
     var hit = other;
 	lastHit = hit;
-if (!ds_exists(damagedList, ds_type_map)) {
-	damagedList = ds_map_create();
-}
-    if (!ds_map_exists(damagedList, hit.id)) {
-        ds_map_add(damagedList, hit.id, true);
-
+	array_push(damageArray, other.id);
+	array_push(damageTimerArray, 0);
         oPlayerManager.lastKilledX = hit.x;
         oPlayerManager.lastKilledY = hit.y;
 		other.flash = 1;
+		if (oPlayerManager.canRich && richCount > 0 && other.sub != true) {
+		   richCount--;
+		   var searchRadius = 960;
+		   var closest = noone;
+		   var closestDist = 100000;
+			with (oEnemy) {
+				// Skip enemies already damaged
+				if (array_contains(other.damageArray,id)) {
+					continue;
+				}
+				var d = point_distance(other.x, other.y, x, y);
+				var dCheck = collision_line(x, y, other.x, other.y, oBulletBlocker, false, false)
+				if (d < searchRadius && d < closestDist && dCheck == noone) {
+					closestDist = d;
+					closest = id;
+					//with (closest) {
+					//	instance_create_layer(x,y, "Instances", oDust)
+					//}
+				}
+			}
+			
+			if (closest != noone && instance_exists(closest) && other.sub != true) {
+				
+				var dir = point_direction(x, y, closest.x, closest.y);
+				direction = dir;
+				skipDeath = true;
+				//var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, self);
+				//copyBullet(id, richBullet)
+				/*
+				richBullet.spreadCount = spreadCount;
+				richBullet.critShot = critShot;
+				richBullet.ignoreEnemy = hit;
+				richBullet.richCount = richCount;
+				richBullet.bounceNum = bounceNum;
+				richBullet.canSpread = canSpread;
+				richBullet.image_xscale *= 0.75;
+				richBullet.image_yscale *= 0.75;
+				richBullet.image_blend = image_blend;
+				richBullet.turretApplied = turretApplied;
+				array_copy(richBullet.damageArray, 0, damageArray, 0, array_length(damageArray))
+				array_copy(richBullet.damageTimerArray, 0, damageTimerArray, 0, array_length(damageTimerArray))
+				*/
+			}
+		}
+		if (primedForOil) {
+			instance_create_layer(x, y, "Instances", oOilSpill);
+		}
+		if (primedForLightning) {
+			instance_create_layer(x, y, "Instances", oLightningCircle);
+		}
 		if (oItemManager.hasUnstableEnergy && canSpread && spreadCount > 0 && other.sub != true) {
 			//canSpread = false;
 			spreadCount--;
@@ -38,10 +85,10 @@ if (!ds_exists(damagedList, ds_type_map)) {
 				spreadShot.image_xscale *= 0.75;
 				spreadShot.image_yscale *= 0.75;
 				spreadShot.image_blend = image_blend;
-				spreadShot.damagedList = ds_map_create();
 				spreadShot.existance = existance*0.5;
 				spreadShot.spreadCount = 0;
-				ds_map_copy(spreadShot.damagedList, damagedList);
+				array_copy(spreadShot.damageArray, 0, damageArray, 0, array_length(damageArray))
+				array_copy(spreadShot.damageTimerArray, 0, damageTimerArray, 0, array_length(damageTimerArray))
 			}
 			
 		} 
@@ -51,55 +98,36 @@ if (!ds_exists(damagedList, ds_type_map)) {
 		if (oItemManager.hasBrokenSnowglobe) {
 			damage += speedBonus;
 		}
-		enemyTakeDamage(damage, hit);
+		switch (object_index) {
+			case oBloodVialBullets:
+			enemyTakeDamage(damage, hit, true, ,damageType.playerBlood);
+			break;
+			
+			case oSwordLife:
+			enemyTakeDamage(damage, other,true , , damageType.sword);
+			break;
+			
+			case oMinonBullet:
+			enemyTakeDamage(damage, hit, , , damageType.torzMinion);
+			break;
+			
+			case oHuskBullet:
+			enemyTakeDamage(damage, hit, , , damageType.husk);
+			break;
+			
+			default:
+			enemyTakeDamage(damage, hit);
+			break;
+		}
+		
 		if (canLifesteal) {
 			global.player_health += global.lifesteal;
 		}
         // RICOCHET
-       if (oPlayerManager.canRich && richCount > 0 && other.sub != true) {
-		   richCount--;
-		   var searchRadius = 960;
-		   var closest = noone;
-		   var closestDist = 100000;
-
-			with (oEnemy) {
-				if (id == other.lastHit) {
-					continue;
-				}
-				// Skip enemies already damaged
-				if (ds_map_exists(other.damagedList, id)) {
-					continue;
-				}
-				var d = point_distance(other.x, other.y, x, y);
-
-				if (d < searchRadius && d < closestDist) {
-					closestDist = d;
-					closest = id;
-				}
-			}
-			
-			if (closest != noone && instance_exists(closest) && other.sub != true) {
-
-				var dir = point_direction(x, y, closest.x, closest.y);
-
-				var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, self);
-				richBullet.spreadCount = spreadCount;
-				richBullet.critShot = critShot;
-				richBullet.ignoreEnemy = hit;
-				richBullet.richCount = richCount;
-				richBullet.bounceNum = bounceNum;
-				richBullet.canSpread = canSpread;
-				richBullet.image_xscale *= 0.75;
-				richBullet.image_yscale *= 0.75;
-				richBullet.image_blend = image_blend;
-				richBullet.turretApplied = turretApplied;
-				richBullet.damagedList = ds_map_create();
-				ds_map_copy(richBullet.damagedList, damagedList);
-			}
+       
+		 if (oPlayerManager.canPierce || skipDeath) {
+            
+        } else {
+			instance_destroy();
 		}
-		 if (!oPlayerManager.canPierce) {
-            instance_destroy();
-        }
-		
-    }
 }

@@ -1,5 +1,5 @@
 event_inherited();
-if (phasePoint1 >= enemey_hp && enraged == false) {
+if (phasePoint1 >=  enemyHP && enraged == false) {
 	enraged = true;
 	slamLimit += 1;
 	image_blend = c_aqua;
@@ -9,8 +9,6 @@ if (brainDead) {
     exit;
 }
 
-//path timer reduction
-path_timer--;
 
 chargeCooldown -= 0.5;
 
@@ -20,15 +18,6 @@ if (iFrames >= 0) {
 
 
 	
-
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
 if (state == CHARGE_STATE.CHASE) {
 	if (canSeePlayer)
 		chargeCooldown--;
@@ -40,6 +29,7 @@ if (state == CHARGE_STATE.CHASE) {
 		chargeTargetY = oTruePlayer.y;
 		chargeDir = point_direction(x, y, chargeTargetX, chargeTargetY);
 		audio_play_sound(aPortalOpen, 1, 0, global.sfxAudio)
+		canPathfind = false;
 		path_end();
 		state = CHARGE_STATE.WINDUP;
 		attackDelay = 36;
@@ -121,14 +111,9 @@ if (state == CHARGE_STATE.CHARGE) {
 }
 
 if (state == CHARGE_STATE.RECOVER) {
+	canPathfind = true;
 	chargeCooldown = chargeDelay;
 	enemSpeed = 0.3;
 	path_timer = path_cooldown;
 	state = CHARGE_STATE.CHASE;
-}
-
-
-if (path_timer <= 0 && state == CHARGE_STATE.CHASE) {
-	path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

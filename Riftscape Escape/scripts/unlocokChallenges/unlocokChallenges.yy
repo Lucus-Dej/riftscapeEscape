@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"unlocokChallenges",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"unlocokChallenges",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

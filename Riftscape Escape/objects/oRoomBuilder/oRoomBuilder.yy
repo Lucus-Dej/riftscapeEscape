@@ -34,7 +34,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sMinimapDoor",
+    "path":"sprites/sMinimapDoor/sMinimapDoor.yy",
+  },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

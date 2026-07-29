@@ -1,6 +1,7 @@
 // Inherit the parent event
 event_inherited();
-
+rifterKingCheckAbilities()
+finishRun();
 with (oRifterKingCenter) {
-		active = false;
-	}
+	active = false;
+}

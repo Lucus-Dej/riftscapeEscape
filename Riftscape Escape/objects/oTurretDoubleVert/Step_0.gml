@@ -5,6 +5,9 @@ if (cooldown > 0) {
 	if (cooldown == 12) {
 		flash = 1;
 	}
+	if (oPlayerManager.hasTrapRune) {
+		cooldown--;
+	}
 } else {
 	var f = bulletFire(x, y, 90, 8, 17.5, oBadBullet, id);
 	var j = bulletFire(x, y, 270, 8, 17.5, oBadBullet, id, true);

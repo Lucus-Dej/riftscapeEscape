@@ -8,6 +8,6 @@ if (purpose == 1) {
     }
 	if (!ds_map_exists(boomDamageList, enem.id)) {
         ds_map_add(boomDamageList, enem.id, true);
-        enemyTakeDamage(damage, enem);
+        enemyTakeDamage(damage, enem,,,damageType.bomb);
 	}
 }

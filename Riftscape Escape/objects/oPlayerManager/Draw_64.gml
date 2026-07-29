@@ -44,7 +44,12 @@ if (overHealthOverheated) {
 	if (oItemManager.hasPetrifiedHeart) {
 		overhealthSuperTimer -= 4.5;
 	}
-	overhealthSuperTimer--;
+	if (global.difficulty == 1) {
+		overhealthSuperTimer -= 0.6;
+	} else {
+		overhealthSuperTimer--;
+	}
+	
 	overhealthCooldownUI = (overhealthSuperTimer/overhealthSuperTotal)*100;
 	draw_healthbar(16, 48, 300, 32, overhealthCooldownUI, c_yellow, c_black, c_orange, 0, true, true);
 	if (overhealthSuperTimer < 0) {
@@ -80,7 +85,12 @@ for (var i = 0; i < array_length(abilityActive); i++) {
 	if (abilityCharge[i] < 100) {
 		draw_healthbar(startX, barY1, 280, barY2, abilityCharge[i], c_white, c_black, abilityColor[i], 0, true, true);
 		if (inDodge && dodgeBlackFlashCheck && dodgeBlackFlashTimer > 0) {
-			draw_healthbar(startX, (startY + spacing), 280, (startY + 8 + spacing), dodgeBlackFlashTimer, c_white, c_black, c_black, 0, true, true);
+			if (dodgeBlackFlashTimer > 20) {
+				draw_healthbar(startX, (startY + spacing), 280, (startY + 8 + spacing), dodgeBlackFlashTimer, c_white, c_black, c_black, 0, true, true);
+			} else {
+				draw_healthbar(startX, (startY + spacing), 280, (startY + 8 + spacing), dodgeBlackFlashTimer, c_white, c_yellow, c_yellow, 0, true, true);
+			}
+			
 		}
 		draw_sprite_ext(sCircleMenu, spriteCharging[i], iconX, iconY, 0.2, 0.2, 0, c_white, 1);
 
@@ -144,8 +154,9 @@ draw_text(uiX, uiY + 6*16, "Essence"+string(global.playerEssence));
 draw_text (uiX, uiY + 8*16, "Damage"+string (global.playerDamage));
 draw_text(uiX, uiY + 9*16,"Item Luck: " + string(oItemManager.luckBonus + oItemManager.reflectiveGemLuckBonus));
 draw_text(uiX, uiY + 10*16,"XP Multiplier: " + string(xpMult));
-//draw_text (uiX, uiY + 14*16, "Cooldown Rate (Per Frame)"+string (cooldownRate+1));
-//draw_text (uiX, uiY + 15*16, "thought cooldown bonus"+string (trackDodgeThoughtTimer));
+if (instance_exists(oTruePlayer))
+draw_text (uiX, uiY + 14*16, "Speed: "+string (oTruePlayer.currentSpeed));
+draw_text (uiX, uiY + 15*16, "Difficulty "+string (global.difficulty));
 //draw_text (uiX, uiY + 16*16, "health"+string (max_hp));
 //draw_text (uiX, uiY + 17*16, "health"+string (global.player_health));
 

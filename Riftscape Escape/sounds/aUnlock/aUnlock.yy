@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"aUnlock",
+  "audioGroupId":{
+    "name":"agSFX",
+    "path":"audiogroups/agSFX",
+  },
+  "bitDepth":0,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.62403625,
+  "exportDir":"",
+  "name":"aUnlock",
+  "parent":{
+    "name":"audio",
+    "path":"folders/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":11025,
+  "soundFile":"aUnlock.mp3",
+  "volume":1.0,
+}

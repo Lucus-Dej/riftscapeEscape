@@ -1,11 +1,11 @@
 if (!canBounce && bounceNum <= 0) {
-	if (!oItemManager.hasMagnet) {
+	if (!flying && tempGhostTimer <= 0) {
 		instance_create_layer(x, y, "Instances", oBoom);
 	instance_destroy();
 	
 	}
 	
-} else {
+} else if (bounceNum > 0) {
 	
 	// mark the wall that it bounced from via other.id
 	ignoreWall = other.id;
@@ -16,11 +16,12 @@ if (!canBounce && bounceNum <= 0) {
 	if (tracking > 0)
 	with (oEnemy) {
 		// Skip enemies already damaged
-		if (ds_map_exists(other.damagedList, id)) {
+		if (array_contains(other.damageArray, id)) {
 			continue;
 		}
 		var d = point_distance(other.x, other.y, x, y)
-			if (d < searchRadius && d < closestDist) {
+		var dCheck = collision_line(x, y, other.x, other.y, oBulletBlocker, false, false)
+			if (d < searchRadius && d < closestDist && dCheck == noone) {
 				closestDist = d;
 				closest = id;
 			}
@@ -83,35 +84,14 @@ if (!canBounce && bounceNum <= 0) {
 	if (oItemManager.hasHeartPendent) {
 		
 		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage, object_index, self);
-		copy.bounceNum = bounceNum;
-		copy.canBounce = false;
-		copy.ignoreWall = ignoreWall;
-		copy.canSpread = canSpread;
-		copy.image_blend = image_blend;
-		copy.image_xscale = image_xscale;
-		copy.turretApplied = turretApplied;
-		copy.image_yscale = image_yscale;
-		copy.damagedList = ds_map_create();
-		copy.critShot = critShot;
-		ds_map_copy(copy.damagedList, damagedList);
+		copyBullet(id, copy)
 		newDir -= 15;
 	}
 	var copy = bulletFire(nx, ny, newDir, newSpeed*1.2, damage, object_index, self);
-	copy.bounceNum = bounceNum;
-	copy.boucned = true;
-	copy.canSpread = canSpread;
-	copy.canBounce = false;
-	copy.ignoreWall = ignoreWall;
-	copy.turretApplied = turretApplied;
-	copy.critShot = critShot;
-	copy.image_blend = image_blend;
-	copy.image_xscale = image_xscale;
-	copy.image_yscale = image_yscale;
-	copy.damagedList = ds_map_create();
-	ds_map_copy(copy.damagedList, damagedList);
+	copyBullet(id, copy)
+	instance_destroy()
+} else {
 	instance_destroy()
 }
-z = 0;
-audio_listener_position(x, y, z);
-audio_play_sound_at(aBoom, x, y, z, 1, 1, 1, false, 0, global.sfxAudio)
+
      

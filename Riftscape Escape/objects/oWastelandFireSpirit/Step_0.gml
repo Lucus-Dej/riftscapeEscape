@@ -3,13 +3,11 @@ if (brainDead) {
     exit;
 }
 
-path_timer--;
-// countdown
 if (shoot_cooldown > 0) {
     shoot_cooldown--;
 }
 // enraged
-if (phasePoint1 >= enemey_hp && enraged == false) {
+if (phasePoint1 >=  enemyHP && enraged == false) {
 	shoot_delay -= 20;
 	enraged = true;
 	arcAngle +=30;
@@ -36,8 +34,8 @@ if (shoot_cooldown <= 0) {
 			array_push(minionArray, minion);
 			minionCount++
 		} else {
-			if (maxHP > enemey_hp) {
-				enemey_hp += 0.1*minionCount;
+			if (maxHP >  enemyHP) {
+				 enemyHP += 0.1*minionCount;
 			}
 		}
 	} else if (attack == 3) {
@@ -71,17 +69,4 @@ if (array_length(minionArray) > 0) {
 		minion.x = lerp(minion.x, targetX, 0.15);
 		minion.y = lerp(minion.y, targetY, 0.15);
 	}
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

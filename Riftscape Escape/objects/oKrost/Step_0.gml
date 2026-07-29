@@ -4,9 +4,9 @@ if (brainDead) {
 }
 
 path_timer--;
-if (enemey_hp < phasePoint1 && !phase1Applied) {
+if ( enemyHP < phasePoint1 && !phase1Applied) {
 	shoot_delay -= 30;
-	base_speed += 0.75;
+	baseSpeed += 0.75;
 	bullet_speed += 2;
 	directionCooldown -= 20;
 	phase1Applied = true;
@@ -15,8 +15,8 @@ if (enemey_hp < phasePoint1 && !phase1Applied) {
 		gridB.gridBullet = true;
 	}
 }
-if (enemey_hp < phasePoint2 && !phase2Applied) {
-	base_speed += 1;
+if ( enemyHP < phasePoint2 && !phase2Applied) {
+	baseSpeed += 1;
 	shoot_delay -= 45;
 	bullet_speed += 1;
 	directionCooldown -= 30;
@@ -27,8 +27,8 @@ if (enemey_hp < phasePoint2 && !phase2Applied) {
 		var bh = instance_create_layer(x, y, "Instances", oBlackHole);
 	}
 }
-if (enemey_hp < phasePoint3 && !phase3Applied) {
-	base_speed += 1.2;
+if ( enemyHP < phasePoint3 && !phase3Applied) {
+	baseSpeed += 1.2;
 	shoot_delay -= 60;
 	directionCooldown -= 65;
 	phase3Applied = true;
@@ -39,9 +39,9 @@ if (enemey_hp < phasePoint3 && !phase3Applied) {
 	}
 }
 if (!canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
@@ -125,7 +125,7 @@ if (directionTimer <= 0) {
 		if (f == 3) {
 		var bug = instance_create_layer(x, y, "Instances", oEnemSpider);
 		with (bug) {
-			base_speed *= 2;
+			baseSpeed *= 2;
 			enemSpeed *= 2;
 		}
 		}

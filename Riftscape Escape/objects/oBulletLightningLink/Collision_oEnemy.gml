@@ -1,7 +1,5 @@
-if (!ds_exists(damagedList, ds_type_map)) {
-	damagedList = ds_map_create();
-}
-if (!ds_map_exists(damagedList, other.id)) {
-	ds_map_add(damagedList, other.id, true);
+if (!array_contains(damageArray, other.id) && !evil) {
 	enemyTakeDamage(damage, other);
+	array_push(damageArray, other.id);
+	array_push(damageTimerArray, 0);
 }

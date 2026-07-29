@@ -1,0 +1,1 @@
+callDOT(other, 0.2, 12, 12, dotType.fire, oTruePlayer)

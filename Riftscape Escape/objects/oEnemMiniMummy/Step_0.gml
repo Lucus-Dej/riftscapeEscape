@@ -7,9 +7,9 @@ if (brainDead) {
 path_timer--;
 
 if (!canSeePlayer) {
-	enemSpeed = base_speed*1.5;
+	enemSpeed = initalSpeed*1.5;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {

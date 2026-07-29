@@ -45,10 +45,18 @@ if (ds_list_size(mythicItemList) > 0) {
 } else {
 	mythicMax = -1;
 }
+if (ds_list_size(mythicItemList) > 0) {
+	mythicMin = -1;
+	mythicMax = totalPool + mythicPool;
+	totalPool += mythicPool;
+} else {
+	mythicMax = -1;
+}
 
 var j = irandom(totalPool - 1) + global.playerTime + luckBonus+reflectiveGemLuckBonus;
 
 j = clamp(j, 0, totalPool - 1);
+
 if (simpleMax >= 0 && j < simpleMax) {
 	chosenList = simpleItemList;
 	rarity = 0;
@@ -58,10 +66,12 @@ if (simpleMax >= 0 && j < simpleMax) {
 } else if (powerfulMax >= 0 && j < powerfulMax) {
 	chosenList = powerfulItemList;
 	rarity = 2;
-} else {
+} else if (mythicMax >= 0 && j < mythicMax) {
 	chosenList = mythicItemList;
 	rarity = 3;
-} 
+} else if (ultraMax >= 0 && j > mythicMax) {
+		chosenList = ultraItemList;
+	}
 if (hasIceSoup && !iceSoupTriggered) {
 	var iceCheck = irandom_range(1, 3);
 	if (iceCheck >= 3) {

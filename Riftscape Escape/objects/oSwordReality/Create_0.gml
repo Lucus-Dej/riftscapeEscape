@@ -1,38 +1,30 @@
-if (instance_exists(oSwordFate)) {
-	instance_destroy(oSwordFate)
+image_xscale = 0.8;
+image_yscale = 0.8;
+flash = 0;
+flashUp = true;
+flashRate = 0.1;
+beginReturn = false;
+damageArray = [];
+damageTimerArray = [];
+dmgRefreshTime = 40;
+attackDuration = 240 + global.playerEssence*12;
+attackTimer = 0;
+validForTp = false;
+buffer = 0;
+targetList = ds_list_create();
+damage = global.playerDamage + oPlayerManager.swordDmgBonus + sqrt(global.playerEssence) * 0.45;
+chaseSpeed = 5 + global.playerEssence*0.3 + global.playerReality*0.6;
+baseChaseSpeed = chaseSpeed;
+baseRot = 6 + global.playerEssence*0.5;
+rot = baseRot;
+accelSpeed = 0;
+enum SWORDMODE {
+	attacking,
+	controlling,
+	returning
 }
-audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 2, global.sfxAudio);
-//image_angle =  point_direction(oTruePlayer.x, oTruePlayer.y, mouse_x, mouse_y);
-image_xscale = sign(mouse_x - oTruePlayer.x);
-
-if (oPlayerManager.hasSwordLife) {
-	swordLifeTargets = ds_list_create();
-	picked = ds_list_create();
-	
-	collision_circle_list(x, y, 640, oEnemy, false, false, swordLifeTargets, true);
-	if (ds_list_size(swordLifeTargets) == 0) {
-		ds_list_destroy(swordLifeTargets)
-		ds_list_destroy(picked)
-		exit;
-	}
-	for( i= 0; i < global.playerLife+global.playerEssence; i++) {
-		if (i < ds_list_size(swordLifeTargets)) {
-		ds_list_add(picked, swordLifeTargets[| i]);	
-	} else {
-		randomPull = irandom(ds_list_size(swordLifeTargets) - 1);
-		ds_list_add(picked, swordLifeTargets[| randomPull]);
-		}
-	}
-for (i = 0; i < ds_list_size(picked); i++) {
-	spawn = picked[| i]
-	if (!instance_exists(spawn)) {
-		continue
-	}
-	dir = point_direction(x, y, spawn.x, spawn.y);
-	swordProj = instance_create_layer(x, y, "Instances", oSwordLife);
-	swordProj.speed = 3+global.playerLife+global.playerEssence;
-	swordProj.direction = dir;
-	swordProj.image_angle = swordProj.direction-90;
-	swordProj.target = spawn;
-}
-}
+mode = SWORDMODE.attacking;
+xTo = oMouseTracker.x;
+yTo = oMouseTracker.y;
+follow = noone;
+image_speed = 2;

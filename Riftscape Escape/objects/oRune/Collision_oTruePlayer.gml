@@ -1,6 +1,15 @@
 activeDuration = 90;
 
 if (keyboard_check_pressed(vk_space) && object_index != oDullRune) {
+	if (instance_exists(oRuneRoomFlag)) {
+		unpowerDoor(RoomID);
+		powerTorzol();
+		with (oGhostBarrier) {
+			if (RoomID == other.RoomID) {
+				revealNearbyRooms(id);
+			}
+		}
+	}
 	array_push(oPlayerManager.activeRuneArray, object_index);
 	//array_delete(oPlayerManager.validRuneArray, host.runeIndex, 1);
 	enableRune(object_index);
@@ -13,7 +22,7 @@ if (keyboard_check_pressed(vk_space) && object_index != oDullRune) {
 		instance_destroy();
 	}
 	with (instance_nearest(x, y, oItemFlag)) {
-		oItemManager.runeCheck = true;
-		event_user(0);
+		var newItem = rollItem(false, itemSearchType.rune);
+		spawnItem(newItem, id, -1);
 	}
 }

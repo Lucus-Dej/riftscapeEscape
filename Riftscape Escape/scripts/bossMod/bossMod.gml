@@ -1,11 +1,77 @@
 function bossMod(_enem){
 	with _enem {
 		switch object_index {
+			case oEnemBat:
+			dmgMult = 2;
+			speedMult = 3;
+			hpMult = 2;
+			cooldownMult = 2.5;
+			image_xscale += 1;
+			image_yscale += 1;
+			image_blend = c_dkgray;
+			break;
+			case oEnemCavesSludger:
+			dmgMult = 2;
+			speedMult = 2.2;
+			hpMult = 1.2;
+			cooldownMult = 1.25;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemSpider:
+			dmgMult = 1.3;
+			speedMult = 3;
+			hpMult = 2;
+			cooldownMult = 1.2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemExplosiveSpider:
+			dmgMult = 1.3;
+			speedMult = 1.3;
+			hpMult = 3;
+			cooldownMult = 2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemCaveSpider:
+			dmgMult = 1.3;
+			speedMult = 2;
+			hpMult = 2;
+			cooldownMult = 1.2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemDesertSanke:
+			dmgMult = 1.3;
+			speedMult = 2
+			hpMult = 2;
+			cooldownMult = 1.2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemDesertBiter:
+			dmgMult = 1.3;
+			speedMult = 2
+			hpMult = 3;
+			cooldownMult = 2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemDesertWasp:
+			dmgMult = 1.1;
+			speedMult = 2
+			hpMult = 2;
+			cooldownMult = 2.5;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			
 			case oCavesStoneGolem:
 			dmgMult = 1.2;
 			speedMult = 1.2;
 			hpMult = 5.5;
-			rageBreak *= hpMult*0.9;
+			rageBreak *= hpMult*0.6;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
@@ -14,7 +80,7 @@ function bossMod(_enem){
 			dmgMult = 2;
 			speedMult = 1.4;
 			hpMult = 4;
-			cooldownMult = 3;
+			cooldownMult = 2;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
@@ -23,14 +89,14 @@ function bossMod(_enem){
 			hpMult = 3;
 			cooldownMult = 3;
 			speedMult = 1.5;
-			dmgMult =  1.3;
+			dmgMult =  1.5;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
 			
 			case oWaspHive:
 			speedMult = 2;
-			hpMult = 3;
+			hpMult = 2;
 			phasePoint1 *= hpMult;
 			image_xscale += 1;
 			image_yscale += 1;
@@ -39,8 +105,8 @@ function bossMod(_enem){
 			
 			case oEnemMotherCaveSpider:
 			dmgMult = 2;
-			speedMult = 1.3;
-			hpMult = 3.5;
+			speedMult = 1.7;
+			hpMult = 4.1;
 			count *= 2;
 			image_xscale += 1;
 			image_yscale += 1;
@@ -50,7 +116,7 @@ function bossMod(_enem){
 			break;
 			case oEnemCentiHead:
 			dmgMult = 2;
-			speedMult = 1.2;
+			speedMult = 1.1;
 			hpMult = 4;
 			bodyCount *= 12;
 			image_xscale += 1;
@@ -59,8 +125,9 @@ function bossMod(_enem){
 			
 			case oEnemBigBat:
 			dmgMult = 2;
-			speedMult = 2.25;
+			speedMult = 2.5;
 			hpMult = 4;
+			cooldownMult = 4;
 			image_xscale += 2;
 			image_yscale += 2;
 			break;
@@ -80,9 +147,11 @@ function bossMod(_enem){
 			
 			case oEnemSandSniper:
 			dmgMult = 1.5;
-			speedMult = 1.2;
-			hpMult = 8;
-			cooldownMult = 2;
+			speedMult = 1.4;
+			hpMult = 5;
+			cooldownMult = 3;
+			image_xscale += 1.5;
+			image_yscale += 1.5;
 			break;
 			
 			case oEnemBig:
@@ -95,7 +164,7 @@ function bossMod(_enem){
 			break;
 			
 			case oWastelandFireRunner:
-			hpMult = 1.3;
+			hpMult = 1.6;
 			dmgMult = 2.5;
 			phasePoint1 *= hpMult;
 			image_xscale += 1;
@@ -104,7 +173,7 @@ function bossMod(_enem){
 			
 			case oBoss:
 			hpMult = 2;
-			dmgMult = 1.5;
+			dmgMult = 1.2;
 			cooldownMult = 2;
 			phasePoint1 *= hpMult;
 			image_xscale += 2;
@@ -112,22 +181,23 @@ function bossMod(_enem){
 			break;
 			
 			case oBoss2:
-			hpMult = 2;
+			hpMult = 3;
 			dmgMult = 1.2;
+			cooldownMult = 1.4;
 			phasePoint1 *= hpMult;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
 			
 			case oBoss3:
-			hpMult = 1.5;
+			hpMult = 3.5;
 			dmgMult = 1.25;
 			phasePoint1 *= hpMult;
 			cooldownMult = 2;
 			break;
 			
 			case oDesertSlammer:
-			hpMult = 2.4;
+			hpMult = 3;
 			dmgMult = 1.5;
 			cooldownMult = 4;
 			phasePoint1 *= hpMult;
@@ -139,7 +209,7 @@ function bossMod(_enem){
 			hpMult = 2;
 			dmgMult = 1.3;
 			cooldownMult = 3.6;
-			speedMult = 2;
+			speedMult = 1.3;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
@@ -148,6 +218,7 @@ function bossMod(_enem){
 			hpMult = 1.3;
 			dmgMult = 1.3;
 			cooldownMult = 2;
+			speedMult = 1.2;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
@@ -155,6 +226,7 @@ function bossMod(_enem){
 			case oMiniBoss3:
 			hpMult = 2;
 			dmgMult = 1.5;
+			cooldownMult = 1.4;
 			phasePoint1 *= hpMult;
 			image_xscale += 1;
 			image_yscale += 1;
@@ -163,7 +235,7 @@ function bossMod(_enem){
 			case oRifterTank:
 			hpMult = 2.5;
 			dmgMult = 1.2;
-			cooldownMult = 4.5;
+			cooldownMult = 5;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;
@@ -179,14 +251,18 @@ function bossMod(_enem){
 			hpMult *= 1.25;
 			phasePoint1 *= hpMult;
 			phasePoint2 *= hpMult;
+			image_xscale += 0.5;
+			image_yscale += 0.5;
 			break;
 			
 			case oPlainsShooter:
 			dmgMult = 1.5;
+			image_xscale += 0.5;
+			image_yscale += 0.5;
 			break;
 			
 			case oRifterSlammer:
-			hpMult = 2;
+			hpMult = 2.5;
 			dmgMult = 1.3;
 			cooldownMult = 2;
 			image_xscale += 1;
@@ -197,21 +273,35 @@ function bossMod(_enem){
 			hpMult = 2.5;
 			dmgMult = 1.3;
 			cooldownMult = 4;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oRifterSniper:
 			hpMult = 2;
 			dmgMult = 1.3;
 			cooldownMult = 1.3;
-			image_xscale += 0.5;
-			image_yscale += 0.5;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
 			
 			case oEnemRifterSpider:
 			hpMult = 2;
 			dmgMult = 1.3;
 			speedMult = 2;
+			image_xscale += 1;
+			image_yscale += 1;
 			break;
+			
+			case oRifterDrone:
+			hpMult = 10;
+			dmgMult = 2;
+			speedMult = 2;
+			cooldownMult = 1.5;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			
 			
 			case oRifterKing:
 			break;

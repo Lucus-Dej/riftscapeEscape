@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"activateChallengeRoom",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"activateChallengeRoom",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

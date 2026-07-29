@@ -1,5 +1,8 @@
 if (canHeal) {
-	global.player_health += global.lifesteal*9.5*image_xscale;
+	if (oPlayerManager.hasSifterRune) {
+		sifterRuneAbilityUpdate();
+	}
+	global.player_health += global.lifesteal*9*image_xscale*0.8;
 	if (oPlayerManager.inOverhealth && oPlayerManager.overhealthTimer < 100+20*global.playerEssence) {
 			oPlayerManager.overhealthTimer += 45+global.playerEssence*5;
 	}
@@ -14,8 +17,5 @@ if (canHeal) {
 			oPlayerManager.krostEssenceSpeedBouns += 0.45;
 		}
 		
-	}
-	if (oPlayerManager.hasDodgeThought && (oPlayerManager.dodgeState = DODGE_PHASE.dodging || oPlayerManager.dodgeState = DODGE_PHASE.blackflashing)) {
-	oPlayerManager.thoughtDodgeCooldownBoost += 4.5;
 	}
 }

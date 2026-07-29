@@ -1,7 +1,7 @@
 /*
 shoot_cooldown = irandom_range(10, 110);
 shoot_delay = 120;
-enemey_hp = 3;
+ enemyHP = 3;
 path = path_add();
 path_cooldown = 15;
 path_timer = path_cooldown;
@@ -15,7 +15,7 @@ dragTimer = 0;
 dragPower = 0;
 dragDir = 0;
 
-enemey_hp = 1;
+ enemyHP = 1;
 bite_cooldown = 75;
 on_cooldown = false;
 bite_timer = bite_cooldown;
@@ -58,15 +58,15 @@ impactDelay = 36;
 iFrames = 0;
 bullet_speed = 1.5;
 shoot_delay = 160;
-enemey_hp = 16;
+ enemyHP = 16;
 path = path_add();
 path_cooldown = 15;
 path_timer = path_cooldown;
-enrage_point = enemey_hp/2;
+enrage_point =  enemyHP/2;
 enraged = false;
 xp = 12.5;
 damage = 8;
 hasDamaged = false;
 
-enrage_point = enemey_hp/2;
+enrage_point =  enemyHP/2;
 enraged = false;

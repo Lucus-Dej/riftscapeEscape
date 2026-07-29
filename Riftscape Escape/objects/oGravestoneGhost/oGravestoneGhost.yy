@@ -11,8 +11,8 @@
   "name":"oGravestoneGhost",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"*rune",
+    "path":"folders/items/passive/*rune.yy",
   },
   "parentObjectId":null,
   "persistent":false,

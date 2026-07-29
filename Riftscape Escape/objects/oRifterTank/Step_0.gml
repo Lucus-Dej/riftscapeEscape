@@ -2,14 +2,11 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-//path timer reduction
-path_timer--;
 var distPlayer = point_distance(x, y, oTruePlayer.x, oTruePlayer.y)
 if (!canSeePlayer && vessel != noone || (vessel == noone  && distPlayer > 256)) {
-	enemSpeed = base_speed*12;
+	enemSpeed = initalSpeed*12;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 }
 
 // countdown
@@ -64,7 +61,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		if (inst == id) continue;
 		if (inst.brainDead) continue;
 			
-		 if (inst.xp < xp && inst.enemey_hp < enemey_hp && inst.object_index != oRifterTank && inst.object_index != oEnemCentiBody && inst.object_index != oEnemBlackHole) {
+		 if (inst.xp < xp && inst. enemyHP <  enemyHP && inst.object_index != oRifterTank && inst.object_index != oEnemCentiBody && inst.object_index != oEnemBlackHole) {
 			 var d = point_distance(x, y, inst.x, inst.y);
 			 
 			 if (d < bestDist) {
@@ -78,11 +75,11 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 	linkLine = instance_create_layer(x, y, "Instances", oEnemyLink);
 	linkLine.enemyA = id;
 	linkLine.enemyB = vessel;
-	heldHP = enemey_hp;
+	heldHP =  enemyHP;
 }
 	if (instance_exists(vessel)) {
 		image_alpha = 0.35;
-		enemey_hp = heldHP;
+		 enemyHP = heldHP;
 		invincible = true;
 		if (vesselInit == false) {
 			vessel.brainDead = true;
@@ -160,21 +157,4 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		heldHP = 0;
 		invincible = false;
 		image_alpha = 1;
-}
-
-
-
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

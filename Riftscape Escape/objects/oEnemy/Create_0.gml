@@ -1,8 +1,23 @@
 path = -1;
+canPathfind = true;
+damagedByArray = [];
+checkCircleFlag = false;
+if (instance_exists(oCricleOfFate)) {
+	with (oCricleOfFate) {
+		if !(playerLeftCircle) {
+			other.checkCircleFlag = true;
+		}
+	}
+}
 RoomID = 0;
 damage = 0;
+initalSpeed = 0;
+baseSpeed = 0;
+enemSpeed = 0;
+perfectParryTimer = 0;
 Manager = noone;
 invincible = false;
+flying = false;
 bossBarIndex  = 0;
 isLightExcluded = false;
 path_cooldown = 15;
@@ -30,9 +45,20 @@ hpMult = 1;
 speedMult = 1;
 dmgMult = 1;
 cooldownMult = 1;
+ enemyHP = 1;
+damage = 1;
+shoot_delay = 1;
 pushTimer = 60;
 denyHP = false;
 event_inherited();
 maxHP = 1;
 maxHPSet = false;
 respawnTimer = 30;
+effectHorsePest = false;
+bossRuneChecked = false;
+slowPenaltyPercent = 0;
+slowArray = [];
+slowTimerArray = [];
+slowMaxTimerArray = [];
+slowTargetArray = [];
+slowPenaltyWashoff = 0;

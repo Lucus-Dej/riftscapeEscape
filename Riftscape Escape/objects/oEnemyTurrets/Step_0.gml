@@ -7,7 +7,9 @@ if (Manager == noone && searchManager) {
 		}
 	}
 }
-
+if (perfectParryTimer > 0) {
+	perfectParryTimer--;
+}
 if (!active && Manager != noone) {
 	//show_debug_message(Manager)
 	if (Manager.inCombat) {
@@ -21,7 +23,7 @@ if (active && Manager != noone) {
 	if (Manager.combatFinished) {
 		active = false;
 	}
-}
+} 
 if (searchTimer > 0) {
 	searchTimer--;
 } else {

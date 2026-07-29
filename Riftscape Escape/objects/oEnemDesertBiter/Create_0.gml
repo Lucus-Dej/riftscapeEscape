@@ -1,11 +1,11 @@
 event_inherited();
-enemey_hp = 2.8;
-bite_cooldown = 45;
+ enemyHP = 2.8;
+shoot_delay = 45;
 on_cooldown = false;
-bite_timer = bite_cooldown;
+bite_timer = shoot_delay;
 path_cooldown = 5;
 enemSpeed = 3.75;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 contactDamage = 2;
 damage = contactDamage;
 denyHP = true;

@@ -8,8 +8,8 @@
   "name":"oActionFigureBullets",
   "overriddenProperties":[],
   "parent":{
-    "name":"powerful",
-    "path":"folders/items/passive/powerful.yy",
+    "name":"2powerful",
+    "path":"folders/items/passive/2powerful.yy",
   },
   "parentObjectId":{
     "name":"oPlayerBullets",

@@ -1,6 +1,7 @@
 if (spawner == noone && ID != -1) {
 	spawner = instance_nearest(x, y, oRitualRoomBossSpawnMarker);
 	spawner.ID = ID;
+	spawner.RoomID = RoomID;
 }
 
 if (manager == noone && ID != -1) {
@@ -16,6 +17,7 @@ if (instance_exists(spawner) && instance_exists(manager) && child == noone) {
 	child.watcher = id;
 	child.ID = ID;
 	child.manager = manager;
+	child.RoomID = RoomID;
 	child.target = spawner;
 	spawner.manager = manager;
 }

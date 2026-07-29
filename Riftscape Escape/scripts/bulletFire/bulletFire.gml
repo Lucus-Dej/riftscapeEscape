@@ -4,13 +4,44 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 	if (instance_exists(_owner)) {
 		parent = object_get_parent(_owner.object_index);
 	}
-    var b = instance_create_layer(_x, _y, "Instances", _bulletType);
+	var b = noone;
+	if (instance_exists(_owner) && _owner.object_index == oTruePlayer) {
+		if (global.playerCanFly) {
+			 b = instance_create_layer(_x, _y, "Flying", _bulletType);
+		} else {
+			 b = instance_create_layer(_x, _y, "Instances", _bulletType);
+		}
+		if (oItemManager.hasBottleOil) {
+			var oilCheck = irandom(15) + global.playerTime*0.4;
+			if (oilCheck >= 15) {
+				b.primedForOil = true;
+			}
+		}
+	} else {
+		 b = instance_create_layer(_x, _y, "Instances", _bulletType);
+	}
+   
 	if (variable_instance_exists(b, "currentSpeed")) {
 		b.currentSpeed = _speed;
 	}
+	
 	if (instance_exists(_owner))
-	if ((parent == oEnemy || oSubEnemy) && _owner.object_index != oTruePlayer) {
-		
+	if ((parent == oEnemy || parent == oSubEnemy || parent == oEnemyTurrets) && _owner.object_index != oTruePlayer) {
+		with (_owner) {
+			perfectParryTimer = 6;
+		}
+		var tempDiffSpeedMult = 1;
+		if (global.difficulty == 1) {
+			tempDiffSpeedMult = 0.6;
+		} else if (global.difficulty >= 3) {
+			tempDiffSpeedMult = 1.4;
+		}
+		if (variable_instance_exists(b, "currentSpeed")) {
+			b.currentSpeed *= tempDiffSpeedMult;
+		}
+		if (global.playerInvis) {
+			_dir = irandom(360);
+		}
 		if (!_silent) {
 			if (global.enemBulletCount < 4) {
 				global.enemBulletCount++;
@@ -23,24 +54,7 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 		
 	}
 	if (instance_exists(_owner))
-	if (_owner.object_index == oTruePlayer) {
-		var critNum = irandom_range(1, 100) + global.playerTime;
-		if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleTime) {
-			critNum *= 2;
-		}
-		if (critNum >= 100 || oPlayerManager.trueCrit) {
-			oPlayerManager.trueCrit = false;
-			b.damage = b.damage * (1.3+(global.playerTime*0.015));
-			b.image_xscale += 0.5;
-			b.image_yscale += 0.5;
-			b.image_blend = c_aqua;
-			b.critShot = true;
-			if (!_silent) {
-				audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
-			}
-			
-		}
-	}
+	
 	if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
 		
 		 if (turretApplied) {
@@ -48,24 +62,77 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 			 b.turretApplied = true;
 		 }
 	 }
+		
+	
 	b.baseSpeed = _dir;
     b.direction = _dir;
     b.image_angle = _dir;
     b.speed = _speed;
     b.damage = _damage;
     b.owner = _owner;
-	if (instance_exists(_owner) && instance_exists(id))
-	if (id.object_index == oTruePlayer && !_skipMagnet) {
+	if (instance_exists(_owner) && _owner.object_index == oTruePlayer) {
 		var critNum = irandom_range(1, 100) + global.playerTime;
+		if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleTime) {
+			critNum *= 2;
+		}
+		if (_bulletType == oMinonBullet && oPlayerManager.hasMinionTime) {
+			critNum *= 2.5;
+		}
 		if (critNum >= 100 || oPlayerManager.trueCrit) {
 			oPlayerManager.trueCrit = false;
-			b.damage = b.damage * (1+(global.playerTime/20));
+			b.damage = _damage * (1.3+(global.playerTime*0.015));
 			b.image_xscale += 0.5;
 			b.image_yscale += 0.5;
 			b.image_blend = c_aqua;
+			b.critShot = true;
+			if (b.object_index == oMinonBullet) {
+				b.sprite_index = sMinionFateBullet;
+			}
+			if (!_silent) {
+				audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
+			}
+			
 		}
+	}
+	if (instance_exists(_owner) && instance_exists(id)) {
+		if (_owner.object_index == oVirstBoss && !_skipMagnet) {
 			if (oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
-			var rand = irandom_range(1, 15);
+				var rand = irandom_range(1, 15);
+				if (rand+6 >= 15) {
+					var c =  bulletFire(_x, _y, _dir, _speed, _damage*.4, _bulletType, _owner, false, true);
+					c.image_xscale -= 0.25;
+					c.image_yscale -= 0.25;
+					c.existance *= 3;
+					c.canOrbit = true;
+					c.orbitCenter = _owner;
+					c.orbitAngle = point_direction(_owner.x, _owner.y, _x, _y);
+					c.orbitTargetRadius = 64;
+					_owner.orbitCount++;
+					c.orbitRadius = 0;
+					c.orbitAngle = _dir;
+					c.orbitSpeed = _speed;
+				}
+			}
+		}
+	}
+	if (instance_exists(_owner) && instance_exists(id))
+	if (id.object_index == oTruePlayer && !_skipMagnet) {
+		var critNum = irandom_range(1, 100) + global.playerTime;
+		if (_bulletType == oMinonBullet && oPlayerManager.hasMinionTime) {
+			critNum *= 2.5;
+		}
+		if (critNum >= 100 || oPlayerManager.trueCrit) {
+			oPlayerManager.trueCrit = false;
+			b.damage = _damage * (1.3+(global.playerTime*0.015));
+			b.image_xscale += 0.5;
+			b.image_yscale += 0.5;
+			b.image_blend = c_aqua;
+			if (b.object_index == oMinonBullet) {
+				b.sprite_index = sMinionFateBullet;
+			}
+		}
+		if (oItemManager.hasMagnet && oTruePlayer.orbitCount < 16) {
+		var rand = irandom_range(1, 15);
 			if (rand+global.playerTime >= 15) {
 				var c =  bulletFire(_x, _y, _dir, _speed, _damage*.4, _bulletType, _owner, false, true);
 				c.image_xscale -= 0.25;
@@ -99,7 +166,29 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 	 if (variable_instance_exists(b, "currentSpeed")) {
 		 b.currentSpeed = _speed;
 	 }
-	 if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
+	 if (oItemManager.hasFireCharm) {
+		 var fireCharmCheck = irandom_range(0, 10) + global.playerTime*0.75;
+		 if (fireCharmCheck >= 10) {
+			var fCount = 6;
+			var spacing = 10;
+			var startingAng = _dir - (spacing*fCount)/2;
+			for (var i = 0; i < fCount; i++) {
+				var ranSpeed = global.bullet_speed * (random_range(0.5, 1.5));
+				fireFireFireCharm(_x, _y, startingAng, ranSpeed);
+				startingAng += spacing;
+			}
+		 }
+	 }
+	  if (oItemManager.hasIceCharm) {
+		 var iceCharmCheck = irandom_range(0, 10) + global.playerTime*0.75 - instance_number(oSnowStorm)*0.5;
+		 if (iceCharmCheck >= 10) {
+			var snowStorm = instance_create_layer(_x, _y, "Flying", oSnowStorm);
+			snowStorm.direction = _dir;
+			snowStorm.speed = _speed*0.6;
+		 }
+	 }
+	 
+	 if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets ||  parent == oVirstBullet) {
 		 if (turretApplied) {
 			 b.isTurret = false;
 			 b.turretApplied = true;
@@ -131,12 +220,8 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 	}
 	*/
 	b.baseSpeed = _dir;
-    b.direction = _dir;
-    b.image_angle = _dir;
-    b.speed = _speed;
-	b.damage = _damage;
     b.owner = _owner;
-	if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality) {
+	if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality && _owner.object_index == oTruePlayer) {
 		var t = bulletFire(_x, _y, _dir, _speed*0.6, _damage*0.3, _bulletType, _owner);
 		t.image_xscale /= 1.5;
 		t.image_yscale /= 1.5;
@@ -162,7 +247,7 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 				if (variable_instance_exists(sideBulletA, "currentSpeed")) {
 					sideBulletA.currentSpeed = _speed;
 				}
-				if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
+				if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets || parent == oVirstBullet) {
 					if (turretApplied) {
 						sideBulletA.isTurret = false;
 						sideBulletA.turretApplied = true;
@@ -184,7 +269,7 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 					sideBulletA.image_blend = c_aqua;
 					audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
 				}*/
-				if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality) {
+				if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality && _owner.object_index == oTruePlayer) {
 					 var t = bulletFire(_x, _y, _dir+orbAngOffset, _speed*0.6, _damage*0.3, _bulletType, _owner);
 						t.image_xscale /= 1.5;
 						t.image_yscale /= 1.5;
@@ -198,7 +283,7 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 					if (variable_instance_exists(sideBulletB, "currentSpeed")) {
 					sideBulletB.currentSpeed = _speed;
 				}
-				if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets) {
+				if (parent == oPlayerBullets || parent == oPlayerLifeStealBullets || parent == oVirstBullet) {
 					if (turretApplied) {
 						sideBulletB.isTurret = false;
 						sideBulletB.turretApplied = true;
@@ -220,7 +305,7 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 					sideBulletB.image_blend = c_aqua;
 					audio_play_sound(aSniperMiss, 1, false, global.sfxAudio)
 				}*/
-				if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality) {
+				if (place_meeting(_owner.x, _owner.y, oCricleOfFate) && oPlayerManager.hasCircleReality && _owner.object_index == oTruePlayer) {
 					 var t = bulletFire(_x, _y, _dir-orbAngOffset, _speed*0.6, _damage*0.3, _bulletType, _owner);
 						t.image_xscale /= 1.5;
 						t.image_yscale /= 1.5;

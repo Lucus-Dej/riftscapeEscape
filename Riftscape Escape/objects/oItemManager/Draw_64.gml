@@ -20,12 +20,16 @@ var startY = guiH * 0.35;
 
 
 for (var i = 0; i < array_length(itemList); i++) {
+	var denied = false;
     var obj = itemList[i];
 	//if (obj == -4) {
 		//show_debug_message(i);
 		//show_debug_message(itemList[i]);
 		//show_debug_message(itemList);
 	//}
+	if (array_get_index(deniedItemArray, obj) != -1) {
+		denied = true;
+	}
 	var spr = object_get_sprite(obj);
 	if (spr == -1) continue;
 
@@ -38,8 +42,13 @@ for (var i = 0; i < array_length(itemList); i++) {
 
     var scale = 0.5;
 
-	draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
 	
+	if (denied) {
+		draw_sprite_ext(sDenied, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
+		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.1);
+	} else {
+		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
+	}
 	var w = sprite_get_width(spr) * scale;
 	var h = sprite_get_height(spr) * scale;
 	
@@ -109,8 +118,15 @@ if (global.chargeItem != noone) {
     }
 }
 if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_control) && global.chargeItem != noone) {
+		
 	switch (global.chargeItem.object_index) {
+		
+		case oFreedom:
+		global.playerCanFly = true;
+		freedomFlyFlag = true;
+		break;
 		case oDictionaryCharge:
+		global.itemCharges += 3;
 		var i = irandom_range(1, 6);
 		
 		switch (i) {
@@ -146,15 +162,12 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		var newItem = rollItem(true);
 		luckBonus -= 10;
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", newItem);
-		global.itemCharges += 2;
+		global.itemCharges += 3;
 		break;
 		
 		case oDeathBook:
 		with (oEnemy) {
-			if (!isBoss) {
-				instance_create_layer(x, y, "Instances", oMinionEssence)
-				instance_destroy(id)
-			}
+			enemyTakeDamage(10, id, , true, damageType.playerFire)
 		}
 		break;
 		case oHarvestBook:
@@ -181,6 +194,17 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		case oBlackHoleCharge:
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oChargeBlackHole);
 		break;
+		
+		
+		case oFoolsGold:
+		var foolsItem = rollItem(false, itemSearchType.foolsGold);
+		itemAdd(foolsItem);
+		foolsGoldItem = foolsItem;
+		foolsGoldTimer = 1;
+		global.chargeItem = noone;
+		break;
+		
+		
 	}
 	global.currentCharges = 0;
 }

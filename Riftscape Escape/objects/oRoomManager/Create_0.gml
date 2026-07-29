@@ -48,7 +48,7 @@ workerSpawners = noone;
 workerBossSpawners = noone;
 workerX = noone;
 workerY = noone;
-
+isBossRoom = false;
 destroyWalls = false;
 checkFor = false;
 evilWallList = ds_list_create();
@@ -109,6 +109,7 @@ if (fmanager != noone) {
 		}
 	}
 } 
+revealFlag = false;
 spawner = noone;
 floorManager = noone;
 specialRoom = false;

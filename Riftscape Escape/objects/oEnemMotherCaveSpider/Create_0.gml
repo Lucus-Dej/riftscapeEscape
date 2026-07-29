@@ -1,10 +1,10 @@
 event_inherited();
-enemey_hp = 4;
+ enemyHP = 4;
 shoot_delay = 90;
 on_cooldown = false;
 shoot_cooldown = shoot_delay;
 enemSpeed = 3.45;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 contactDamage = 14.5;
 damage = contactDamage;
 image_xscale += 1;

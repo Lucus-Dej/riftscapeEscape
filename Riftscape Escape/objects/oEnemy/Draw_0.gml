@@ -6,5 +6,5 @@ draw_self();
 shader_reset();
 
 if (oItemManager.hasGenStone) {
-	draw_healthbar(x-26, y-4-sprite_height/2, x+26, y-8-sprite_height/2, (enemey_hp/maxHP)*100, c_black, c_red, c_red, 0, true, true)
+	draw_healthbar(x-26, y-4-sprite_height/2, x+26, y-8-sprite_height/2, ( enemyHP/maxHP)*100, c_black, c_red, c_red, 0, true, true)
 }

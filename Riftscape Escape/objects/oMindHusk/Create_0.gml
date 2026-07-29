@@ -10,6 +10,3 @@ existanceTot = existance;
 doRefund = false;
 tpSpotX = 0; 
 tpSpotY = 0;
-if (oPlayerManager.hasEssenceHusk) {
-	instance_create_layer(x, y, "Instances", oHuskHealingCircle)
-}

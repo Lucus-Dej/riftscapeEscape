@@ -4,30 +4,20 @@ if (brainDead) {
 }
 bite_timer--; 
 
-// countdown
-path_timer--;
 if (instance_exists(head)) {
 	enemSpeed = head.enemSpeed;
-	if (enemey_hp < head.enemey_hp) {
-		var dmgDiff = head.enemey_hp - enemey_hp;
+	if ( enemyHP < head. enemyHP) {
+		var dmgDiff = head. enemyHP -  enemyHP;
 		enemyTakeDamage(dmgDiff/2, head);
 	}
 	if (instance_exists(head)) {
-		enemey_hp = head.enemey_hp;
+		 enemyHP = head. enemyHP;
 	}
 	
 } else {
 	instance_destroy();
 }
 
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
 if (instance_exists(follow)) {
 	var playerDir = point_direction(x, y, follow.x, follow.y); 
 	image_angle = playerDir+90;

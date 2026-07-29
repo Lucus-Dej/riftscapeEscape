@@ -6,8 +6,8 @@
   "name":"oTetheredSoulPickup",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"3mythic",
+    "path":"folders/items/passive/3mythic.yy",
   },
   "parentObjectId":{
     "name":"oItems",

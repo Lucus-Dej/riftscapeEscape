@@ -8,3 +8,5 @@ spawn.isBoss = true;
 
 bossMod(spawn);
 spawn.xp = 0;
+
+powerDoor(RoomID)

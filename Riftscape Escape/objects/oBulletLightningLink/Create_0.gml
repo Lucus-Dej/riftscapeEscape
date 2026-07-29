@@ -1,4 +1,7 @@
 host = noone;
 connector = noone;
-damagedList = ds_map_create();
-damage = global.playerDamage*0.1;
+damage = global.playerDamage*0.08;
+dmgRefreshTime = 12;
+damageArray = [];
+damageTimerArray = [];
+evil = false;

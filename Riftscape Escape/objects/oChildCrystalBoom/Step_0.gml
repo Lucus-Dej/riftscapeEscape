@@ -2,37 +2,21 @@ existance--;
 if (existance < 0) {
 	instance_destroy();
 }
-realityCheck--;
-if (realityCheck < 0 && hasSpawned = false) {
-	if (oPlayerManager.hasCrystalReality) {
-	if (variable_instance_exists(self, "goUp")) {
-		if (goUp) {
-			up = instance_create_layer(x, y+32, "Instances", oChildCrystal)
-			up.goUp = goUp;
-			up.chainDistance = chainDistance;
-		}
-	}
-	if (variable_instance_exists(self, "goLeft")) {
-		if (goLeft) {
-			left = instance_create_layer(x-32, y, "Instances", oChildCrystal)
-			left.goLeft = goLeft;
-			left.chainDistance = chainDistance;
-		}
-	}
-	if (variable_instance_exists(self, "goDown")) {
-		if (goDown) {
-			down = instance_create_layer(x, y-32, "Instances", oChildCrystal)
-			down.goDown = goDown;
-			down.chainDistance = chainDistance
-		}
-	}
-	if (variable_instance_exists(self, "goRight")) {
-		if (goRight) {
-			right = instance_create_layer(x+32, y, "Instances", oChildCrystal)
-			right.goRight = goRight;
-			right.chainDistance = chainDistance;
-		}
-	}
-}
-hasSpawned = true;
+if (oPlayerManager.hasCrystalReality && !shotBeams) {
+	shotBeams = true;
+	var up = instance_create_layer(x, y, "Instances", oCrystalBombBeam, {dir: 90})
+	up.damage = damage;
+	up.image_yscale -= 0.5;
+
+	var left = instance_create_layer(x, y, "Instances", oCrystalBombBeam, {dir: 180})
+	left.damage = damage;
+	left.image_yscale -= 0.5;
+
+	var down = instance_create_layer(x, y, "Instances", oCrystalBombBeam, {dir: 270})
+	down.damage = damage;
+	down.image_yscale -= 0.5;
+
+	var right = instance_create_layer(x, y, "Instances", oCrystalBombBeam, {dir: 0})
+	right.damage = damage;
+	right.image_yscale -= 0.5;
 }

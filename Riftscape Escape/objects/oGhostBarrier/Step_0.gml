@@ -1,5 +1,12 @@
+if (instance_exists(oFloorManager) && RoomID != -1) {
+	linkDoor(RoomID, id)
+}
+if (onStart && childDoor == noone) {
+	powerDoorByID(id);
+}
 
-if (instance_exists(oFloorManager)) {
+
+/*if (instance_exists(oFloorManager)) {
 	if (doorType == "item" && instance_exists(Manager1) && !challengeAccepted) {
 		Manager1.isChallenge = true;
 		challengeAccepted = true;

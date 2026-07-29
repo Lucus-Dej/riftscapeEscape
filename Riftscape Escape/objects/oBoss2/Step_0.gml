@@ -2,10 +2,7 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-//path timer reduction
-path_timer--;
-if (phasePoint1 >= enemey_hp && enraged == false) {
+if (phasePoint1 >=  enemyHP && enraged == false) {
 	spawnNum -= 150;
 	enemSpeed -= 1;
 	bullet_speed = 1.5;
@@ -43,19 +40,7 @@ if (shoot_cooldown <= 0) {
 		}
 	}
 }
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
 
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
-}
 spawnCheck = irandom(spawnNum)
 if (isBoss) {
 	spawnCheck = irandom(spawnNum/cooldownMult)
@@ -64,7 +49,7 @@ if (isBoss) {
 if (spawnCheck == 1) {
 	var spawn = instance_create_layer(x, y, "Instances", oEnemSpider);
 	if (isBoss) {
-		spawn.base_speed += 0.2;
+		spawn.baseSpeed += 0.2;
 		spawn.maxHP -= 0.5;
 		
 	}

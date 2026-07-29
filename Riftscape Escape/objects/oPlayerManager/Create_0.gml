@@ -13,9 +13,13 @@ event_user(0);
 global.damageNumbers = [];
 global.inCombat = false;
 global.playerContactDmg = false;
+global.playerCanFly = false;
 global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
-mp_grid_add_instances(global.Grid, oColl, 0);
+mp_grid_add_instances(global.Grid, oColl, true);
+ 
 global.flyGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
+mp_grid_add_instances(global.flyGrid, oIndestructable, true)
+lastDamaged = noone;
 //weird enemy / damage stuff
 tookDamage = false;
 incombat = false;
@@ -26,6 +30,7 @@ fireRate = 0;
 fireRateCap = 10;
 global.bossBarCount = 0;
 global.activeRoom = false;
+global.initEvilRoom = false;
 bloodyGemCooldown = 12;
 bloodyGemTimer = bloodyGemCooldown;
 trueCrit = false;
@@ -35,7 +40,14 @@ toggleGrid = false;
 
 
 iframes = 0;
-iframeTotal = 40;
+if (global.difficulty == 1) {
+	iframeTotal = 60;
+} else if (global.difficulty == 2) {
+	iframeTotal = 40;
+} else if (global.difficulty >= 3) {
+	iframeTotal = 24;
+}
+
 
 	
 	
@@ -44,6 +56,13 @@ iframeTotal = 40;
 
 global.activeEssenceClones = 0;
 
+enum fateMinionMode {
+	idle,
+	primed,
+	attacking,
+	returning,
+	recharging
+}
 
 // health stuff
 healthTotal = 100;
@@ -62,6 +81,9 @@ overhealthFlag = true;
 
 //xp
 xpMult = 1;
+if (global.difficulty == 4) {
+	xpMult = 0.8;
+}
 xpTotal = 0;
 xpLevel = 1;
 totalXP = 0;
@@ -110,6 +132,30 @@ overHealthCooldownBuff = 0;
 tesseractSpeedBonus = 0;
 krostEssenceSpeedBouns = 0;
 deltaItemBuff = 0;
+global.playerInvis = false;
+invisTimer = 0;
+enum damageType {
+	playerFire,
+	playerPois,
+	playerIce,
+	playerBlood,
+	playerLightning,
+	
+	dotFire,
+	dotPois,
+	dotBlood,
+	dotIce,
+	dotLightning,
+	
+	sword,
+	dodge,
+	husk,
+	bomb,
+	torzMinion,
+	
+	basic,
+	contact,
+}
 
 global.contactDmg = 0;
 dodgeContactDmg = 1;
@@ -183,10 +229,18 @@ confluxCost = 2;
 xpThreshdolds = [];
 
 //rune stuff
-validRuneArray = [oAlextraRune, oKrostRune, oCooldownRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oItemDenyRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
+hasItemDenyRune = false;
+hasPowerUpRune = false
+hasBossRune = false;
+hasTrapRune = false;
 hasKrostRune = false;
 hasAlextraRune = false;
+hasVirstRune = false;
+hasTorzolRune = false;
+hasSifterRune = false;
+hasVeribroseRune = false;
 hasLifestealRune = false;
 hasOverhealthRune = false;
 hasBulletRangeRune = false;
@@ -194,9 +248,13 @@ hasBossDropRune = false;
 hasExplosiveRune = false;
 hasLuckRune = false;
 hasXPRune = false;
-hasCooldownRune = false;
+virstRuneSavedItem = noone;
+hasSifterRune = false;
 displayRuneDuration = 0;
 runeTxt = "";
 xpRuneReduction = 1;
 krostRuneDebuff = 1;
 lockAbilities = false;
+decayAbilites = false;
+siferRunePauseCooldown = 90;
+sifterRunePauseTimer = 0;

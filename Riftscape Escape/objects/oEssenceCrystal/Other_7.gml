@@ -1,17 +1,4 @@
-boom = instance_create_layer(x, y, "Instances", oEssenceCrystalBoom);
-if (oPlayerManager.hasCrystalReality) {
-	boom.goUp = true;
-	boom.goLeft = true;
-	boom.goDown = true;
-	boom.goRight = true;
-	boom.chainDistance = chainDistance;
-} else {
-	boom.goUp = false;
-	boom.goLeft = false;
-	boom.goDown = false;
-	boom.goRight = false;
-	boom.chainDistance = chainDistance;
-}
+instance_create_layer(x, y, "Instances", oEssenceCrystalBoom);
 if (oPlayerManager.hasCrystalLife) {
 	instance_create_layer(x, y, "Items", oCrystalLifeEffect)
 }

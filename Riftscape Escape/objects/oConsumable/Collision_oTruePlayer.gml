@@ -1,6 +1,6 @@
 displayItemFunction(object_index);
 
-if (keyboard_check_pressed(vk_space) && idleTime <= 0) {
-	consumableAdd(object_index)
-	instance_destroy();
-}
+consumableAdd(object_index)
+
+audio_play_sound(aRing, 2, false, global.sfxAudio)
+instance_destroy();

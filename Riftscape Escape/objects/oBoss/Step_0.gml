@@ -5,19 +5,18 @@ if (brainDead) {
 
 var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 image_angle = playerDir+90;
-//path timer reduction
-path_timer--;
+
 if (!canSeePlayer) {
-	enemSpeed = base_speed*3;
+	enemSpeed = initalSpeed*3;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
-if (phasePoint1 >= enemey_hp && enraged == false) {
-	base_speed += 1.7;
+if (phasePoint1 >=  enemyHP && enraged == false) {
+	baseSpeed += 1.7;
 	bullet_speed -= 3;
 	fire_duration += 12;
 	shoot_delay += 10;
@@ -36,8 +35,8 @@ if (shoot_cooldown <= 0 && move > -1) {
 		//move++;
 	}
 	if (move >= 7) {
-		var c =  bulletFire(x, y, playerAng+20, bullet_speed*2, damage*2, oBossBullet, id);
-		var d =  bulletFire(x, y, playerAng-20, bullet_speed*2, damage*2, oBossBullet, id);
+		var c =  bulletFire(x, y, playerAng+25, bullet_speed*1.5, damage*1.2, oBossBullet, id);
+		var d =  bulletFire(x, y, playerAng-25, bullet_speed*1.5, damage*1.2, oBossBullet, id);
 		move = -1;
 		shoot_cooldown = shoot_delay;
 	} else {
@@ -48,8 +47,8 @@ if (shoot_cooldown <= 0 && move > -1) {
 			if (!enraged) {
 				var bullet = bulletFireAt(x, y, oTruePlayer, bullet_speed, damage, oMiniBossBullet, id)
 			} else {
-				var a =  bulletFire(x, y, playerAng - 25 - fire_timer*4, bullet_speed, damage, oBadBullet, id);
-				var b =  bulletFire(x, y, (playerAng + 25 +fire_timer*4),bullet_speed, damage, oBadBullet, id);
+				var a =  bulletFire(x, y, playerAng - 35 - fire_timer*4, bullet_speed, damage, oBadBullet, id);
+				var b =  bulletFire(x, y, (playerAng + 35 + fire_timer*4),bullet_speed, damage, oBadBullet, id);
 				if (fire_timer == 1) {
 					var c =  bulletFire(x, y, playerAng, bullet_speed*0.4, damage*2, oBadBullet, id);
 					c.image_xscale += 1;
@@ -66,18 +65,4 @@ if (shoot_cooldown <= 0 && move > -1) {
 		}
 	}
 	}
-}
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

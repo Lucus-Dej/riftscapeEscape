@@ -1,9 +1,9 @@
 {
   "$GMSprite":"v2",
   "%Name":"sBlueprint",
-  "bboxMode":0,
-  "bbox_bottom":59,
-  "bbox_left":1,
+  "bboxMode":1,
+  "bbox_bottom":63,
+  "bbox_left":0,
   "bbox_right":63,
   "bbox_top":0,
   "collisionKind":1,

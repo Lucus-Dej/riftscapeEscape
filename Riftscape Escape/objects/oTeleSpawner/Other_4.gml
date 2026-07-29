@@ -19,3 +19,7 @@ if (!con) {
 	}
 	childSpawned = true;
 }
+if (oSettingManager.extendRun && room == k1) {
+	evil = true;
+	goEvilFloor = endRuneChoiceRoom;
+}

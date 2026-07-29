@@ -2,18 +2,17 @@ if (oFloorManager.deep <= 0)
 exit;
 
 
-for (var i = 0; i < ds_list_size(doorList); i++) {
-	
-	var inst = doorList[| i];
+if(ds_queue_size(doorQueue) > 0) {
+	var inst = ds_queue_head(doorQueue);
+	ds_queue_dequeue(doorQueue);
 	with (inst) {
-		if (checked) continue;
 		if (oFloorManager.deep <= 0) {
 			//instance_create_layer(x, y, "Instances", oWastelandWall)
 			continue;
 		}
 		newRoom = findRoom(doorDir);
 		
-		if (newRoom != noone && !checked) {
+		if (newRoom != noone) {
 			//connectRoom(self, doorDir, newRoom, other.owner);
 			var request = {
 				door: id,
@@ -26,8 +25,6 @@ for (var i = 0; i < ds_list_size(doorList); i++) {
 			} else {
 				ds_queue_enqueue(global.roomQueue, request);
 			}
-			checked = true;
 		}
 	}
 }
-used = true;

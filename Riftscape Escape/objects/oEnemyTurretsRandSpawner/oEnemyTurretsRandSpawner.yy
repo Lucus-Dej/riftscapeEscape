@@ -8,7 +8,9 @@
   ],
   "managed":true,
   "name":"oEnemyTurretsRandSpawner",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oSuperwalls","path":"objects/oSuperwalls/oSuperwalls.yy",},"propertyId":{"name":"RoomID","path":"objects/oSuperwalls/oSuperwalls.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"-1",},
+  ],
   "parent":{
     "name":"rand",
     "path":"folders/roomstuff/turrets/rand.yy",

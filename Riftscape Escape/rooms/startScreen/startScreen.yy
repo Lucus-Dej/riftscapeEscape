@@ -111,6 +111,13 @@
     {"name":"inst_3843F9E5","path":"rooms/startScreen/startScreen.yy",},
     {"name":"inst_5C4ECE66","path":"rooms/startScreen/startScreen.yy",},
     {"name":"inst_746A51E6","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_50DF63CA","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_784379EF","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_37721E87","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_6AAC8FE","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_52D8D165","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_5BAE3B5B","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_3D810A06","path":"roomui/RoomUI/RoomUI.yy",},
   ],
   "isDnd":false,
   "layers":[

@@ -9,7 +9,7 @@ if (count > 0) {
 		spawn.xp = 0;
 		spawn.image_xscale = image_xscale - 1.5;
 		spawn.image_yscale = image_yscale - 1.5;
-		spawn.enemey_hp *= 0.2;
+		spawn. enemyHP *= 0.2;
 		spawn.damage = damage*0.8;
 		spawn.shoot_delay /= 2;
 	}

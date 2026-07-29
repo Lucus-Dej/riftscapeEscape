@@ -1,12 +1,17 @@
 event_inherited();
 
 if (swap) {
+	var push = global.player_speed+8;
+	var pushX = other.x - x;
+	var pushY = other.y - y;
+
+	if (abs(pushX) > abs(pushY)) {
+	    other.x += sign(pushX) * push;
+	} else {
+	    other.y += sign(pushY) * push;
+	}
 	if (oPlayerManager.iframes <= 0) {
 		playerTakeDamage(contactDamage);
-		var push = global.player_speed+sprite_width/2;
-		var dir = point_direction(x, y, other.x, other.y);
-		other.x += lengthdir_x(push, dir+global.player_speed);
-		other.y += lengthdir_x(push, dir+global.player_speed);
 	}
 }
 

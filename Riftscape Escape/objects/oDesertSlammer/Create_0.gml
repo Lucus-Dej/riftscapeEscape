@@ -1,5 +1,5 @@
 event_inherited();
-chargeCooldown = irandom_range(80, 160);
+chargeCooldown = irandom_range(30, 60);
 chargeDelay = 260;
 chargeTargetY = 0;
 chargeTargetX = 0;
@@ -7,7 +7,7 @@ chargeTime = 12;
 chargeDir = 0;
 charging = false;
 enemSpeed = 0.3
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 attackDelay = 60;
 
 
@@ -23,8 +23,8 @@ impactDelay = 36;
 iFrames = 0;
 bullet_speed = 1.5;
 shoot_delay = 160;
-enemey_hp = 15;
-phasePoint1 = enemey_hp/2;
+enemyHP = 15;
+phasePoint1 =  enemyHP/2;
 enraged = false;
 damage = 14;
 chargeBonus = 0;

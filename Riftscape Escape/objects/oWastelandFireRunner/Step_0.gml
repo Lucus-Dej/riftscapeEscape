@@ -2,14 +2,12 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-path_timer--;
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
 // enraged
-if (phasePoint1 >= enemey_hp && enraged == false) {
+if (phasePoint1 >=  enemyHP && enraged == false) {
 	shoot_delay -= 20;
 	enraged = true;
 	arcAngle +=30;
@@ -56,17 +54,4 @@ if (shoot_cooldown <= 0) {
 	attack = 0;
 	shoot_cooldown = shoot_delay*2;
 	}
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

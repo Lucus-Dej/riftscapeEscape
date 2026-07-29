@@ -2,8 +2,6 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-//path timer reduction
-path_timer--;
 flash = max(0, flash - 0.15);
 
 
@@ -38,18 +36,4 @@ if (shoot_cooldown <= 0) {
 	recoil_timer = recoil_cooldown;
 	fire_timer = 0;
 	ang += 45;
-}
-//pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

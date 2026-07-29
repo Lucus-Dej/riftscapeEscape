@@ -1,5 +1,5 @@
 //array_push(oItemManager.itemList, object_index);
-if (!veribroseMark) {
+if (!veribroseMark && grabed) {
 	if (global.chargeItem == noone) {
 		global.chargeItem = self;
 		global.itemCharges = charges;

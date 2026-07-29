@@ -1,5 +1,6 @@
 // Inherit the parent event
-event_inherited();
+//event_inherited();
+perfectParryTimer = 0;
 searchTimer = 12;
 searchCooldown = searchTimer;
 flash = 0;

@@ -60,7 +60,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 	
 	var left = min(neededX.x, neededY.x) + offsetX;
 	var right = max(neededX.x, neededY.x) + offsetX;
-	var top = min(neededX.y, neededY.y) + offsetY;
+	var top = min(neededX.y, neededY.y) + offsetY+64;
 	var bottom = max(neededX.y, neededY.y) + offsetY;
 	var spriteOffsetX = oRoomClaimY.sprite_width;
 	var spriteOffsetY = oRoomClaimY.sprite_height;
@@ -88,8 +88,11 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 		var inst = roomInstData[i];
 		
 		var obj = asset_get_index(inst.object_index);
-		
-		
+		var parent = object_get_parent(obj)
+		if ((parent == oEnemyTurrets || parent == oTurretDOTDropperDONOTUSE) && oFloorManager.floorID == "chaoslands") {
+			obj = oEnemyTurretsRandSpawner;
+			//newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", oEnemyTurretsRandSpawner, {passiveSwitch: false});
+		}
 		var newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", obj);
 		newInst.RoomID = oFloorManager.IDCount +1;
 		
@@ -99,6 +102,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 		if (obj == oItemFlag && doorType == "boss") {
 			newInst.bossRoom = true;
 		}
+		
 		
 		if (obj == oGhostBarrier) {
 			if (obj == neededDoorObj) {
@@ -110,7 +114,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 			} else {
 				newInst.validForSpecialRoom = true
 			}
-			newInst.RoomID1 = oFloorManager.IDCount +1;
+			newInst.RoomID = oFloorManager.IDCount +1;
 			//if (doorType == "boss") newInst.state = doorState.init
 		}
 		if (obj == oSpawnSpawner) {
@@ -119,6 +123,12 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 		if (obj == oTeleSpawner) {
 			newInst.con = true;
 			newInst.goFloor = findNextLevel(room);
+			if (room == k1) {
+				if (oSettingManager.extendRun) {
+					newInst.goFloor = endRuneChoiceRoom;
+				}
+			}
+			
 		}
 		if (obj == oAbyss) {
 			instance_destroy(newInst)
@@ -136,16 +146,18 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 		
 		//show_debug_message(newInst.RoomID)
 	}
-	roomManager = instance_create_layer(_doorConnector.x, _doorConnector.y, "Instances", oRoomManager);
-	roomManager.RoomID = oFloorManager.IDCount + 1;
-	var ranPool = irandom_range(-2, 4);
-	roomManager.diffPool = oFloorManager.difficultyPool+ranPool;
+	roomManager = instance_create_layer(_doorConnector.x, _doorConnector.y, "Instances", oRoomManager, {RoomID: oFloorManager.IDCount + 1});
+	//roomManager.RoomID = oFloorManager.IDCount + 1;
+	roomManager.diffPool = oFloorManager.difficultyPool;
 	roomManager.floorID = oFloorManager.floorID;
 	if (specialRoom) {
 		roomManager.specialRoom = true;
 	}
 	if (doorType == "item") {
-		roomManager.isChallenge = true;
+		//roomManager.isChallenge = true;
+	}
+	if (doorType == "boss") {
+		roomManager.isBossRoom = true;
 	}
 	if (doorType == "arena") {
 		roomManager.type = roomManagerType.arena
@@ -214,7 +226,7 @@ function setClaimBounds(_id, _left, _top, _right, _bottom) {
 	var offsetX = oRoomClaimY.sprite_width;
 	var offsetY = oRoomClaimY.sprite_height;
     obj.left = _left;
-    obj.top = _top;
+    obj.top = _top+64;
     obj.right = _right+offsetX;
     obj.bottom = _bottom+offsetY;
     

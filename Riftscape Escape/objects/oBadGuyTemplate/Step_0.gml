@@ -52,7 +52,7 @@ if (path_timer <= 0)
 		}
 	}
 }
-if (enrage_point >= enemey_hp && enraged == false) {
+if (enrage_point >=  enemyHP && enraged == false) {
 	enemSpeed += 1.7;
 	bullet_speed += 1.5;
 	fire_duration += 6;

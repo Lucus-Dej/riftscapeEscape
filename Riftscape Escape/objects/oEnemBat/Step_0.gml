@@ -4,12 +4,11 @@ if (brainDead) {
 }
 
 
-path_timer--;
 /*
 if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
-	enemSpeed = base_speed*4.2;
+	enemSpeed = initalSpeed*4.2;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 } */
 // countdown
 if (shoot_cooldown > 0) {
@@ -24,8 +23,8 @@ if (shoot_cooldown <= 0) {
 	var ranNum = irandom_range(1, 3);
 	if (ranNum == 1 && dist <= 320) {
 		var tth = dist/bullet_speed;
-		var futureX = oTruePlayer.x + oTruePlayer.hsp*tth*0.8;
-		var futureY = oTruePlayer.y + oTruePlayer.vsp*tth*0.8;
+		var futureX = oTruePlayer.x + oTruePlayer.hsp*tth*0.7;
+		var futureY = oTruePlayer.y + oTruePlayer.vsp*tth*0.7;
 		var dir = point_direction(x, y,futureX, futureY);
 		
 		var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
@@ -59,17 +58,4 @@ if (isDashing) {
 		path_timer = 0;
 		
 	}
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0 && !isDashing) {
-    path_timer = path_cooldown;
-    pathfind(global.flyGrid, oTruePlayer, enemSpeed, id);
 }

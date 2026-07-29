@@ -6,8 +6,8 @@
   "name":"oHauntedGravestone",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"4ultra",
+    "path":"folders/items/passive/4ultra.yy",
   },
   "parentObjectId":{
     "name":"oItems",

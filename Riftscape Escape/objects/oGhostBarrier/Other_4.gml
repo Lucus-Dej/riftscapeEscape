@@ -1,6 +1,6 @@
 
 with (oRoomManager) {
-	if (RoomID == other.RoomID1) {
+	if (RoomID == other.RoomID) {
 		other.Manager1 = id;
 	}
 }

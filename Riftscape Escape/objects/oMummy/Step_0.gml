@@ -5,7 +5,7 @@ if (brainDead) {
 
 path_timer--;
 // enraged
-if (phasePoint1 >= enemey_hp && enraged == false) {
+if (phasePoint1 >=  enemyHP && enraged == false) {
     enemSpeed -= 0.2;
     bullet_speed += 1;
     shoot_delay -= 30;
@@ -23,7 +23,7 @@ if (phasePoint1 >= enemey_hp && enraged == false) {
     shoot_cooldown = shoot_delay;
 }
 
-if (phasePoint2 >= enemey_hp && enraged2 == false) {
+if (phasePoint2 >=  enemyHP && enraged2 == false) {
     enemSpeed = 0.3;
     bullet_speed += 1;
     shoot_delay -= 30;

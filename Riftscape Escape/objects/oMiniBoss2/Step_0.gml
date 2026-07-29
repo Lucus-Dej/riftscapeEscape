@@ -2,11 +2,6 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-//path timer reduction
-path_timer--;
-
-
 // countdown
 shoot_cooldown--;
 
@@ -38,7 +33,7 @@ if (shoot_cooldown <= 0) {
 }
 shoot_cooldown--;
 if (shoot_cooldown > 0) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 } 
 if (shoot_cooldown < 0) {
 	enemSpeed = 0.2;
@@ -47,22 +42,6 @@ if (shoot_cooldown < -1*shoot_delay/2) {
 	shoot_cooldown = irandom(shoot_delay);
 }
 
-// countdown
-path_timer--;
 if (shoot_cooldown <= 0 && on_cooldown = true) {
 	on_cooldown = false;
-}
-
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

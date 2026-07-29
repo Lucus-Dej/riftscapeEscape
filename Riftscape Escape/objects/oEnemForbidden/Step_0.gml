@@ -5,7 +5,7 @@ if (brainDead) {
 
 path_timer--;
 if (!canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 } else if (canSeePlayer) {
 	enemSpeed = 0;
 }
@@ -49,7 +49,7 @@ if (isBoss) {
 if (l == 1) {
 	var spawn = instance_create_layer(x, y, "Instances", oEnemSpider);
 	if (isBoss) {
-		spawn.base_speed += 0.2;
+		spawn.baseSpeed += 0.2;
 		spawn.maxHP -= 0.5;
 		
 	}

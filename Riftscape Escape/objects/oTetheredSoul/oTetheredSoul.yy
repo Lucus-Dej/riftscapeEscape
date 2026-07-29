@@ -10,10 +10,13 @@
   "name":"oTetheredSoul",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"3mythic",
+    "path":"folders/items/passive/3mythic.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oFollower",
+    "path":"objects/oFollower/oFollower.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

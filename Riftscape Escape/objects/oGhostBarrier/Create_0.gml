@@ -14,8 +14,8 @@ lastRoomID2 = RoomID2;
 spawned = false;
 isBossDoor = false;
 foundOther = false;
-RoomID = 0;
 special = false;
+linked = false; 
 challengeAccepted = false;
 enum doorState {
 	idle,
@@ -26,3 +26,5 @@ enum doorState {
 	done
 }
 state = doorState.idle;
+veribroseRuneLocked = false;
+awaitingUnlock = false;

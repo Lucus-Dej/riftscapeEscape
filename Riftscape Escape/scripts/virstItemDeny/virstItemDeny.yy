@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"virstItemDeny",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"virstItemDeny",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -12,7 +12,7 @@ if (controlsMusic) {
 var spawnX = left + (sprite_width * setter);
 
 child = instance_create_layer(spawnX, y, "Instances", oButtonSlider, {ID: marker });
-
+display = true;
 child.owner = id;
 child.depth = -10000;
 

@@ -2,14 +2,11 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-
-path_timer--;
 /*
 if (!canSeePlayer || point_distance(x, y, oTruePlayer.x, oTruePlayer.y) > 256) {
-	enemSpeed = base_speed*4.2;
+	enemSpeed = initalSpeed*4.2;
 } else if (canSeePlayer) {
-	enemSpeed = base_speed;
+	enemSpeed = initalSpeed;
 } */
 // countdown
 if (shoot_cooldown > 0) {
@@ -66,17 +63,4 @@ if (isDashing) {
 		path_timer = 0;
 		
 	}
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0 && !isDashing) {
-    path_timer = path_cooldown;
-    pathfind(global.flyGrid, oTruePlayer, enemSpeed, id);
 }

@@ -1,13 +1,13 @@
-if (!veribroseMark) {
+if (!veribroseMark && grabed) {
 	itemAdd(object_index);
 }
-if (flag != noone) {
+if (flag != noone && instance_exists(flag.Manager)) {
 	flag.Manager.combatFinished = true;
 }
- if (instance_exists(oItemFlag)) {
-	 with (oItemFlag) {
-		 if (veribroseItem) {
-			 veribroseCleanse = true;
+ if (room == veribroseItemRoom) {
+	 with (oItems) {
+		 if (veribroseMark) {
+			 instance_destroy();
 		 }
 	 }
  }

@@ -3,9 +3,9 @@ event_inherited();
 
 shoot_cooldown = irandom_range(25, 130);
 shoot_delay = 200;
-enemey_hp = 3.8;
+ enemyHP = 3.8;
 enemSpeed = 0.85;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 damage = 12;
 bullet_speed = 5.5;
 searchPlayer();

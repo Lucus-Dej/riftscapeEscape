@@ -1,10 +1,10 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 110);
 shoot_delay = 100;
-enemey_hp = 155;
-healthTotal = enemey_hp;
+ enemyHP = 155;
+healthTotal =  enemyHP;
 enemSpeed = 0.85;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 damage = 22;
 enragedRan = 0;
 attack = 0;
@@ -15,8 +15,8 @@ shotAngle = 0;
 shotTimer = 2;
 shotTotal = 30;
 spinSpeed = 4;
-phasePoint1 = enemey_hp*(2/3);
-phasePoint2 = enemey_hp*(1/3)
+phasePoint1 =  enemyHP*(2/3);
+phasePoint2 =  enemyHP*(1/3)
 enraged2 = false;
 enraged = false;
 bullet_speed = 5;

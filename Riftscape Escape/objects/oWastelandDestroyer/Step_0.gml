@@ -3,8 +3,7 @@ if (brainDead) {
     exit;
 }
 
-path_timer--;
-if ((enemey_hp <= phasePoint1) && phase < 1) {
+if (( enemyHP <= phasePoint1) && phase < 1) {
 	attack = 0;
 	phase++;
 	segments += 4;
@@ -22,7 +21,7 @@ if ((enemey_hp <= phasePoint1) && phase < 1) {
 		}
 	}
 }
-if ((enemey_hp <= phasePoint2) && phase < 2) {
+if (( enemyHP <= phasePoint2) && phase < 2) {
 	attack = 0;
 	phase++;
 	segments +=6;
@@ -39,7 +38,7 @@ if ((enemey_hp <= phasePoint2) && phase < 2) {
 	with oEnemStart {
 		if (RoomID == other.RoomID) {
 			var e = instance_create_layer(x, y, "Instances", oWastelandFireRunner);
-			e.enemey_hp /= 8;
+			e. enemyHP /= 8;
 			e.phasePoint1 /= 8;
 		}
 	}
@@ -218,7 +217,7 @@ if (irandom(spawnPool) == 0) {
 	var ranOffest = irandom_range(-128, 128)
     var enem = instance_create_layer(x+ranOffest, y+ranOffest, "Instances", oWastelandBurner);
 	enem.xp = 0;
-	enem.enemey_hp = 0.85;
+	enem. enemyHP = 0.85;
 	enem.damage /= 2;
 }
 
@@ -236,21 +235,4 @@ if (lineTimer >= lineInterval) {
 	lineAngleCW += lineRotateSpeed;
 	lineAngleCCW -= lineRotateSpeed;
 }
-}
-
-
-
-// pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

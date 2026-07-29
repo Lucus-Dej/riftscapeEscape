@@ -15,8 +15,12 @@ if (len > 0) {
 
 //move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);\
 var realSpeed = global.player_speed+2;
+
 if (instance_exists(oEnemy)) {
 	realSpeed = global.player_speed/oPlayerManager.krostRuneDebuff;
+}
+if (global.playerInvis) {
+	realSpeed *= 1.4;
 }
 var trap = instance_place(x, y, oTurretDOT);
 if (trap != noone) {
@@ -24,14 +28,21 @@ if (trap != noone) {
 		realSpeed *= 0.4;
 	}
 }
-
+if (lockedTimer > 0) {
+	lockedTimer--;
+	realSpeed = 0;
+	global.bullet_cooldown = global.bullet_delay
+}
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;
 if (is_debug_overlay_open()) {
 	move_and_collide(hsp*2, vsp*2, oAbilityGive);
+} else if (global.playerCanFly) {
+	move_and_collide(hsp, vsp, oIndestructable);
 } else {
 	move_and_collide(hsp, vsp, oSuperwalls);
 }
+
 
 currentSpeed = point_distance(0, 0, hsp, vsp);
 
@@ -43,8 +54,8 @@ if ((keyboard_check(vk_space) or mouse_check_button(mb_left)) && global.bullet_c
 	if (instance_exists(oMinion)) {
 		oMinion.fire = true;
 	}
-	if (instance_exists(oMinionTime)) {
-		oMinionTime.fire = true;
+	if (instance_exists(oMinionFate)) {
+		oMinionFate.fire = true;
 	}
 	if (instance_exists(oMinionEssence)) {
 		oMinionEssence.fire = true;
@@ -59,6 +70,20 @@ if (instance_exists(visual)) {
 	visual.x = x;
 	visual.y = y;
 	var ang = point_direction(x, y, mouse_x, mouse_y);
-	visual.image_angle = ang;
+	if (lockedTimer <= 0) {
+		visual.image_angle = ang;
+	}
 }
+
+if (array_length(damageArray) > 0) {
+	for (var i = array_length(damageArray) - 1; i >= 0; i--) {
+		if (damageTimerArray[i] < dmgRefreshTime) {
+			damageTimerArray[i]++;
+		} else {
+			array_delete(damageTimerArray, i, 1);
+			array_delete(damageArray, i, 1);
+		}
+	}
+}
+
 	

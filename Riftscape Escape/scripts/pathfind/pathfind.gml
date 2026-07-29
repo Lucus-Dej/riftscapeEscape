@@ -1,7 +1,10 @@
 function pathfind(_grid, _target, _speed, _inst) {
 
     if (!instance_exists(_target) || !instance_exists(_inst)) return false;
-
+	
+	if (_target == oTruePlayer && global.playerInvis) {
+		return false;
+	}
     searchPlayer();
 
     with (_inst) {

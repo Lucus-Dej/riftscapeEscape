@@ -5,6 +5,9 @@ if (cooldown > 0) {
 	if (cooldown == 12) {
 		flash = 1;
 	}
+	if (oPlayerManager.hasTrapRune) {
+		cooldown--;
+	}
 } else {
 	if (instance_exists(target)) {
 		var f = instance_create_layer(x, y, "Instances", oBlackHoleTurret)

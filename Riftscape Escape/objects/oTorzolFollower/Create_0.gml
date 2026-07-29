@@ -1,0 +1,14 @@
+path = -1;
+torzGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
+canPathfind = true;
+follow = oTruePlayer;
+xTo = 0;
+yTo = 0;
+baseChaseSpeed = 0.8;
+chaseSpeed = 0.8;
+image_xscale = 3;
+image_yscale = 3;
+path_cooldown = 15;
+path_timer = path_cooldown;
+attackCooldown = 30;
+attackTimer = attackCooldown;

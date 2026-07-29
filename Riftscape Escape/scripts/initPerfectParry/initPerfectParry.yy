@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"initPerfectParry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"initPerfectParry",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

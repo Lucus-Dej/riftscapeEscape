@@ -6,8 +6,8 @@
   "name":"oDirectorsNote",
   "overriddenProperties":[],
   "parent":{
-    "name":"powerful",
-    "path":"folders/items/passive/powerful.yy",
+    "name":"*rune",
+    "path":"folders/items/passive/*rune.yy",
   },
   "parentObjectId":{
     "name":"oItems",

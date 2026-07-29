@@ -7,6 +7,9 @@ if (cooldown > 0) {
 	if (cooldown == 12) {
 		flash = 1;
 	}
+	if (oPlayerManager.hasTrapRune) {
+		cooldown--;
+	}
 } else {
 	if (instance_exists(target) && canSeePlayer) {
 		var f = bulletFire(x, y, dir+40, 8, 25, oBadBullet, id);

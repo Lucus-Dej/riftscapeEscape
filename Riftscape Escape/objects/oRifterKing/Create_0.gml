@@ -1,14 +1,14 @@
 // Inherit the parent event
 event_inherited();
 RoomID = 0;
-enemey_hp = 500;
-baseHP = enemey_hp;
-healthTotal = enemey_hp;
+ enemyHP = 500;
+baseHP =  enemyHP;
+healthTotal =  enemyHP;
 spawnPool = 350;
-phasePoint1 = enemey_hp*(2/3);
+phasePoint1 =  enemyHP*(2/3);
 phasedUpOne = false;
 phasedUpTwo = false;
-phasePoint2 = enemey_hp*(1/5);
+phasePoint2 =  enemyHP*(1/5);
 healing = false;
 phase = 1;
 shield = noone;
@@ -16,7 +16,7 @@ spawnArray = [oRifterSniper, oRifterSlammer, oRifterSpitter, oEnemRifterSpider];
 damage = 30;
 attack = 0;
 enemSpeed = 0.55;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 shoot_cooldown = 60;
 shoot_delay = 400;
 Manager = noone;

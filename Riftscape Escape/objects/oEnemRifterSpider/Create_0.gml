@@ -1,10 +1,10 @@
 event_inherited();
-enemey_hp = 7.5;
+ enemyHP = 7.5;
 bite_cooldown = 45;
 on_cooldown = false;
 bite_timer = bite_cooldown;
 enemSpeed = 5.45;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 contactDamage = 12.5;
 damage = contactDamage;
 count = 3;

@@ -1,19 +1,6 @@
 damagedList = ds_map_create();
+damage = 0.6 + global.playerDamage * 0.6 + sqrt(global.playerEssence) * 1.1
 existance = 12;
 didColide = false;
-
-if (!variable_instance_exists(self, "goUp")) {
-	goUp = false;
-}
-if (!variable_instance_exists(self, "goRight")) {
-	goRight = false;
-}
-if (!variable_instance_exists(self, "goLeft")) {
-	goLeft = false;
-}
-if (!variable_instance_exists(self, "goDown")) {
-	goDown = false;
-}
-if (variable_instance_exists(self, "chainDistance")) {
-	chainDistance --;
-}
+hasSpawned = false;
+shotBeams = false;

@@ -1,1 +1,1 @@
-enemey_hp = 1;
+ enemyHP = 1;

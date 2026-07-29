@@ -1,0 +1,31 @@
+most secret levels can be unlocked via the completion of 3 challenges
+
+slay the rifter king with a fully charged ability
+slay a boss with only the ability
+complete a run while under the effect of X rune
+
+Veribrose
+Slay the Rifter King while possessing a fully upgraded circle
+Slay a boss while standing in the circle the entire time
+Complete a run while under "Veribrose's Rune"
+
+Torzol
+Slay the Rifter King while possessing a fully upgraded minion
+Slay a boss with only the minion
+Complete a run while under "Torzol's Rune"
+
+Krost
+Slay the Rifter King while possessing a fully upgraded dodge
+Slay a boss with only the dodge
+Complete a run while under "Krost's Rune"
+
+Virst
+Slay the Rifter King while possessing a fully upgraded crystal bomb
+Slay a boss with only the crystal bomb
+Complete a run while under "Virst's Rune"
+
+Sifter
+Slay the Rifter King while possessing a fully upgraded sword
+Slay a boss with only the Sword
+Complete a run while under "Sifter's Rune"
+

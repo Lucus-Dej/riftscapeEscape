@@ -9,6 +9,8 @@ if (instance_exists(manager) && manager.state = waveState.done && !finished) {
 	displayDuration = 240;
 	txt = "Your Luck And XP Have Increased. Take Your Reward";
 	finished = true;
+	var newItem = rollItem(true, itemSearchType.simple);
+	spawnItem(newItem,id, RoomID);
 }
 if (instance_exists(oTruePlayer) && distance_to_object(oTruePlayer) < 320 && !gaveHint) {
 	displayDuration = 240;

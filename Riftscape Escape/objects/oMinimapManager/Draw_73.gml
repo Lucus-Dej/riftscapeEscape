@@ -1,4 +1,4 @@
-if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
+if (instance_exists(follow) && !oPlayerManager.inLevelMenu && !oPlayerManager.hasVeribroseRune) {
 
 	if (!surface_exists(minimapSurface)) {
 	    minimapSurface = surface_create(200, 200);
@@ -11,7 +11,7 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 	with (oRoomManager) {
 		if ((discovered || hinted || oItemManager.hasGenStone)) {
 			//draw_self();
-			if (combatFinished) {
+			if (revealFlag) {
 				with (oSuperwalls) {
 					if (RoomID == other.RoomID) {
 						draw_sprite_ext(sMinimapWallFinished, 0, x, y, 1, 1, 0, c_white, 1);
@@ -45,10 +45,10 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 					draw_sprite_ext(sArenaMinimap, 0, x, y, 8, 8, 0, c_white, 1);
 				}
 			}
-			with (oGhostBarrierDirectionalParent) {
-				if (doorType == "boss" && RoomID1 == other.RoomID && instance_exists(oFloorManager)) {
+			with (oGhostBarrier) {
+				if (doorType == "boss" && RoomID == other.RoomID && instance_exists(oFloorManager)) {
 					draw_sprite_ext(sMinimapBossDoor, 0, x, y, 3, 3, 0, c_white, 1);
-				} else if (RoomID1 == other.RoomID) {
+				} else if (RoomID == other.RoomID) {
 					draw_sprite_ext(sMinimapDoor, 0, x, y, 1, 1, 0, c_white, 1);
 				}
 			}
@@ -73,20 +73,26 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu) {
 	}
 	with (oRitualRoomManager) {
 		if (RoomID == -1) {
-			draw_sprite_ext(sRitualMinimap, 0, x, y, 8, 8, 0, c_white, 1);
+			draw_sprite_ext(sRitualMinimap, 0, x, y, 8*other.scale, 8*other.scale, 0, c_white, 1);
 		}
 	}
 	with (oArenaFlag) {
 		if (RoomID == -1) {
-			draw_sprite_ext(sArenaMinimap, 0, x, y, 8, 8, 0, c_white, 1);
+			draw_sprite_ext(sArenaMinimap, 0, x, y, 8*other.scale, 8*other.scale, 0, c_white, 1);
 		}
 	}
-	
+	with (oConsumable) {
+		if (object_index != oDust && object_index != oPowerUpConflux) {
+			draw_sprite_ext(sPowerUpBlank, 0, x, y, 4, 4, 0, c_white, 1);
+		}
+	}
 	if (oItemManager.hasGenStone)
 	with (oEnemy) {
 		draw_sprite_ext(sBossBullet, 0, x, y, 1, 1, 0, c_white, 1);
 	}
-	with (oPlayer) draw_self();
+	with (oPlayer) {
+		draw_sprite_ext(self.sprite_index, 0, x, y, 8*other.scale, 8*other.scale, 0, c_white, 1);
+	}
 
 	surface_reset_target();
 }

@@ -3,7 +3,7 @@ function requestEnemies(_RoomManager, _FloorManager){
 	var fM = _FloorManager;
 	
 }
-function getEnemPool(_currentFloor) {
+function getEnemPool(_currentFloor, _all = false) {
 	var enemArray = [];
 	var bossArray = [];
 	var evilArray = [];
@@ -28,6 +28,9 @@ function getEnemPool(_currentFloor) {
 			enemArray = [oEnemExplosiveSpider];
 			break;
 		}
+		if (_all) {
+			enemArray = [oEnemCavesSludger, oEnemExplosiveSpider, oEnemCaveSpider, oEnemSpider, oEnemBat, oEnemCentiHead];
+		}
 		//enemArray = [oCavesStoneGolem, oEnemCavesSludger, oEnemExplosiveSpider, oEnemBat, oEnemCentiHead, oEnemCaveSpider, oEnemSpider];
 		bossArray = [oEnemCentiHead, oBoss, oBoss2, oCavesStoneGolem, oMiniBoss, oMiniBoss2, oEnemBigBat, oEnemMotherCaveSpider];
 		evilArray = [oMiniBoss, oMiniBoss2, oEnemBigBat]
@@ -36,14 +39,14 @@ function getEnemPool(_currentFloor) {
 		
 		case "desert":
 		enemArray = [oEnemDesertWasp, oEnemCaveSpider, oEnemDesertSanke, oEnemSandSniper, oEnemDesertBiter, oEnemMiniMummy];
-		bossArray = [oDesertSlammer, oEnemSandSniper, oEnemMiniMummy, oWaspHive]; 
+		bossArray = [oDesertSlammer, oEnemMiniMummy, oWaspHive]; 
 		evilArray = [oDesertSlammer, oWaspHive]
 		break;
 		
 		case "wasteland":
-		enemArray = [oWastelandSpitter, oEnemTurret, oWastelandBurner, oRifterSniper, oMiniBoss3, oWastelandFireRunner, oWastelandFireSpirit, oRifterDrone]
-		bossArray = [oBoss3, oMiniBoss3, oEnemBlackHole];
-		evilArray = [oBoss, oBoss2, oWastelandFireRunner, oEnemBlackHole]
+		enemArray = [oWastelandSpitter, oEnemTurret, oWastelandBurner, oRifterSniper, oMiniBoss3, oRifterDrone]
+		bossArray = [oBoss3, oMiniBoss3, oEnemBlackHole, oRifterDrone, oRifterSniper, oWastelandSpitter, oWastelandFireSpirit, oWastelandFireRunner];
+		evilArray = [oWastelandFireSpirit, oWastelandFireRunner, oEnemBlackHole]
 		break;
 		
 		case "kingdom":
@@ -56,6 +59,12 @@ function getEnemPool(_currentFloor) {
 		enemArray = [oEnemCaveSpider, oPlainsShooter, oWastelandSpitter, oEnemBig,oEnemMotherCaveSpider, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
 		bossArray = [oRifterTank, oEnemBlackHole, oMummy, oWastelandDestroyer];
 		evilArray = [oRifterTank]
+		break;
+		
+		case "chaoslands":
+		enemArray = [oEnemSandSniper, oEnemRifterSpider, oRifterDrone, oRifterSlammer, oRifterSpitter, oBoss, oBoss2, oMiniBoss, oMiniBoss2, oDesertSlammer, oEnemSpider, oEnemCaveSpider, oEnemCavesSludger, oEnemBat, oEnemBlackHole, oEnemMotherCaveSpider];
+		bossArray = [oRifterSlammer, oRifterTank, oBoss3, oMummy, oEnemBigBat];
+		challengeArray = [];
 		break;
 		
 	}

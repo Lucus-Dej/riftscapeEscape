@@ -7,11 +7,11 @@ recoil_cooldown = 12;
 fire_duration = 3;
 fire_timer = fire_duration;
 recoil_timer = 4;
-enemey_hp = 6.3;
+ enemyHP = 6.3;
 
 ang = 0;
 enemSpeed = 1.4;
-base_speed = enemSpeed;
+baseSpeed = enemSpeed;
 damage = 14.5;
 bullet_speed = 4;
 playerPercent = 0;

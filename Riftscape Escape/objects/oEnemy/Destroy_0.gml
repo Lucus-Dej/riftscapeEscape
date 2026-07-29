@@ -1,4 +1,19 @@
 if (!sub) {
+	if (effectHorsePest && instance_exists(oDaggPestMinion)) {
+		with (oDaggPestMinion) {
+			pestPower++;
+		}
+	}
+	if (isBoss) {
+		oItemManager.conquestPower++;
+		if (oItemManager.hasHorseCon && instance_exists(oSwordConquestMinion)) {
+			with (oSwordConquestMinion) {
+				if (!active) {
+					active = true;
+				}
+			}
+		}
+	}
 	oPlayerManager.xpTotal += xp*oPlayerManager.xpMult/oPlayerManager.xpRuneReduction;
 }
 if (path_exists(path)) {

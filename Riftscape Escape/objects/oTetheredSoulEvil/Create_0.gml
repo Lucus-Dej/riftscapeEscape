@@ -1,0 +1,12 @@
+minionSpeed = 25;
+follow = oVirstBoss;
+bulletCoolDown = 100;
+bulletDelay = bulletCoolDown;
+evil = false;
+xTo = x;
+yto = y
+target = noone;
+fire = false;
+fateBullet = 0;
+damage = 4;
+baseDmg = damage;

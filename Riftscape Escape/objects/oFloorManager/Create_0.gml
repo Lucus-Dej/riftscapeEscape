@@ -1,8 +1,10 @@
 level = 1;
+challengeDoorID = -2;
 retryCount = 0;
 doorList = ds_list_create();
 doorCount = 1;
 IDCount = 1;
+bossRoomSlain = false;
 global.roomQueue = ds_queue_create();
 global.roomStack = ds_stack_create();
 currentRequest = noone;
@@ -16,8 +18,10 @@ enum genState {
 	runRoomManagers,
 	done
 }
+evilRoomFlag = false;
 floorState = genState.idle;
 bossDoorArray = [];
+bossRoomID = -1;
 done = false;
 doorStart = false;
 levelArray = [caves0, caves01, f3]
@@ -35,3 +39,4 @@ switch (room) {
 }
 floorCompleteFlag = false;
 roomManagerArray = [];
+veribroseLockArray = [];

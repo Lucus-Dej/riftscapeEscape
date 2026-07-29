@@ -5,7 +5,7 @@ if (instance_exists(oFloorManager)) {
 }
 if (!discovered && instance_exists(workerX)) {
 	with (oTruePlayer) {
-		if (x > other.claimX && x < other.claimX2 && y > other.claimY && y < other.claimY2) {
+		if (x > other.workerX.x && x < other. workerY.x && y > other.workerX.y && y < other.workerY.y) {
 			other.discovered = true;
 		}
 	}
@@ -47,6 +47,9 @@ if (portal_timer <= 0) {
 	spawn_timer--;
 }
 if (roomStart && !ready) {
+	if (oItemManager.hasReflectiveGem) {
+		oItemManager.reflectiveGemFlag = true;
+	}
 	with (oReverseTrappedSpikes) {
 		if (RoomID == other.RoomID) {
 			active = true;
@@ -60,14 +63,13 @@ if (roomStart && !ready) {
 		}
 	}
 	ready = true;
-	// lock down rooms
-	with (oGhostBarrierDirectionalParent) {
-		if (RoomID == other.RoomID) {
-			if (!instance_exists(childDoor)) {
-				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
-			}
-		}
+	powerDoor(RoomID, true)
+	if (oPlayerManager.hasItemDenyRune) {
+		show_debug_message("RUNNING VIRST STUFF")
+		virstItemDeny();
+		virstItemDeny();
 	}
+	
 	// destory husk if it exists
 	if (instance_exists(oMindHusk)) {
 		instance_destroy(oMindHusk);
@@ -146,16 +148,17 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 
 if (inCombat && !combatFinished && temp_portal == noone) {
 	if ((!instance_exists(oEnemy) && enemies <= 0 && diffPool <= 0) || (instance_exists(oFloorManager) && diffPool <= 0 && !instance_exists(oEnemy) && !instance_exists(oEnemPortalEgg))) {
-		with (oGhostBarrierDirectionalParent) {
-		if ((RoomID1 == other.RoomID) || (RoomID2 == other.RoomID)) {
-			if (instance_exists(Manager2)){
-				Manager2.hinted = true;
-			}
-			if (!instance_exists(childDoor)) {
-				childDoor = instance_create_layer(x, y, "Instances", oBarrier)
+		unpowerDoor(RoomID)
+		if (oPlayerManager.hasItemDenyRune) {
+			virstItemAdd();
+			virstItemAdd();
+		}
+		powerTorzol();
+		with (oGhostBarrier) {
+			if (RoomID == other.RoomID) {
+				revealNearbyRooms(id)
 			}
 		}
-	}
 	with (oReverseTrappedSpikes) {
 		if (RoomID == other.RoomID) {
 			active = false;
@@ -171,6 +174,7 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 	}
 		global.activeRoom = false;
 		combatFinished = true;
+		revealFlag = true;
 		inCombat = false;
 		oPlayerManager.incombat = false;
 		
@@ -178,8 +182,8 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 			with (floorManager) {
 				event_user(0);
 			}
-			if (oItemManager.hasReflectiveGem) {
-				oItemManager.reflectiveGemLuckBonus += 3;
+			if (oItemManager.hasReflectiveGem && oItemManager.reflectiveGemFlag) {
+				oItemManager.reflectiveGemLuckBonus += 1;
 			}
 			if (!floorManager.floorCompleteFlag) {
 				rollConsumable(spawner);
@@ -198,11 +202,11 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 					case 4:
 					var funCheck = irandom_range(1, 50) + global.playerTime;
 					if (funCheck >= 50) {
-						var item = rollItem(false);
+						var item = rollItem(false, itemSearchType.simple);
 						instance_create_layer(spawner.x, spawner.y, "Instances", item);
 					} else {
-						var i = ds_list_size(oItemManager.simpleItemList)-1;
-						instance_create_layer(spawner.x, spawner.y, "Instances", oItemManager.simpleItemList[| i]);
+						var i = rollItem(false);
+						instance_create_layer(spawner.x, spawner.y, "Instances", i);
 					}
 					break;
 				}

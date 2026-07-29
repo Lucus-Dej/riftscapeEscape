@@ -8,6 +8,9 @@ function findNextLevel(_level){
 		case caves01:
 		newLevel = f3;
 		break;
+		case caves02:
+		newLevel = f3; 
+		break;
 		case f3:
 		newLevel = desert0;
 		break;
@@ -15,6 +18,9 @@ function findNextLevel(_level){
 		newLevel = desert01;
 		break;
 		case desert01:
+		newLevel = d1;
+		break;
+		case desert02:
 		newLevel = d1;
 		break;
 		case d1:
@@ -26,6 +32,9 @@ function findNextLevel(_level){
 		case wasteland01:
 		newLevel = w1;
 		break;
+		case wasteland02:
+		newLevel = w1;
+		break;
 		case w1:
 		newLevel = kingdom0;
 		break;
@@ -35,13 +44,27 @@ function findNextLevel(_level){
 		case kingdom01:
 		newLevel = k1;
 		break;
+		case kingdom02:
+		newLevel = k1;
+		break;
 		case k1:
 		newLevel = theEnd;
 		break;
+		
+		case chaoslands0:
+		newLevel = chaoslands01;
+		break;
+		case chaoslands01:
+		newLevel = theEnd;
+		break;
+		
 		case plains0:
 		newLevel = plains01;
 		break;
 		case plains01:
+		newLevel = p2;
+		break;
+		case p2:
 		newLevel = p3;
 		break;
 		case p3:

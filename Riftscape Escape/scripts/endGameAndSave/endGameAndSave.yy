@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"endGameAndSave",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"endGameAndSave",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

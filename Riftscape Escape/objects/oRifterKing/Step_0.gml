@@ -2,7 +2,7 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-if (enemey_hp < phasePoint1 && !phasedUpOne) {
+if ( enemyHP < phasePoint1 && !phasedUpOne) {
 	phase++;
 	shoot_delay -= 60;
 	attackDelay -= 6;
@@ -10,7 +10,7 @@ if (enemey_hp < phasePoint1 && !phasedUpOne) {
 	healing = true;
 	slamLimit++;
 }
-if (enemey_hp < phasePoint2 && !phasedUpTwo) {
+if ( enemyHP < phasePoint2 && !phasedUpTwo) {
 	phase++;
 	shoot_delay -= 90;
 	attackDelay -= 18;
@@ -22,8 +22,6 @@ if (enemey_hp < phasePoint2 && !phasedUpTwo) {
 	}
 	
 }
-path_timer--;
-
 if (healing && shield == noone) {
 	shield = instance_create_layer(x, y, "Instances", oRifterKingShield);
 	shield.image_xscale = 2.5;
@@ -47,8 +45,8 @@ if (instance_exists(shield)) {
 	shield.x = x;
 	shield.y = y
 	image_alpha = 0.35;
-	if (enemey_hp < baseHP) {
-		enemey_hp += 0.0375*instance_number(oRifterTank);
+	if ( enemyHP < baseHP) {
+		 enemyHP += 0.0375*instance_number(oRifterTank);
 	}
 	if (!instance_exists(oRifterTank)) {
 		instance_destroy(shield);
@@ -226,18 +224,4 @@ if (phase > 2 && endDelay > 0) {
 if (phase > 2 && endDelay <= 0 && !endSpawned) {
 	rkPhaseWall();
 	endSpawned = true;
-}
-// pathfinding
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

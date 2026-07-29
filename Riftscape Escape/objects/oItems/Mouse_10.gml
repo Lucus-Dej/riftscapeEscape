@@ -1,1 +1,3 @@
-displayDesc = true;
+if (!randomItem) {
+	displayDesc = true;
+}

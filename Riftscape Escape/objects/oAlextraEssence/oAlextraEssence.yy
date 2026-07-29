@@ -6,8 +6,8 @@
   "name":"oAlextraEssence",
   "overriddenProperties":[],
   "parent":{
-    "name":"mythic",
-    "path":"folders/items/passive/mythic.yy",
+    "name":"*rune",
+    "path":"folders/items/passive/*rune.yy",
   },
   "parentObjectId":{
     "name":"oItems",

@@ -14,7 +14,7 @@ if (bossModApplied) {
 	var startY = baseY + bossBarIndex * spacing;
 	var endY = startY + (16/global.bossBarCount);
 
-	var realHP = (enemey_hp / healthTotal) * 100;
+	var realHP = ( enemyHP / healthTotal) * 100;
 	uiHealth =  lerp(uiHealth, realHP, 0.5);
 
 	var targetSize = 64;

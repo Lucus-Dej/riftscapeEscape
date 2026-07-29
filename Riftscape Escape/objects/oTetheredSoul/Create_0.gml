@@ -2,6 +2,7 @@ minionSpeed = 25;
 follow = oTruePlayer;
 bulletCoolDown = oPlayerManager.uiHealth;
 bulletDelay = bulletCoolDown;
+evil = false;
 xTo = x;
 yto = y
 target = noone;

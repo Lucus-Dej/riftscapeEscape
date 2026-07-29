@@ -1,7 +1,7 @@
 // find workers
 totalBoss = 0;
 with (oGhostBarrier) {
-	if (RoomID1 == other.RoomID) {
+	if (RoomID == other.RoomID) {
 		other.workerDoor1 = id;
 	}
 }

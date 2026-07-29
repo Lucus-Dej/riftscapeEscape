@@ -1,3 +1,4 @@
+if (display)
 switch (buttonID) {
 	case -1: // default. does nothing
 	
@@ -6,15 +7,24 @@ switch (buttonID) {
 	case 0:
 	break;
 	
-	case 1: // start game
-	room_goto(hordeSurvival);
+	case 1: // queue difficulty question. 
+	//room_goto(hordeSurvival);
+	with (oButtonStartMenu) {
+		display = false;
+	}
+	with (oSlider) {
+		display = false;
+	}
+	var diffLayer = "difficultyMenu";
+	layer_set_visible(diffLayer, true);
+	layer_set_visible("Assets_1", false)
 	break;
 	
 	case 2: // settings
 	break;
 	
 	case 3: // quit game
-	game_end();
+	endGameAndSave();
 	break;
 	
 	case 4: // apply settings audio

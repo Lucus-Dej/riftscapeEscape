@@ -20,10 +20,10 @@ if (array_length(dotArray) > 0) {
 			dot.ticks--;
 			dot.time =0;
 			
-			if (variable_instance_exists(dot.target, "enemey_hp")) {
+			if (variable_instance_exists(dot.target, "enemyHP")) {
 				dot.target.flash = 1
 				
-				if (dot.target.enemey_hp <= 0) {
+				if (dot.target. enemyHP <= 0) {
 					if (oItemManager.hasMolotov) {
 						//show_debug_message("I AM MOLOTOVING SO GOOD")
 						with (dot.target) {
@@ -33,6 +33,14 @@ if (array_length(dotArray) > 0) {
 									callDOT(id, dot.damage*2, 16, 12, dotType.fire, other);
 								}
 							}
+						}
+					}
+					if (instance_exists(dot.source) && dot.source.object_index == oDaggPestMinion) {
+						with (oDaggPestMinion) {
+							if (oItemManager.hasLostCrown) {
+								pestPower++;
+							}
+							pestPower++;
 						}
 					}
 					instance_destroy(dot.target)
@@ -48,7 +56,53 @@ if (array_length(dotArray) > 0) {
 						}
 					}
 				} else {
-					enemyTakeDamage(dot.damage, dot.target, true)
+					if (dot.source == oSwordLife) {
+						enemyTakeDamage(dot.damage, dot.target, true, , damageType.sword)
+					} else {
+						if (dot.target.object_index == oVirstBoss) {
+							if (dot.type == dotType.poison && oItemManager.hasAntidote) {
+								dot.ticks = 0;
+								dot.time =0;
+								dot.damage = 0;
+								break;	
+							}
+						}
+						var dmgType = damageType.dotBlood;
+						switch (dot.type) {
+							case dotType.fire:
+							dmgType = damageType.dotFire;
+							break;
+							
+							case dotType.blood:
+							dmgType = damageType.dotBlood;
+							break;
+							
+							case dotType.ice:
+							dmgType = damageType.dotIce;
+							break;
+							
+							case dotType.poison:
+							dmgType = damageType.dotPois;
+							break;
+							
+							
+							
+						}
+						if (dot.type == dotType.ice && instance_exists(dot.target)) {
+							with (dot.target) {
+								if (array_get_index(slowTargetArray, dot.source) == -1) {
+									array_push(slowArray,80);
+									array_push(slowTargetArray, dot.source)
+									array_push(slowTimerArray, dot.ticks*dot.delay);
+									array_push(slowMaxTimerArray, dot.ticks*dot.delay);
+								}
+							}
+						}
+						
+						enemyTakeDamage(dot.damage, dot.target, true, , dmgType)
+						
+					}
+					
 				}
 			}	
 		}

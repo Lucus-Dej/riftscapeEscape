@@ -1,5 +1,15 @@
 damagedList = ds_map_create();
-
+nearbyBullets = ds_list_create();
+dmgRefreshTime = 12;
+skipDeath = false;
+flying = false;
+tempGhostTimer = 0;
+damageArray = [];
+damageTimerArray = [];
+links = [];
+maxLinks = 6;
+linkTimer = 0;
+linkCooldown = 4;
 makeTime = global.gameSteps;
 connecter = noone;
 connected = false;
@@ -23,7 +33,7 @@ canPush = false;
 inCircle = false;
 canParry = true;
 parried = false;
-
+link = noone;
 newDir = 0;
 bounceTarget = noone;
 canLifesteal = false;
@@ -58,8 +68,16 @@ turretDelay = turretCooldown;
 turretApplied = false;
 firedFromTurret = false;
 speedBonus = 0;
+primedForOil = false;
+primedForLightning = false;
+if (oItemManager.hasLightningCharm) {
+	var lightningCheck = irandom_range(1, 10) + global.playerTime*0.75;
+	if (lightningCheck >= 10) {
+		primedForLightning = true;
+	}
+}
 if (oItemManager.hasLaserPointer) {
-	existance *= 2;
+	existance *= 1.2;
 }
 if (oItemManager.hasDartGun) {
 	isTurret = true;
@@ -100,6 +118,9 @@ if (oItemManager.hasBrokenBoomerang) {
 		
 		deceyToZero = false;
 	}
+}
+if (oItemManager.hasMagnet || global.playerCanFly) {
+	flying = true
 }
 var pbCount = instance_number(oPlayerBullets);
 if (pbCount > 999) {

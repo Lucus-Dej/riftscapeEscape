@@ -46,7 +46,7 @@ function wdSummonFireRunners() {
 		var e = irandom(ds_list_size(wdSummonList) - 1);
 		pick = wdSummonList[| e];
 		summon = instance_create_layer(pick.x, pick.y, "Instances", sumEnem);
-		summon.enemey_hp = enemey_hp/8;
+		summon. enemyHP =  enemyHP/8;
 	}
 	ds_list_destroy(wdSummonList)
 }

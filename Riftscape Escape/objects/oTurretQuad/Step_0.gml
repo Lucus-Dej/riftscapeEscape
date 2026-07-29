@@ -5,6 +5,9 @@ if (cooldown > 0) {
 	if (cooldown == 12) {
 		flash = 1;
 	}
+	if (oPlayerManager.hasTrapRune) {
+		cooldown--;
+	}
 } else {
 		for (var i = 0; i < 4; i++) {
 			var dir = 90*i;
