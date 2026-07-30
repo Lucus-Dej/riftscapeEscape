@@ -70,6 +70,7 @@
     {"$GMFolder":"","%Name":"3wasteland","folderPath":"folders/ROOMS/procedualTest/tiles/3wasteland.yy","name":"3wasteland","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"4kingdom","folderPath":"folders/ROOMS/procedualTest/tiles/4kingdom.yy","name":"4kingdom","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"6.1plains","folderPath":"folders/ROOMS/procedualTest/tiles/6.1plains.yy","name":"6.1plains","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"6.5chaoslands","folderPath":"folders/ROOMS/procedualTest/tiles/6.5chaoslands.yy","name":"6.5chaoslands","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"flexRooms","folderPath":"folders/ROOMS/procedualTest/tiles/flexRooms.yy","name":"flexRooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"boss","folderPath":"folders/ROOMS/procedualTest/tiles/flexRooms/boss.yy","name":"boss","resourceType":"GMFolder","resourceVersion":"2.0","tags":[
         "boss",
@@ -81,7 +82,6 @@
     {"$GMFolder":"","%Name":"normalRooms","folderPath":"folders/ROOMS/procedualTest/tiles/flexRooms/normalRooms.yy","name":"normalRooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"ritual","folderPath":"folders/ROOMS/procedualTest/tiles/flexRooms/ritual.yy","name":"ritual","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"tallRooms","folderPath":"folders/ROOMS/procedualTest/tiles/flexRooms/tallRooms.yy","name":"tallRooms","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"6.5chaoslands","folderPath":"folders/ROOMS/procedualTest/tiles/6.5chaoslands.yy","name":"6.5chaoslands","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"roomstuff","folderPath":"folders/roomstuff.yy","name":"roomstuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"doorstuff","folderPath":"folders/roomstuff/doorstuff.yy","name":"doorstuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"flexWALL","folderPath":"folders/roomstuff/flexWALL.yy","name":"flexWALL","resourceType":"GMFolder","resourceVersion":"2.0",},

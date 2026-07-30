@@ -158,11 +158,9 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		
 		case oThePathForward:
 		//dropID = instance_create_layer(x, y, "Instances", oItemFlag);
-		luckBonus += 10;
-		var newItem = rollItem(true);
-		luckBonus -= 10;
+		var newItem = rollItem(true,,,10);
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", newItem);
-		global.itemCharges += 3;
+		global.itemCharges += 6;
 		break;
 		
 		case oDeathBook:

@@ -973,7 +973,7 @@ function refreshItem (_rairty, _item) {
 		break;
 	}
 }
-function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPool = true) {
+function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPool = true, _bouns = 0) {
 	var totalPool = 0;
 	var simpleMax = -1;
 	var rareMax = -1;
@@ -1007,7 +1007,7 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 		ultraMax = totalPool;
 	}
 
-	var j = irandom(100) + oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + global.playerTime;
+	var j = irandom(100) + oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + _bouns + global.playerTime;
 	//j = clamp(j, 0, totalPool - 1);
 	//show_debug_message(j)
 	if (j <0) {
@@ -1051,24 +1051,21 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 		} else {
 			chosenList = oItemManager.simpleItemList;
 		}
-		show_debug_message(chosenList[| 1])
 	}
 	if (_typeOfSeach == itemSearchType.rune && ds_list_size(oItemManager.runeItemList) > 0) {
 		chosenList = oItemManager.runeItemList;
 	} else if (j >= ultraMax && ds_list_size(oItemManager.ultraItemList) > 0) {
 		chosenList = oItemManager.ultraItemList;
 	}
-	show_debug_message(chosenList[| 1])
+	
 	if (_typeOfSeach == itemSearchType.random && ds_list_size(oItemManager.masterItemList) > 0) {
 		chosenList = oItemManager.masterItemList;
-	} else {
+	} else if (_typeOfSeach == itemSearchType.random) {
 		chosenList = oItemManager.simpleItemList;
 	}
-	show_debug_message(chosenList[| 1])
 	var i = irandom(ds_list_size(chosenList) - 1);
 	var item = chosenList[| i];
 	var deleteIndex = i;
-	show_debug_message(chosenList[| 1])
 	if (ds_list_find_index(oItemManager.bookList, item) != -1 && _allowBooks) {
 		var rerollFlag = true;
 		
@@ -1083,13 +1080,11 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 				}
 			}
 		}
-		show_debug_message(chosenList[| 1])
 		if (rerollFlag) {
 			var l = irandom(ds_list_size(oItemManager.simpleItemList) - 1);
 			item = oItemManager.simpleItemList[| l];
 		}
 	}
-	show_debug_message(chosenList[| 1])
 	if (chosenList == oItemManager.ultraItemList) {
 		oItemManager.ultraPool += 10;
 	}
@@ -1133,9 +1128,9 @@ function removeFromItemPool (_item) {
 		}
 		break;
 		case 4:
-		var r = ds_list_find_index(oItemManager.runeItemList, _item);
-		if (r != -1) {
-			ds_list_delete(oItemManager.runeItemList, r)
+		var ru = ds_list_find_index(oItemManager.runeItemList, _item);
+		if (ru != -1) {
+			ds_list_delete(oItemManager.runeItemList, ru)
 		}
 		break;
 		case 5:
