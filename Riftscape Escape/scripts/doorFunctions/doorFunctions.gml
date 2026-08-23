@@ -6,6 +6,7 @@ function powerDoor(_rID, _soulCheck = false){
 	}
 }
 function powerDoorByID(_ID, _soulCheck = false) {
+	global.damageCheck = false;
 	with (_ID) {
 		if (_soulCheck) {
 			if (instance_exists(soulMate)) {

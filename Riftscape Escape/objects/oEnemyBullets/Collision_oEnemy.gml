@@ -1,4 +1,7 @@
-/*if (owner == noone) {
+if (canFriendlyFireOwner  && iframe <= 0) {
+	enemyTakeDamage(damage*0.1, other);
+	instance_destroy();
+}/*if (owner == noone) {
 	owner = other;
 }
 

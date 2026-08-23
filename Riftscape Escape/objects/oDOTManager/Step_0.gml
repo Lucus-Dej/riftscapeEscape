@@ -45,7 +45,7 @@ if (array_length(dotArray) > 0) {
 					}
 					instance_destroy(dot.target)
 					array_delete(dotArray, i, 1);
-					if (dot.source == oSwordLife) {
+					if (dot.source == oSwordLife || dot.source == oSwordJab) {
 						if (dot.target.xp > 0) {
 							oPlayerManager.swordKills += 1;
 							oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*1.3 - 1.2;
@@ -56,8 +56,17 @@ if (array_length(dotArray) > 0) {
 						}
 					}
 				} else {
-					if (dot.source == oSwordLife) {
+					if (dot.type == dotType.poison && oItemManager.hasRadioactiveMaterial) {
+							var radioCheck = irandom_range(1, 8)+global.playerTime*0.2;
+							if (radioCheck >= 8) {
+								dot.ticks *= 1.4;
+								dot.damage *= 1.1;
+							}
+						}
+					if (dot.source == oSword) {
 						enemyTakeDamage(dot.damage, dot.target, true, , damageType.sword)
+					} else if (dot.source == oDodgeImpact) {
+						enemyTakeDamage(dot.damage, dot.target, true, , damageType.dodge)
 					} else {
 						if (dot.target.object_index == oVirstBoss) {
 							if (dot.type == dotType.poison && oItemManager.hasAntidote) {

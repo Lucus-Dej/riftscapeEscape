@@ -2,7 +2,9 @@ inEssenceHuskCircle = false;
 isLightExcluded = false;
 hsp = 0;
 vsp = 0;
+immuneToContactDmg = false;
 orbitCount = 0;
+torzPower = 0;
 hasDamaged = false;
 inCircle = false;
 visual = noone;
@@ -12,6 +14,11 @@ damageTimerArray = [];
 dmgRefreshTime = 40;
 locked = false;
 lockedTimer = 0;
-show_debug_message("Window: " + string(window_get_width()) + " x " + string(window_get_height()));
-show_debug_message("GUI: " + string(display_get_gui_width()) + " x " + string(display_get_gui_height()));
-show_debug_message("App Surface: " + string(surface_get_width(application_surface)) + " x " + string(surface_get_height(application_surface)));
+if (oPlayerManager.hasVirstRune) {
+	for (var i = 0; i < array_length(oItemManager.itemList); i++) {
+		var byebyeItem = oItemManager.itemList[irandom(array_length(oItemManager.itemList)-1)];
+		itemRemove(byebyeItem)
+		var item = rollItem(true, itemSearchType.random);
+		itemAdd(item);
+	}
+}

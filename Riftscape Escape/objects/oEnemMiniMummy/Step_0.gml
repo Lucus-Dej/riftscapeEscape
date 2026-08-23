@@ -48,6 +48,6 @@ if (l == 1) {
 	sand.image_xscale = 0.1;
 	sand.image_yscale = 0.1;
 	if (isBoss) {
-		sand.existance *= hpMult*1.5;
+		sand.existance *= hpMult*1.1;
 	}
 }

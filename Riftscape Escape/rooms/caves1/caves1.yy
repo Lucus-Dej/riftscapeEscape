@@ -281,7 +281,7 @@
         {"$GMRInstance":"v4","%Name":"inst_6FBACFC3","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6FBACFC3","objectId":{"name":"oAbyss","path":"objects/oAbyss/oAbyss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":928.0,"y":416.0,},
         {"$GMRInstance":"v4","%Name":"inst_50ACD5E6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_50ACD5E6","objectId":{"name":"oAbyss","path":"objects/oAbyss/oAbyss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":864.0,"y":416.0,},
         {"$GMRInstance":"v4","%Name":"inst_2B38BA68","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2B38BA68","objectId":{"name":"oAbyss","path":"objects/oAbyss/oAbyss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":800.0,"y":416.0,},
-        {"$GMRInstance":"v4","%Name":"inst_446A323","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_446A323","objectId":{"name":"oTurret","path":"objects/oTurret/oTurret.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":192.0,},
+        {"$GMRInstance":"v4","%Name":"inst_446A323","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_446A323","objectId":{"name":"oTurret","path":"objects/oTurret/oTurret.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":160.0,},
         {"$GMRInstance":"v4","%Name":"inst_8497176","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_8497176","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1056.0,"y":352.0,},
         {"$GMRInstance":"v4","%Name":"inst_550DCBBF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_550DCBBF","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":288.0,"y":352.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
@@ -398,8 +398,8 @@
   ],
   "name":"caves1",
   "parent":{
-    "name":"normalRooms",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/normalRooms.yy",
+    "name":"normal",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/1NORMALGEN/diff4-6/normal.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -423,6 +423,7 @@
     "down",
     "left",
     "right",
+    "difficulty:4",
   ],
   "views":[
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

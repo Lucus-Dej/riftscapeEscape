@@ -1,3 +1,6 @@
+if (tempEnem) {
+	exit;
+}
 if (!sub) {
 	if (effectHorsePest && instance_exists(oDaggPestMinion)) {
 		with (oDaggPestMinion) {
@@ -14,7 +17,9 @@ if (!sub) {
 			}
 		}
 	}
-	oPlayerManager.xpTotal += xp*oPlayerManager.xpMult/oPlayerManager.xpRuneReduction;
+	var xpAdd = xp*oPlayerManager.xpMult/oPlayerManager.xpRuneReduction;
+	addDamageNumber(display_get_gui_width()*0.49, 96, xpAdd, c_yellow, "+", true,,"XP");
+	oPlayerManager.xpTotal += xpAdd;
 }
 if (path_exists(path)) {
     path_delete(path);
@@ -27,7 +32,7 @@ if (isBoss) {
 		}
 	}
 }
-if (!denyHP || !sub) {
+if (!denyHP && !sub) {
 	var blood = instance_create_layer(x, y, "Items", oRiftBloodSplatter)
 
 	blood.image_xscale = image_xscale;
@@ -35,5 +40,5 @@ if (!denyHP || !sub) {
 }
 if (oPlayerManager.hasExplosiveRune && !sub) {
 	var explodeRune = instance_create_layer(x, y, "Instances", oExplosiveRuneBomb);
-	explodeRune.damage = 30 + (damage);
+	explodeRune.damage = 25 + (damage);
 }

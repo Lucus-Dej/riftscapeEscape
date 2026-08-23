@@ -11,12 +11,11 @@ global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal
 event_user(0);
 global.damageNumbers = [];
-global.inCombat = false;
 global.playerContactDmg = false;
 global.playerCanFly = false;
 global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 mp_grid_add_instances(global.Grid, oColl, true);
- 
+global.damageCheck = false;
 global.flyGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 mp_grid_add_instances(global.flyGrid, oIndestructable, true)
 lastDamaged = noone;
@@ -63,7 +62,11 @@ enum fateMinionMode {
 	returning,
 	recharging
 }
-
+swordJabTimerArray = [];
+swordJabObjArray = [];
+swordJabDuration = 600;
+swordReleaseTime = 11;
+swordHoldCount = 0;
 // health stuff
 healthTotal = 100;
 max_hp = healthTotal;
@@ -82,7 +85,7 @@ overhealthFlag = true;
 //xp
 xpMult = 1;
 if (global.difficulty == 4) {
-	xpMult = 0.8;
+	xpMult = 0.75;
 }
 xpTotal = 0;
 xpLevel = 1;
@@ -124,6 +127,7 @@ abilityColor = [c_blue, c_orange, c_aqua, c_aqua, c_purple];
 
 
 //basic player stat calcs
+staticItemDmgPercent  = 1;
 superCoolCooldownBonus = 0;
 cooldownRate = 0;
 baseCooldown = global.playerThought;
@@ -158,23 +162,24 @@ enum damageType {
 }
 
 global.contactDmg = 0;
-dodgeContactDmg = 1;
+dodgeContactDmg = 0;
 addHPBonus = 0;
 baseSpeed = 7;
 statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;
 
-global.bullet_delay = 36;
+global.bullet_delay = 32;
 baseBulletDelay = global.bullet_delay;
 overHealthBulletDelay = global.playerEssence/4;
 statBulletDelay = 0;
 statBulletDebuff = 0;
 
 baseDamage = 0.95;
-statDamage = 0;
+fateDamageBuff = 0;
 overHealthDamageBuff = 0;
 
+global.healthPenalty = 1;
 global.playerSpeedPenalty = 0;
 global.player_speed = baseSpeed;
 global.playerSword = false;
@@ -202,7 +207,7 @@ canRich = false;
 canPierce = false;
 inOverhealth = false;
 global.player_health = 100;
-
+canDestroyRune = false;
 //item specific things
 boomerangDmg = 0;
 directorsDebuff = 1;
@@ -229,8 +234,10 @@ confluxCost = 2;
 xpThreshdolds = [];
 
 //rune stuff
-validRuneArray = [oItemDenyRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oFirstPRune, oHauntedRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
+hasFirstPRune = false;
+hasHauntedRune = false;
 hasItemDenyRune = false;
 hasPowerUpRune = false
 hasBossRune = false;
@@ -256,5 +263,7 @@ xpRuneReduction = 1;
 krostRuneDebuff = 1;
 lockAbilities = false;
 decayAbilites = false;
-siferRunePauseCooldown = 90;
+siferRunePauseCooldown = 180;
 sifterRunePauseTimer = 0;
+
+hpSoftCap = max_hp;

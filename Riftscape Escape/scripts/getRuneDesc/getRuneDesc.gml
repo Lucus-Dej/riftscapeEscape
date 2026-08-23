@@ -5,6 +5,12 @@ function getRuneDesc(_rune){
 	//}
 	var runeDesc = "";
 	switch (_rune) {
+		case oFirstPRune:
+		desc = "First Person Rune: An Adjustment To Your View";
+		break;
+		case oHauntedRune: 
+		desc = "Haunted Rune: Summon A Persistent Specter That Will Deal Half Your Health On Contact";
+		break;
 		case oItemDenyRune:
 		desc = "Denial Rune:  Two Random Rare+ Items Are Disabled At Start Of Room";
 		break;
@@ -15,16 +21,16 @@ function getRuneDesc(_rune){
 		desc = "Verirbose's Rune: Boss Door Is Locked Until Floor Completion. Minimap Is Disabled";
 		break;
 		case oTorzolRune:
-		desc = "Torzol's Rune: Up To 60% Of Health Is Drained Over Time";
+		desc = "Torzol's Rune: Up To 40% Of Health Is Drained Over Time";
 		break;
 		case oVirstRune:
-		desc = "Virst's Rune: All Items Are Random. All Item Pools Are Mixed";
+		desc = "Virst's Rune: All Items Are Randomized At Start Of Floor";
 		break;
 		case oBossRune:
 		desc = "Boss Rune: Chance For Bosses To Spawn In Normal Rooms";
 		break;
 		case oTrapRune:
-		desc = "Trap Rune: Traps Activate Much Quicker";
+		desc = "Trap Rune: Traps Activate And Fire Much Quicker";
 		break;
 		case oKrostRune:
 		desc = "Krost's Rune: Movement Speed Is Reduced Inside Combat";
@@ -51,7 +57,7 @@ function getRuneDesc(_rune){
 		desc = "Luck Rune: Luck Is Massively Reduced";
 		break;
 		case oOverhealthRune:
-		desc = "Overhealth Rune: Overhealth Is Disabled";
+		desc = "Overhealth Rune: Overhealth No Longer Regens Over Time";
 		break;
 		case oXPReducedRune:
 		desc = "XP Rune: XP Gain Is Halved";
@@ -66,6 +72,24 @@ function getRuneDesc(_rune){
 function enableRune(_rune){
 	oItemManager.dustCount++;
 	switch (_rune) {
+		case oFirstPRune:
+		oPlayerManager.hasFirstPRune = true;
+		with (oCamera) {
+			window_mouse_set_locked(true);
+			cam = camera_create_view(0, 0, global.resW, global.resH);
+			view_enabled = true;
+			view_visible[0] = true;
+			view_camera[0] = cam;
+
+			projMat = matrix_build_projection_perspective_fov(80, -global.resW/global.resH, 3, 3000);
+			camera_set_proj_mat(cam, projMat);
+			draw_clear_alpha(c_black, 0);
+		}
+		start3d()
+		break;
+		case oHauntedRune:
+		oPlayerManager.hasHauntedRune = true;
+		break;
 		case oItemDenyRune:
 		oPlayerManager.hasItemDenyRune = true;
 		break;
@@ -125,6 +149,15 @@ function enableRune(_rune){
 }
 function disableRune(_rune){
 	switch (_rune) {
+		case oFirstPRune:
+		oPlayerManager.hasFirstPRune = false;
+		break;
+		case oHauntedRune:
+		oPlayerManager.hasHauntedRune = false;
+		if (instance_exists(oHauntedRuneSpecter)) {
+			instance_destroy(oHauntedRuneSpecter);
+		}
+		break;
 		case oItemDenyRune:
 		oPlayerManager.hasItemDenyRune = false;
 		break;

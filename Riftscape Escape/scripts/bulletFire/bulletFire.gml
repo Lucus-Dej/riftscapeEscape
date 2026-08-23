@@ -6,10 +6,17 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 	}
 	var b = noone;
 	if (instance_exists(_owner) && _owner.object_index == oTruePlayer) {
+		
 		if (global.playerCanFly) {
 			 b = instance_create_layer(_x, _y, "Flying", _bulletType);
 		} else {
 			 b = instance_create_layer(_x, _y, "Instances", _bulletType);
+		}
+		if (oItemManager.hasPoisonCharm && oTruePlayer.currentSpeed == 0) {
+			var poisCheck = irandom_range(1, 12);
+			if (poisCheck + global.playerTime*0.6 >= 12) {
+				b.canPois = true;
+			}
 		}
 		if (oItemManager.hasBottleOil) {
 			var oilCheck = irandom(15) + global.playerTime*0.4;
@@ -38,6 +45,8 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 		}
 		if (variable_instance_exists(b, "currentSpeed")) {
 			b.currentSpeed *= tempDiffSpeedMult;
+			b.homeSpeed *= tempDiffSpeedMult;
+			b.turnSpeed *= tempDiffSpeedMult;
 		}
 		if (global.playerInvis) {
 			_dir = irandom(360);
@@ -167,8 +176,8 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 		 b.currentSpeed = _speed;
 	 }
 	 if (oItemManager.hasFireCharm) {
-		 var fireCharmCheck = irandom_range(0, 10) + global.playerTime*0.75;
-		 if (fireCharmCheck >= 10) {
+		 var fireCharmCheck = irandom_range(0, 8) + global.playerTime*0.75;
+		 if (fireCharmCheck >= 8) {
 			var fCount = 6;
 			var spacing = 10;
 			var startingAng = _dir - (spacing*fCount)/2;
@@ -180,8 +189,8 @@ function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 		 }
 	 }
 	  if (oItemManager.hasIceCharm) {
-		 var iceCharmCheck = irandom_range(0, 10) + global.playerTime*0.75 - instance_number(oSnowStorm)*0.5;
-		 if (iceCharmCheck >= 10) {
+		 var iceCharmCheck = irandom_range(0, 8) + global.playerTime*0.75 - instance_number(oSnowStorm)*0.5;
+		 if (iceCharmCheck >= 8) {
 			var snowStorm = instance_create_layer(_x, _y, "Flying", oSnowStorm);
 			snowStorm.direction = _dir;
 			snowStorm.speed = _speed*0.6;

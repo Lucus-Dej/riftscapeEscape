@@ -11,6 +11,7 @@ if (array_length(spawnArray) >= 3 && !instance_exists(oEnemy) && !finished) {
 	disText = "Click An Item In Your Inventory To Reroll It";
 	finished = true;
 	unpowerDoor(RoomID);
+	endOfCombatCheck()
 	powerTorzol();
 	with (oGhostBarrier) {
 		if (RoomID == other.RoomID) {

@@ -1,0 +1,11 @@
+existenceTot = 0;
+existence = 0;
+existOnKill = 0;
+dmgType = damageType.basic;
+dmg = 0;
+ticks = 0;
+tickDelay = 0;
+baseScale = 8;
+image_alpha = 0.5
+image_xscale = baseScale;
+image_yscale = baseScale;

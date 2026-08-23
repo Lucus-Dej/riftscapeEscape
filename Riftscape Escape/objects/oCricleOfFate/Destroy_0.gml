@@ -4,3 +4,6 @@ if (doRefund) {
 } else {
 	oPlayerManager.circleTotal = 0;
 }
+if (oPlayerManager.hasCircleThought) {
+		oPlayerManager.thoughtCircleFireRateBoost = 0;
+	}

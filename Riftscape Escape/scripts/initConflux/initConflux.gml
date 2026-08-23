@@ -75,7 +75,7 @@ function initConflux(){
 		valid = true;
 		image_index = 0;
 	}
-	with oUpgradeTokenStaticoUpgradeTokenStatic {
+	with oUpgradeTokenStatic {
 		image_index = 0;
 	}
 	

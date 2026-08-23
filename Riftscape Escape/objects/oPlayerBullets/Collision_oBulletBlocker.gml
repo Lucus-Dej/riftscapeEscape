@@ -6,7 +6,6 @@ if (!canBounce && bounceNum <= 0) {
 	}
 	
 } else if (bounceNum > 0) {
-	
 	// mark the wall that it bounced from via other.id
 	ignoreWall = other.id;
 	var searchRadius = 960;
@@ -82,7 +81,7 @@ if (!canBounce && bounceNum <= 0) {
 		damage *= 0.9;
 	}
 	if (oItemManager.hasHeartPendent) {
-		
+		damage *= 0.65;
 		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage, object_index, self);
 		copyBullet(id, copy)
 		newDir -= 15;
@@ -91,7 +90,11 @@ if (!canBounce && bounceNum <= 0) {
 	copyBullet(id, copy)
 	instance_destroy()
 } else {
-	instance_destroy()
+	if (!flying && tempGhostTimer <= 0) {
+		instance_create_layer(x, y, "Instances", oBoom);
+		instance_destroy();
+	}
+	//instance_destroy()
 }
 
      

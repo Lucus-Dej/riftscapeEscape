@@ -8,6 +8,3 @@ audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 2, global.sfxAudio);
 instance_destroy(other);
 instance_destroy(boom);
 }
-if (oPlayerManager.hasSwordReality) {
-	oPlayerManager.realitySwordBonus += 1;
-}

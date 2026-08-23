@@ -10,7 +10,6 @@ if (!ds_map_exists(damagedList, hit.id)) {
 	if (oPlayerManager.hasCrystalEssence) {
 		blood = instance_create_layer(other.x, other.y, "Instances", oEssenceCrystal)
 	}
-   instance_destroy(other);
    oPlayerManager.hasBombKilled = true;
    global.playerKilled = true;
 } 

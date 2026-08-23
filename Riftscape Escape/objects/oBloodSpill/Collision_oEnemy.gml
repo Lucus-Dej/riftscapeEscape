@@ -1,1 +1,1 @@
-callDOT(other, global.playerEssence/5, 6, 12, dotType.blood, object_index);
+callDOT(other, dmg, 6, 12, dotType.blood, object_index);

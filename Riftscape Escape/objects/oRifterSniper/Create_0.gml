@@ -7,7 +7,7 @@ shoot_delay = 160;
 enemSpeed = 0.2;
 bullet_speed = 17.5;
 baseSpeed = enemSpeed;
-damage = 20.5;
+damage = 38.5;
 searchPlayer();
 chargeCooldown = 18;
 chargeTime = chargeCooldown;

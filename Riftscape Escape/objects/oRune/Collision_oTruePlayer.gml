@@ -2,6 +2,7 @@ activeDuration = 90;
 
 if (keyboard_check_pressed(vk_space) && object_index != oDullRune) {
 	if (instance_exists(oRuneRoomFlag)) {
+		endOfCombatCheck()
 		unpowerDoor(RoomID);
 		powerTorzol();
 		with (oGhostBarrier) {

@@ -1,3 +1,9 @@
 if (levelMet && !hasChosen && valid) {
-	image_alpha = 0.5;
+	faded = true;
+	image_alpha = 0.5 - combatAlphaPenalty;
+	with (oUpgradeTokenReal) {
+		if (other.buttonID == upgradeID) {
+			doFlash = true;
+		}
+	}
 }

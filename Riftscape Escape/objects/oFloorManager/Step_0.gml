@@ -346,7 +346,51 @@ if (floorState == genState.complete ) {
 			}
 		}
 	}
-	
+	var pureIndex = 0;
+	var pureCheck = irandom_range(1, 100) + global.playerTime*0.6;
+	if (global.difficulty == 4) {
+		pureCheck += 10;
+	}
+	if (pureCheck >= 65 && !evilRoomFlag && oItemManager.dustCount > 0) {
+		var pureFlag = false;
+		pureIndex = irandom(array_length(bossDoorArray)-1);
+		while (pureIndex == bossIndex || pureIndex == itemIndex || pureIndex == confluxIndex || pureIndex == ritualIndex || pureIndex == arenaIndex || pureIndex == runeIndex) {
+			pureIndex = irandom(array_length(bossDoorArray)-1);
+		}
+		var pureDoor = bossDoorArray[pureIndex];
+		dir = pureDoor.doorDir;
+		var pureR = findSpecialRoom(dir, "pure");
+		with (pureDoor) {
+			doorType = "pure";
+			show_debug_message("pure door made")
+			connectRoom(id, dir, pureR, Manager1, false);
+			if (invalid) {
+				doorType = "null";
+				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+					if (!pureFlag) {
+						show_debug_message("trying again: pure")
+						var newpureDoor = other.bossDoorArray[i]; 
+						pureIndex = i;
+						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+						dir = newpureDoor.doorDir;
+						show_debug_message(dir)
+						BossR = findSpecialRoom(dir, "pure");
+						//connectRoom(id, req.dir, req.room, req.owner);
+						with (newpureDoor) {
+							doorType = "pure";
+							invalid = false;
+							connectRoom(id, dir, pureR, Manager1, false);
+							if (!invalid) {
+								doorType = "pure";
+								pureFlag = true;
+							}
+						}
+						other.retryCount++;
+					}
+				}
+			}
+		}
+	}
 	if (evilRoomFlag) {
 		evilRoomFlag = false;
 		global.initEvilRoom = false;
@@ -364,9 +408,9 @@ if (floorState == genState.complete ) {
 		floorID = other.floorID;
 		diffPool = other.difficultyPool * random_range(0.9, 1.5);
 		if (global.difficulty == 1) {
-			diffPool *= 0.8;
+			diffPool *= 0.7;
 		} else if (global.difficulty >= 3) {
-			diffPool *= 1.2;
+			diffPool *= 2;
 		} 
 		var request = getEnemPool(floorID)
 		bossArray = request.bArray;
@@ -392,6 +436,7 @@ if (floorState == genState.complete ) {
 			
 		}
 	}
+	genFloor()
 	instance_destroy(oRoomReserve)
 	floorState = genState.done;
 	show_debug_message(retryCount)

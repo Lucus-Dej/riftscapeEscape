@@ -4,15 +4,16 @@ if (existance <= 0) {
 	enem.RoomID = RoomID;
 	enem.Manager = Manager;
 	if (challengeEgg) {
-		enem.xp *= 1.2;
+		enem.xp *= 1.25;
 	}
 	if (bossEgg) {
-		enem.xp *= 1.5;
+		enem.xp *= 2.5;
 		enem.isBoss = true;
 		bossMod(enem);
 	}
-	with (Manager) {
-		diffPool -= enem.spawnWeight;
+	if (Manager.object_index == oWavebasedManager && !bossEgg) {
+		enem.xp *= 0.5;
 	}
+	
 	instance_destroy();
 }

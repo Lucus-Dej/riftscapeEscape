@@ -9,9 +9,9 @@ if (follow != noone && instance_exists(follow)) {
 }
 
 if (oItemManager.hasLostCrown) {
-	minionCheck = irandom_range(0, 150);
+	minionCheck = irandom_range(0, 120);
 } else {
-	minionCheck = irandom_range(0, 250);
+	minionCheck = irandom_range(0, 360);
 }
 
 if (minionCheck == 0 && instance_exists(oEnemy)) {

@@ -401,7 +401,7 @@
         {"$GMRInstance":"v4","%Name":"inst_48B659C9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_48B659C9","objectId":{"name":"oFlexWall","path":"objects/oFlexWall/oFlexWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":640.0,},
         {"$GMRInstance":"v4","%Name":"inst_6CE5820F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6CE5820F","objectId":{"name":"oFlexWall","path":"objects/oFlexWall/oFlexWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1120.0,"y":640.0,},
         {"$GMRInstance":"v4","%Name":"inst_2E634EDA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2E634EDA","objectId":{"name":"oTurretFire","path":"objects/oTurretFire/oTurretFire.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":320.0,},
-        {"$GMRInstance":"v4","%Name":"inst_75B0D579","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_75B0D579","objectId":{"name":"oTurretFire","path":"objects/oTurretFire/oTurretFire.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":1120.0,},
+        {"$GMRInstance":"v4","%Name":"inst_75B0D579","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_75B0D579","objectId":{"name":"oTurretFire","path":"objects/oTurretFire/oTurretFire.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":1088.0,},
         {"$GMRInstance":"v4","%Name":"inst_7EBDBDDD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7EBDBDDD","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":352.0,"y":704.0,},
         {"$GMRInstance":"v4","%Name":"inst_45021557","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_45021557","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":992.0,"y":704.0,},
         {"$GMRInstance":"v4","%Name":"inst_6448715F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6448715F","objectId":{"name":"oFlexWall","path":"objects/oFlexWall/oFlexWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":768.0,},
@@ -611,7 +611,7 @@
   "name":"flexRoomCircle1",
   "parent":{
     "name":"circle",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/circle.yy",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/1NORMALGEN/diff4-6/circle.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -635,6 +635,7 @@
     "down",
     "left",
     "right",
+    "difficulty:6",
   ],
   "views":[
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

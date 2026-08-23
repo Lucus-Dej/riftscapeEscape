@@ -1,16 +1,16 @@
 if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 	resW = window_get_width();
-		resH = window_get_height();
+	resH = window_get_height();
 	unpause = false;
     pause = !pause;
     if (pause) {
 		
 		var cam = view_camera[0];
-		var camW = camera_get_view_width(cam);
-		var camH = camera_get_view_height(cam);
+		var camW = display_get_gui_width();
+		var camH = display_get_gui_height();
 		var spacing = 128;
-		var centX = camera_get_view_x(cam) + camera_get_view_width(cam) * 0.5;
-		var centY = camera_get_view_y(cam) + camera_get_view_height(cam) * 0.5;
+		var centX = camW * 0.5;
+		var centY = camH * 0.5;
 		pauseSurf = surface_create(resW, resH);
 		
 		resButton = instance_create_layer(centX, centY-spacing*2, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
@@ -19,7 +19,9 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 		quitButton = instance_create_layer(centX, centY+spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		background = instance_create_layer(centX, centY, "Instances", oPauseBackground);
 		
-
+		if (oPlayerManager.hasFirstPRune) {
+			window_mouse_set_locked(false)
+		}
 		resButton.buttonID = 11;
 		resButton.drawText = "Resume Game";
 		settingButton.drawText = "Settings";
@@ -53,7 +55,9 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 		}
 		background = noone;
         //layer_set_visible(oPauseManager.pauseMenu, false);
-
+		if (oPlayerManager.hasFirstPRune) {
+			window_mouse_set_locked(true)
+		}
         if (surface_exists(pauseSurf))
             surface_free(pauseSurf);
     }

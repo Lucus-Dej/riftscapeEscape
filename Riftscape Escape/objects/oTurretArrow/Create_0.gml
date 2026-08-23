@@ -15,8 +15,16 @@ lineInterval = 1;
 image_angle = targetDir;
 checker = instance_create_layer(x, y, "Instances", oArrowTurretBoundary);
 checker.image_angle = targetDir;
-checker.image_yscale = lengthDist;
-checker.image_alpha = 0;
+extensionLimit = lengthDist;
+extensionCheck = 0;
+with (checker) {
+	while (!place_meeting(x, y, oBulletBlocker) && other.extensionCheck < other.extensionLimit) {
+		image_yscale+= 1;
+		other.extensionCheck++;
+	}
+}
+//checker.image_yscale = lengthDist;
+checker.image_alpha = 0.2;
 checker.host = id;
 fire = false;
 //checker.x += lengthdir_x(lengthDist / 2, targetDir + 90);

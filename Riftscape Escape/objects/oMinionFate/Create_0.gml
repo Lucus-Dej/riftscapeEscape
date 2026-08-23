@@ -19,7 +19,7 @@ damageArray = [];
 damageTimerArray = [];
 dmgRefreshTime = 40;
 primed = false;
-baseDmg = 0.2;
+baseDmg = 0.6;
 damage = baseDmg;
 
 mode = fateMinionMode.idle;

@@ -1,4 +1,4 @@
-if (!other.parried && oPlayerManager.hasSwordTime && other.canParry) {
+if (!other.parried && oPlayerManager.hasSwordTime && other.canParry && other.object_index != oSwordLife) {
 	audio_play_sound_at(aPlayerBoom, x, y, 0, 0, 0, 0, 0, 2, global.sfxAudio);
 	instance_create_layer(x, y, "Instances", oBoom)
 	parryBullet = instance_create_layer(x, y, "Instances", global.chosenBullet)

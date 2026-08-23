@@ -1,3 +1,5 @@
+gpu_push_state();
+gpu_set_fog(false, 0,0,0)
 if (instance_exists(follow) && (!oPlayerManager.inLevelMenu && !oPlayerManager.inTokenMenu) && !oPlayerManager.hasVeribroseRune) {
 	var map_x = display_get_gui_width() - 216;
 	var map_y = 16;
@@ -19,3 +21,4 @@ if (instance_exists(follow) && (!oPlayerManager.inLevelMenu && !oPlayerManager.i
 	draw_surface(minimapSurface, map_x, map_y);
 	draw_set_colour(c_red);
 }
+gpu_pop_state();

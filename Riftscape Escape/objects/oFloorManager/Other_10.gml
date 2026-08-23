@@ -17,7 +17,7 @@ if (floorState == genState.done && !floorCompleteFlag) {
 		audio_play_sound(aRoomClear, 2, false, global.sfxAudio);
 	}
 } 
-if (oPlayerManager.hasVeribroseRune) {
+if (oPlayerManager.hasVeribroseRune && !floorCompleteFlag) {
 	var check = true;
 	for (var i = 0; i < array_length(veribroseLockArray); i++) {
 		var rmMnger = veribroseLockArray[i];

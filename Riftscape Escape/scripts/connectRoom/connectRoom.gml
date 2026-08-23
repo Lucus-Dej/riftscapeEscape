@@ -6,7 +6,6 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 	if (_room == noone) return;
 	var roomData = room_get_info(_room, false, true)
 	var roomInstData = roomData.instances;
-	
 	var neededDoorObj = getMatchingDoorObject(_doorConnector.object_index);
 	var templateDoor = noone;
 	
@@ -139,7 +138,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 			newInst.ID = ritualID;
 			ritualID++;
 		}
-		if (obj == oPowerUpConflux || obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
+		if (obj == oPowerUpConflux || obj == oPurificationTable || obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
 			specialRoom = true;	
 		}
 		
@@ -150,6 +149,9 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 	//roomManager.RoomID = oFloorManager.IDCount + 1;
 	roomManager.diffPool = oFloorManager.difficultyPool;
 	roomManager.floorID = oFloorManager.floorID;
+	roomManager.mask = instance_create_layer(left, top, "Flying", oRoomMask);
+	roomManager.mask.RoomID = oFloorManager.IDCount + 1;
+	setClaimBounds(roomManager.mask, left, top-128, right, bottom);
 	if (specialRoom) {
 		roomManager.specialRoom = true;
 	}
@@ -204,16 +206,39 @@ function getOppositeDoorDir (_dir) {
 	}
 }
 
-function findRoom (_sideAngle) {
+function findRoom (_sideAngle, _minDif = 0, _maxDif = 10) {
 	random_get_seed()
+	if (global.difficulty >= 3) {
+		_maxDif+=3;
+	} else if (global.difficulty == 1) {
+		if (_minDif > 0) {
+			_minDif -= 1;
+		}
+		if (_maxDif > 4) {
+			_maxDif -= 1;
+		}
+	}
 	var angle = getOppositeDoorDir(_sideAngle)
-	var validPool  = tag_get_asset_ids(angle, asset_room)
+	var assetArray = [angle];
+	var validPool  = tag_get_asset_ids(assetArray, asset_room)
 	var filtered = [];
 	for (var i = 0; i < array_length(validPool); i++) {
 		var roomCheck = validPool[i];
 		var tags = asset_get_tags(roomCheck);
-		 if (!array_contains(tags, "conflux") && !array_contains(tags, "item") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
-			 array_push(filtered, roomCheck);
+		 if (!array_contains(tags, "conflux") && !array_contains(tags, "item") && !array_contains(tags, "pure") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
+			 
+			 var difficulty = -1;
+			 
+			 for (var j = 0; j < array_length(tags); j++) {
+				 var tag = tags[j];
+				 if (string_starts_with(tag, "difficulty:")) {
+					 difficulty = real(string_copy(tag, 12, string_length(tag)));
+					 break;
+				 }
+			 }
+			 if (difficulty >= _minDif && difficulty <= _maxDif) {
+				 array_push(filtered, roomCheck);
+			 }
 		 }
 	}
 	if (array_length(filtered) == 0) {

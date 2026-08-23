@@ -218,8 +218,6 @@
     {"name":"inst_271A3BCD","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_48F79BA7","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_40592F90","path":"rooms/flexTall4/flexTall4.yy",},
-    {"name":"inst_9707011","path":"rooms/flexTall4/flexTall4.yy",},
-    {"name":"inst_DA7814B","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_62AB7E81","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_792FDE08","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_712203CD","path":"rooms/flexTall4/flexTall4.yy",},
@@ -237,6 +235,8 @@
     {"name":"inst_4BBE3594","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_6BFBE19C","path":"rooms/flexTall4/flexTall4.yy",},
     {"name":"inst_2FA6EA73","path":"rooms/flexTall4/flexTall4.yy",},
+    {"name":"inst_275B6FD2","path":"rooms/flexTall4/flexTall4.yy",},
+    {"name":"inst_EB174D6","path":"rooms/flexTall4/flexTall4.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -475,8 +475,6 @@
         {"$GMRInstance":"v4","%Name":"inst_43BDA452","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_43BDA452","objectId":{"name":"oFlexWall","path":"objects/oFlexWall/oFlexWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":800.0,"y":608.0,},
         {"$GMRInstance":"v4","%Name":"inst_7B885B40","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7B885B40","objectId":{"name":"oFlexWall","path":"objects/oFlexWall/oFlexWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":800.0,"y":992.0,},
         {"$GMRInstance":"v4","%Name":"inst_2EB59482","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2EB59482","objectId":{"name":"oFlexWall","path":"objects/oFlexWall/oFlexWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":544.0,"y":992.0,},
-        {"$GMRInstance":"v4","%Name":"inst_9707011","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_9707011","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1024.0,"y":1408.0,},
-        {"$GMRInstance":"v4","%Name":"inst_DA7814B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_DA7814B","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":800.0,"y":1408.0,},
         {"$GMRInstance":"v4","%Name":"inst_62AB7E81","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_62AB7E81","objectId":{"name":"oAbyss","path":"objects/oAbyss/oAbyss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1248.0,"y":736.0,},
         {"$GMRInstance":"v4","%Name":"inst_792FDE08","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_792FDE08","objectId":{"name":"oAbyss","path":"objects/oAbyss/oAbyss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1248.0,"y":864.0,},
         {"$GMRInstance":"v4","%Name":"inst_712203CD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_712203CD","objectId":{"name":"oAbyss","path":"objects/oAbyss/oAbyss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":96.0,"y":736.0,},
@@ -494,6 +492,8 @@
         {"$GMRInstance":"v4","%Name":"inst_4BBE3594","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4BBE3594","objectId":{"name":"oTurretQuad","path":"objects/oTurretQuad/oTurretQuad.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1248.0,"y":192.0,},
         {"$GMRInstance":"v4","%Name":"inst_6BFBE19C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6BFBE19C","objectId":{"name":"oTurretQuad","path":"objects/oTurretQuad/oTurretQuad.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":96.0,"y":192.0,},
         {"$GMRInstance":"v4","%Name":"inst_2FA6EA73","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2FA6EA73","objectId":{"name":"oTurretQuad","path":"objects/oTurretQuad/oTurretQuad.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":96.0,"y":1408.0,},
+        {"$GMRInstance":"v4","%Name":"inst_275B6FD2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_275B6FD2","objectId":{"name":"oTurretDoubleVert","path":"objects/oTurretDoubleVert/oTurretDoubleVert.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1024.0,"y":1408.0,},
+        {"$GMRInstance":"v4","%Name":"inst_EB174D6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_EB174D6","objectId":{"name":"oTurretDoubleVert","path":"objects/oTurretDoubleVert/oTurretDoubleVert.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":800.0,"y":1408.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_1","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_1","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":94,"SerialiseWidth":175,"TileCompressedData":[
           88,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,
@@ -736,8 +736,8 @@
   ],
   "name":"flexTall4",
   "parent":{
-    "name":"tallRooms",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/tallRooms.yy",
+    "name":"tall",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/1NORMALGEN/diff7-10/tall.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -761,6 +761,7 @@
     "up",
     "left",
     "right",
+    "difficulty:8",
   ],
   "views":[
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

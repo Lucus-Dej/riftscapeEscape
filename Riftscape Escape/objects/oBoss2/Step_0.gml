@@ -8,7 +8,7 @@ if (phasePoint1 >=  enemyHP && enraged == false) {
 	bullet_speed = 1.5;
 	fire_duration = 16;
 	shoot_delay = 30;
-	recoil_cooldown = 2;
+	recoil_cooldown = 6;
 	enraged = true;
 	enragedAngle = 1;
 }

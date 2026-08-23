@@ -4,7 +4,7 @@ function realityUp() {
 }
 function fateUp() {
 	global.playerFate++;
-	oPlayerManager.statDamage = sqrt(global.playerFate)*0.22-0.23;
+	oPlayerManager.fateDamageBuff = sqrt(global.playerFate)*0.22-0.23;
 }
 function thoughtUp() {
 	global.playerThought++;
@@ -19,7 +19,7 @@ function lifeUp() {
 	var startingHP = 100;
 	var oldRatio = oPlayerManager.max_hp;
 	global.playerLife++;
-	oPlayerManager.max_hp = (startingHP+70*sqrt((global.playerLife - 1)*0.2))/oItemManager.sacDaggerPenalty;
+	recalcMaxHP();
 	var newRatio = oPlayerManager.max_hp;
 	
 	global.player_health += newRatio - oldRatio;
@@ -49,7 +49,7 @@ function realityDown() {
 function fateDown() {
 	if (global.playerFate > 0) {
 		global.playerFate--;
-		oPlayerManager.statDamage = sqrt(global.playerFate)*0.22-0.23;
+		oPlayerManager.fateDamageBuff = sqrt(global.playerFate)*0.22-0.23;
 	}
 }
 function thoughtDown() {
@@ -70,7 +70,7 @@ function lifeDown() {
 		
 		global.playerLife--;
 		
-		oPlayerManager.max_hp = (startingHP + 70 * sqrt((global.playerLife - 1) * 0.2)) / oItemManager.sacDaggerPenalty;
+		recalcMaxHP();
 		
 		var newMax = oPlayerManager.max_hp;
 		

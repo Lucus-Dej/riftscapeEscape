@@ -40,6 +40,7 @@ canLifesteal = false;
 canAccel = false;
 canDecel = false;
 canOrbit = false
+canPois = false;
 lastHit = noone;
 existance = 40+20*global.playerReality;
 

@@ -44,7 +44,7 @@ if (( enemyHP <= phasePoint2) && phase < 2) {
 	}
 }
 if (attack == 0) {
-	attack = irandom_range(1, 7);
+	attack = irandom_range(1, 8);
 }
 
 // countdown
@@ -104,7 +104,7 @@ if (shoot_cooldown <= 0) {
 					d.ringAccel = accel;
 				
 					d.angularSpeed = abs(nadoSpin);
-					d.existance = 800;
+					d.existance = 1600;
 				
 					d.image_xscale = 2;
 					d.image_yscale = 2;
@@ -118,7 +118,7 @@ if (shoot_cooldown <= 0) {
 					f.ringAccel = accel;
 				
 					f.angularSpeed = abs(nadoSpin);
-					f.existance = 800;
+					f.existance = 1600;
 				
 					f.image_xscale = 2;
 					f.image_yscale = 2;
@@ -132,7 +132,7 @@ if (shoot_cooldown <= 0) {
 					c.ringAccel = accel;
 				
 					c.angularSpeed = abs(nadoSpin);
-					c.existance = 800;
+					c.existance = 1600;
 				
 					c.image_xscale = 2;
 					c.image_yscale = 2;
@@ -147,7 +147,7 @@ if (shoot_cooldown <= 0) {
 					c.ringAccel = accel;
 				
 					c.angularSpeed = abs(nadoSpin);
-					c.existance = 800;
+					c.existance = 1600;
 				
 					c.image_xscale = 2;
 					c.image_yscale = 2;
@@ -161,7 +161,7 @@ if (shoot_cooldown <= 0) {
 					d.ringAccel = accel;
 				
 					d.angularSpeed = abs(nadoSpin);
-					d.existance = 800;
+					d.existance = 1600;
 				
 					d.image_xscale = 2;
 					d.image_yscale = 2;
@@ -176,7 +176,7 @@ if (shoot_cooldown <= 0) {
 					c.ringAccel = accel;
 				
 					c.angularSpeed = abs(nadoSpin);
-					c.existance = 800;
+					c.existance = 1600;
 				
 					c.image_xscale = 2;
 					c.image_yscale = 2;
@@ -190,7 +190,7 @@ if (shoot_cooldown <= 0) {
 					d.ringAccel = accel;
 				
 					d.angularSpeed = abs(nadoSpin);
-					d.existance = 800;
+					d.existance = 1600;
 				
 					d.image_xscale = 2;
 					d.image_yscale = 2;
@@ -206,9 +206,37 @@ if (shoot_cooldown <= 0) {
 			}
 		}
 	}
-	if (attack == 8) {
+	if (attack == 18) {
 		wdFireShield();
 		shoot_cooldown = shoot_delay;
+	}
+	if (attack == 8) {
+		var target = oTruePlayer;
+		var inc = 360/missleMax;
+		if (missleMax > missleCount) {
+			audio_play_sound(aBoom, 1, false, global.sfxAudio)
+			var startingX = lengthdir_x(sprite_width/6, missleDir);
+			var startingY = lengthdir_y(sprite_height/6, missleDir);
+			var rocket = bulletFire(x+startingX, y+startingY, missleDir, 6, damage, oBadBullet, id);
+			rocket.existance = 360;
+			rocket.explodeTimer = 360;
+			rocket.canExplode = true;
+			rocket.explodeObj = oExplosiveRuneBoom;
+			rocket.homingTarget = target;
+			rocket.canFlash = true;
+			rocket.canHome = true;
+			rocket.turnSpeed = 1;
+			rocket.homeSpeed = 6;
+			rocket.homeDuration = 180;
+			rocket.sprite_index = sRocket;
+			missleDir += inc;
+			missleCount++;
+		} else {
+			shoot_cooldown = shoot_delay;
+			missleDir = 0;
+			attack = 0;
+			missleCount = 0;
+		}
 	}
 }
 //passive attacks

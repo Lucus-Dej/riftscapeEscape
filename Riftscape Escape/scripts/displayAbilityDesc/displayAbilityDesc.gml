@@ -9,17 +9,17 @@ function displayAbilityDesc(_ability, _upgrade){
 			break;
 			case (2):
 			// life upgrade
-			desc = "Expanded Radius";
+			desc = "Expanded Radius + Enemies Take Blood DoT Inside";
 			break;
 			case (1):
 			// null
 			desc = "";
 			break;
 			case (3):
-			desc = "Fire Additional Bullets While Inside";
+			desc = "Double Projectiles Shot Inside";
 			break;
 			case (4):
-			desc = "Faster Ability Charge Rate While Inside Circle";
+			desc = "Faster Ability Charge Rate + Fire Rate While Inside Circle";
 			break;
 			case (5):
 			desc = "Double Crit Chance While Inside";
@@ -137,22 +137,22 @@ function displayAbilityDesc(_ability, _upgrade){
 		// sword upgrades
 		switch (_upgrade) {
 			case (0): 
-			desc = "A Sword. Every Kill Makes It Stronger";
+			desc = "A Sword. Tap To Jab And Stun. Hold And Release For Slash";
 			break;
 			case (1):
-			desc = "Summon Orbiting Swords On Swing";
+			desc = "Summon Orbiting Swords On Swing + Jab Applies Debuff. Slash To Trigger";
 			break;
 			case (2):
-			desc = "Fire A Sword Projectile That Deals Poison Damage";
+			desc = "Fire A Sword Projectile That Deals Poison Damage + Jab Deals Blood DoT";
 			break;
 			case (3):
-			desc = "Fires A Controllable Sword. Click Again To TP";
+			desc = "Fires A Controllable Sword. Click Again To TP + Speed Boost On Jab";
 			break;
 			case (4):
-			desc = "Killing An Enemy With A Sword Reduces Its Cooldown";
+			desc = "Killing An Enemy With A Sword Reduces Its Cooldown + Stun Enemies On Jab";
 			break;
 			case (5):
-			desc = "Parry Bullets Instead Of Destroying Them";
+			desc = "Parry Bullets Instead Of Destroying Them + Jabbed Enemies Chain Beams";
 			break;
 			case (6):
 			desc = "";

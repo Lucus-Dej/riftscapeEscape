@@ -6,8 +6,8 @@
   "name":"oKrostTp",
   "overriddenProperties":[],
   "parent":{
-    "name":"bosses",
-    "path":"folders/enemies/bosses.yy",
+    "name":"Krost",
+    "path":"folders/enemies/bosses/Krost.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -22,14 +22,15 @@ function getEnemPool(_currentFloor, _all = false) {
 			enemArray = [oEnemCavesSludger, oEnemExplosiveSpider, oEnemCaveSpider, oEnemSpider, oBoss2];
 			break;
 			case 4:
-			enemArray = [oEnemBigBat, oEnemBat, oEnemCentiHead, oEnemCaveSpider];
+			enemArray = [oEnemBat, oEnemCentiHead, oEnemExplosiveBat];
 			break;
 			case 5:
-			enemArray = [oEnemExplosiveSpider];
+			enemArray = [oEnemExplosiveSpider, oEnemExplosiveBat];
 			break;
+
 		}
 		if (_all) {
-			enemArray = [oEnemCavesSludger, oEnemExplosiveSpider, oEnemCaveSpider, oEnemSpider, oEnemBat, oEnemCentiHead];
+			enemArray = [oEnemCavesSludger,oEnemExplosiveBat, oEnemExplosiveSpider, oEnemCaveSpider, oEnemSpider, oEnemBat, oEnemCentiHead];
 		}
 		//enemArray = [oCavesStoneGolem, oEnemCavesSludger, oEnemExplosiveSpider, oEnemBat, oEnemCentiHead, oEnemCaveSpider, oEnemSpider];
 		bossArray = [oEnemCentiHead, oBoss, oBoss2, oCavesStoneGolem, oMiniBoss, oMiniBoss2, oEnemBigBat, oEnemMotherCaveSpider];

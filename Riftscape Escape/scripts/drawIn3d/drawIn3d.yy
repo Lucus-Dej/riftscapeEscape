@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"drawIn3d",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"drawIn3d",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

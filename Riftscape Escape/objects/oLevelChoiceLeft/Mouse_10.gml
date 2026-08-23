@@ -1,3 +1,9 @@
 if (levelMet && valid && !hasChosen) {
-	image_alpha = 0.5;
+	faded = true;
+	image_alpha = 0.5 - combatAlphaPenalty;
+	with (oAbilityToken) {
+		if (other.buttonID == abilityID) {
+			doFlash = true;
+		}
+	}
 }

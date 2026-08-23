@@ -122,7 +122,14 @@ if (spawned == true && spawn_timer <= 0) {
 		tempEnemy = bossSpawner.bossName
 		totalBoss--;
 	}
-	enem = spawnEnemViaEgg(6, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
+	if (global.difficulty == 1) {
+		enem = spawnEnemViaEgg(24, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
+	} else if (global.difficulty == 2 ) {
+		enem = spawnEnemViaEgg(12, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
+	} else if (global.difficulty >= 3) {
+		enem = spawnEnemViaEgg(6, tempEnemy, doBoss, isChallenge, RoomID, id, pick)
+	}
+	
 	//enem = instance_create_layer(pick.x, pick.y, "Instances", tempEnemy);
 	//enem.RoomID = RoomID;
 	//enem.Manager = id;
@@ -149,6 +156,7 @@ if (inCombat && enemies <= 0 && !instance_exists(oFloorManager)) {
 if (inCombat && !combatFinished && temp_portal == noone) {
 	if ((!instance_exists(oEnemy) && enemies <= 0 && diffPool <= 0) || (instance_exists(oFloorManager) && diffPool <= 0 && !instance_exists(oEnemy) && !instance_exists(oEnemPortalEgg))) {
 		unpowerDoor(RoomID)
+		endOfCombatCheck()
 		if (oPlayerManager.hasItemDenyRune) {
 			virstItemAdd();
 			virstItemAdd();
@@ -181,9 +189,6 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 		if (instance_exists(floorManager)) {
 			with (floorManager) {
 				event_user(0);
-			}
-			if (oItemManager.hasReflectiveGem && oItemManager.reflectiveGemFlag) {
-				oItemManager.reflectiveGemLuckBonus += 1;
 			}
 			if (!floorManager.floorCompleteFlag) {
 				rollConsumable(spawner);

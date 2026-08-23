@@ -61,22 +61,20 @@ if (state == waveState.spawning) {
 				var i = irandom(array_length(bossArray)-1)
 				pull = bossArray[i];
 			}
+			var enem = noone;
 			with (spawner) {
-				var enem = instance_create_layer(x, y, "Instances", pull);
-				enem.RoomID = RoomID;
-				if (other.bossRound) {
-					enem.isBoss = true;
-					bossMod(enem.id);
-					enem.spawnWeight *= 4;
-					enem.xp *= 1.5;
-				} else {
-					enem.xp *= 0.6;
+				if (global.difficulty == 1) {
+					enem = spawnEnemViaEgg(24, pull, other.bossRound, false, RoomID, other, id)
+				} else if (global.difficulty == 2 ) {
+					enem = spawnEnemViaEgg(12, pull, other.bossRound, false, RoomID, other, id)
+				} else if (global.difficulty >= 3) {
+					enem = spawnEnemViaEgg(6, pull, other.bossRound, false, RoomID, other, id)
 				}
-				other.waveWeight -= enem.spawnWeight
+				//var enem = instance_create_layer(x, y, "Instances", pull);
 			}
 			spawnCooldown = spawnDelay
 		}
-	} else if (!instance_exists(oEnemy)) {
+	} else if (!instance_exists(oEnemy) && !instance_exists(oEnemPortalEgg)) {
 		if (!runeRound && instance_exists(oRuneSpawner) && !restrictedArrays) {
 			instance_destroy(oRuneSpawner)
 		}
@@ -117,6 +115,7 @@ if (state == waveState.spawning) {
 }
 if (state == waveState.inBetween) {
 	inCombat = false;
+	endOfCombatCheck()
 	if (global.chargeItem != noone && global.currentCharges < global.itemCharges) {
 		global.currentCharges += 1;
 	}
@@ -150,7 +149,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 5:
-		array_push(waveArray, oEnemBigBat, oEnemMotherCaveSpider)
+		array_push(waveArray, oEnemBigBat, oEnemMotherCaveSpider, oEnemExplosiveBat)
 		break;
 		
 		case 6:
@@ -158,7 +157,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 7:
-		array_push(bossArray, oBoss3, oMiniBoss3, oEnemCentiHead)
+		array_push(bossArray, oMiniBoss3, oEnemCentiHead)
 		break;
 		
 		case 9:
@@ -206,7 +205,7 @@ if (state == waveState.inBetween) {
 		break;
 		
 		case 24:
-		array_push(bossArray, oWastelandFireRunner, oWastelandFireSpirit)
+		array_push(bossArray, oBoss3, oWastelandFireRunner, oWastelandFireSpirit)
 		break;
 		
 		case 26:

@@ -97,6 +97,7 @@ circleTotal = circleMax;
 circleCooldown = 100;
 circleKey = "C";
 circleThoughtUpgrade = false;
+thoughtCircleFireRateBoost = 0;
 circleCooldownBonus = 0;
 hasCircleThought = false;
 hasCircleReality = false;

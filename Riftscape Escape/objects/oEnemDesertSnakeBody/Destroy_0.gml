@@ -1,4 +1,7 @@
 // Inherit the parent event
+if (tempEnem) {
+	exit;
+}
 event_inherited();
 
 if (instance_exists(head)) {

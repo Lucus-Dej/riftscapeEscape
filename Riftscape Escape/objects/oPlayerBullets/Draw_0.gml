@@ -1,7 +1,20 @@
-draw_self();
-if (bounceTarget != noone) {
-	//draw_line(bounceTarget.x, bounceTarget.y, x, y);
+if (oPlayerManager.hasFirstPRune) {
+	if (!instance_exists(oCamera)) {
+		exit;
+	}
+	var dir = oCamera.direction+90;
+
+	var matrix = matrix_build(x, y, 18, 90+oCamera.tilt*zTilt, 0, dir, 1, 1, 1);
+
+	matrix_set(matrix_world, matrix);
+
+	draw_sprite_ext(sprite_index, image_index, 0, 0, image_xscale/3, image_yscale/3, image_angle, image_blend, image_alpha);
+
+	matrix_set(matrix_world, matrix_build_identity());
+} else {
+	draw_self();
+	if (primedForLightning) {
+		draw_sprite_ext(sElectricCharge, irandom(3), x, y, image_xscale, image_yscale, 0, c_white, 0.8)
+	}
 }
-if (primedForLightning) {
-	draw_sprite_ext(sElectricCharge, irandom(3), x, y, image_xscale, image_yscale, 0, c_white, 0.8)
-}
+

@@ -1,4 +1,7 @@
 // Inherit the parent event
+if (tempEnem) {
+	exit;
+}
 event_inherited();
 if (isBoss)
 for (var i = 0; i < irandom_range(1, 2); i++) {

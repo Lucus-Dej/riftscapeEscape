@@ -17,7 +17,6 @@ if (mouseDist > 64) {
 		rageTimer++;
 		enemSpeed = 0;
 	}
-	
 }
 if (!halfRaged && !fullRaged && rageTimer > rageBreak*0.5) {
 	halfRaged = true;
@@ -26,7 +25,7 @@ if (!halfRaged && !fullRaged && rageTimer > rageBreak*0.5) {
 if (!fullRaged && rageTimer >= rageBreak) {
 	image_index = 2;
 	fullRaged = true;
-	baseSpeed += 0.4;
+	speedBonus += 0.4;
 	bullet_speed+= 2;
 	enemSpeed = initalSpeed;
 }

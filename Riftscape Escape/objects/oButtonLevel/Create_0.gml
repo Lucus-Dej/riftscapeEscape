@@ -1,1 +1,2 @@
 drawText = noone;
+faded = false;

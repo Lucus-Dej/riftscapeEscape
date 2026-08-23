@@ -80,21 +80,9 @@ for (var i = 0; i < array_length(weightedSlows); i++) {
 
 slowPenaltyPercent = clamp(slowPenaltyPercent, 0, 95);
 
-baseSpeed = enemSpeed * (1 - slowPenaltyPercent / 100);
+slowMult = (1 - slowPenaltyPercent / 100);
 // countdown
-if (!sub)
-path_timer--;
-if (path_timer <= 0 && canPathfind && !brainDead) {
-    path_timer = path_cooldown;
-	var search = pathfind(global.Grid, oTruePlayer, baseSpeed, id);
-	if (flying) {
-		search = pathfind(global.flyGrid, oTruePlayer, baseSpeed, id);
-	}
-    
-	if (!search) {
-		respawnTimer--;
-	}
-}
+
 if (dragTimer > 0) {
     applyDrag(dragPower, dragDir, oWalls);
     dragTimer--;

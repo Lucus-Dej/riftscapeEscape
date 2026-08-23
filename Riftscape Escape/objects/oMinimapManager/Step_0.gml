@@ -23,3 +23,11 @@ if (instance_exists(follow)) {
 	camera_set_view_size(cam, view_w, view_h);
 	camera_set_view_pos(cam, cx, cy);
 }
+with (oRoomManager) {
+	if (instance_exists(mask) && (discovered || hinted || oItemManager.hasGenStone)) {
+		mask.image_alpha-= 0.01;
+		if (mask.image_alpha <= 0) {
+			instance_destroy(mask)
+		}
+	}
+}

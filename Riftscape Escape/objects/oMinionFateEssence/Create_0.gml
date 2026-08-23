@@ -19,7 +19,7 @@ damageArray = [];
 damageTimerArray = [];
 dmgRefreshTime = 40;
 primed = false;
-baseDmg = 0.08;
+baseDmg = 0.4;
 damage = baseDmg;
 mode = fateMinionMode.idle;
 oPlayerManager.essenceMinionCount++

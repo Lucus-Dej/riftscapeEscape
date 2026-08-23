@@ -1,4 +1,7 @@
 if (!displaying) {
+	with (oUpgradeTokenStatic) {
+		displaying = false;
+	}
 	desc = displayAbilityDesc(abilityID, global.currentUpgradeID);
 	with (oAbilityUpgradeTextbox) {
 		desc = other.desc;

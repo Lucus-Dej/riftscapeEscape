@@ -7,16 +7,16 @@ var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 image_angle = playerDir+90;
 
 if (!canSeePlayer) {
-	enemSpeed = initalSpeed*3;
+	tempSpeedMult = 3;
 } else if (canSeePlayer) {
-	enemSpeed = initalSpeed;
+	tempSpeedMult = 1;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
 if (phasePoint1 >=  enemyHP && enraged == false) {
-	baseSpeed += 1.7;
+	speedBonus += 1.7;
 	bullet_speed -= 3;
 	fire_duration += 12;
 	shoot_delay += 10;

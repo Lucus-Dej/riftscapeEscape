@@ -24,24 +24,14 @@ if (shoot_cooldown <= 0) {
 		var futureX = oTruePlayer.x + oTruePlayer.hsp*tth*0.8;
 		var futureY = oTruePlayer.y + oTruePlayer.vsp*tth*0.8;
 		var dir = point_direction(x, y,futureX, futureY);
-		var bullet = noone;
-		var bullet1 = noone;
-			bullet = bulletFire(x, y, dir+20, bullet_speed, damage, oBadBullet, id);
-			bullet1 = bulletFire(x, y, dir-20, bullet_speed, damage, oBadBullet, id);
-			bullet.existance /= 2;
-			bullet1.existance /= 2;
+		var bullet = bulletFire(x, y, dir, bullet_speed, damage, oBadBullet, id);
+		bullet.isGhost = true;
 		with (bullet) {
 			if (layer_get_name(layer) != "Flying") {
 				layer = layer_get_id("Flying");
 			}
 		}
-		with (bullet1) {
-			if (layer_get_name(layer) != "Flying") {
-				layer = layer_get_id("Flying");
-			}
-		}
-		bullet.isGhost = true;
-		bullet1.isGhost = true;
+		
 	    shoot_cooldown = shoot_delay;
 	} else {
 		isDashing = true;

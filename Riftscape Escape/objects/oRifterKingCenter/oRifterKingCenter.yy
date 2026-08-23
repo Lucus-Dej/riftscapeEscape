@@ -10,8 +10,8 @@
   "name":"oRifterKingCenter",
   "overriddenProperties":[],
   "parent":{
-    "name":"bosses",
-    "path":"folders/enemies/bosses.yy",
+    "name":"RifterKing",
+    "path":"folders/enemies/bosses/RifterKing.yy",
   },
   "parentObjectId":null,
   "persistent":false,

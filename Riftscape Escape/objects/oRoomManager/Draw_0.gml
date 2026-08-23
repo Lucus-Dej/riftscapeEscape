@@ -1,1 +1,1 @@
-draw_text(x, y, RoomID)
+//draw_text(x, y, RoomID)

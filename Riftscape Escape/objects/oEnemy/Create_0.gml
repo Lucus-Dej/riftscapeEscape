@@ -1,6 +1,13 @@
+if (tempEnem) {
+	egg.diff = spawnWeight;
+	instance_destroy();
+}
 path = -1;
+jabbed = false;
 canPathfind = true;
 damagedByArray = [];
+links = [];
+maxLinks = global.playerTime;
 checkCircleFlag = false;
 if (instance_exists(oCricleOfFate)) {
 	with (oCricleOfFate) {
@@ -11,9 +18,17 @@ if (instance_exists(oCricleOfFate)) {
 }
 RoomID = 0;
 damage = 0;
+
+
 initalSpeed = 0;
+speedBonus = 0;
+tempSpeedMult = 1;
+tempSlowMult = 1;
+
 baseSpeed = 0;
 enemSpeed = 0;
+
+
 perfectParryTimer = 0;
 Manager = noone;
 invincible = false;
@@ -40,6 +55,7 @@ startCount = false;
 isBoss = false;
 bossModApplied = false;
 sub = false;
+genHealth = 0;
 // boss stats
 hpMult = 1;
 speedMult = 1;
@@ -57,8 +73,10 @@ respawnTimer = 30;
 effectHorsePest = false;
 bossRuneChecked = false;
 slowPenaltyPercent = 0;
+slowMult = 1;
 slowArray = [];
 slowTimerArray = [];
 slowMaxTimerArray = [];
 slowTargetArray = [];
 slowPenaltyWashoff = 0;
+healthTotal =  0;

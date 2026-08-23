@@ -13,8 +13,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},"propertyId":{"name":"spawnWeight","path":"objects/oEnemy/oEnemy.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"100",},
   ],
   "parent":{
-    "name":"bosses",
-    "path":"folders/enemies/bosses.yy",
+    "name":"RifterKing",
+    "path":"folders/enemies/bosses/RifterKing.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

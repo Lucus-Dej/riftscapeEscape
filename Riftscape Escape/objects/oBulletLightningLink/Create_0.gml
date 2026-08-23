@@ -1,5 +1,6 @@
 host = noone;
 connector = noone;
+checkDist = true;
 damage = global.playerDamage*0.08;
 dmgRefreshTime = 12;
 damageArray = [];

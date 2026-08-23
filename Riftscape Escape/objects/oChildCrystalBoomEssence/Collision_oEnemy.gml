@@ -6,12 +6,11 @@ if (!ds_exists(damagedList, ds_type_map)) {
 if (!ds_map_exists(damagedList, hit.id)) {
     ds_map_add(damagedList, hit.id, true);
 	enemyTakeDamage(damage, other,,,damageType.bomb);
-	global.player_health += damage;
+	healPlayer(damage, true)
 	if (other. enemyHP <= 0) {
 	if (oPlayerManager.hasCrystalEssence) {
 		blood = instance_create_layer(other.x, other.y, "Instances", oEssenceCrystal)
 	}
-   instance_destroy(other);
    oPlayerManager.hasBombKilled = true;
    global.playerKilled = true;
 } 

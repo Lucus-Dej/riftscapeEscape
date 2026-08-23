@@ -1,5 +1,17 @@
-
-
+if (global.inCombat) {
+	image_alpha = 0.5;
+} else {
+	image_alpha = 1;
+}
+if (doFlash) {
+	flash += flashRate;
+	if (flash >= 1 || flash < 0) {
+		flashRate *= -1;
+	}
+	
+} else {
+	flash = 0;
+}
 switch (abilityID) {
 	case 0:
 	break; 

@@ -1,5 +1,9 @@
-if (selected) {
+if (selected && global.inCombat) {
+	image_alpha = 0.2;
+} else if (selected) {
 	image_alpha = 0.3;
+} else if (global.inCombat) {
+	image_alpha = 0.5;
 } else {
 	image_alpha = 1;
 }
@@ -60,4 +64,13 @@ if (upgradeID == 6 && !spent) {
 		image_index = 8;
 		valid = false;
 	}
+}
+if (doFlash) {
+	flash += flashRate;
+	if (flash >= 1 || flash < 0) {
+		flashRate *= -1;
+	}
+	
+} else {
+	flash = 0;
 }

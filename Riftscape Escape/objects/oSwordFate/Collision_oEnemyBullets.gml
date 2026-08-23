@@ -9,6 +9,3 @@ instance_destroy(other);
 instance_destroy(boom);
 }
 instance_destroy()
-if (oPlayerManager.hasSwordReality) {
-	oPlayerManager.realitySwordBonus += 1;
-}

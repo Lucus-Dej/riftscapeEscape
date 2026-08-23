@@ -5,7 +5,7 @@ create = false;
 destroy = false;
 turretArray = [oTurret, oTurretV, oTurretQuad, oTurretQuadSwitch, 
 oTurretBlackhole, oTurretDOTFire, oTurretDOTICE, oTurretDOTPois, 
-oTurretFire, oTurretFireDouble, oTurretFireTriple, oTurretFireQuad]
+oTurretFire, oTurretFireDouble, oTurretFireTriple, oTurretFireQuad, oTurretHoming, oTurretRocketHoming]
 
 currentTurret = noone;
 turretIndex = -1;

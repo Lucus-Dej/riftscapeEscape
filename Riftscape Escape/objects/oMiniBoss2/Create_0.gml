@@ -9,8 +9,8 @@ recoil_timer = 0;
 on_cooldown = false;
 
 ang = 0;
-enemSpeed = 3.35;
+enemSpeed = 3.15;
 baseSpeed = enemSpeed;
 damage = 14;
-bullet_speed = 6;
+bullet_speed = 5.5;
 playerPercent = 0;

@@ -1,2 +1,0 @@
-if (display)
-image_alpha = 0.5;

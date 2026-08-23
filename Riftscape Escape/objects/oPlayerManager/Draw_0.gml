@@ -1,5 +1,5 @@
 if (toggleGrid) {
-	mp_grid_draw(global.Grid)
+	//mp_grid_draw(global.Grid)
 }
 for (var i = array_length(global.damageNumbers) - 1; i >= 0; i--) {
 	var d = global.damageNumbers[i];
@@ -20,8 +20,30 @@ for (var i = 0; i < array_length(global.damageNumbers); i++) {
 
 	draw_set_alpha(alpha);
 	draw_set_colour(d.color);
-	
-	drawOutline(d.x, d.y, string(d.damage), c_white, c_black);
+	if (!d.doGUI) {
+		var displayAmount = string(d.damage);
+		displayAmount = (d.add+displayAmount+d.addEnd)
+		if (oPlayerManager.hasFirstPRune) {
+			gpu_push_state();
+			gpu_set_fog(false, 0,0,0)
+			if (!instance_exists(oCamera)) {
+				exit;
+			}
+			var dir = oCamera.direction-90;
+
+			var matrix = matrix_build(d.x, d.y, d.z, 90+oCamera.tilt, 0, dir, 1, 1, 1);
+
+			matrix_set(matrix_world, matrix);
+
+			displayAmount = (d.add+displayAmount+d.addEnd)
+			drawOutline(0, 0, displayAmount, d.color, c_black);
+
+			matrix_set(matrix_world, matrix_build_identity());
+			gpu_pop_state();
+		} else {
+			drawOutline(d.x, d.y, displayAmount, d.color, c_black);
+		}
+	}
 	//draw_text(d.x, d.y, string(d.damage));
 }
 

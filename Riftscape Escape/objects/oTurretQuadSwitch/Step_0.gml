@@ -3,7 +3,6 @@ if (!active) exit;
 if (cooldown > 0) {
 	cooldown--;
 	if (cooldown == 12) {
-		image_angle += 45;
 		flash = 1;
 	}
 	if (oPlayerManager.hasTrapRune) {
@@ -19,6 +18,7 @@ if (cooldown > 0) {
 			}
 			
 		}
+		image_angle += 45;
 		cooldown = delay;
 	
 }

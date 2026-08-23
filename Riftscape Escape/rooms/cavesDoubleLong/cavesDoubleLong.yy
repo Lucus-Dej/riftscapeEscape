@@ -573,8 +573,8 @@
   ],
   "name":"cavesDoubleLong",
   "parent":{
-    "name":"longRooms",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/longRooms.yy",
+    "name":"long",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/1NORMALGEN/diff4-6/long.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -598,6 +598,7 @@
     "down",
     "left",
     "right",
+    "difficulty:5",
   ],
   "views":[
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

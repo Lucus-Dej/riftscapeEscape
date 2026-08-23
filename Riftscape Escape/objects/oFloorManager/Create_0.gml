@@ -5,6 +5,7 @@ doorList = ds_list_create();
 doorCount = 1;
 IDCount = 1;
 bossRoomSlain = false;
+debugFloorGrids = [];
 global.roomQueue = ds_queue_create();
 global.roomStack = ds_stack_create();
 currentRequest = noone;

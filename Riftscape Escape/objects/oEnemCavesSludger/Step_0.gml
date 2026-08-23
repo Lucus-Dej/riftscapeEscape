@@ -32,7 +32,7 @@ if (shoot_cooldown <= 0) {
 	sand.image_xscale = 0.1;
 	sand.image_yscale = 0.1;
 	if (isBoss) {
-		sand.existance *= hpMult*1.5;
+		sand.existance *= hpMult*1.1;
 	}
 }
 if (speedBoost > 0) {
@@ -41,8 +41,4 @@ if (speedBoost > 0) {
 	if (speedBoost <= 0) {
 		enemSpeed = initalSpeed;
 	}
-}
-var l = irandom(shoot_delay*2)
-if (l == 1) {
-	
 }

@@ -17,6 +17,9 @@ if (shoot_cooldown <= 0) {
 		if (fire_timer > 0) {
 			var counter = 0;
 			if (ang > 360) ang -= 360;
+			if (enraged) {
+				ang = point_direction(x, y, oTruePlayer.x, oTruePlayer.y)
+			}
 			for (var i = 0; i < 4; i++) {
 				bulletFire(x, y, ang, bullet_speed, damage, oMiniBossBullet, id);
 				ang += 90;
@@ -50,6 +53,9 @@ if (enragedDelay <= 0 && enraged) {
 		enragedFireDuration--;
 		if (enragedFireDuration > 0) {
 			var enragedAng = 45;
+			if (enraged) {
+				enragedAng = point_direction(x, y, oTruePlayer.x, oTruePlayer.y)+45
+			}
 			for (var i = 0; i < 4; i++) {
 				bulletFire(x, y, enragedAng, bullet_speed, damage, oMiniBossBullet, id);
 				enragedAng += 90;

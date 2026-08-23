@@ -5,6 +5,6 @@ on_cooldown = false;
 bite_timer = bite_cooldown;
 enemSpeed = 5.45;
 baseSpeed = enemSpeed;
-contactDamage = 12.5;
+contactDamage = 25.5;
 damage = contactDamage;
 count = 3;

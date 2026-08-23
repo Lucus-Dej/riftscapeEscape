@@ -13,7 +13,13 @@ if (searchItem == true) {
 if (global.chargeItem != noone) {
 	
 }
-
+if (elementalAuraPoints >= elementalAuraKillThreshold && oItemManager.hasElementalVortex) {
+	summonElementalAuras();
+	elementalAuraPoints = -100;
+}
+if (elementalAuraPoints > 0 && global.inCombat && !instance_exists(oElementalAura)) {
+	elementalAuraPoints -= 0.01;
+}
 if (hasLilFurnace && !instance_exists(oLilFurnace)) {
 	if (instance_exists(oTruePlayer)) {
 		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oLilFurnace);
@@ -39,37 +45,7 @@ if (oPlayerManager.brainJarBonus > 1) {
 	oPlayerManager.brainJarBonus -= 0.1;
 }
 
-// rare seed
-if (hasRareSeed) {
-	with oPlayerManager {
-		if (incombat && !other.seedStart) {
-			other.currentRoomManager = id;
-			other.seedCombatCheck= true;
-			other.seedStart = true;
-		}
-	}
-}
-if (seedCombatCheck && seedStart) {
-	if (oPlayerManager.tookDamage) {
-		seedFailed = true;
-	}
-	with currentRoomManager {
-		if (!incombat && !other.seedFailed) {
-			healthUp(oPlayerManager.max_hp/10)
-			var randLifeUp = irandom_range(1, 15);
-			if (randLifeUp+global.playerTime >= 15) {
-				lifeUp();
-			}
-			other.seedStart = false;
-			other.seedFailed = false;
-			other.seedCombatCheck = false;
-		} else if (!incombat && other.seedFailed) {
-			other.seedCombatCheck = false;
-			other.seedStart = false;
-			other.seedFailed = false;
-		}
-	}
-}
+
 //sculpture stuff
 if (hasSmallSculpture) {
 	if (global.playerKilled) {
@@ -133,7 +109,7 @@ if (hasSifterEssence) {
 				} else {
 					enemyTakeDamage(sifterEssenceDmg, enem,,,damageType.playerBlood);
 					oPlayerManager.overhealthSuperTimer -= 11.5;
-					global.player_health += sifterEssenceDmg*10;
+					healPlayer(sifterEssenceDmg*6, true)
 				}
 			}
 		}
@@ -166,10 +142,16 @@ if (hasAlextraEssence) {
 		}
 	}
 }
-if (hasTorzolEssence && global.player_health < oPlayerManager.max_hp*0.75 && global.activeRoom) {
-	var missingHP = (oPlayerManager.max_hp - global.player_health);
-	var torzBonus = (missingHP*0.0008);
-	global.player_health += torzBonus;
+if (hasTorzolEssence && global.player_health < oPlayerManager.max_hp*0.85 && global.inCombat) {
+	if (torzTimer > 0) {
+		torzTimer--;
+	} else {
+		torzTimer = torzCooldown;
+		var missingHP = (oPlayerManager.max_hp - global.player_health);
+		var torzBonus = (missingHP*0.015);
+		healPlayer(torzBonus, true)
+	}
+	
 }
 // tesseract stuff
 if (hasTesseract) {
@@ -205,6 +187,7 @@ if !(freedomFlyFlag && global.playerCanFly) {
 if (oSettingManager.queueEvilRuneAdd) {
 	oSettingManager.queueEvilRuneAdd = false;
 	var r = irandom(array_length(oPlayerManager.validRuneArray)-1);
+	show_debug_message(oPlayerManager.validRuneArray)
 	var rune = oPlayerManager.validRuneArray[r];
 	var e = rollItem(true, itemSearchType.simple);
 	itemAdd(e)

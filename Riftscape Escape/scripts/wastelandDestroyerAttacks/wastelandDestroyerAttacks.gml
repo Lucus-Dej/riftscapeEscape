@@ -100,7 +100,7 @@ function wdFireShield() {
 		b.orbitSpeed = 6.5;
 	    b.orbitRadius = radius;
 		b.accel = false;
-		b.existance = 600;
+		b.existance = 800;
 		b.rotate = true;
 		b.solidBullet = true;
 	}

@@ -18,7 +18,7 @@ if (attack == 0) {
 	if (!canSeePlayer) {
 		attack = 2;
 	} else {
-	attack = irandom_range(1, 3)
+	attack = irandom_range(1, 5)
 	}
 	currentArc = arcAngle;
 }
@@ -53,5 +53,28 @@ if (shoot_cooldown <= 0) {
 	}
 	attack = 0;
 	shoot_cooldown = shoot_delay*2;
+	} else if (attack == 4 || attack == 5) {
+		var target = oTruePlayer;
+		var dir = point_direction(x, y, target.x, target.y);
+		var dirIncrease = 360/3;
+		for (var i = 0; i < 3; i++) {
+			var rocket = bulletFire(x, y, dir, 4, 25, oBadBullet, id);
+			rocket.canFriendlyFireOwner = true;
+			rocket.existance = 1200;
+			rocket.explodeTimer = 1200;
+			rocket.canExplode = true;
+			rocket.explodeObj = oExplosiveRuneBoom;
+			rocket.homingTarget = target;
+			rocket.canFlash = true;
+			rocket.canHome = true;
+			rocket.turnSpeed = 2;
+			rocket.homeSpeed = 4;
+			rocket.homeDuration = 1200;
+			rocket.sprite_index = sRocket;
+			dir+=dirIncrease;
+		}
+		
+		attack = 0;
+		shoot_cooldown = shoot_delay;
 	}
 }

@@ -641,8 +641,8 @@
   ],
   "name":"flexL_1",
   "parent":{
-    "name":"tallRooms",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/tallRooms.yy",
+    "name":"flexRooms",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

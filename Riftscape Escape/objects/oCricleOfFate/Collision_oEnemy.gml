@@ -1,5 +1,2 @@
-other.inCircle = true;
-if (!variable_instance_exists(other, "fatedCircle") && variable_instance_exists(other, "enemSpeed")) {
-	other.base_enemSpeed = other.path_speed;
-	other.path_speed *= 0.5;
-}
+if (oPlayerManager.hasCircleLife)
+callDOT(other, 0.04 + global.playerFate*0.015, 12, 12, dotType.fire, oCricleOfFate);

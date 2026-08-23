@@ -1,4 +1,7 @@
 displaying = false;
+var descTest = displayAbilityDesc(abilityID, global.currentUpgradeID);
 with (oAbilityUpgradeTextbox) {
-	desc = defDesc;
+	if (desc == descTest) {
+		desc = defDesc;
+	}
 }

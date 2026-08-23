@@ -3,17 +3,22 @@ with oLevelChoiceRight {
 		valid = false;
 	}
 }
+with (oAbilityToken) {
+	if (other.buttonID == abilityID) {
+		doFlash = false;
+	}
+}
 with (oUpgradeTokenReal) {
-	image_index = 8;
+	//image_index = 8;
 	if (upgradeID == other.buttonID) {
-		spent = true;
+		//spent = true;
 		image_index = 8;
 		show_debug_message("I am spent")
 	}
 }
 if (levelMet && valid && !hasChosen) {
 	valid = false;
-	image_alpha = 0.5;
+	image_alpha = 0.5 - combatAlphaPenalty;
 	hasChosen = true;
 	switch (buttonID) {
 	case (1):

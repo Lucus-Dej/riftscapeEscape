@@ -2,11 +2,25 @@ event_inherited();
 if (brainDead) {
     exit;
 }
-
-path_timer--;
-if ( enemyHP < phasePoint1 && !phase1Applied) {
+if (instance_exists(oPlayerBullets)) {
+	var danger = instance_nearest(x, y, oPlayerBullets);
+	var dangerDist = point_distance(x, y, danger.x, danger.y);
+	
+	if (dangerDist < 96) {
+		var dodgeChance = irandom_range(1, tpChance);
+		show_debug_message(dodgeChance)
+		if (dodgeChance == 1) {
+			path_end();
+			x += irandom_range(-64, 64);
+			y += irandom_range(-64, 64);
+			path_timer = 0;
+		}
+	}
+}
+if (enemyHP < phasePoint1 && !phase1Applied) {
+	tpChance -= 20;
 	shoot_delay -= 30;
-	baseSpeed += 0.75;
+	enemSpeed += 0.75;
 	bullet_speed += 2;
 	directionCooldown -= 20;
 	phase1Applied = true;
@@ -15,8 +29,9 @@ if ( enemyHP < phasePoint1 && !phase1Applied) {
 		gridB.gridBullet = true;
 	}
 }
-if ( enemyHP < phasePoint2 && !phase2Applied) {
-	baseSpeed += 1;
+if (enemyHP < phasePoint2 && !phase2Applied) {
+	tpChance -= 30;
+	enemSpeed += 1;
 	shoot_delay -= 45;
 	bullet_speed += 1;
 	directionCooldown -= 30;
@@ -27,8 +42,9 @@ if ( enemyHP < phasePoint2 && !phase2Applied) {
 		var bh = instance_create_layer(x, y, "Instances", oBlackHole);
 	}
 }
-if ( enemyHP < phasePoint3 && !phase3Applied) {
-	baseSpeed += 1.2;
+if (enemyHP < phasePoint3 && !phase3Applied) {
+	tpChance -= 45
+	enemSpeed += 1.2;
 	shoot_delay -= 60;
 	directionCooldown -= 65;
 	phase3Applied = true;
@@ -39,9 +55,9 @@ if ( enemyHP < phasePoint3 && !phase3Applied) {
 	}
 }
 if (!canSeePlayer) {
-	enemSpeed = initalSpeed;
+	baseSpeed = enemSpeed + 1;
 } else if (canSeePlayer) {
-	enemSpeed = initalSpeed;
+	baseSpeed = enemSpeed;
 }
 // countdown
 if (shoot_cooldown > 0 && canSeePlayer) {
@@ -197,17 +213,4 @@ if (dirMod != 0) {
 		}
 		break
 	}
-}
-if (dragTimer > 0) {
-    applyDrag(dragPower, dragDir, oWalls);
-    dragTimer--;
-
-    if (dragTimer <= 0) {
-        path_timer = 0;
-    }
-}
-
-if (path_timer <= 0) {
-    path_timer = path_cooldown;
-    pathfind(global.Grid, oTruePlayer, enemSpeed, id);
 }

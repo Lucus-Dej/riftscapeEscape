@@ -27,7 +27,10 @@ wallSpawnTimer = wallSpawnCooldown;
 ringCount = 12;
 ringBonus = 0;
 spawnTimer = 450;
-
+missleAngle = 0;
+missleMax = 24;
+missleCount = 0;
+missleDir = 0;
 nadoFireTimer = 0;
 
 lineAngle = 0;

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"initSwordJabExplosion",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"initSwordJabExplosion",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

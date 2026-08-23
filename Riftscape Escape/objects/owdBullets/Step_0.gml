@@ -32,10 +32,10 @@ if (type == 1) {
 	}
 	
 }
-if (existance <= 360 && type == 2) {
+if (existance <= 680 && type == 2) {
 	orbitRadius += orbitSpeed;
 }
-if (existance <= 260 && type == 2) {
+if (existance <= 440 && type == 2) {
 	if (orbitRadius <= 0) {
 		instance_destroy()
 	}

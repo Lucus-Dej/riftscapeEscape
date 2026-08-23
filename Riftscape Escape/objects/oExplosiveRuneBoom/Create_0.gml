@@ -1,5 +1,3 @@
-damage = 0;
-image_xscale += 0.5;
-image_yscale += 0.5;
+damage = 20;
 existance = 12;
 hitPlayer = false;

@@ -7,6 +7,13 @@ if (existance >= 0) {
 }
 if (!place_meeting(x, y, oTruePlayer)) {
 	playerLeftCircle = true;
+	if (oPlayerManager.hasCircleThought) {
+		oPlayerManager.thoughtCircleFireRateBoost = 0;
+	}
+} else {
+	if (oPlayerManager.hasCircleThought) {
+		oPlayerManager.thoughtCircleFireRateBoost += 0.02;
+	}
 }
 image_alpha = 0.1 + existance/(existanceTot);
 if (!doRefund) oPlayerManager.circleTotal = 0;

@@ -8,7 +8,7 @@ with (oGhostBarrier) {
 	}
 }
 if(ds_queue_size(doorQueue) > 0) {
-	
+	show_debug_message("STEP EVENT IS QUEING")
 	var inst = ds_queue_head(doorQueue);
 	ds_queue_dequeue(doorQueue);
 	with (inst) {
@@ -16,7 +16,7 @@ if(ds_queue_size(doorQueue) > 0) {
 			//instance_create_layer(x, y, "Instances", oWastelandWall)
 			continue;
 		}
-		newRoom = findRoom(doorDir);
+		newRoom = findRoom(doorDir, oFloorManager.minDiff, oFloorManager.maxDiff);
 		
 		if (newRoom != noone) {
 			//connectRoom(self, doorDir, newRoom, other.owner);

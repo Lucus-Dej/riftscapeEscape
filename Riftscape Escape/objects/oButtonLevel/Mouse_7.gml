@@ -114,6 +114,4 @@ switch (buttonID) {
 	case 18: // set to extreme difficulty;
 	global.difficulty = 4;
 	break;
-	
-	
 }

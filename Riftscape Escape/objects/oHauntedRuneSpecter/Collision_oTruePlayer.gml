@@ -1,0 +1,1 @@
+playerTakeDamage(global.player_health/2, damageType.contact);

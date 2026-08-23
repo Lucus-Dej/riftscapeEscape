@@ -1,0 +1,1 @@
+callDOT(other, dmg, ticks, tickDelay, dmgType, oTruePlayer);

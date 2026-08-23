@@ -26,7 +26,7 @@ shoot_delay = 160;
 enemyHP = 15;
 phasePoint1 =  enemyHP/2;
 enraged = false;
-damage = 14;
+damage = 20;
 chargeBonus = 0;
 contactDamage = damage;
 

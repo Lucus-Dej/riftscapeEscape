@@ -2,6 +2,9 @@ global.musicAudio = 0.2;
 global.sfxAudio = 0.5;
 global.difficulty = 2;
 global.gameSteps = 0;
+global.inCombat = false;
+global.resH = 720;
+global.resW = 1280;
 queueEvilRuneAdd = false;
 extendRun = false;
 // meta challenge progrssion

@@ -20,6 +20,7 @@ if (displayDuration > 0) {
     draw_set_alpha(alpha);
 	
 	draw_text(xPos - txtW * 0.5, yPos - pad * 0.5 + 8, disText)
+	draw_set_alpha(1)
 }
 	
 	

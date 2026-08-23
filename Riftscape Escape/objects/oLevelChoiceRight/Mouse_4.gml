@@ -3,9 +3,10 @@ with oLevelChoiceLeft {
 		valid = false;
 	}
 }
+
 with (oUpgradeTokenReal) {
 	if (upgradeID == other.buttonID) {
-		spent = true;
+		doFlash = false;
 	}
 }
 if (levelMet && !hasChosen && valid) {

@@ -1,5 +1,6 @@
 // ui list of items
-
+gpu_push_state();
+gpu_set_fog(false, 0,0,0)
 var guiW = display_get_gui_width();
 var guiH = display_get_gui_height();
 
@@ -18,7 +19,7 @@ var startX = guiW - (cols * cell) - 8;
 var startY = guiH * 0.35;
 
 
-
+if (!oPlayerManager.inLevelMenu)
 for (var i = 0; i < array_length(itemList); i++) {
 	var denied = false;
     var obj = itemList[i];
@@ -56,6 +57,7 @@ for (var i = 0; i < array_length(itemList); i++) {
 		hoveredItem = obj;
 	}
 }
+	
 if (hoveredItem != noone) {
 	displayItemFunction(hoveredItem);
 	if (ritualRerollAvailable && mouse_check_button_pressed(mb_left)) {
@@ -229,3 +231,4 @@ if (displayItemTimer > 0) {
 	draw_text((guiW*0.5)-txtW/2, (guiH*0.8)-pad/2+8, itemDesc);
 	displayItemTimer--;
 }
+gpu_pop_state();

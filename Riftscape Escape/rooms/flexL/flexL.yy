@@ -543,8 +543,8 @@
   ],
   "name":"flexL",
   "parent":{
-    "name":"tallRooms",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/tallRooms.yy",
+    "name":"tall",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/1NORMALGEN/diff1-3/tall.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -568,6 +568,7 @@
     "up",
     "left",
     "right",
+    "difficulty:2",
   ],
   "views":[
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

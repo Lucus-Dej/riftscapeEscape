@@ -38,8 +38,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sLevelBigPipChoiceLe",
-    "path":"sprites/sLevelBigPipChoiceLe/sLevelBigPipChoiceLe.yy",
+    "name":"sLevelChoicePieA",
+    "path":"sprites/sLevelChoicePieA/sLevelChoicePieA.yy",
   },
   "spriteMaskId":null,
   "visible":true,

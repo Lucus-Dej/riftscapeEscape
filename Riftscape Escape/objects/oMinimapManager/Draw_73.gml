@@ -1,5 +1,6 @@
 if (instance_exists(follow) && !oPlayerManager.inLevelMenu && !oPlayerManager.hasVeribroseRune) {
-
+	gpu_push_state();
+	gpu_set_fog(false, 0,0,0)
 	if (!surface_exists(minimapSurface)) {
 	    minimapSurface = surface_create(200, 200);
 	}
@@ -95,4 +96,5 @@ if (instance_exists(follow) && !oPlayerManager.inLevelMenu && !oPlayerManager.ha
 	}
 
 	surface_reset_target();
+	gpu_pop_state();
 }

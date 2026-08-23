@@ -8,7 +8,7 @@ if (oItemManager.hasLostCrown) {
 	minionCrownDmgBonus = 0.2;
 	minionCrownSpeedBonus = -25;
 }
-damage = (baseDmg + minionCrownDmgBonus + global.playerLife*0.005 + global.playerDamage*0.2)/(instance_number(oMinionEssence) + instance_number(oMinionFateEssence))*1.1;
+damage = (baseDmg + minionCrownDmgBonus + global.playerLife*0.005 + global.playerDamage*0.5)/(instance_number(oMinionEssence) + instance_number(oMinionFateEssence))*1.1;
 damage = max(damage, 0.01)
 minionSpeed = 65 + minionRealitySpeedBonus + minionCrownSpeedBonus;
 minionSpeed = max(5, minionSpeed);

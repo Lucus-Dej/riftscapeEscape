@@ -1,4 +1,7 @@
 function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type = damageType.basic) {
+	if (_source.invincible) {
+		return;
+	}
 	var cancelKill = false;
 	var dot = false;
 	if (_type == damageType.dotFire || _type == damageType.dotBlood || _type == damageType.dotPois || _type == damageType.dotIce) {
@@ -14,6 +17,23 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 		}
 		if (oItemManager.hasIceCharm && _type == damageType.dotIce || _type == damageType.playerIce) {
 			_dmg *= 1.5;
+		}
+		if (oItemManager.hasBloodCharm && _type == damageType.dotBlood || _type ==  damageType.playerBlood) {
+			_dmg *= 1.5;
+		}
+		if (oItemManager.hasPoisonCharm && _type == damageType.dotPois || _type ==  damageType.playerPois) {
+			_dmg *= 1.5;
+		}
+		if (oItemManager.hasBloodCharm) {
+			var bloodCheck = irandom_range(1, 12) + global.playerTime * 0.6;
+			if (bloodCheck >= 12) {
+				var spill = instance_create_layer(_source.x+random_range(-32, 32), _source.y+random_range(-32, 32), "Items", oBloodSpill)
+				spill.dmg = _dmg*0.05;
+				var scale = random_range(0.5, 2);
+				scale = (_source.image_xscale*0.5)*scale;
+				spill.image_xscale = scale;
+				spill.image_yscale = scale;
+			}
 		}
 		if (oPlayerManager.lastDamaged == _source) {
 			if (oItemManager.hasOilBarrel && instance_exists(oVirstBoss)) {
@@ -50,6 +70,14 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 				oItemManager.effectiveYinBonus = 0;
 			}
 		} 
+		if (oItemManager.hasRifterBloodSample) {
+			if (_type == damageType.dotBlood) {
+				healPlayer(_dmg*6, true);
+			} else if (_type == damageType.playerBlood) {
+				healPlayer(_dmg*2, true);
+			}
+			
+		}
 		if (oItemManager.hasBottleOil) {
 			with (_source) {
 				if (place_meeting(x, y, oOilSpill) && (_type == damageType.playerFire || _type == damageType.dotFire)) {
@@ -72,9 +100,11 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 			_dmg *= 1.4;
 			_source.hasDamaged = true;
 		}
-			
+		if (_dmg < 0.01) {
+			_dmg = 0.01;
+		}
 		_source.enemyHP -= _dmg;
-		addDamageNumber(_source.x, _source.y, _dmg);
+		addDamageNumber(_source.x, _source.y, _dmg,,,,_source.id);
 		_source.flash = 1;
 		
 	}
@@ -119,6 +149,37 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 		if (_type == damageType.dotLightning || _type == damageType.playerLightning) {
 			instance_create_layer(oPlayerManager.lastKilledX, oPlayerManager.lastKilledY, "Instances", oLightningCircle)
 		}
+	
+		
+		if (instance_exists(oElementalAura)) {
+			with (oElementalAura) {
+				if (existence < existenceTot) {
+					existence += existOnKill;
+					if (dot) {
+						existence += existOnKill;
+					}
+				} else {
+					existence += existOnKill*0.2;
+					if (dot) {
+						existence += existOnKill*0.1;
+					}
+				}
+			}
+		} else {
+			oItemManager.elementalAuraPoints += oItemManager.elementalAuraPointsOnKill;
+		}
+		if (oItemManager.hasBloodCharm) {
+			
+			for (var i = 0; i < 4; i++) {
+				var spill = instance_create_layer(_source.x+random_range(-16, 16), _source.y+random_range(-16, 16), "Items", oBloodSpill)
+				spill.dmg = _dmg*0.2;
+				var scale = random_range(0.75, 2);
+				scale = (_source.image_xscale)*scale*0.75;
+				spill.image_xscale = scale;
+				spill.image_yscale = scale;
+			}
+			
+		}
 		if (oItemManager.hasHorseDeath && _trueDmg) {
 			with (oSyDeathMinion) {
 				if (oItemManager.hasLostCrown) {
@@ -150,7 +211,7 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 						}
 					}
 				}
-				if (array_length(_source.damagedByArray == 1)) {
+				if (array_length(_source.damagedByArray) == 1) {
 					var dmgCheck = _source.damagedByArray[0];
 					if (dmgCheck == damageType.torzMinion) {
 						global.meta.challenges.beatBossWithOnlyMinion = true;
@@ -174,6 +235,7 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 				}
 			}
 		var overkill = _dmg - _source. enemyHP;
+		var xp = _source.xp;
 		instance_destroy(_source);
 		global.playerKilled = true;
 		if (oItemManager.hasHauntedGravestone) {
@@ -189,7 +251,7 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 				oPlayerManager.swordCooldownBonus = 22;
 				oPlayerManager.swordCooldownBonusTime = 30;
 			}
-			if (_source.xp > 0) {
+			if (xp > 0) {
 				oPlayerManager.swordKills++;
 				oPlayerManager.swordDmgBonus = sqrt(oPlayerManager.swordKills)*1.3 - 1.2;
 			}
@@ -204,32 +266,39 @@ function playerTakeDamage(_dmg, _type = damageType.basic) {
 				delay = cooldown;
 			}
 		}
+		if (_type = damageType.contact && oItemManager.hasKrostEssence) {
+			_dmg *= 0.5;
+		}
 		if (oItemManager.hasWaterDamagedNote && instance_exists(oVirstBoss) && object_index == oVirstBullet && !oTruePlayer.hasDamaged) {
 			_dmg *= 1.4;
 			oTruePlayer.hasDamaged = true;
 		}
+		global.damageCheck = true;
 		if (oPlayerManager.dodgeLifeBonus > 0) {
 			oPlayerManager.dodgeLifeBonus -= _dmg;
+			addDamageNumber(312+irandom_range(-3, 3), 64+irandom_range(-3, 3), _dmg, c_white, , true, oTruePlayer.id);
 		} else if (oPlayerManager.inOverhealth) {
+			addDamageNumber(312+irandom_range(-3, 3), 64+irandom_range(-3, 3), oPlayerManager.overhealthTimer/3, c_aqua, , true, oTruePlayer.id);
 			oPlayerManager.overhealthTimer /= 3;
+			
 		} else {
 			global.player_health -= _dmg;
-			show_debug_message(_dmg)
+			addDamageNumber(312+irandom_range(-3, 3), 64+irandom_range(-3, 3), _dmg, c_white, , true, oTruePlayer.id);
 			if (oItemManager.hasReflectiveGem) {
-				if  (oItemManager.reflectiveGemLuckBonus > 12) {
-					oItemManager.reflectiveGemLuckBonus -= 0.1;
+				if  (oItemManager.reflectiveGemLuckBonus > 0) {
+					oItemManager.reflectiveGemLuckBonus -= 0.05;
 				}
-				oItemManager.reflectiveGemFlag = false;
 			}
 		}
 		oTruePlayer.flash = 1.5;
 		oPlayerManager.tookDamage = true;
 		oPlayerManager.iframes = oPlayerManager.iframeTotal;
 		if (oItemManager.hasPlasmaOrb && _type == damageType.contact) {
-			var orbCheck = irandom_range(1, 8);
-			if (orbCheck + global.playerTime*0.5 >= 8) {
+			var orbCheck = irandom_range(1, 3);
+			if (orbCheck + global.playerTime*0.2 >= 3) {
 				var target = instance_nearest(x, y, oEnemy);
-				instance_create_layer(x, y, "Items", oLightningBolt);
+				var bolt = instance_create_layer(x, y, "Items", oLightningBolt);
+				bolt.damage = _dmg/10;
 			}
 		}
 		if (oItemManager.hasOilBarrel) {

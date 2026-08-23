@@ -91,6 +91,7 @@ if (!canBounce && bounceNum  <= 0) {
 	var ny = y + lengthdir_y(2, newDir);
 	var newSpeed = max(abs(speed), 0.01);
 	if (oItemManager.hasHeartPendent) {
+		damage *= 0.65;
 		var copy = bulletFire(nx, ny, newDir+15, newSpeed*1.2, damage*0.8, object_index, self);
 		copyBullet(id, copy)
 		newDir -= 15;
@@ -100,5 +101,8 @@ if (!canBounce && bounceNum  <= 0) {
 	instance_destroy()
 	
 } else {
-	instance_destroy()
+	if (!flying && tempGhostTimer <= 0) {
+		instance_create_layer(x, y, "Instances", oBoom);
+		instance_destroy();
+	}
 }

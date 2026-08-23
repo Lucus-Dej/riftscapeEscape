@@ -1,4 +1,4 @@
-if (oPlayerManager.hasVirstRune) {
+if (oItemManager.hasVirstEssence && object_index != oDepictionOfSeraphim) {
 	randomItem = true;
 }
 if (idleTime > 0) {

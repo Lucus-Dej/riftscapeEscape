@@ -4,7 +4,12 @@ ready = false;
 challengeArray = [];
 spawned = false;
 spawn_timer = spawn_cooldown;
-portal_cooldown = 35;
+portal_cooldown = 20;
+if (global.difficulty == 1) {
+	portal_cooldown = 40;
+} else if (global.difficulty >= 3) {
+	portal_cooldown = 5;
+}
 portal_timer = portal_cooldown;
 enum roomManagerType {
 	normal,
@@ -120,6 +125,7 @@ testTop = noone;
 testBottom = noone;
 testLeft = noone;
 testRight = noone;
+mask = noone;
 
 discovered = false;
 hinted = false;

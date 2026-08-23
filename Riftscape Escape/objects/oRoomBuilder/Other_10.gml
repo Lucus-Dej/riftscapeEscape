@@ -10,7 +10,7 @@ if(ds_queue_size(doorQueue) > 0) {
 			//instance_create_layer(x, y, "Instances", oWastelandWall)
 			continue;
 		}
-		newRoom = findRoom(doorDir);
+		newRoom = findRoom(doorDir, oFloorManager.minDiff, oFloorManager.maxDiff);
 		
 		if (newRoom != noone) {
 			//connectRoom(self, doorDir, newRoom, other.owner);
@@ -25,6 +25,7 @@ if(ds_queue_size(doorQueue) > 0) {
 			} else {
 				ds_queue_enqueue(global.roomQueue, request);
 			}
+			show_debug_message("EVENT ZERO IS QUEING")
 		}
 	}
 }

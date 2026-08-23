@@ -186,6 +186,8 @@
     {"name":"inst_5338E0E5","path":"rooms/flexRoomCircle4/flexRoomCircle4.yy",},
     {"name":"inst_1D70CB6D","path":"rooms/flexRoomCircle4/flexRoomCircle4.yy",},
     {"name":"inst_7D97096A","path":"rooms/flexRoomCircle4/flexRoomCircle4.yy",},
+    {"name":"inst_5B7052C3","path":"rooms/flexRoomCircle4/flexRoomCircle4.yy",},
+    {"name":"inst_7D0D6BAB","path":"rooms/flexRoomCircle4/flexRoomCircle4.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -414,6 +416,8 @@
         {"$GMRInstance":"v4","%Name":"inst_5338E0E5","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5338E0E5","objectId":{"name":"oTurretDoubleHoriz","path":"objects/oTurretDoubleHoriz/oTurretDoubleHoriz.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":1120.0,},
         {"$GMRInstance":"v4","%Name":"inst_1D70CB6D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1D70CB6D","objectId":{"name":"oTurretFire","path":"objects/oTurretFire/oTurretFire.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":288.0,},
         {"$GMRInstance":"v4","%Name":"inst_7D97096A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7D97096A","objectId":{"name":"oTurretFire","path":"objects/oTurretFire/oTurretFire.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":1120.0,},
+        {"$GMRInstance":"v4","%Name":"inst_5B7052C3","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5B7052C3","objectId":{"name":"oTurretRocketHoming","path":"objects/oTurretRocketHoming/oTurretRocketHoming.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":96.0,"y":704.0,},
+        {"$GMRInstance":"v4","%Name":"inst_7D0D6BAB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7D0D6BAB","objectId":{"name":"oTurretRocketHoming","path":"objects/oTurretRocketHoming/oTurretRocketHoming.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1248.0,"y":704.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_1","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_1","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":88,"SerialiseWidth":88,"TileSerialiseData":[
           15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,13,14,15,
@@ -619,7 +623,7 @@
   "name":"flexRoomCircle4",
   "parent":{
     "name":"circle",
-    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/circle.yy",
+    "path":"folders/ROOMS/procedualTest/tiles/flexRooms/1NORMALGEN/diff7-10/circle.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -643,6 +647,7 @@
     "down",
     "left",
     "right",
+    "difficulty:7",
   ],
   "views":[
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

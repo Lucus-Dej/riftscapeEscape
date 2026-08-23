@@ -1,3 +1,3 @@
-drawText = noone;
+
 
 display = true;

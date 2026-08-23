@@ -36,7 +36,7 @@ if (state == ENEM_STATE.WINDUP) {
 	if (attackDelay <= 0) {
 		chargeTime = 16;
 		state = ENEM_STATE.CHARGE;
-		chargeBonus = 3.5;
+		chargeBonus = 3;
 		contactDamage *= chargeBonus;
 		if (enraged) {
 			enemSpeed = 16;
@@ -47,8 +47,8 @@ if (state == ENEM_STATE.WINDUP) {
 }
 if (state == ENEM_STATE.CHARGE) {
 	
-	hsp = lengthdir_x(baseSpeed, chargeDir);
-	vsp = lengthdir_y(baseSpeed, chargeDir);
+	hsp = lengthdir_x(enemSpeed, chargeDir);
+	vsp = lengthdir_y(enemSpeed, chargeDir);
 	if (enraged && isBoss) {
 		chargeTime -= 0.75;
 	} else if (enraged && !isBoss) {

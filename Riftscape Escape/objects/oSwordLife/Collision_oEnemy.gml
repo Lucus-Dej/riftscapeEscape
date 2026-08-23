@@ -7,5 +7,5 @@ if (variable_instance_exists(other, "invincible")) {
 	 }
 }
 
-callDOT(other, global.playerLife/6, 12, 12, dotType.poison, object_index);
+callDOT(other, global.playerLife/6, 12, 12, dotType.poison, oSword);
 

@@ -1,4 +1,6 @@
 if (displayItemTimer > 0) {
+	gpu_push_state();
+	gpu_set_fog(false, 0,0,0)
 	var alpha = min(displayItemTimer / 20, 1);
 	guiW = display_get_gui_width();
 	guiH = display_get_gui_height();
@@ -18,4 +20,5 @@ if (displayItemTimer > 0) {
 	drawOutline((guiW*0.5)-txtW/2, (guiH*0.8)-pad/2+8, itemDesc, c_white, c_black)
 	//draw_text((guiW*0.5)-txtW/2, (guiH*0.8)-pad/2+8, itemDesc);
 	displayItemTimer--;
+	gpu_pop_state();
 }

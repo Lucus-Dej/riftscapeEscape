@@ -1,3 +1,9 @@
+if (!faded)
+if (global.inCombat) {
+	image_alpha = 0.5;
+} else {
+	image_alpha = 1;
+}
 if (!hasChosen && !levelMet) {
 	image_index = 0;
 } else if (levelMet && !hasChosen) {

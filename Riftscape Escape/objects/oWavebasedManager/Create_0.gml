@@ -23,7 +23,12 @@ enum waveState {
 }
 gendFlyGrid = false;
 state = waveState.idle;
-spawnDelay = 30;
+spawnDelay = 20;
+if (global.difficulty == 1) {
+	spawnDelay = 40;
+} else if (global.difficulty >= 3) {
+	spawnDelay = 5;
+}
 waveWeight = startingWeight;
 spawnCooldown = spawnDelay;
 spawnerArray = [];

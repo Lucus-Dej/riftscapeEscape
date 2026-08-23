@@ -1,3 +1,7 @@
+
+if (tempEnem) {
+	exit;
+}
 // Inherit the parent event
 event_inherited();
 

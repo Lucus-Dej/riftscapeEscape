@@ -17,8 +17,8 @@
   "name":"oEnemy",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"enemies",
+    "path":"folders/enemies.yy",
   },
   "parentObjectId":{
     "name":"oAoETargets",
@@ -40,6 +40,9 @@
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"xp","filters":[],"listItems":[],"multiselect":false,"name":"xp","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.0","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"spawnWeight","filters":[],"listItems":[],"multiselect":false,"name":"spawnWeight","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.0","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"tempEnem","filters":[],"listItems":[],"multiselect":false,"name":"tempEnem","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"egg","filters":[],"listItems":[],"multiselect":false,"name":"egg","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v2","%Name":"zTilt","filters":[],"listItems":[],"multiselect":false,"name":"zTilt","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -6,3 +6,6 @@ image_speed = 0;
 image_index = 0
 follower = noone;
 spent = false;
+doFlash = false;
+flash = 0;
+flashRate = 0.05;

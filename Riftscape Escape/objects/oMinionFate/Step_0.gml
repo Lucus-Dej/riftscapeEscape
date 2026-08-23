@@ -8,7 +8,7 @@ if (oItemManager.hasLostCrown) {
 	minionCrownDmgBonus = 0.2;
 	minionCrownSpeedBonus = -25;
 }
-damage = baseDmg + minionCrownDmgBonus + global.playerLife*0.01 + global.playerDamage*0.4;
+damage = baseDmg + minionCrownDmgBonus + global.playerLife*0.01 + global.playerDamage*0.65;
 minionSpeed = 65 + minionRealitySpeedBonus + minionCrownSpeedBonus;
 minionSpeed = max(5, minionSpeed);
 if (follow == oTruePlayer) {

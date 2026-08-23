@@ -12,8 +12,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},"propertyId":{"name":"spawnWeight","path":"objects/oEnemy/oEnemy.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"33",},
   ],
   "parent":{
-    "name":"bosses",
-    "path":"folders/enemies/bosses.yy",
+    "name":"Krost",
+    "path":"folders/enemies/bosses/Krost.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

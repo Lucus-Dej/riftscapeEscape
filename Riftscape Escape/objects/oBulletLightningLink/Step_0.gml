@@ -22,7 +22,7 @@ if (instance_exists(host) && instance_exists(connector)) {
 	image_angle = point_direction(x, y, connector.x, connector.y);
 	image_xscale = point_distance(x, y, connector.x, connector.y) / 12;
 	var dist = point_distance(host.x, host.y, connector.x, connector.y)
-	if (dist > 256) {
+	if (dist > 256 && checkDist) {
 		instance_destroy()
 	}
 } else {

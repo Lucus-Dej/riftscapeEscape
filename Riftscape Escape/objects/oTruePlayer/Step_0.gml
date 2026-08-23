@@ -28,6 +28,11 @@ if (trap != noone) {
 		realSpeed *= 0.4;
 	}
 }
+if (torzPower > 0) {
+	var maxSlow = 0.80;
+	var multiplier = 1 - maxSlow * (1 - exp(-torzPower * 0.12));
+	realSpeed *= multiplier;
+}
 if (lockedTimer > 0) {
 	lockedTimer--;
 	realSpeed = 0;
@@ -35,12 +40,42 @@ if (lockedTimer > 0) {
 }
 hsp = _xinput * realSpeed;
 vsp = _yinput * realSpeed;
-if (is_debug_overlay_open()) {
-	move_and_collide(hsp*2, vsp*2, oAbilityGive);
-} else if (global.playerCanFly) {
-	move_and_collide(hsp, vsp, oIndestructable);
+
+if (oPlayerManager.hasFirstPRune) {
+	var forwardDir = oCamera.direction;
+	var sideDir = oCamera.direction-90;
+	vsp*=-1
+	var move_x = lengthdir_x(vsp, forwardDir) + lengthdir_x(hsp, sideDir);
+	var move_y = lengthdir_y(vsp, forwardDir) + lengthdir_y(hsp, sideDir);
+	
+	if (abs(move_x) < abs(_xinput)) {
+		_xinput *= 0.9;
+	} else {
+		_xinput = move_x;
+	}
+
+	if (abs(move_y) < abs(_yinput)) {
+		_yinput *= 0.9;
+	} else {
+		_yinput = move_y;
+	}
+
+	_xinput = move_x;
+	_yinput = move_y;
+	if (is_debug_overlay_open()) {
+		move_and_collide(hsp*2, vsp*2, oRoomStartMarker);
+	} else {
+		move_and_collide(_xinput, _yinput, [oSuperwalls])
+	}
+	
 } else {
-	move_and_collide(hsp, vsp, oSuperwalls);
+	if (is_debug_overlay_open()) {
+		move_and_collide(hsp*2, vsp*2, oRoomStartMarker);
+	} else if (global.playerCanFly) {
+		move_and_collide(hsp, vsp, oIndestructable);
+	} else {
+		move_and_collide(hsp, vsp, oSuperwalls);
+	}
 }
 
 
@@ -61,7 +96,9 @@ if ((keyboard_check(vk_space) or mouse_check_button(mb_left)) && global.bullet_c
 		oMinionEssence.fire = true;
 	}
 	var dir = point_direction(x, y, mouse_x, mouse_y);
-	
+	if (oPlayerManager.hasFirstPRune) {
+		dir = oCamera.direction
+	}
 	playerBulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
     global.bullet_cooldown = global.bullet_delay;
 }
@@ -70,6 +107,9 @@ if (instance_exists(visual)) {
 	visual.x = x;
 	visual.y = y;
 	var ang = point_direction(x, y, mouse_x, mouse_y);
+	if (oPlayerManager.hasFirstPRune) {
+		ang = oCamera.direction
+	}
 	if (lockedTimer <= 0) {
 		visual.image_angle = ang;
 	}

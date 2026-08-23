@@ -4,7 +4,9 @@ upgradeSpent = false;
 upgrade = 0;
 desc = "null";
 textbox = noone;
-
+flash = 0;
+flashRate = 0.05;
+doFlash = false;
 global.currentUpgradeID = 0;
 hasAbility = false;
 abilityGained = 0;

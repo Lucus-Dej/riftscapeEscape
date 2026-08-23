@@ -7,7 +7,7 @@ if (phasePoint1 >=  enemyHP && enraged == false) {
 	spawnNum -= 100;
 	enemSpeed -= 1;
 	bullet_speed = 1.5;
-	fire_duration += 30;
+	fire_duration += 16;
 	shoot_delay = 1;
 	recoil_cooldown -= 6;
 	enraged = true;
@@ -60,8 +60,8 @@ if (spawnCheck == 1) {
 		spawn.baseSpeed += 0.2;
 	}
 	spawn.xp = 0;
-	spawn. enemyHP *= 0.4;
-	spawn.maxHP *= 0.5;
+	spawn. enemyHP *= 0.1;
+	spawn.maxHP *= 0.1;
 	spawn.image_xscale /= 2;
 	spawn.image_yscale /= 2;
 }

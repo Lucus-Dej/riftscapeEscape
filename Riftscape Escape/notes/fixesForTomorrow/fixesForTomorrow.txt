@@ -4,8 +4,6 @@ adding the creep minion.
 maybe the creep element can change randomly or every room
 sometimes fire, sometimes poison, sometimes ice
 
-Fix weird bounce collision sometimes on walls?
-Make the difference between ability and upgrade more clear
 
 plains for torzol
 

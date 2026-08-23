@@ -39,6 +39,7 @@ if (!array_contains(damageArray, other.id)) {
 				
 				var dir = point_direction(x, y, closest.x, closest.y);
 				direction = dir;
+				
 				skipDeath = true;
 				//var richBullet = bulletFire(x, y, dir, speed, damage/2, object_index, self);
 				//copyBullet(id, richBullet)
@@ -119,14 +120,16 @@ if (!array_contains(damageArray, other.id)) {
 			enemyTakeDamage(damage, hit);
 			break;
 		}
-		
+		if (canPois) {
+			callDOT(other, damage*0.01, 12, 12, dotType.poison, oTruePlayer);
+		}
 		if (canLifesteal) {
-			global.player_health += global.lifesteal;
+			healPlayer(global.lifesteal, true)
 		}
         // RICOCHET
        
 		 if (oPlayerManager.canPierce || skipDeath) {
-            
+            damage *= 0.5;
         } else {
 			instance_destroy();
 		}

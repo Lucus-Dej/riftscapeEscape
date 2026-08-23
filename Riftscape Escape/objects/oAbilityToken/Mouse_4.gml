@@ -243,9 +243,10 @@ switch (abilityID) {
 	break;
 }
 
-with oUpgradeTokenStaticoUpgradeTokenStatic {
+with oUpgradeTokenStatic {
 	if (other.abilityID == ownerID && other.upgradeCount == upgradeID) {
 		image_index = other.upgrader.upgradeID;
+		storedUpgradeId = other.upgrader.upgradeID;
 	}
 }
 

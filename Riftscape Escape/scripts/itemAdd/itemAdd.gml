@@ -77,6 +77,12 @@ function itemAdd(_item, _addToInventory = true){
 		break;
 		
 		// rares
+		case oRifterBloodSample:
+		oItemManager.hasRifterBloodSample = true;
+		break;
+		case oRadioactiveMaterial:
+		oItemManager.hasRadioactiveMaterial = true;
+		break;
 		case oBottleOil:
 		oItemManager.hasBottleOil = true;
 		break;
@@ -139,6 +145,25 @@ function itemAdd(_item, _addToInventory = true){
 		break;
 		
 		// powerful'
+		case oLightningCrystal:
+		oItemManager.hasCrystalLightning = true;
+		break;
+		case oFireCrystal:
+		oItemManager.hasCrystalFire = true;
+		break;
+		case oPoisonCrystal:
+		oItemManager.hasCrystalPois = true;
+		break;
+		case oBloodCrystal:
+		oItemManager.hasCrystalBlood = true;
+		break;
+		case oIceCrystal:
+		oItemManager.hasCrystalIce = true;
+		break;
+		
+		case oElementalVortex:
+		oItemManager.hasElementalVortex = true;
+		break;
 		case oPlasmaOrb:
 		oItemManager.hasPlasmaOrb = true;
 		break;
@@ -178,6 +203,7 @@ function itemAdd(_item, _addToInventory = true){
 		case oActionFigure:
 		oItemManager.hasActionFigure = true;
 		oItemManager.actionFigurePower++;
+		oPlayerManager.staticItemDmgPercent += 0.05;
 		break;
 		case oLilFurnacePickup:
 		oItemManager.hasLilFurnace = true;
@@ -186,7 +212,7 @@ function itemAdd(_item, _addToInventory = true){
 		oPlayerManager.hasBrainInAJar = true;
 		break;
 		case oDirectorsNote:
-		oPlayerManager.directorsDebuff += 1.8;
+		oPlayerManager.staticItemDmgPercent += 1.8;
 		oPlayerManager.statBulletDebuff -= 22;
 		oPlayerManager.fireRateCap -= 4;
 		break;
@@ -200,8 +226,6 @@ function itemAdd(_item, _addToInventory = true){
 		break;
 		case oMagnet:
 		oItemManager.hasMagnet = true;
-		oPlayerManager.statBulletDebuff -= 15.5;
-		oPlayerManager.boomerangDmg += 0.1;
 		break;
 		case oMetalOrb:
 		oPlayerManager.statBulletDebuff += 6;
@@ -232,6 +256,7 @@ function itemAdd(_item, _addToInventory = true){
 		// mythics
 		case oLaserPointer:
 		oItemManager.hasLaserPointer = true;
+		oPlayerManager.staticItemDmgPercent += 0.2;
 		break;
 		case oElectricDartGun:
 		oItemManager.hasDartGun = true;
@@ -264,23 +289,25 @@ function itemAdd(_item, _addToInventory = true){
 		realityUp();
 		break;
 		
+		case oBloodCharm:
+		oItemManager.hasBloodCharm = true;
+		break;
+		case oPoisonCharm:
+		oItemManager.hasPoisonCharm = true;
+		break;
 		case oHauntedGravestone:
 		oItemManager.hasHauntedGravestone = true;
-		essenceUp();
 		break;
 		case oPetrifiedHeart:
 		oItemManager.hasPetrifiedHeart = true;
-		essenceUp();
 		break;
 		case oBrokenSnowglobe:
 		oItemManager.hasBrokenSnowglobe = true;
 		oPlayerManager.statBulletDebuff += 6;
-		timeUp();
 		break;
 		case oElectricKite:
 		oPlayerManager.canRich = true
 		oPlayerManager.statBulletDebuff += 12;
-		timeUp();
 		break;
 		case oPoorFingerPainting:
 		fateUp();
@@ -291,7 +318,7 @@ function itemAdd(_item, _addToInventory = true){
 		lifeUp();
 		break;
 		case oSacDagger:
-		oItemManager.sacDaggerPenalty += 1.3;
+		oItemManager.sacDaggerPenalty += 1.15;
 		essenceUp();
 		oItemManager.sacDaggerBonus += 3;
 		lifeUp();
@@ -299,16 +326,13 @@ function itemAdd(_item, _addToInventory = true){
 		break;
 		case oTesseract:
 		oItemManager.hasTesseract = true;
-		realityUp();
 		break;
 		case oTetheredSoulPickup:
 		oItemManager.hasTetheredSoul = true;
-		fateUp();
 		break;
 		case oUnstableEnergy:
 		oItemManager.hasUnstableEnergy = true;
 		oPlayerManager.statBulletDebuff += 12;
-		timeUp();
 		break;
 		
 		// ultra
@@ -389,6 +413,9 @@ function displayItemFunction(_item){
 		break;
 		
 		// rares
+		case oRifterBloodSample:
+		desc = "Rifter Blood Sample: Heal For Blood Damage You Deal";
+		break;
 		case oBottleOil:
 		desc = "Bottle Of Oil: Chance For Bullets To Leave Oil Spill Behind";
 		break;
@@ -443,6 +470,24 @@ function displayItemFunction(_item){
 		
 
 		// powerful
+		case oElementalVortex:
+		desc = "Elemental Vortex: Killing In Rapid Succession Summons A Random Elemental Aura";
+		break;
+		case oLightningCrystal:
+		desc = "Lightning Crsytal: Killing In Rapid Succession Summons An Elemental Aura";
+		break;
+		case oFireCrystal:
+		desc = "Fire Crsytal: Killing In Rapid Succession Summons An Elemental Aura";
+		break;
+		case oPoisonCrystal:
+		desc = "Poison Crsytal: Killing In Rapid Succession Summons An Elemental Aura";
+		break;
+		case oBloodCrystal:
+		desc = "Blood Crsytal: Killing In Rapid Succession Summons An Elemental Aura";
+		break;
+		case oIceCrystal:
+		desc = "Ice Crsytal: Killing In Rapid Succession Summons An Elemental Aura";
+		break;
 		case oIceCharm:
 		desc = "Ice Charm: Chance To Launch A Slow Moving Snowstorm When Firing + Amplifies Ice Damage";
 		break;
@@ -483,7 +528,7 @@ function displayItemFunction(_item){
 		desc = "Cracked Egg: In Overhealth, Become Immune To Contact Damage And Spread Poison"
 		break;
 		case oActionFigure:
-		desc = "Action Figure: Summon Action Figure On Kill";
+		desc = "Action Figure: Summon Action Figure On Kill + Slight Damage Down";
 		break;
 		case oLilFurnacePickup:
 		desc = "Lil Furnace: A Friend Who Summons More Friends";
@@ -530,7 +575,7 @@ function displayItemFunction(_item){
 		
 		// mythics
 		case oLaserPointer:
-		desc = "Laser Pointer: Bullets Follow Your Mouse";
+		desc = "Laser Pointer: Bullets Follow Your Mouse + Mild Damage Down";
 		break;
 		case oSifterEssence:
 		desc = "Essence Of Sifter: Drain Nearby Enemies For Bonuses + Essence Up";
@@ -539,32 +584,41 @@ function displayItemFunction(_item){
 		desc = "Essence Of Alexta: Enemies Are Stunned When Spawned + Thought Up";
 		break;
 		case oVirstEssence:
-		desc = "Essence Of Virst: An Extra Life At A Cost + Rift Essence Grants Crit + Time Up";
+		desc = "Essence Of Virst: An Extra Life At A Cost + Items Are Randomized + Time Up";
 		break;
 		case oTorzolEssence:
 		desc = "Essence Of Torzol: Regeneration + Life Up";
 		break;
 		case oVeribroseEssence:
-		desc = "Essence Of Veribrose: An Upcoming Choice + Fate Up";
+		desc = "Essence Of Veribrose: An Upcoming Choice + Absorbing Rifer Essence Grants Crits + Fate Up";
 		break;
 		case oKrostEssence:
 		desc = "Essence Of Krost: Escalating Speed + Contact Damage + Reality Up";
 		break;
 		
+		case oBloodCharm:
+		desc = "Blood Charm: Damaging An Enemy Has A Chance To Leave A Blood Pool + Amplifies Blood Damage";
+		break;
+		case oPoisonCharm:
+		desc = "Poison Charm: Standing Still Grants A Chance For Poison Shots + Amplifies Blood Damage";
+		break;
+		case oRadioactiveMaterial:
+		desc = "Poison DoT Has A Chance To Increase Damage";
+		break;
 		case oElectricDartGun:
-		desc = "Dart Gun: Bullets Become Turrets + Thought Up";
+		desc = "Dart Gun: Bullets Become Turrets";
 		break;
 		case oHauntedGravestone:
-		desc = "Haunted Gravestone: On Kill, Summon An Explosive Angry Spirit + Essence Up";
+		desc = "Haunted Gravestone: On Kill, Summon An Explosive Angry Spirit";
 		break;
 		case oPetrifiedHeart:
-		desc = "Petrified Heart: Faster Overhealth + Fire Bullets At End Of Overhealth + Essence Up";
+		desc = "Petrified Heart: Faster Overhealth + Fire Bullets At End Of Overhealth";
 		break;
 		case oBrokenSnowglobe:
-		desc = "Broken Snowglobe: Accelerating Bullets + Time Up + Faster Bullets Deal More Damage";
+		desc = "Broken Snowglobe: Accelerating Bullets + Faster Bullets Deal More Damage";
 		break;
 		case oElectricKite:
-		desc = "Electric Kite: Ricochet Bullets + Time Up";
+		desc = "Electric Kite: Ricochet Bullets";
 		break;
 		case oPoorFingerPainting:
 		desc = "Poor Finger Painting: All Stat Ups";
@@ -576,10 +630,10 @@ function displayItemFunction(_item){
 		desc = "Tesseract: Continuous Movement Grants Bonuses";
 		break;
 		case oTetheredSoulPickup:
-		desc = "Tethered Soul: A Protective Friend + Extra Life + Fate Up";
+		desc = "Tethered Soul: A Protective Friend + Extra Life";
 		break;
 		case oUnstableEnergy:
-		desc = "Unstable Energy: Summon Bullets On Hit + Fate Up";
+		desc = "Unstable Energy: Bullets Split On Hit";
 		break;
 		case oBlackHoleCharge:
 		desc = "Black Hole's For Dummies: Summon A Protective Blackhole";
@@ -669,6 +723,12 @@ function itemRemove(_item, _removeFromInventory = true){
 		break;
 		
 		// rares
+		case oRifterBloodSample:
+		oItemManager.hasRifterBloodSample = false;
+		break;
+		case oRadioactiveMaterial:
+		oItemManager.hasRadioactiveMaterial = false;
+		break;
 		case oBottleOil:
 		oItemManager.hasBottleOil = false;
 		break;
@@ -731,6 +791,24 @@ function itemRemove(_item, _removeFromInventory = true){
 		break;
 		
 		// powerful
+		case oElementalVortex:
+		oItemManager.hasElementalVortex = false;
+		break;
+		case oLightningCrystal:
+		oItemManager.hasCrystalLightning = false;
+		break;
+		case oFireCrystal:
+		oItemManager.hasCrystalFire = false;
+		break;
+		case oPoisonCrystal:
+		oItemManager.hasCrystalPois = false;
+		break;
+		case oBloodCrystal:
+		oItemManager.hasCrystalBlood = false;
+		break;
+		case oIceCrystal:
+		oItemManager.hasCrystalIce = false;
+		break;
 		case oPlasmaOrb:
 		oItemManager.hasPlasmaOrb = false;
 		break;
@@ -774,15 +852,17 @@ function itemRemove(_item, _removeFromInventory = true){
 		case oActionFigure:
 		oItemManager.hasActionFigure = false;
 		oItemManager.actionFigurePower--;
+		oPlayerManager.staticItemDmgPercent -= 0.05;
 		break;
 		case oLilFurnacePickup:
 		oItemManager.hasLilFurnace = false;
+		instance_destroy(oLilFurnace)
 		break;
 		case oBrainInAJar:
 		oPlayerManager.hasBrainInAJar = false;
 		break;
 		case oDirectorsNote:
-		oPlayerManager.directorsDebuff -= 1.8;
+		oPlayerManager.staticItemDmgPercent -= 1.8;
 		oPlayerManager.statBulletDebuff += 18;
 		oPlayerManager.fireRateCap += 4;
 		break;
@@ -799,8 +879,6 @@ function itemRemove(_item, _removeFromInventory = true){
 		break;
 		case oMagnet:
 		oItemManager.hasMagnet = false;
-		oPlayerManager.statBulletDebuff += 15.5;
-		oPlayerManager.boomerangDmg -= 0.1;
 		break;
 		case oMetalOrb:
 		oPlayerManager.statBulletDebuff -= 6;
@@ -828,8 +906,15 @@ function itemRemove(_item, _removeFromInventory = true){
 		
 		
 		// mythics
+		case oBloodCharm:
+		oItemManager.hasBloodCharm = false;
+		break;
+		case oPoisonCharm:
+		oItemManager.hasPoisonCharm = false;
+		break;
 		case oLaserPointer:
 		oItemManager.hasLaserPointer = false;
+		oPlayerManager.staticItemDmgPercent -= 0.2;
 		break;
 		case oSifterEssence:
 		oItemManager.hasSifterEssence = false;
@@ -860,23 +945,20 @@ function itemRemove(_item, _removeFromInventory = true){
 		case oElectricDartGun:
 		oPlayerManager.statBulletDebuff -= 32;
 		oItemManager.hasDartGun = false;
-		essenceDown();
+		break;
 		case oHauntedGravestone:
 		oItemManager.hasHauntedGravestone = false;
 		break;
 		case oPetrifiedHeart:
 		oItemManager.hasPetrifiedHeart = false;
-		essenceDown();
 		break;
 		case oBrokenSnowglobe:
 		oItemManager.hasBrokenSnowglobe = false;
 		oPlayerManager.statBulletDebuff -= 6;
-		timeDown();
 		break;
 		case oElectricKite:
 		oPlayerManager.canRich = false
 		oPlayerManager.statBulletDebuff -= 12;
-		timeDown();
 		break;
 		case oPoorFingerPainting:
 		fateDown();
@@ -887,13 +969,12 @@ function itemRemove(_item, _removeFromInventory = true){
 		lifeDown();
 		break;
 		case oSacDagger:
-		oItemManager.sacDaggerPenalty -= 1.3;
+		oItemManager.sacDaggerPenalty -= 1.15;
 		essenceDown();
 		oItemManager.sacDaggerBonus -= 3;
 		break;
 		case oTesseract:
 		oItemManager.hasTesseract = false;
-		realityDown();
 		break;
 		case oTetheredSoulPickup:
 		oItemManager.hasTetheredSoul = false;
@@ -902,12 +983,10 @@ function itemRemove(_item, _removeFromInventory = true){
 			instance_destroy(oTetheredSoul);
 			global.player_health = currentHP;
 		}
-		fateDown();
 		break;
 		case oUnstableEnergy:
 		oItemManager.hasUnstableEnergy = false;
 		oPlayerManager.statBulletDebuff -= 12;
-		timeDown();
 		break;
 		
 		

@@ -12,6 +12,6 @@ recoil_timer = 4;
 ang = 0;
 enemSpeed = 1.4;
 baseSpeed = enemSpeed;
-damage = 14.5;
+damage = 32.5;
 bullet_speed = 4;
 playerPercent = 0;
