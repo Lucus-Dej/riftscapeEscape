@@ -6,22 +6,28 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
     if (pause) {
 		
 		var cam = view_camera[0];
-		var camW = display_get_gui_width();
-		var camH = display_get_gui_height();
+		var camW = camera_get_view_width(cam);
+		var camH = camera_get_view_height(cam);
+		
+		var centX = camera_get_view_x(cam) + camera_get_view_width(cam) * 0.5;
+		var centY = camera_get_view_y(cam) + camera_get_view_height(cam) * 0.5;
+		if (global.do3d) {
+			camW = display_get_gui_width();
+			camH = display_get_gui_height();
+			centX = camW * 0.5;
+			centY = camH * 0.5;
+			window_mouse_set_locked(false)
+		}
 		var spacing = 128;
-		var centX = camW * 0.5;
-		var centY = camH * 0.5;
 		pauseSurf = surface_create(resW, resH);
 		
 		resButton = instance_create_layer(centX, centY-spacing*2, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		settingButton = instance_create_layer(centX, centY-spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		restartButton = instance_create_layer(centX, centY, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		quitButton = instance_create_layer(centX, centY+spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
-		background = instance_create_layer(centX, centY, "Instances", oPauseBackground);
+		background = instance_create_layer(centX, centY, "Instances", oPauseBackground, {image_alpha: 0.2});
 		
-		if (oPlayerManager.hasFirstPRune) {
-			window_mouse_set_locked(false)
-		}
+		
 		resButton.buttonID = 11;
 		resButton.drawText = "Resume Game";
 		settingButton.drawText = "Settings";
@@ -34,6 +40,8 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 		draw_surface(application_surface, 0, 0);
 		surface_reset_target();
 		instance_deactivate_all(true);
+		instance_activate_object(oSettingManager)
+		instance_activate_object(oMouseTracker)
 		instance_activate_object(background);
 		instance_activate_layer("pause");
 		layer_set_visible("pause", true)

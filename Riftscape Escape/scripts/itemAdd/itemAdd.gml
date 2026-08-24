@@ -414,7 +414,7 @@ function displayItemFunction(_item){
 		
 		// rares
 		case oRifterBloodSample:
-		desc = "Rifter Blood Sample: Heal For Blood Damage You Deal";
+		desc = "Rifter Blood Sample: Critical Hits Cause Enemies To Bleed";
 		break;
 		case oBottleOil:
 		desc = "Bottle Of Oil: Chance For Bullets To Leave Oil Spill Behind";
@@ -600,10 +600,10 @@ function displayItemFunction(_item){
 		desc = "Blood Charm: Damaging An Enemy Has A Chance To Leave A Blood Pool + Amplifies Blood Damage";
 		break;
 		case oPoisonCharm:
-		desc = "Poison Charm: Standing Still Grants A Chance For Poison Shots + Amplifies Blood Damage";
+		desc = "Poison Charm: Standing Still Grants A Chance For Poison Shots + Amplifies Poison Damage";
 		break;
 		case oRadioactiveMaterial:
-		desc = "Poison DoT Has A Chance To Increase Damage";
+		desc = "Radioactive Material: Poison DoT Can Spread To Nearby Foes";
 		break;
 		case oElectricDartGun:
 		desc = "Dart Gun: Bullets Become Turrets";

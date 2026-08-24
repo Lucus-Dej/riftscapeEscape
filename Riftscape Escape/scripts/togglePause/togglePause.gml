@@ -31,7 +31,7 @@ function callSettings() {
 	draw_set_colour(c_white);
 	draw_set_font(fLevels);
 	
-	oPauseManager.settingsReturnButton = instance_create_layer(centX, centY, "pause", oButtonStartMenu, {image_yscale: 2, image_xscale: 4});
+	oPauseManager.settingsReturnButton = instance_create_layer(centX, centY-128, "pause", oButtonStartMenu, {image_yscale: 2, image_xscale: 4});
 	oPauseManager.settingsReturnButton.drawText = "Return";
 	oPauseManager.settingsReturnButton.buttonID = 5;
 	

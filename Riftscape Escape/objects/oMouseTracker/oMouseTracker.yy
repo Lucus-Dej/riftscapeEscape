@@ -30,6 +30,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":null,
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"sPixelBlack",
+    "path":"sprites/sPixelBlack/sPixelBlack.yy",
+  },
   "visible":true,
 }

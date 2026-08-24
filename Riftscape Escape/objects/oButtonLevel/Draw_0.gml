@@ -1,6 +1,4 @@
-if (global.do3d) {
-	gpu_push_state();
-	gpu_set_fog(false, 0, 0, 0);
+if (!global.do3d) {
 
 	draw_self();
 
@@ -42,6 +40,4 @@ if (global.do3d) {
 	else if (drawText != noone && (buttonID == 13 || buttonID == 22)) {
 	    draw_text_ext_transformed(x - string_width(drawText), y - string_height(drawText) * 1.35, drawText, 4, 256, 2, 2, 0);
 	}
-
-	gpu_pop_state();
 }

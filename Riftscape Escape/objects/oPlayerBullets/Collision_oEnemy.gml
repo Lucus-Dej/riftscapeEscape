@@ -94,10 +94,21 @@ if (!array_contains(damageArray, other.id)) {
 			
 		} 
 		if (critShot && oItemManager.hasMolotov) {
-			callDOT(other, 0.25, 8, 12, dotType.fire, oTruePlayer);
+			callDOT(other, 0.25, 12, 8, dotType.fire, oTruePlayer);
 		}
 		if (oItemManager.hasBrokenSnowglobe) {
 			damage += speedBonus;
+		}
+		if (critShot && oItemManager.hasRifterBloodSample) {
+			for (var i = 0; i < irandom_range(12, 24); i++) {
+				var spill = instance_create_layer(other.x+irandom_range(-64, 64), other.y+irandom_range(-64, 64), "Items", oBloodSpill)
+				spill.dmg = damage*0.15;
+				var scale = random_range(0.5, 2);
+				scale = (other.image_xscale*0.5)*scale;
+				spill.image_xscale = scale;
+				spill.image_yscale = scale;
+			}
+			
 		}
 		switch (object_index) {
 			case oBloodVialBullets:
@@ -120,6 +131,7 @@ if (!array_contains(damageArray, other.id)) {
 			enemyTakeDamage(damage, hit);
 			break;
 		}
+		
 		if (canPois) {
 			callDOT(other, damage*0.01, 12, 12, dotType.poison, oTruePlayer);
 		}

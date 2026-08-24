@@ -56,11 +56,11 @@ if (array_length(dotArray) > 0) {
 						}
 					}
 				} else {
-					if (dot.type == dotType.poison && oItemManager.hasRadioactiveMaterial) {
-							var radioCheck = irandom_range(1, 8)+global.playerTime*0.2;
-							if (radioCheck >= 8) {
-								dot.ticks *= 1.4;
-								dot.damage *= 1.1;
+					if (dot.type == dotType.poison) {
+							var radioCheck = irandom_range(1, 4)+global.playerTime*0.2;
+							if (radioCheck >= 4) {
+								dot.ticks *= 1.1;
+								dot.damage *= 1.2;
 							}
 						}
 					if (dot.source == oSword) {

@@ -1,4 +1,5 @@
 function start3d(){
+	global.do3d = true;
 	global.resW = 1280;
 	global.resH = 720;
 	

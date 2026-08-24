@@ -63,21 +63,35 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 		if (oPlayerManager.lastDamaged != _source) {
 			 if (oItemManager.hasYang && oItemManager.yangDmgBonus < 10) {
 				 oItemManager.yangDmgBonus++;
-				oItemManager.effectiveYangBonus = sqrt(oItemManager.yangDmgBonus * 0.8) * 0.16;
+				oItemManager.effectiveYangBonus = sqrt(oItemManager.yangDmgBonus * 1.2) * 0.36;
 			}
 			if (oItemManager.hasYin) {
 				oItemManager.yinFireRateBonus = 0;
 				oItemManager.effectiveYinBonus = 0;
 			}
 		} 
-		if (oItemManager.hasRifterBloodSample) {
-			if (_type == damageType.dotBlood) {
-				healPlayer(_dmg*6, true);
-			} else if (_type == damageType.playerBlood) {
-				healPlayer(_dmg*2, true);
+		if (_type == damageType.dotPois && oItemManager.hasRadioactiveMaterial) {
+			var radioCheck = irandom_range(1, 3) + global.playerTime*0.4;
+			var maxDist = 128;
+			if (radioCheck >= 3) {
+				with (_source) {
+					var skipID = id;
+					with (oEnemy) {
+						var myDist = point_distance(x, y, _source.x, _source.y) 
+						show_debug_message(myDist)
+						if (!sub && id != skipID && myDist <= maxDist) {
+							callDOT(id, _dmg, 12, 12, dotType.poison, _source);
+						}
+					}
+				}
 			}
-			
 		}
+		if (_type == damageType.dotBlood) {
+			healPlayer(_dmg*5, true);
+		} else if (_type == damageType.playerBlood) {
+			healPlayer(_dmg*1.5, true);
+		}
+		
 		if (oItemManager.hasBottleOil) {
 			with (_source) {
 				if (place_meeting(x, y, oOilSpill) && (_type == damageType.playerFire || _type == damageType.dotFire)) {

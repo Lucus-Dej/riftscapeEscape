@@ -1,3 +1,4 @@
+global.do3d = false;
 global.musicAudio = 0.2;
 global.sfxAudio = 0.5;
 global.difficulty = 2;
