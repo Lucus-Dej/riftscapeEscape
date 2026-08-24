@@ -1,3 +1,4 @@
+
 if (global.playerKilled == true) {
 	if (inOverhealth && overhealthTimer < 125+25*global.playerEssence) {
 		overhealthTimer += 25+global.playerEssence*5;

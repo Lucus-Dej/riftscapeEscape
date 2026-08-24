@@ -472,9 +472,8 @@ if (realitySwordBonus > 0) {
 realitySwordBonus = clamp(realitySwordBonus, 0, 10);
 // health stuff
 hpSoftCap = max_hp*global.healthPenalty;
-if (global.player_health > hpSoftCap) {
-	global.player_health = hpSoftCap;
-}
+uiHealth = (global.player_health/max_hp) * healthTotal;
+
 //if (global.playerKilled == true && inOverhealth) {
 //	overhealthTimer += 20+global.playerEssence*10;
 //}
@@ -484,7 +483,6 @@ if (thoughtDodgeFireRateBoost > 0) {
 
 //healthRatio = power(1.02, global.playerLife - 1);
 //max_hp = healthTotal *healthRatio;
-uiHealth = (global.player_health/max_hp) * healthTotal;
 
 
 
@@ -499,9 +497,6 @@ if (global.difficulty == 1) {
 	global.lifesteal = (global.playerDamage* 0.3 + max_hp * (0.0015 + (global.playerEssence*0.0035))*oItemManager.sacDaggerBonus);
 }
 
-if (global.player_health > hpSoftCap && !inOverhealth) {
-	//global.player_health = hpSoftCap;
-}
 
 if (inOverhealth) {
 	dodgeLifeBonus = 0;

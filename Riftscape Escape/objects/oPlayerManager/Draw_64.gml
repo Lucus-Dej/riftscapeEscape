@@ -1,12 +1,18 @@
 gpu_push_state();
 gpu_set_fog(false, 0,0,0);
 // the "health" system
-if (global.player_health <= hpSoftCap && !inOverhealth) {
+
+if (!inOverhealth) {
 	if (instance_exists(overheatBar)){
 		instance_destroy(overheatBar);
 	}
-	draw_healthbar(16, 16, 348, 32, uiHealth, c_dkgrey, c_red, c_red, 0, true, true);
-} else if (!overHealthOverheated) {
+	var healthDisplay = uiHealth;
+	if (global.player_health > hpSoftCap) {
+		healthDisplay = hpSoftCap;
+	}
+	draw_healthbar(16, 16, 348, 32, healthDisplay, c_dkgrey, c_red, c_red, 0, true, true);
+}
+if (inOverhealth) {
 	draw_healthbar(16, 16, 348, 32, overhealthTimer, c_red, c_red, c_aqua, 0, true, true);
 	if (oItemManager.hasCrackedEgg) {
 		oTruePlayer.immuneToContactDmg = true;
@@ -22,7 +28,7 @@ if (global.player_health <= hpSoftCap && !inOverhealth) {
 		overhealthTimer -= 0.5;
 	}
 	global.player_health = max_hp;
-	inOverhealth = true;
+	
 	if (overhealthTimer < 0) {
 		overhealthTimer = overhealthCooldown;
 		dodgeLifeBonus = 0;
@@ -43,8 +49,9 @@ if (global.player_health <= hpSoftCap && !inOverhealth) {
 			}
 		}
 	}
-} else overheatBar = draw_healthbar(16, 16, 348, 32, 100, c_blue, c_black, c_red, 0, true, true);
-
+} else if (inOverhealth) {
+	overheatBar = draw_healthbar(16, 16, 348, 32, 100, c_blue, c_black, c_red, 0, true, true);
+}
 if (dodgeLifeBonus > 0) {
 	draw_healthbar(16, 16, 348, 32, (dodgeLifeBonus/dodgeLifeHP)*100, c_black, c_green, c_green, 0, true, true);
 }

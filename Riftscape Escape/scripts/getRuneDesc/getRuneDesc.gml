@@ -203,13 +203,13 @@ function disableRune(_rune){
 		break;
 		case oLuckRune:
 		oPlayerManager.hasLuckRune = false;
+		oItemManager.luckBonus += 15;
 		break;
 		case oOverhealthRune:
 		oPlayerManager.hasOverhealthRune = false;
 		break;
 		case oXPReducedRune:
 		oPlayerManager.hasXPRune = false;
-		oItemManager.luckBonus += 15;
 		break;
 	}
 }

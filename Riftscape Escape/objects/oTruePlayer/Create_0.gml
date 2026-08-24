@@ -15,6 +15,7 @@ dmgRefreshTime = 40;
 locked = false;
 lockedTimer = 0;
 if (oPlayerManager.hasVirstRune) {
+	refreshItemPool()
 	for (var i = 0; i < array_length(oItemManager.itemList); i++) {
 		var byebyeItem = oItemManager.itemList[irandom(array_length(oItemManager.itemList)-1)];
 		itemRemove(byebyeItem)

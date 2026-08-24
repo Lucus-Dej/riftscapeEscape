@@ -19,13 +19,13 @@ if (active) {
 				check = false;
 			}
 		}
-		if (check) {
-			unpowerDoor(RoomID, true);
-			oPlayerManager.canDestroyRune = true;
-			other.drawDuration = 60;
-			other.drawText = "Click On A Rune To Destroy It";
-			other.active = false;
-			oItemManager.dustCount -= 12;
-		}
+	}
+	if (check) {
+		unpowerDoor(RoomID, true);
+		oPlayerManager.canDestroyRune = true;
+		other.drawDuration = 60;
+		other.drawText = "Click On A Rune To Destroy It";
+		other.active = false;
+		oItemManager.dustCount -= 12;
 	}
 }

@@ -11,7 +11,7 @@ if (prepped && !used) {
 	if (!used) {
 		playerTakeDamage(1);
 		if (global.healthPenalty > 0.1) {
-			global.healthPenalty -= 0.015;
+			global.healthPenalty -= 0.025;
 		}
 		sprite_index = sRetractedSpikes;
 	}

@@ -351,7 +351,7 @@ if (floorState == genState.complete ) {
 	if (global.difficulty == 4) {
 		pureCheck += 10;
 	}
-	if (pureCheck >= 65 && !evilRoomFlag && oItemManager.dustCount > 0) {
+	if ((evilRoomFlag || pureCheck >= 55 ) && (room != caves0 && room != caves01)  && (array_length(oPlayerManager.activeRuneArray) > 1)) {
 		var pureFlag = false;
 		pureIndex = irandom(array_length(bossDoorArray)-1);
 		while (pureIndex == bossIndex || pureIndex == itemIndex || pureIndex == confluxIndex || pureIndex == ritualIndex || pureIndex == arenaIndex || pureIndex == runeIndex) {
