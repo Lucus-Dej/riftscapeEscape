@@ -1,3 +1,7 @@
+if (instance_exists(oSpawnSpawner)) {
+	x = oSpawnSpawner.x;
+	y = oSpawnSpawner.y;
+}
 if (!oPlayerManager.hasFirstPRune) {
 	camH = 768;
 	camW = 1408;

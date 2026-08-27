@@ -14,7 +14,8 @@ global.damageNumbers = [];
 global.playerContactDmg = false;
 global.playerCanFly = false;
 global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
-mp_grid_add_instances(global.Grid, oColl, true);
+mp_grid_add_instances(global.Grid, oSuperwalls, true);
+mp_grid_add_instances(global.Grid, oIndestructable, true);
 global.damageCheck = false;
 global.flyGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 mp_grid_add_instances(global.flyGrid, oIndestructable, true)
@@ -116,7 +117,7 @@ abilityActive = [initate_sword, initDodge, initCrystal, initCircle, initHusk];
 
 abiltyCharge = [sword_charge, dodgeCharge, crystalCharge, circleCharge, huskCharge];
 
-abilityKey = [swordAttKey, dodgeKey, crystalKey, circleKey, huskKey];
+abilityKey = ["Right Click", dodgeKey, crystalKey, circleKey, huskKey];
 
 spriteCharging = [10, 4, 8, 0, 6];
 spriteReady = [11, 5, 9, 1, 7];

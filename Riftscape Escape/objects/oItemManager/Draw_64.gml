@@ -9,7 +9,7 @@ var mouseY = device_mouse_y_to_gui(0);
 
 var hoveredItem = noone;
 
-var cols = 3;
+var cols = 6;
 var iconSize = 16;   
 var pad = 12;
 var cell = iconSize + pad;

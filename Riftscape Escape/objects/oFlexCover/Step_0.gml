@@ -15,6 +15,9 @@ if (!levelApplied && currentLevel != "null") {
 		case "plains":
 		sprite_index = sPlainsCover;
 		break;
+		case "library":
+		sprite_index = sLibraryCover;
+		break;
 		case "chaoslands":
 		var i = irandom(5);
 		if (i != 5) {

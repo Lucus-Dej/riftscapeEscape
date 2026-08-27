@@ -77,16 +77,15 @@ if (roomStart && !ready) {
 			killLifeHusk = true;
 		}
 		oPlayerManager.huskCharge += 450;
+		instance_destroy(oHuskLife);
 	}
 	oPlayerManager.incombat = true;
 	
 	global.activeRoom = true;
 	event_user(2);
 }
-if (killLifeHusk) {
-	instance_destroy(oHuskLife);
-	killLifeHusk = false;
-}
+	
+	
 if (ready && !spawned && portal_timer <= 0 && !isFloorGen) {
 	event_user(0);
 	if (totalBoss > 0) {

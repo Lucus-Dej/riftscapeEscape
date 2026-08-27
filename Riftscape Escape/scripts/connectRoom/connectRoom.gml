@@ -8,7 +8,6 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 	var roomInstData = roomData.instances;
 	var neededDoorObj = getMatchingDoorObject(_doorConnector.object_index);
 	var templateDoor = noone;
-	
 	var roomManager = noone;
 	var spawner = noone;
 	var neededX = noone;
@@ -20,8 +19,10 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 		if (asset_get_index(inst.object_index) == neededDoorObj) {
 			templateDoor = inst;
 		}
+	
 		if (asset_get_index(inst.object_index) == oRoomClaimX) {
 			neededX = inst;
+			
 		}
 		if (asset_get_index(inst.object_index) == oRoomClaimY) {
 			neededY = inst;
@@ -92,7 +93,8 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 			obj = oEnemyTurretsRandSpawner;
 			//newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", oEnemyTurretsRandSpawner, {passiveSwitch: false});
 		}
-		var newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", obj);
+		//show_debug_message()
+		var newInst = instance_create_layer(inst.x + offsetX, inst.y + offsetY, "Instances", obj, {image_xscale: roomInstData[i].xscale, image_yscale: roomInstData[i].yscale});
 		newInst.RoomID = oFloorManager.IDCount +1;
 		
 		if (obj == oItemFlag && doorType == "item") {

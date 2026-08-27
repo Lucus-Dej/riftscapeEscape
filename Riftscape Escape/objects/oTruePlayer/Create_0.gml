@@ -23,3 +23,10 @@ if (oPlayerManager.hasVirstRune) {
 		itemAdd(item);
 	}
 }
+nearWallDist = -1;
+line = instance_create_layer(x, y, "Instances", oLineCameraCheck);
+if (!instance_exists(oFloorManager)) {
+	with (oRoomManager) {
+		event_user(5);
+	}
+}

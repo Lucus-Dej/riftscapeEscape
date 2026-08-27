@@ -136,6 +136,7 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 			b.image_xscale += 0.5;
 			b.image_yscale += 0.5;
 			b.image_blend = c_aqua;
+			b.critShot = true;
 			if (b.object_index == oMinonBullet) {
 				b.sprite_index = sMinionFateBullet;
 			}

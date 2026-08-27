@@ -1,5 +1,5 @@
 if (toggleGrid) {
-	//mp_grid_draw(global.Grid)
+	mp_grid_draw(global.Grid)
 }
 for (var i = array_length(global.damageNumbers) - 1; i >= 0; i--) {
 	var d = global.damageNumbers[i];

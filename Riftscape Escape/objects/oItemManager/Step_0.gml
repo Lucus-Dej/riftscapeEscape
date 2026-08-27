@@ -118,6 +118,7 @@ if (hasSifterEssence) {
 		sifterTimer = sifterCooldown;
 	}
 }
+/*
 if (hasAlextraEssence) {
 	with (oEnemy) {
 		if (array_get_index(other.alextraEntry, id) == -1) {
@@ -141,7 +142,7 @@ if (hasAlextraEssence) {
 			}
 		}
 	}
-}
+}*/
 if (hasTorzolEssence && global.player_health < oPlayerManager.max_hp*0.85 && global.inCombat) {
 	if (torzTimer > 0) {
 		torzTimer--;

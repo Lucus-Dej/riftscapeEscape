@@ -5,7 +5,15 @@ zoomSpeed = 400;
 scale = 1;
 minZoom = 800;
 maxZoom = 8000;
-
+drawInterval = 6;
+drawTimer = 0;
+validCords = {
+	topLeftX: -1,
+	topLeftY: -1,
+	bottomRightX: -1,
+	bottomRightY: -1,
+}
+dummy = false;
 follow = oTruePlayer;
 minimapSurface = surface_create(200, 200);
 minimapCam = camera_create();

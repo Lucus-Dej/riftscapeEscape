@@ -2,7 +2,8 @@
 xpUI = (xpTotal/xpProgress)*100;
 if (global.grid_cool == false) {
 	global.Grid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
-	mp_grid_add_instances(global.Grid, oColl, true);
+	mp_grid_add_instances(global.Grid, oSuperwalls, true);
+	mp_grid_add_instances(global.Grid, oIndestructable, true);
 	 
 	global.flyGrid = mp_grid_create(0,0, room_width/ 32, room_height/32, 32, 32);
 	mp_grid_add_instances(global.flyGrid, oIndestructable, true);
@@ -175,7 +176,7 @@ if (hasSifterRune && sifterRunePauseTimer <= 0) {
 }
 
 //sword stuff
-swordAttPressed = keyboard_check_released(ord(swordAttKey));
+swordAttPressed = mouse_check_button_released(swordAttKey);
 if (initate_sword) {
 	sword_charge = swordTotal/(swordMax)*100;
 	if (swordTotal <= swordMax) {
@@ -208,7 +209,7 @@ if (swordTotal >= swordMax && swordAttPressed && initate_sword) {
 		swordTotal = 0;
 	}
 }
-if (keyboard_check(ord(swordAttKey))) {
+if (mouse_check_button(swordAttKey)) {
 	swordHoldCount++;
 } else {
 	swordHoldCount = 0;

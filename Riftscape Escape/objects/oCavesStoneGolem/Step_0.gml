@@ -6,11 +6,9 @@ if (brainDead) {
 var playerDir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y); 
 image_angle = playerDir+90;
 var mouseDist = 999;
+var firstPCheck = false;
 
-if (instance_exists(oMouseTracker)) {
-	mouseDist = point_distance(x, y, oMouseTracker.x, oMouseTracker.y);
-}
-if (mouseDist > 64) {
+if (!place_meeting(x, y, oLineCameraCheck)) {
 	enemSpeed = initalSpeed;
 } else {
 	if (rageTimer < rageBreak) {

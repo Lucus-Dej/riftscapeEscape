@@ -31,7 +31,7 @@ if (shoot_cooldown <= 0) {
 		}
 	}
 }
-shoot_cooldown--;
+
 if (shoot_cooldown > 0) {
 	enemSpeed = initalSpeed;
 } 

@@ -1,0 +1,1 @@
+//draw_text(x, y-32, gc_get_target_frame_time())

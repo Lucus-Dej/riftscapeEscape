@@ -159,6 +159,7 @@ if (canOrbit && instance_exists(orbitCenter)) {
 if (oItemManager.hasLaserPointer) {
 	target = oMouseTracker;
 	canPush = true;
+	
 }
 if (oItemManager.hasSingularity) {
 	canPush = false;

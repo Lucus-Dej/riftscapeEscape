@@ -25,7 +25,7 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 		settingButton = instance_create_layer(centX, centY-spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		restartButton = instance_create_layer(centX, centY, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		quitButton = instance_create_layer(centX, centY+spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
-		background = instance_create_layer(centX, centY, "Instances", oPauseBackground, {image_alpha: 0.2});
+		background = instance_create_layer(centX, centY, "Instances", oPauseBackground);
 		
 		
 		resButton.buttonID = 11;

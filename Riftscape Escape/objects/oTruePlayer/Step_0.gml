@@ -113,6 +113,15 @@ if (instance_exists(visual)) {
 	if (lockedTimer <= 0) {
 		visual.image_angle = ang;
 	}
+	if (instance_exists(line)) {
+		line.image_angle = ang;
+	}
+	var drawX = x + lengthdir_x(1024, ang);
+	var drawY = y + lengthdir_y(1024, ang);
+	var lineCheck = collision_line(x, y, drawX, drawY, oBulletBlocker, false, false);
+	if (instance_exists(lineCheck)) {
+		nearWallDist = point_distance(x, y, lineCheck.x, lineCheck.y);
+	}
 }
 
 if (array_length(damageArray) > 0) {

@@ -7,6 +7,9 @@ function powerDoor(_rID, _soulCheck = false){
 }
 function powerDoorByID(_ID, _soulCheck = false) {
 	global.damageCheck = false;
+	if (oItemManager.hasAlextraEssence) {
+		oPlayerManager.invisTimer = 360;
+	}
 	with (_ID) {
 		if (_soulCheck) {
 			if (instance_exists(soulMate)) {

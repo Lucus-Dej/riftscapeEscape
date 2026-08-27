@@ -438,6 +438,7 @@ if (floorState == genState.complete ) {
 	}
 	genFloor()
 	instance_destroy(oRoomReserve)
+	instance_destroy(oRoomBuilder)
 	floorState = genState.done;
 	show_debug_message(retryCount)
 	
@@ -454,6 +455,12 @@ if (floorState == genState.complete ) {
 			wall.RoomID = RoomID;
 			instance_destroy();
 		}
+	}
+	with (oRoomManager) {
+		event_user(5);
+	}
+	with (oFlexWall) {
+		setTile();
 	}
 }
 //show_debug_message(floor)
