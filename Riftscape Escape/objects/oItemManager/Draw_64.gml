@@ -204,6 +204,17 @@ if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_con
 		global.chargeItem = noone;
 		break;
 		
+		case oPortalBook:
+		var num = instance_number(oPortalBookPortal)
+		if (!instance_exists(portalbook.portal1)) {
+			portalbook.portal1 = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oPortalBookPortal);
+			portalbook.portal1.portalId = 1; 
+		} else if (!instance_exists(portalbook.portal2)) {
+			portalbook.portal2 = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oPortalBookPortal);
+			portalbook.portal2.portalId = 2; 
+		}
+		
+		break;
 		
 	}
 	global.currentCharges = 0;

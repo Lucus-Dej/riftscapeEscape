@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"RifterKing",
-    "path":"folders/enemies/bosses/RifterKing.yy",
+    "path":"folders/enemies/actualEnemies/bosses/RifterKing.yy",
   },
   "parentObjectId":null,
   "persistent":false,

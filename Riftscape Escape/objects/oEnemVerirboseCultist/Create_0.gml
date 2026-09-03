@@ -1,0 +1,12 @@
+event_inherited();
+shoot_cooldown = irandom_range(10, 110);
+shoot_delay = 140;
+enemyHP = 12;
+enemSpeed = 1.5;
+baseSpeed = enemSpeed;
+damage = 24;
+bullet_speed = 0.2;
+searchPlayer();
+bulletCount = 0;
+bulletLimit = 12;
+ranNum = -1;

@@ -4,7 +4,7 @@ if (brainDead) {
 }
 var distPlayer = point_distance(x, y, oTruePlayer.x, oTruePlayer.y)
 if (!canSeePlayer && vessel != noone || (vessel == noone  && distPlayer > 256)) {
-	enemSpeed = initalSpeed*12;
+	enemSpeed = initalSpeed*16;
 } else if (canSeePlayer) {
 	enemSpeed = initalSpeed;
 }
@@ -61,7 +61,7 @@ if (hostSearchTimer <= 0 && vessel == noone) {
 		if (inst == id) continue;
 		if (inst.brainDead) continue;
 			
-		 if (inst.xp < xp && inst. enemyHP <  enemyHP && inst.object_index != oRifterTank && inst.object_index != oEnemCentiBody && inst.object_index != oEnemBlackHole) {
+		 if (inst.xp < xp && !inst.invincible && inst. enemyHP <  enemyHP && inst.object_index != oRifterTank && inst.object_index != oEnemCentiBody && inst.object_index != oEnemBlackHole) {
 			 var d = point_distance(x, y, inst.x, inst.y);
 			 
 			 if (d < bestDist) {

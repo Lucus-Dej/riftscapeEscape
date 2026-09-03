@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"powerUps",
-    "path":"folders/sprites/powerUps.yy",
+    "path":"folders/sprites/ASSETS/powerUps.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Torzol",
-    "path":"folders/enemies/bosses/Torzol.yy",
+    "path":"folders/enemies/actualEnemies/bosses/Torzol.yy",
   },
   "parentObjectId":null,
   "persistent":false,

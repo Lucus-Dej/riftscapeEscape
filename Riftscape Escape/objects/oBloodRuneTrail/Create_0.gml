@@ -1,0 +1,9 @@
+existance = 360;
+inactiveDelay = 60;
+fadeTime = inactiveDelay;
+tick = 30;
+dmg = oPlayerManager.max_hp*0.2;
+image_blend = c_maroon;
+ranScale = random_range(0.8, 1.8)
+image_xscale = ranScale;
+image_yscale = ranScale;

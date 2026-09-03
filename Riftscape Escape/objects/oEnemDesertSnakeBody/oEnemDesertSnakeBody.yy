@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"desert",
-    "path":"folders/enemies/basics/desert.yy",
+    "path":"folders/enemies/actualEnemies/basics/desert.yy",
   },
   "parentObjectId":{
     "name":"oSubEnemy",

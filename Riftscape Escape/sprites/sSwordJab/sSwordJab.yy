@@ -27,7 +27,7 @@
   "origin":7,
   "parent":{
     "name":"ABILITIES",
-    "path":"folders/sprites/PLAYER ASSETS/ABILITIES.yy",
+    "path":"folders/sprites/ASSETS/PLAYER ASSETS/ABILITIES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

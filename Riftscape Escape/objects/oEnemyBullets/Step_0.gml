@@ -8,13 +8,19 @@ if (iframe >= 0) {
 	}
 }
 existance--;
+if (ignorePlayerFrames > 0) {
+	ignorePlayerFrames--;
+}
 if (existance <= 0) {
 	instance_destroy();
 }
 if (instance_exists(owner) && rotate && !canHome) {
 	orbitAngle += 2; 
-	x = orbitCenter.x + lengthdir_x(orbitRadius, orbitAngle);
-	y = orbitCenter.y + lengthdir_y(orbitRadius, orbitAngle);
+	var targetX = orbitCenter.x + lengthdir_x(orbitRadius, orbitAngle);
+	var targetY = orbitCenter.y + lengthdir_y(orbitRadius, orbitAngle);
+	
+	x = lerp(x, targetX, orbitCatchUpRate);
+    y = lerp(y, targetY, orbitCatchUpRate);
 }
 if (canExplode && explodeObj != noone) {
 	if (explodeTimer > 0) {

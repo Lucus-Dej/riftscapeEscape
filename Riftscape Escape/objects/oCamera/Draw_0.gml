@@ -1,11 +1,11 @@
 // mass draw
-with (oIndestructable) {
+/*with (oIndestructable) {
 	if (oPlayerManager.hasFirstPRune) {
 		var halfUnit = sprite_height/2;
 		drawIn3d(0, -halfUnit, wallHeight*32, -90, 0, 0, image_xscale, wallHeight);
 		drawIn3d(0, halfUnit, wallHeight*32, -90, 0, 0, image_xscale, wallHeight);
 		drawIn3d(-halfUnit, 0, wallHeight*32, 0, 90, 0, wallHeight, image_yscale);
-		drawIn3d(halfUnit, 0, wallHeight*32, 0, 90, 0, wallHeight, image_yscale);
+		drawIn3d(halfUnit, 0, wallHeight*32, 0, 90, 0,  wallHeight, image_yscale);
 
 
 		drawIn3d(0, 0, 0, 0, 0, 0, image_xscale, image_yscale);

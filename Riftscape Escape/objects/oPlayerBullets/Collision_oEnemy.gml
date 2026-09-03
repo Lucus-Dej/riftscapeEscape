@@ -93,6 +93,11 @@ if (!array_contains(damageArray, other.id)) {
 			}
 			
 		} 
+		if (oPlayerManager.hasWarRune) {
+			for (var d = 0; d < irandom_range(2, 6); d++) {
+				var f = bulletFire(other.x, other.y, irandom(359), 8, 15, oBadBullet, other, true);
+			}
+		}
 		if (critShot && oItemManager.hasMolotov) {
 			callDOT(other, 0.25, 12, 8, dotType.fire, oTruePlayer);
 		}
@@ -110,6 +115,7 @@ if (!array_contains(damageArray, other.id)) {
 			}
 			
 		}
+		
 		switch (object_index) {
 			case oBloodVialBullets:
 			enemyTakeDamage(damage, hit, true, ,damageType.playerBlood);

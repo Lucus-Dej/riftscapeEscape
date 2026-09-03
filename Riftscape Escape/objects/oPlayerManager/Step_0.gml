@@ -18,6 +18,14 @@ if (xpTotal >= xpProgress) {
 	xpLevel++;
 	
 }
+if (hasBloodRune&& instance_exists(oTruePlayer) && oTruePlayer.currentSpeed > 0) {
+	if (bloodRuneTimer > 0) {
+		bloodRuneTimer--;
+	} else {
+		bloodRuneTimer = bloodRuneCooldown;
+		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oBloodRuneTrail)
+	}
+}
 gridDebugPressed = keyboard_check_pressed(vk_enter);
 if (gridDebugPressed) {
 	toggleGrid = !toggleGrid;

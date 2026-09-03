@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"caves",
-    "path":"folders/enemies/basics/caves.yy",
+    "path":"folders/enemies/actualEnemies/basics/caves.yy",
   },
   "parentObjectId":null,
   "persistent":false,

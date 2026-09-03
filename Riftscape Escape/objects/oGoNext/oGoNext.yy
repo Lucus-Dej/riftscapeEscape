@@ -30,7 +30,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"spawnID","filters":[],"listItems":[],"multiselect":false,"name":"spawnID","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
-    {"$GMObjectProperty":"v2","%Name":"goTo","filters":[],"listItems":[],"multiselect":false,"name":"goTo","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v2","%Name":"goTo","filters":[],"listItems":[],"multiselect":false,"name":"goTo","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"startScreen","path":"rooms/startScreen/startScreen.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"startScreen","varType":5,},
     {"$GMObjectProperty":"v2","%Name":"fromFloor","filters":[],"listItems":[],"multiselect":false,"name":"fromFloor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"zTilt","filters":[],"listItems":[],"multiselect":false,"name":"zTilt","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],

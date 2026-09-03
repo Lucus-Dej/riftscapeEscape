@@ -1,4 +1,4 @@
-if (canFriendlyFireOwner  && iframe <= 0) {
+if (canFriendlyFireOwner  && iframe <= 0 && ignorePlayerFrames <= 0) {
 	enemyTakeDamage(damage*0.1, other);
 	instance_destroy();
 }/*if (owner == noone) {

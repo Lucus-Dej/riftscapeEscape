@@ -38,8 +38,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBossPortal",
-    "path":"sprites/sBossPortal/sBossPortal.yy",
+    "name":"sLevelPortalEvil",
+    "path":"sprites/sLevelPortalEvil/sLevelPortalEvil.yy",
   },
   "spriteMaskId":null,
   "visible":true,

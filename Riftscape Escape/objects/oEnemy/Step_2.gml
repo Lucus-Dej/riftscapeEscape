@@ -12,9 +12,9 @@ if (place_meeting(x, y, oCricleOfFate)) {
 }
 if (path_timer <= 0 && canPathfind && !brainDead) {
     path_timer = path_cooldown;
-	var search = pathfind(global.Grid, oTruePlayer, trueSpeed, id);
+	var search = pathfind(global.Grid, pathTarget, trueSpeed, id);
 	if (flying) {
-		search = pathfind(global.flyGrid, oTruePlayer, trueSpeed, id);
+		search = pathfind(global.flyGrid, pathTarget, trueSpeed, id);
 	}
     
 	if (!search) {

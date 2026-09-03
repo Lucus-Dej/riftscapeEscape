@@ -9,8 +9,8 @@
   "name":"oEnemBlackHole",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"minibosses",
+    "path":"folders/enemies/actualEnemies/minibosses.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

@@ -226,9 +226,14 @@ if (array_length(activeRuneArray) > 0) {
 	}
 	if (hoveredItem != noone) {
 		//show_debug_message(hoveredItem)
+		
 		runeTxt = getRuneDesc(hoveredItem);
+		
+		if (hoveredItem == oConquestRune) {
+			runeTxt = "Conquest Cannot Be Rerolled";
+		}
 		displayRuneDuration = 60;
-		if (canDestroyRune && mouse_check_button(mb_left)) {
+		if (canDestroyRune && mouse_check_button(mb_left) && hoveredItem != oConquestRune) {
 			var l = array_get_index(activeRuneArray, hoveredItem);
 			array_delete(activeRuneArray, l, 1)
 			disableRune(hoveredItem);

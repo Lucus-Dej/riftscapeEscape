@@ -118,6 +118,8 @@ seedStart = false;
 seedFailed = false;
 seedCombatCheck = false
 
+hasDeal = false;
+
 hasRadioactiveMaterial = false;
 hasBottleOil = false;
 hasD2 = false;
@@ -141,6 +143,10 @@ reflectiveGemFlag = false;
 show_debug_message("ItemManager CREATED in room: " + string(room));
 
 // powerful passiv
+portalbook = {
+	portal1: noone,
+	portal2: noone
+}
 hasElementalVortex = false;
 hasCrystalIce = false;
 hasCrystalFire = false;

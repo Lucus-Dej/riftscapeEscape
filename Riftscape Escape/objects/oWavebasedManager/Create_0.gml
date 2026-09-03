@@ -11,6 +11,7 @@ roundsTillItem = 10;
 roundsTillRune = 15;
 runeRound = false;
 bossBonus = 1;
+limitedWaveDoorSet = false;
 waveArray = [ oEnemSpider]
 bossArray = [oBoss, oBoss2, oEnemMotherCaveSpider, oMiniBoss2, oMiniBoss, oEnemBigBat, oCavesStoneGolem];
 allEnemPool = [oWastelandSpitter, oEnemMiniMummy, oEnemBig, oEnemBlackHole, oEnemDesertBiter, oEnemSandSniper,

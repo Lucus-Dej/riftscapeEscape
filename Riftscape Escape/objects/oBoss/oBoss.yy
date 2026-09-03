@@ -13,7 +13,7 @@
   ],
   "parent":{
     "name":"minibosses",
-    "path":"folders/enemies/minibosses.yy",
+    "path":"folders/enemies/actualEnemies/minibosses.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

@@ -24,7 +24,12 @@ if (type == roomManagerType.arena && !wavebasedSpawned) {
 			levelReq = irandom_range(2, 4);//other.wavebasedAddTurret;
 		}
 	}
+	show_debug_message(bossArray)
+	array_resize(waveManager.bossArray, 0);
+	array_resize(waveManager.waveArray, 0);
+	array_copy(waveManager.bossArray, 0, bossArray, 0, array_length(bossArray))
 	array_copy(waveManager.waveArray, 0, enemArray, 0, array_length(enemArray));
+	show_debug_message(waveManager.bossArray)
 	wavebasedSpawned = true;
 	waveManager.manager = id;
 }

@@ -1,31 +1,49 @@
-most secret levels can be unlocked via the completion of 3 challenges
+secret level enemy ideas
 
-slay the rifter king with a fully charged ability
-slay a boss with only the ability
-complete a run while under the effect of X rune
+chaoslands
+spastic spider. just a really jittery creature
+four piece fellow. a creature that starts as one creature but splits into four that each do different things. 
+(one fires a homing shot, 
+another fires two shots, 
+one fires an accelerating richochet shot, and 
+one fires in four directions, rotating and boucing around)
+this one would be a miniboss. boss form perhaps splits into two of each? 
+reversed face. fires a bullet behind that accelerates towards player
 
-Veribrose
-Slay the Rifter King while possessing a fully upgraded circle
-Slay a boss while standing in the circle the entire time
-Complete a run while under "Veribrose's Rune"
 
-Torzol
-Slay the Rifter King while possessing a fully upgraded minion
-Slay a boss with only the minion
-Complete a run while under "Torzol's Rune"
 
-Krost
-Slay the Rifter King while possessing a fully upgraded dodge
-Slay a boss with only the dodge
-Complete a run while under "Krost's Rune"
 
-Virst
-Slay the Rifter King while possessing a fully upgraded crystal bomb
-Slay a boss with only the crystal bomb
-Complete a run while under "Virst's Rune"
+abyss
+portal slammer. like the desert slammer, but instead places a portal on slam, goes "invisible", then creates a portal where it lands.
+damned soul. slow moving creature that sprints quickly at the player, exploding in their face. if they miss, they turn back around and try again. 
+vortex walker. two halves of the same enemy. one tries to bite and the other tries to fire. once one is destroyed the other is angered.
+vessel of abyss. runs at you, similar to spider AI. can dodge bullets once in a while. 
 
-Sifter
-Slay the Rifter King while possessing a fully upgraded sword
-Slay a boss with only the Sword
-Complete a run while under "Sifter's Rune"
 
+tundra
+withered husk. incapable of moving without being looked at. while in sight, they sprint quickly. while out of sight, it produces a slow field.
+frostbitten spider. spider that slows the player and deals ice dot on hit. on death, becomes a frozen husk. 
+the husk can be shot to fire ice bullets that damage both player and enemy. 
+
+
+atlantis
+CAVE BOOMERS. drain max hp and slow on hit. maxHP reduction is restored slowly. 
+atlantian spirit: "haunts" the player, spinning in a circle around them and dealing constant damage. 
+corpse mound. slow moving, hulking mass that leaves a trail of posion behind it. on death, spawn atlantian zombie. 
+atlantian zombie. a shambling corpse. will drain max hp on hit. while drained, it fires rounds of bullets
+atlantian corspe speeker. casts waves of bullets and summons zombies. if the player is near, it will drain it for constant damage + healing.
+
+
+plains
+floral trap. plant creature that tugs itself around the map. once in sight with the player, it fires large bullets. 
+vine connecters. creatures that by themselves dont do much. fire slowly, move slow, high hp, leave poison behind it. 
+if another vine connecter is nearby, they will link a wall of vine, slowing the player and dealing massive poison damage on contact. 
+
+
+
+tundra - lonliness, emnpty, hallow
+atlantis - draining, spirit
+library - lack of choice, fated to happen
+abyss - reality questioning, spastic, moving quickly or without reason
+chaoslands - chaos, unpreidctiablity, breaking the rules
+plains - life brings life, overwhelming

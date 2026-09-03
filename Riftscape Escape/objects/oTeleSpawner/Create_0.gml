@@ -27,4 +27,20 @@ switch (room) {
 	roomTimeToBeat = 48;
 	goEvilFloor = kingdom02;
 	break;
+	
+	case library01:
+	roomTimeToBeat = 60;
+	goEvilFloor = library02;
+	break;
+	
+	case chaoslands01:
+	roomTimeToBeat = 60;
+	goEvilFloor = chaoslands02;
+	break;
+	
+	case plains01:
+	roomTimeToBeat = 60;
+	goEvilFloor = plains02;
+	break;
+	
 }

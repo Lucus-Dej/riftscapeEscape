@@ -63,15 +63,19 @@ function getEnemPool(_currentFloor, _all = false) {
 		break;
 		
 		case "library":
-		enemArray = [oEnemCaveSpider, oPlainsShooter, oWastelandSpitter, oEnemBig,oEnemMotherCaveSpider, oEnemSandSniper, oEnemTurret, oDesertSlammer, oWastelandBurner, oWastelandFireRunner, oMiniBoss, oMiniBoss3, oMiniBoss2, oBoss, oBoss2, oBoss3, oRifterTank];
-		bossArray = [oRifterTank, oEnemBlackHole, oMummy, oWastelandDestroyer];
-		evilArray = [oRifterTank]
+		enemArray = [oEnemLibraryBookGhost, oEnemLibraryFatedSoul, oEnemLibraryExplosivneBook, oEnemRifterSpider, oRifterSniper];
+		bossArray = [oEnemLibraryFatedSoul, oEnemLibraryPaperGunner, oEnemVerirboseCultist];
+		evilArray = [oEnemVerirboseCultist, oRifterSlammer, oEnemLibraryPaperGunner]
 		break;
 		
 		case "chaoslands":
 		enemArray = [oEnemSandSniper, oEnemRifterSpider, oRifterDrone, oRifterSlammer, oRifterSpitter, oBoss, oBoss2, oMiniBoss, oMiniBoss2, oDesertSlammer, oEnemSpider, oEnemCaveSpider, oEnemCavesSludger, oEnemBat, oEnemBlackHole, oEnemMotherCaveSpider];
 		bossArray = [oRifterSlammer, oRifterTank, oBoss3, oMummy, oEnemBigBat];
 		challengeArray = [];
+		break;
+		case "shadow":
+		enemArray = [oCorruptedProhpet];
+		bossArray = [oProphetSpawner];
 		break;
 		
 	}

@@ -5,11 +5,26 @@ function getRuneDesc(_rune){
 	//}
 	var runeDesc = "";
 	switch (_rune) {
+		case oWarRune:
+		desc = "War Rune: Enemies Can Reflect Bullets";
+		break;
+		case oPestRune:
+		desc = "Pest Rune: Enemies Spawn Homing Flies On Death";
+		break;
+		case oFamineRune:
+		desc = "Famine Rune: Blood Heals For Less And Decays Faster";
+		break;
+		case oDeathRune: 
+		desc = "Death Rune: Summon A Persistent Specter That Will Deal Half Your Health On Contact";
+		break;
+		case oConquestRune:
+		desc = "Conquest Rune: Gain The Effects Of All Runes";
+		break;
+		case oBloodRune:
+		desc = "Blood Rune: Leave A Trail Of Acidic Blood That Damages You On Contact";
+		break;
 		case oFirstPRune:
 		desc = "First Person Rune: An Adjustment To Your View";
-		break;
-		case oHauntedRune: 
-		desc = "Haunted Rune: Summon A Persistent Specter That Will Deal Half Your Health On Contact";
 		break;
 		case oItemDenyRune:
 		desc = "Denial Rune:  Two Random Rare+ Items Are Disabled At Start Of Room";
@@ -72,6 +87,28 @@ function getRuneDesc(_rune){
 function enableRune(_rune){
 	oItemManager.dustCount++;
 	switch (_rune) {
+		case oWarRune:
+		oPlayerManager.hasWarRune = true;
+		break;
+		case oPestRune:
+		oPlayerManager.hasPestRune = true;
+		break;
+		case oFamineRune:
+		oPlayerManager.hasFamineRune = true;
+		break;
+		case oDeathRune: 
+		oPlayerManager.hasDeathRune = true;
+		break;
+		case oConquestRune:
+		oPlayerManager.hasConquestRune = true;
+		for (var i = array_length(oPlayerManager.validRuneArray)-1; i > 0; i--) {
+			enableRune(oPlayerManager.validRuneArray[i]);
+		}
+		array_resize(oPlayerManager.validRuneArray, 0);
+		break;
+		case oBloodRune:
+		oPlayerManager.hasBloodRune = true;
+		break;
 		case oFirstPRune:
 		oPlayerManager.hasFirstPRune = true;
 		with (oCamera) {
@@ -86,9 +123,6 @@ function enableRune(_rune){
 			draw_clear_alpha(c_black, 0);
 		}
 		start3d()
-		break;
-		case oHauntedRune:
-		oPlayerManager.hasHauntedRune = true;
 		break;
 		case oItemDenyRune:
 		oPlayerManager.hasItemDenyRune = true;
@@ -149,14 +183,26 @@ function enableRune(_rune){
 }
 function disableRune(_rune){
 	switch (_rune) {
+		case oDeathRune:
+		oPlayerManager.hasDeathRune = false;
+		if (instance_exists(oDeathRuneSpecter)) {
+			instance_destroy(oDeathRuneSpecter);
+		}
+		break;
+		case oWarRune:
+		oPlayerManager.hasWarRune = false;
+		break;
+		case oPestRune:
+		oPlayerManager.hasPestRune = false;
+		break;
+		case oFamineRune:
+		oPlayerManager.hasFamineRune = false;
+		break;
+		case oBloodRune:
+		oPlayerManager.hasBloodRune = false;
+		break;
 		case oFirstPRune:
 		oPlayerManager.hasFirstPRune = false;
-		break;
-		case oHauntedRune:
-		oPlayerManager.hasHauntedRune = false;
-		if (instance_exists(oHauntedRuneSpecter)) {
-			instance_destroy(oHauntedRuneSpecter);
-		}
 		break;
 		case oItemDenyRune:
 		oPlayerManager.hasItemDenyRune = false;

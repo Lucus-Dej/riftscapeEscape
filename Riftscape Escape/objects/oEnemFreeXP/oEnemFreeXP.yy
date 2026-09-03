@@ -10,8 +10,8 @@
   "name":"oEnemFreeXP",
   "overriddenProperties":[],
   "parent":{
-    "name":"basics",
-    "path":"folders/enemies/basics.yy",
+    "name":"weirdstuff",
+    "path":"folders/enemies/weirdstuff.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

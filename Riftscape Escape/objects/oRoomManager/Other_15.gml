@@ -18,4 +18,3 @@ with (oGhostBarrier) {
 		array_push(other.miniMapDoors, temp);
 	}
 }
-show_debug_message(miniMapWalls)

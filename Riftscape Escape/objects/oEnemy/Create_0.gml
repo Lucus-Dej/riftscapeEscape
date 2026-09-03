@@ -18,8 +18,8 @@ if (instance_exists(oCricleOfFate)) {
 }
 RoomID = 0;
 damage = 0;
-
-
+pathTarget = oTruePlayer;
+target = oTruePlayer;
 initalSpeed = 0;
 speedBonus = 0;
 tempSpeedMult = 1;

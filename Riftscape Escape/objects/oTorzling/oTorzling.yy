@@ -13,7 +13,7 @@
   ],
   "parent":{
     "name":"Torzol",
-    "path":"folders/enemies/bosses/Torzol.yy",
+    "path":"folders/enemies/actualEnemies/bosses/Torzol.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

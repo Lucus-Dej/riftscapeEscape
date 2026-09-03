@@ -4,7 +4,7 @@
   "bboxMode":0,
   "bbox_bottom":61,
   "bbox_left":1,
-  "bbox_right":60,
+  "bbox_right":62,
   "bbox_top":2,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"ENEMIES",
-    "path":"folders/sprites/ENEMY ASSETS/ENEMIES.yy",
+    "path":"folders/sprites/ASSETS/ENEMY ASSETS/ENEMIES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

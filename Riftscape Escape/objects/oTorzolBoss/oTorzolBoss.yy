@@ -14,7 +14,7 @@
   ],
   "parent":{
     "name":"Torzol",
-    "path":"folders/enemies/bosses/Torzol.yy",
+    "path":"folders/enemies/actualEnemies/bosses/Torzol.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",
@@ -33,7 +33,9 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v2","%Name":"trueTorz","filters":[],"listItems":[],"multiselect":false,"name":"trueTorz","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"True","varType":3,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,

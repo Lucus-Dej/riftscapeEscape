@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"aProphetHere",
+  "audioGroupId":{
+    "name":"agSFX",
+    "path":"audiogroups/agSFX",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":3.8186848,
+  "exportDir":"",
+  "name":"aProphetHere",
+  "parent":{
+    "name":"audio",
+    "path":"folders/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"aProphetHere.mp3",
+  "volume":1.0,
+}

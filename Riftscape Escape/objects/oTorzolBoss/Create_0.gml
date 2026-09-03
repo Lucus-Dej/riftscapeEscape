@@ -30,7 +30,7 @@ phase3Applied = false;
 phase = 0;
 move1Count = 0;
 move1Limit = 2;
-
+move1Timer = 32;
 move2count = 0;
 move2Limit = 3
 
@@ -49,3 +49,17 @@ move5rngRate = 0;
 image_xscale = 2;
 image_yscale = 2;
 isBoss = true;
+if (trueTorz) {
+	moveTotal *= 2;
+	shoot_delay -= 10;
+	enemyHP *= 1.5;
+	phasePoint1 *= 1.5;
+	phasePoint2 *= 1.5;
+	phasePoint3 *= 1.5;
+	move3Timer -= 4; 
+	move1Limit +=2;
+	move2Limit += 4;
+	move3Limit += 2;
+	move3speed += 4;
+	move4limit +=6;
+}

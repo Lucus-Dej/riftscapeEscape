@@ -1,6 +1,6 @@
 gpu_push_state();
 gpu_set_fog(false, 0,0,0)
-if (instance_exists(follow) && (!oPlayerManager.inLevelMenu && !oPlayerManager.inTokenMenu) && !oPlayerManager.hasVeribroseRune) {
+if (instance_exists(follow) && (!oPlayerManager.inLevelMenu && !oPlayerManager.inTokenMenu) && !oPlayerManager.hasVeribroseRune && room != tutorial) {
 	var map_x = display_get_gui_width() - 216;
 	var map_y = 16;
 	var map_w = 200;

@@ -46,7 +46,8 @@ click = function () {
 	
 	break;
 	
-	case 6: // essence up
+	case 6: // start tutorial
+	room_goto(tutorial)
 	break;
 	
 	case 7:

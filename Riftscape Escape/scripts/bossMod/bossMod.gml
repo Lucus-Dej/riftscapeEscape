@@ -8,7 +8,6 @@ function bossMod(_enem){
 			cooldownMult = 2.5;
 			image_xscale += 1;
 			image_yscale += 1;
-			image_blend = c_dkgray;
 			break;
 			case oEnemCavesSludger:
 			dmgMult = 2;
@@ -298,6 +297,31 @@ function bossMod(_enem){
 			dmgMult = 2;
 			speedMult = 2;
 			cooldownMult = 1.5;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemLibraryBookGhost:
+			hpMult = 5;
+			dmgMult = 2;
+			speedMult = 2;
+			cooldownMult = 1.5;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			case oEnemLibraryFatedSoul:
+			hpMult = 3;
+			dmgMult = 2;
+			speedMult = 4;
+			cooldownMult = 1.2;
+			image_xscale += 1;
+			image_yscale += 1;
+			break;
+			
+			case oEnemVerirboseCultist:
+			hpMult = 3;
+			dmgMult = 2;
+			speedMult = 1.5;
+			cooldownMult = 1.3;
 			image_xscale += 1;
 			image_yscale += 1;
 			break;

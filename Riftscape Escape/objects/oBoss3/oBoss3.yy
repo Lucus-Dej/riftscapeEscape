@@ -13,7 +13,7 @@
   ],
   "parent":{
     "name":"minibosses",
-    "path":"folders/enemies/minibosses.yy",
+    "path":"folders/enemies/actualEnemies/minibosses.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",
@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBoss4",
-    "path":"sprites/sBoss4/sBoss4.yy",
+    "name":"sMiniBoss1Old",
+    "path":"sprites/sMiniBoss1Old/sMiniBoss1Old.yy",
   },
   "spriteMaskId":null,
   "visible":true,

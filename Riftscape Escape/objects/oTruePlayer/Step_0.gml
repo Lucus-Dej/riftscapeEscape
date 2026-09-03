@@ -2,17 +2,26 @@ var _right = keyboard_check(vk_right) or keyboard_check(ord("D"));
 var _left = keyboard_check(vk_left) or keyboard_check(ord("A"));
 var _up = keyboard_check(vk_up) or keyboard_check(ord("W"));
 var _down = keyboard_check(vk_down) or keyboard_check(ord("S"));
-
+//audio_listener_position(x, y, 0);
 _xinput = _right - _left;
 _yinput = _down - _up;
 
 var len = point_distance(0, 0, _xinput, _yinput);
-
 if (len > 0) {
     _xinput /= len;
     _yinput /= len;
 }
-
+if (trackerTimer > 0) {
+	trackerTimer--;
+} else {
+	if (ds_queue_size(trackerQueue) > trackerNodeLimit) {
+		var tempHead = ds_queue_dequeue(trackerQueue);
+		instance_destroy(tempHead)
+	}
+	trackerTimer = trackerDelay;
+	var newNode = instance_create_layer(x, y, "Instances", oPlayerTrailTracker);
+	ds_queue_enqueue(trackerQueue, newNode);
+}
 //move_and_collide(_xinput * global.player_speed, _yinput * global.player_speed, oSuperwalls);\
 var realSpeed = global.player_speed+2;
 
@@ -84,24 +93,46 @@ currentSpeed = point_distance(0, 0, hsp, vsp);
 if (global.bullet_cooldown > 0) {
     global.bullet_cooldown--;
 }
-if ((keyboard_check(vk_space) or mouse_check_button(mb_left)) && global.bullet_cooldown <= 0) {
-	global.shot = true;
-	if (instance_exists(oMinion)) {
-		oMinion.fire = true;
+if (room == tutorial) {
+	if (oItemManager.hasDeal && mouse_check_button(mb_left) && global.bullet_cooldown <= 0) {
+		global.shot = true;
+		if (instance_exists(oMinion)) {
+			oMinion.fire = true;
+		}
+		if (instance_exists(oMinionFate)) {
+			oMinionFate.fire = true;
+		}
+		if (instance_exists(oMinionEssence)) {
+			oMinionEssence.fire = true;
+		}
+		var dir = point_direction(x, y, mouse_x, mouse_y);
+		if (oPlayerManager.hasFirstPRune) {
+			dir = oCamera.direction
+		}
+		playerBulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
+	    global.bullet_cooldown = global.bullet_delay;
 	}
-	if (instance_exists(oMinionFate)) {
-		oMinionFate.fire = true;
+} else {
+	if (mouse_check_button(mb_left) && global.bullet_cooldown <= 0) {
+		global.shot = true;
+		if (instance_exists(oMinion)) {
+			oMinion.fire = true;
+		}
+		if (instance_exists(oMinionFate)) {
+			oMinionFate.fire = true;
+		}
+		if (instance_exists(oMinionEssence)) {
+			oMinionEssence.fire = true;
+		}
+		var dir = point_direction(x, y, mouse_x, mouse_y);
+		if (oPlayerManager.hasFirstPRune) {
+			dir = oCamera.direction
+		}
+		playerBulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
+	    global.bullet_cooldown = global.bullet_delay;
 	}
-	if (instance_exists(oMinionEssence)) {
-		oMinionEssence.fire = true;
-	}
-	var dir = point_direction(x, y, mouse_x, mouse_y);
-	if (oPlayerManager.hasFirstPRune) {
-		dir = oCamera.direction
-	}
-	playerBulletFire(x, y, dir, global.bullet_speed, global.playerDamage, global.chosenBullet, id);
-    global.bullet_cooldown = global.bullet_delay;
 }
+
 
 if (instance_exists(visual)) {
 	visual.x = x;

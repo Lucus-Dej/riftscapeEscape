@@ -27,7 +27,7 @@
   "origin":4,
   "parent":{
     "name":"ENEMIES",
-    "path":"folders/sprites/ENEMY ASSETS/ENEMIES.yy",
+    "path":"folders/sprites/ASSETS/ENEMY ASSETS/ENEMIES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

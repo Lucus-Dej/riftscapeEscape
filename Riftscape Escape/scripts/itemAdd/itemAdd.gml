@@ -56,6 +56,11 @@ function itemAdd(_item, _addToInventory = true){
 		array_push(oItemManager.itemList, item);
 	}
 	switch (item) {
+		//tut
+		case oDarkDeal:
+		oItemManager.hasDeal = true;
+		break;
+		
 		// commons
 		case oBlueprint:
 		realityUp();
@@ -360,6 +365,11 @@ function displayItemFunction(_item){
 	var descLength = string_length(desc)
 	switch (item) {
 		
+		//tut
+		case oDarkDeal:
+		desc = "Deal: Press Left Click To Fire";
+		break;
+		
 		// random item
 		case "ran":
 		desc = "Give Into Chaos";
@@ -470,6 +480,9 @@ function displayItemFunction(_item){
 		
 
 		// powerful
+		case oPortalBook:
+		desc = "Thinking With Portals: Activate To Spawn A Small Portal Bullets Can Travel Through";
+		break;
 		case oElementalVortex:
 		desc = "Elemental Vortex: Killing In Rapid Succession Summons A Random Elemental Aura";
 		break;

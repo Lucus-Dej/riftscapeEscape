@@ -11,6 +11,10 @@ if (existance <= 0) {
 		enem.isBoss = true;
 		bossMod(enem);
 	}
+	if (room == tutorial) {
+		enem.enemyHP /= 5;
+		enem.xp *= 6000;
+	}
 	if (Manager.object_index == oWavebasedManager && !bossEgg) {
 		enem.xp *= 0.5;
 	}

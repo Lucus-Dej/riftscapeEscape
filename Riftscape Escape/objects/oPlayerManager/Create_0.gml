@@ -235,8 +235,14 @@ confluxCost = 2;
 xpThreshdolds = [];
 
 //rune stuff
-validRuneArray = [oFirstPRune, oHauntedRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oWarRune, oDeathRune, oFamineRune, oPestRune, oBloodRune, oFirstPRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
+hasWarRune = false;
+hasDeathRune = false;
+hasFamineRune = false;
+hasPestRune = false;
+hasConquestRune = false;
+hasBloodRune = false;
 hasFirstPRune = false;
 hasHauntedRune = false;
 hasItemDenyRune = false;
@@ -266,5 +272,7 @@ lockAbilities = false;
 decayAbilites = false;
 siferRunePauseCooldown = 180;
 sifterRunePauseTimer = 0;
+bloodRuneCooldown = 16;
+bloodRuneTimer = 0;
 
 hpSoftCap = max_hp;

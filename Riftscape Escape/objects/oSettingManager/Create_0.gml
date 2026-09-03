@@ -8,6 +8,7 @@ global.resH = 720;
 global.resW = 1280;
 queueEvilRuneAdd = false;
 extendRun = false;
+//audio_falloff_set_model(audio_falloff_exponent_distance);
 // meta challenge progrssion
 global.meta = {
 	challenges: {
@@ -53,7 +54,7 @@ global.meta = {
 }
 //resetSave()
 loadGame()
-
+unlocokChallenges()
 // challenge checking;
 if (global.meta.levels.unlockedLibrary || 
 	global.meta.levels.unlockedPlains || 
@@ -63,7 +64,7 @@ if (global.meta.levels.unlockedLibrary ||
 	global.meta.levels.unlockedAtlantis) {
 		extendRun = true;
 	}
-unlocokChallenges()
+
 show_debug_message(global.meta.levels.unlockedLibrary)
 global.currentTrack = aChimingCrystals;
 init = false;

@@ -32,6 +32,19 @@ if (con && Manager.combatFinished && !used) {
 		if (global.meta.levels.unlockedPlains) {
 			valid = true;
 		}
+		break;
+		case chaoslands0:
+		if (global.meta.levels.unlockedChaoslands) {
+			valid = true;
+		}
+		break;
+		case library0:
+		if (global.meta.levels.unlockedLibrary) {
+			valid = true;
+		}
+		break;
+		
+		
 	}
 	if (valid) {
 		child_spawner = instance_create_layer(x, y, "Instances", oGoNext);

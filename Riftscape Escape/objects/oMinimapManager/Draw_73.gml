@@ -1,4 +1,4 @@
-if (instance_exists(follow) && !oPlayerManager.inLevelMenu && !oPlayerManager.hasVeribroseRune) {
+if (instance_exists(follow) && !oPlayerManager.inLevelMenu && !oPlayerManager.hasVeribroseRune && room != tutorial) {
 	gpu_push_state();
 	gpu_set_fog(false, 0,0,0)
 	if (!surface_exists(minimapSurface)) {

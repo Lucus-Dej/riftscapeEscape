@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"PLAYER ASSETS",
-    "path":"folders/sprites/PLAYER ASSETS.yy",
+    "path":"folders/sprites/ASSETS/PLAYER ASSETS.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

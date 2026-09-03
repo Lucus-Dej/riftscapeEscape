@@ -10,9 +10,7 @@ if (existance <= 0) {
 if (existance <= 100) {
 	image_alpha -= 0.01;
 }
-if (host.object_index = oRifterKing) {
-	if (instance_exists(oRifterKing)) {
-		x = oRifterKing.x;
-		y = oRifterKing.y;
-	}
+if (instance_exists(host) && host.object_index == oRifterKing) {
+	x = oRifterKing.x;
+	y = oRifterKing.y;
 }

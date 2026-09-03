@@ -27,12 +27,15 @@ if (state == waveState.generatingWave) {
 	}
 }
 if (state == waveState.spawning) {
-	if (isLimited) {
+	if (isLimited && limitedWaveDoorSet) {
 		powerDoor(RoomID);
+		limitedWaveDoorSet = true;
 	}
 	if (!gendFlyGrid)
-	with (roomManager)
-	global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
+	with (roomManager) {
+		global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
+		global.Grid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
+	}
 	enemiesLeft = instance_number(oEnemy);
 	enemString = "Enemies Left: "+string(enemiesLeft);
 	inCombat = true; 

@@ -20,6 +20,14 @@ if (enemyHP < phasePoint1 && !phase1Applied) {
 	moveTotal += 3;
 	moveCount = 0;
 	revincibleDuration = 0;
+	if (trueTorz) {
+		move1Timer -= 6;
+		move3Timer -= 2;
+		shoot_delay -= 5;
+		move1Limit += 1;
+		move2Limit += 2;
+		move3Limit += 1;
+	}
 	phase++;
 } else if (enemyHP < phasePoint2 && !phase2Applied) {
 	initalSpeed += 0.1;
@@ -35,10 +43,20 @@ if (enemyHP < phasePoint1 && !phase1Applied) {
 	moveTotal += 1;
 	moveCount = 0;
 	revincibleDuration = 0;
+	if (trueTorz) {
+		move1Timer -= 6;
+		move3Timer -= 2;
+		shoot_delay -= 5;
+		move1Limit += 1;
+		move2Limit += 2;
+		move3Limit += 2;
+		move4limit += 2;
+		move3speed += 4;
+	}
 	phase++;
 } else if (enemyHP < phasePoint3 && !phase3Applied) {
 	initalSpeed += 0.2;
-	shoot_delay -= 50;
+	shoot_delay -= 35;
 	phase3Applied = true;
 	move1Limit+=2;
 	move2Limit+=2;
@@ -50,6 +68,16 @@ if (enemyHP < phasePoint1 && !phase1Applied) {
 	moveTotal += 3;
 	moveCount = 0;
 	revincibleDuration = 0;
+	if (trueTorz) {
+		move1Timer -= 6;
+		move3Timer -= 2;
+		shoot_delay -= 5;
+		move1Limit += 1;
+		move2Limit += 2;
+		move3Limit += 2;
+		move4limit += 2;
+		move3speed += 4;
+	}
 	phase++;
 }
 
@@ -88,10 +116,10 @@ if (shoot_cooldown <= 0 && invincible) {
 				image_angle = playerDir+90;
 				var dir = point_direction(x, y, oTruePlayer.x, oTruePlayer.y);
 				if (moveTimerFlex == -2) {
-					moveTimerFlex = 32;
+					moveTimerFlex = move1Timer;
 				}
 				moveTimerFlex--;
-				if (moveTimerFlex == 16) {
+				if (moveTimerFlex == move1Timer/2) {
 					var bullet = bulletFire(x, y, dir+50, bullet_speed*0.8, damage, oTorzProjectile, id);
 					var bullet1 = bulletFire(x, y, dir, bullet_speed*0.8, damage, oTorzProjectile, id);
 					var bullet2 = bulletFire(x, y, dir-50, bullet_speed*0.8, damage, oTorzProjectile, id);
@@ -99,7 +127,7 @@ if (shoot_cooldown <= 0 && invincible) {
 				if (moveTimerFlex <= 0) {
 					var bulletB = bulletFire(x, y, dir+25, bullet_speed*0.8, damage, oTorzProjectile, id);
 					var bullet1B = bulletFire(x, y, dir-25, bullet_speed*0.8, damage, oTorzProjectile, id);
-					moveTimerFlex = 32;
+					moveTimerFlex = move1Timer;
 					move1Count++;
 				}
 			} else {

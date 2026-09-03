@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 RoomID = 0;
- enemyHP = 500;
+enemyHP = 500;
 baseHP =  enemyHP;
 healthTotal =  enemyHP;
 spawnPool = 350;
@@ -15,10 +15,10 @@ shield = noone;
 spawnArray = [oRifterSniper, oRifterSlammer, oRifterSpitter, oEnemRifterSpider];
 damage = 30;
 attack = 0;
-enemSpeed = 0.55;
+enemSpeed = 0.625;
 baseSpeed = enemSpeed;
 shoot_cooldown = 60;
-shoot_delay = 400;
+shoot_delay = 300;
 Manager = noone;
 flagArray = [];
 inUse = false;

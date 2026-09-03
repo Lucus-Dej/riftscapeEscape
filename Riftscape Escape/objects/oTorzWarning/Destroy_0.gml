@@ -1,7 +1,9 @@
 if (explode && instance_exists(torz)) {
 	with (torz) {
 		var startingAng = 0;
+		
 		var inc = 360/6;
+		startingAng += (irandom_range(1, 3)*inc)
 		for (var i = 0; i < 6; i++) {
 			if (i == 0 || i == 3) {
 				var bullet = bulletFire(x, y, startingAng, bullet_speed, damage, oTorzProjectile, id);

@@ -171,6 +171,9 @@ function bulletFireAt(_x, _y, _target, _speed, _damage, _bulletType, _owner) {
 }
 function playerBulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner) {
 	audio_play_sound(aPlayerFire, 1, false, global.sfxAudio)
+	if (!instance_exists(_owner)) {
+		exit;
+	}
 	var parent = object_get_parent(_owner.object_index);
 	 var b =  bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner);   //instance_create_layer(_x, _y, "Instances", _bulletType);
 	 if (variable_instance_exists(b, "currentSpeed")) {

@@ -13,7 +13,7 @@
   ],
   "parent":{
     "name":"wasteland",
-    "path":"folders/enemies/basics/wasteland.yy",
+    "path":"folders/enemies/actualEnemies/basics/wasteland.yy",
   },
   "parentObjectId":{
     "name":"oEnemy",

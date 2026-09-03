@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"BULLETS",
-    "path":"folders/sprites/PLAYER ASSETS/BULLETS.yy",
+    "path":"folders/sprites/ASSETS/PLAYER ASSETS/BULLETS.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

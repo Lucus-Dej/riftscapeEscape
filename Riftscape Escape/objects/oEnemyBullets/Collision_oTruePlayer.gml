@@ -1,4 +1,4 @@
-if (oPlayerManager.iframes <= 0) {
+if (oPlayerManager.iframes <= 0 && ignorePlayerFrames <= 0) {
 	other.flash = 1;
 instance_create_layer(x, y, "Instances", oBoom);
 if (oPlayerManager.dodgeLifeBonus > 0) {
