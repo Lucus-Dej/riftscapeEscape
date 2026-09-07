@@ -111,7 +111,7 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 			initPerfectParry();
 		}
 		if (oItemManager.hasWaterDamagedNote && !_source.hasDamaged) {
-			_dmg *= 1.4;
+			_dmg *= 2.5;
 			_source.hasDamaged = true;
 		}
 		if (_dmg < 0.01) {

@@ -4,7 +4,7 @@ if (Manager.combatFinished && !used) {
 		show_debug_message("HELP I AM UNDER THE SAND")
 		if (other.bossRoom) {
 			var newItem = rollItem(false, itemSearchType.boss);
-			spawnItem(newItem, other.id, other.RoomID);
+			 var item = spawnItem(newItem, other.id, other.RoomID,,true);
 		} else {
 			var newItem = rollItem(false);
 			spawnItem(newItem, other.id, other.RoomID);

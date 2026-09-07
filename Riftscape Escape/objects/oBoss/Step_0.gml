@@ -16,7 +16,7 @@ if (shoot_cooldown > 0 && canSeePlayer) {
     shoot_cooldown--;
 }
 if (phasePoint1 >=  enemyHP && enraged == false) {
-	speedBonus += 1.7;
+	speedBonus += 1.4;
 	bullet_speed -= 3;
 	fire_duration += 12;
 	shoot_delay += 10;

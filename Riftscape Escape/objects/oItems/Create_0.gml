@@ -11,7 +11,9 @@ if (randomItem) {
 	audio_listener_position(x, y, 0);
 	audio_play_sound_at(aPortalOpen, x, y, 0, 1, 1, 1, false, 0, global.sfxAudio);
 }
-
+clearID = -1;
+clearSameOnDeath = false;
+clearElseOnDeath = false;
 index = -1;
 rarity = 0;
 veribroseMark = false;

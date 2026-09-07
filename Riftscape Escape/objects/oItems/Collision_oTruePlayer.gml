@@ -8,6 +8,13 @@ if (!randomItem) {
 if (keyboard_check_pressed(vk_space)) {
 	grabed = true;
 	veribroseMark = false;
+	if (clearElseOnDeath) {
+		with (oItems) {
+			if (clearID != other.clearID) {
+				instance_destroy();
+			}
+		}
+	}
 	removeFromItemPool(object_index)
 	instance_destroy();
 	

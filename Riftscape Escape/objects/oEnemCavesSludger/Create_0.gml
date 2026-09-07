@@ -1,7 +1,7 @@
 event_inherited();
 shoot_cooldown = irandom_range(10, 110);
 shoot_delay = 160;
- enemyHP = 4.4;
+enemyHP = 2.4;
 enemSpeed = 1.2;
 baseSpeed = enemSpeed;
 damage = 18.5;

@@ -1068,6 +1068,7 @@ function refreshItem (_rairty, _item) {
 function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPool = true, _bouns = 0) {
 	var totalPool = 0;
 	var simpleMax = -1;
+	var commonMax = -1;
 	var rareMax = -1;
 	var powerfulMax = -1;
 	var mythicMax = -1;
@@ -1077,6 +1078,11 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	if (ds_list_size(oItemManager.simpleItemList) > 0) {
 		totalPool += oItemManager.simplePool;
 		simpleMax = totalPool;
+	}
+
+	if (ds_list_size(oItemManager.commonItemList) > 0) {
+		totalPool += oItemManager.commonPool;
+		commonMax = oItemManager.commonPool;
 	}
 
 	if (ds_list_size(oItemManager.rareItemList) > 0) {
@@ -1116,6 +1122,8 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 		chosenList = oItemManager.powerfulItemList;
 	} else if (j >= rareMax && ds_list_size(oItemManager.rareItemList) > 0) {
 		chosenList = oItemManager.rareItemList;
+	} else if (j >= commonMax && ds_list_size(oItemManager.commonItemList) > 0) {
+		chosenList = oItemManager.commonItemList;
 	} else if (j >= simpleMax) {
 		chosenList = oItemManager.simpleItemList;
 	}
@@ -1186,11 +1194,17 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	if (item == -4) {
 		item = oDepictionOfSeraphim;
 	}
+	if (_typeOfSeach != itemSearchType.random) {
+		show_debug_message("SPAWNED ITEM: "+string(item))
+		show_debug_message("NUMBER ROLLED = "+string(j))
+	}
+	
 	if (_typeOfSeach == itemSearchType.boss && oPlayerManager.hasBossDropRune) {
 		return oDust;
 	} else {
 		return item;
 	}
+	
 }
 function removeFromItemPool (_item) {
 	var r = findItemRarity(_item);
@@ -1233,19 +1247,29 @@ function removeFromItemPool (_item) {
 		break;
 	}
 }
-function spawnItem(_item, _location, _rID, _allowDuplicating = false) {
+function spawnItem(_item, _location, _rID, _allowDuplicating = false, _bossSearch = false) {
 	
 	if (_item != noone) {
+		var uniqueID = global.itemClearNum;
+		global.itemClearNum++;
 		var newItem = instance_create_layer(_location.x, _location.y, "Instances", _item);
 		newItem.RoomID = _rID;
 		var rare = findItemRarity(newItem.object_index)
 		newItem.rarity = rare;
+		newItem.clearID = uniqueID;
+		if (_bossSearch) {
+			newItem.clearElseOnDeath = true;
+		}
 		var hallowedDiceCheck = irandom_range(1, 6);
 		if (rare == 0 && oItemManager.hasHollowedDice && hallowedDiceCheck == 6) {
 			var newerItem = instance_create_layer(_location.x, _location.y, "Instances", _item);
 			newerItem.RoomID = _rID;
 			var newRare = findItemRarity(newerItem.object_index)
 			newerItem.rarity = newRare;
+			newerItem.clearID = uniqueID;
+			if (_bossSearch) {
+				newerItem.clearElseOnDeath = true;
+			}
 		}
 		return newItem;
 	}
@@ -1255,24 +1279,28 @@ function findItemRarity(_item) {
 	var check = -1;
 	check = ds_list_find_index(oItemManager.simpleItemCopy, _item);
 	if (check == -1) {
-		check = ds_list_find_index(oItemManager.rareItemCopy, _item);
+		check = ds_list_find_index(oItemManager.commonItemCopy, _item);
 		rarity = 1;
 	}
 	if (check == -1) {
-		check = ds_list_find_index(oItemManager.powerfulItemCopy, _item);
+		check = ds_list_find_index(oItemManager.rareItemCopy, _item);
 		rarity = 2;
 	}
 	if (check == -1) {
-		check = ds_list_find_index(oItemManager.mythicItemCopy, _item);
+		check = ds_list_find_index(oItemManager.powerfulItemCopy, _item);
 		rarity = 3;
 	}
 	if (check == -1) {
-		check = ds_list_find_index(oItemManager.runeItemCopy, _item);
+		check = ds_list_find_index(oItemManager.mythicItemCopy, _item);
 		rarity = 4;
 	}
 	if (check == -1) {
-		check = ds_list_find_index(oItemManager.ultraItemCopy, _item);
+		check = ds_list_find_index(oItemManager.runeItemCopy, _item);
 		rarity = 5;
+	}
+	if (check == -1) {
+		check = ds_list_find_index(oItemManager.ultraItemCopy, _item);
+		rarity = 6;
 	}
 	
 	return rarity;

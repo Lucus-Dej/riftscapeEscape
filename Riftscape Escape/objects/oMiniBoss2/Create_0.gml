@@ -5,7 +5,7 @@ recoil_cooldown = 3;
 fire_duration = 9;
 fire_timer = fire_duration;
 recoil_timer = 0;
- enemyHP = 8;
+ enemyHP = 6.4;
 on_cooldown = false;
 
 ang = 0;

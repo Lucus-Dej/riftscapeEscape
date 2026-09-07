@@ -1,5 +1,5 @@
 event_inherited();
- enemyHP = 4;
+enemyHP = 4;
 shoot_delay = 90;
 on_cooldown = false;
 shoot_cooldown = shoot_delay;

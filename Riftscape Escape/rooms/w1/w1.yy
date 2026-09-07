@@ -1745,6 +1745,7 @@
     {"name":"inst_23A6D5A","path":"rooms/w1/w1.yy",},
     {"name":"inst_57EB6421","path":"rooms/w1/w1.yy",},
     {"name":"inst_2092048A","path":"rooms/w1/w1.yy",},
+    {"name":"inst_76644C7B","path":"rooms/w1/w1.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -4173,7 +4174,7 @@
         {"$GMRInstance":"v4","%Name":"inst_6AFB892C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6AFB892C","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"RoomID","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"30",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"bossRoom","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
-          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2656.0,"y":2912.0,},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2528.0,"y":2912.0,},
         {"$GMRInstance":"v4","%Name":"inst_428B0946","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_428B0946","objectId":{"name":"oTurretFireDouble","path":"objects/oTurretFireDouble/oTurretFireDouble.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oSuperwalls","path":"objects/oSuperwalls/oSuperwalls.yy",},"propertyId":{"name":"RoomID","path":"objects/oSuperwalls/oSuperwalls.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2816.0,"y":320.0,},
@@ -4359,6 +4360,10 @@
         {"$GMRInstance":"v4","%Name":"inst_2092048A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2092048A","objectId":{"name":"oTurretFireDouble","path":"objects/oTurretFireDouble/oTurretFireDouble.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oSuperwalls","path":"objects/oSuperwalls/oSuperwalls.yy",},"propertyId":{"name":"RoomID","path":"objects/oSuperwalls/oSuperwalls.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"9",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":3392.0,"y":1312.0,},
+        {"$GMRInstance":"v4","%Name":"inst_76644C7B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_76644C7B","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"RoomID","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"30",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"bossRoom","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2784.0,"y":2912.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Items","depth":400,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Items","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[

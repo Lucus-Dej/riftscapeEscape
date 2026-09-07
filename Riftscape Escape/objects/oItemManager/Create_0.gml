@@ -24,22 +24,26 @@ lastBlocker = noone;
 global.chargeItem = noone;
 global.itemCharges = 0;
 global.currentCharges = 0;
+global.itemClearNum = 0;
 sacDaggerPenalty = 1;
 sacDaggerBonus = 1;
 simpleMin = 0;
 simpleMax = 0;
 simplePool = 0;
+connonMin = 0;
+commonPool = 0;
+commonMax = commonPool + simplePool;
 rareMin = 0;
-rarePool = 0;
-rareMax = rarePool + simplePool;
+rarePool = 49;
+rareMax = rarePool + commonMax;
 powerfulMin = 0;
-powerfulPool = 65;
+powerfulPool = 30; // 70
 powerfulMax = powerfulPool + rareMax
 mythicMin = 0;
-mythicPool = 30;
+mythicPool = 25; // 95
 mythicMax = powerfulMax + mythicPool;
 ultraMin = 0;
-ultraPool = 20;
+ultraPool = 20; // 115
 ultraMax = mythicMax + ultraPool;
 displayItemDuration = 90;
 displayItemTimer = 0;
@@ -62,6 +66,8 @@ runeItemList = ds_list_create();
 runeItemCopy = ds_list_create();
 simpleItemList = ds_list_create();
 simpleItemCopy = ds_list_create();
+commonItemList = ds_list_create();
+commonItemCopy = ds_list_create();
 rareItemList = ds_list_create();
 rareItemCopy = ds_list_create();
 powerfulItemList = ds_list_create();
@@ -81,12 +87,24 @@ itemList = [];
 ds_list_add(runeItemList, oBloodCharm, oPoisonCharm, oIceCharm, oLightningCharm, oFireCharm, oHeartPendent, oLaserPointer, oUnstableEnergy, oVirstEssence, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oTorzolEssence, oDirectorsNote, oPoorFingerPainting);
 
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
-ds_list_add(rareItemList, oRifterBloodSample, oPlasmaOrb, oRadioactiveMaterial, oBottleOil, oFoolsGold, oReflectiveGem, oPropheticRune, oAntidote, oWeightlessHourglass, oOilBarrel, oDoubleOrNothing, oD2, oWeeklyPaycheck, oHarvestBook, oBloodyGem, oCrackedEgg, oGenStone, oBlackHoleCharge, oIceSoup, oHammer, oBrokenBloodVial, oRareSeed, oSmallSculpture, oBrokenBoomerang, oWaterDamagedNote, oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom,  oLilFurnacePickup, oLostCrown, oDeathBook, oMagnet, oBrainInAJar, oActionFigure, oWhisperingCrystal, oImageOfYou, oTetheredSoulPickup, oBrokenSnowglobe, oMirrorShard);
-ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oSacDagger,  oTesseract, oSingularity, oElectricKite, oGunpowder, oDictionaryCharge, oThePathForward, oMetalOrb);
-ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun, oHorseConquest, oHorseDeath, oHorseFamine, oHorseWar, oHorsePest);
+
+ds_list_add(commonItemList, oRadioactiveMaterial, oBottleOil, oReflectiveGem, oPropheticRune, 
+	oDoubleOrNothing, oD2, oIceSoup, oHammer, oRareSeed, oSmallSculpture, oBrokenBoomerang)
+ds_list_add(rareItemList, oRifterBloodSample, oPlasmaOrb, oFoolsGold, 
+	oAntidote, oWeightlessHourglass, oOilBarrel, 
+	oWeeklyPaycheck, oHarvestBook, oBloodyGem, oCrackedEgg, oGenStone, 
+	oBlackHoleCharge, oBrokenBloodVial, oImageOfYou,
+	oHollowedDice, oDirtyMirror);
+ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom,  oLilFurnacePickup, oLostCrown, 
+	oDeathBook, oMagnet, oBrainInAJar, oActionFigure, oWhisperingCrystal, oWaterDamagedNote, 
+	oTetheredSoulPickup, oBrokenSnowglobe, oMirrorShard);
+ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oSacDagger,  oTesseract, 
+	oSingularity, oElectricKite, oGunpowder, oDictionaryCharge, oThePathForward, oMetalOrb);
+ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun, oHorseConquest, 
+	oHorseDeath, oHorseFamine, oHorseWar, oHorsePest);
 
 ds_list_copy(runeItemCopy, runeItemList);
+ds_list_copy(commonItemCopy, commonItemList);
 ds_list_copy(simpleItemCopy, simpleItemList);
 ds_list_copy(rareItemCopy, rareItemList);
 ds_list_copy(powerfulItemCopy, powerfulItemList);

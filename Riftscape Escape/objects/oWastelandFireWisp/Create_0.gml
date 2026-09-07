@@ -6,6 +6,7 @@ bite_timer = shoot_delay;
 enemSpeed = 5;
 baseSpeed = enemSpeed;
 xp = 0;
+sub = true;
 host = noone;
 damage = 16.5;
 contactDamage = damage;

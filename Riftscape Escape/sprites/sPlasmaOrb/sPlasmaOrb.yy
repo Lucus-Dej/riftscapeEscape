@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"*rune",
-    "path":"folders/items/passive/*rune.yy",
+    "name":"ITEMS",
+    "path":"folders/sprites/ASSETS/ITEMS.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

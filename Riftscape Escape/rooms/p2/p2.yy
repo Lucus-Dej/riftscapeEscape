@@ -904,6 +904,8 @@
     {"name":"inst_79AFFA71","path":"rooms/p2/p2.yy",},
     {"name":"inst_59C17426","path":"rooms/p2/p2.yy",},
     {"name":"inst_1549D5C9","path":"rooms/p2/p2.yy",},
+    {"name":"inst_1396DFC","path":"rooms/p2/p2.yy",},
+    {"name":"inst_3BED66AF","path":"rooms/p2/p2.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -2154,6 +2156,14 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oBossBarrierManager","path":"objects/oBossBarrierManager/oBossBarrierManager.yy",},"propertyId":{"name":"lockAmount","path":"objects/oBossBarrierManager/oBossBarrierManager.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1600.0,"y":2336.0,},
         {"$GMRInstance":"v4","%Name":"inst_1549D5C9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1549D5C9","objectId":{"name":"oTorzolFollowerSpawnerFlag","path":"objects/oTorzolFollowerSpawnerFlag/oTorzolFollowerSpawnerFlag.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1728.0,"y":192.0,},
+        {"$GMRInstance":"v4","%Name":"inst_1396DFC","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1396DFC","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"onStart","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"bossRoom","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1376.0,"y":2752.0,},
+        {"$GMRInstance":"v4","%Name":"inst_3BED66AF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3BED66AF","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"onStart","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemFlag","path":"objects/oItemFlag/oItemFlag.yy",},"propertyId":{"name":"bossRoom","path":"objects/oItemFlag/oItemFlag.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1696.0,"y":2752.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Items","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"Items","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[

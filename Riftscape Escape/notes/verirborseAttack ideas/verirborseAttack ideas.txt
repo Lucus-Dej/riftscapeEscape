@@ -1,0 +1,73 @@
+arena: 
+
+veribrose's arena is a very tight one. a lot of 1x1 halls. kinda like the ERAM fight in that way. 
+the fight will kind of go like pac man in a way, combined with the dead of the night boss fight
+
+beginning phase:
+like torzol, there's a few seconds of vulnurability at the beginning, then they become invulnurable
+
+the maze walls will come up, and the true fight begins. 
+
+you must align 4 bells to play the right "tone" (or simlpy match color). you'll then lead veribrose to the center, 
+then they'll become vulnurable again. if the phase is not finished, then verirbrose will only reset 1-2,
+otherwise, all 4 will reset and a "middle phase" will begin. 
+
+during this phase, verirbose does a few wider moves and there's an influx of enemies, ending with a few minibosses
+then the walls come back up, and the process repeats. 
+
+first time aorund, only veribrose follows you
+second time around, there's a few enemies that stalk you (that are invincible)
+third time around, there's traps, enemies, and verirbrose followers
+final phase there's even more traps, stalkers, enemies, and veribrose is much faster
+i think once the final phase is started, the maze is just gone. 
+
+veribrose is doing massive moves. there's no cover. constant enemy spawns that dont give you a break. 
+
+
+veribrose moves (maze form)
+slow ray: in a line ahead of veribrose, they pull you closer or maybe even invert your controls. 
+mainly used to cut distance for others to catch up
+
+pathing bullet: 
+a "homing bullet" that actually just pathfinds to the player. 
+
+piercing laser:
+a laser, aimed ahead of the player is fired. the player must either double back
+or speed up to get past or take massive damaage
+
+(unleashed form):
+
+wide laser: 
+a single laser that spins slowly, then fast, then stops
+in later phases, it fires several (like 1 starts at 0 degrees, 2 starts at 180, 3 at 120, 4 at 90, etc)
+
+homing storm:
+a flurry of bullets that zoom in on where the player is heading (so tracking and leading maybe?)
+
+barrage:
+veribrose fires waves of bullets. when they hit a wall, there's a chance for them to become
+homing bullets that fly back to the player. increasing phases increases the number of waves
+
+"wipe attack":
+veribrose starts reading a book. the four places that broke its invulnurability now feed it
+the player must fire at the crystal to misalign them. once all 4 are misaligned, the shield is broken
+
+verirbrose will be briefly stunned
+
+phase values
+
+phase 1 threshold:
+85%
+
+phase 2 threshold:
+70%
+
+phase 3 threshold:
+55%
+
+phase 4 threshold:
+40%
+
+the final 40% will include the ability to use all attacks and no maze mechanics. just a brawl
+
+

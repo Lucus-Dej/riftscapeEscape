@@ -602,6 +602,7 @@
     {"name":"inst_7690B675","path":"rooms/hordeSurvival/hordeSurvival.yy",},
     {"name":"inst_6A8CFCB6","path":"rooms/hordeSurvival/hordeSurvival.yy",},
     {"name":"inst_5B3AD8E9","path":"rooms/hordeSurvival/hordeSurvival.yy",},
+    {"name":"inst_4A76E86D","path":"rooms/hordeSurvival/hordeSurvival.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -1236,6 +1237,7 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oTeleSpawner","path":"objects/oTeleSpawner/oTeleSpawner.yy",},"propertyId":{"name":"evil","path":"objects/oTeleSpawner/oTeleSpawner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oTeleSpawner","path":"objects/oTeleSpawner/oTeleSpawner.yy",},"propertyId":{"name":"goEvilFloor","path":"objects/oTeleSpawner/oTeleSpawner.yy",},"resource":{"name":"itemRoom","path":"rooms/itemRoom/itemRoom.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"itemRoom",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1792.0,"y":96.0,},
+        {"$GMRInstance":"v4","%Name":"inst_4A76E86D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4A76E86D","objectId":{"name":"oWastelandFireSpirit","path":"objects/oWastelandFireSpirit/oWastelandFireSpirit.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1600.0,"y":1024.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":true,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[
         {"$GMRTextItem":"v3","%Name":"text_6D2EE905","alignment":0,"charSpacing":0.0,"colour":4294967295,"fontId":{"name":"fLevels","path":"fonts/fLevels/fLevels.yy",},"frameH":0.0,"frameW":0.0,"frozen":false,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"lineSpacing":0.0,"name":"text_6D2EE905","paragraphSpacing":0.0,"resourceType":"GMRTextItem","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":2.0,"text":"Survive As Long As You Can Below\r\nTravel Through The Portal To Begin","wrap":false,"x":1312.0,"y":480.0,},

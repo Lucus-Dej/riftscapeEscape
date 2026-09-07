@@ -1,5 +1,5 @@
 event_inherited();
- enemyHP = 3.6;
+enemyHP = 2;
 shoot_delay = 15;
 on_cooldown = false;
 bite_timer = shoot_delay;

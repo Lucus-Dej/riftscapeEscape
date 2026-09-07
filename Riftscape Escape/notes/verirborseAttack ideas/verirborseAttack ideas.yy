@@ -1,7 +1,7 @@
 {
   "$GMNotes":"v1",
-  "%Name":"bossUnlock",
-  "name":"bossUnlock",
+  "%Name":"verirborseAttack ideas",
+  "name":"verirborseAttack ideas",
   "parent":{
     "name":"1NOTES",
     "path":"folders/1NOTES.yy",
