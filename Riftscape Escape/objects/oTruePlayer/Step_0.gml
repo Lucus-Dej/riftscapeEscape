@@ -74,7 +74,7 @@ if (oPlayerManager.hasFirstPRune) {
 	if (is_debug_overlay_open()) {
 		move_and_collide(hsp*2, vsp*2, oRoomStartMarker);
 	} else {
-		move_and_collide(_xinput, _yinput, [oSuperwalls])
+		move_and_collide(_xinput, _yinput, [oSuperwalls, oVeriLaserNode])
 	}
 	
 } else {
@@ -83,7 +83,7 @@ if (oPlayerManager.hasFirstPRune) {
 	} else if (global.playerCanFly) {
 		move_and_collide(hsp, vsp, oIndestructable);
 	} else {
-		move_and_collide(hsp, vsp, oSuperwalls);
+		move_and_collide(hsp, vsp, [oSuperwalls, oVeriLaserNode]);
 	}
 }
 
