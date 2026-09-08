@@ -1,7 +1,12 @@
 laser = noone;
 flash = 0;
 active = true;
-laserAng = 0;
+if (conditional) {
+	active = false;
+}
+laserAng = 90;
+laserList = ds_list_create();
+
 image_xscale = 4;
 image_yscale = 4;
 setPower = function (_state) {

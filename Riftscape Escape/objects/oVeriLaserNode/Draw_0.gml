@@ -20,3 +20,4 @@ if (oPlayerManager.hasFirstPRune) {
 }
 
 shader_reset();
+draw_text(x-64, y, active)

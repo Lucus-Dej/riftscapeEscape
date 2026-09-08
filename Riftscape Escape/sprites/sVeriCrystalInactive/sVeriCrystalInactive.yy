@@ -40,7 +40,7 @@
   ],
   "name":"sVeriCrystalInactive",
   "nineSlice":null,
-  "origin":4,
+  "origin":7,
   "parent":{
     "name":"VERIBROSE",
     "path":"folders/sprites/ASSETS/VERIBROSE.yy",
@@ -144,7 +144,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":32,
-    "yorigin":32,
+    "yorigin":64,
   },
   "swatchColours":null,
   "swfPrecision":0.5,
