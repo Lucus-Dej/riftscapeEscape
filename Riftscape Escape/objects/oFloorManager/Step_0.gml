@@ -391,6 +391,52 @@ if (floorState == genState.complete ) {
 			}
 		}
 	}
+	var shopIndex = 0;
+	var shopCheck = irandom_range(1, 100) + global.playerTime*0.8;
+	if (global.difficulty == 4) {
+		shopCheck += 10;
+	}
+	show_debug_message("shop Index is "+string(shopCheck))
+	if ((evilRoomFlag || shopCheck >= 70 )) {
+		var shopFlag = false;
+		shopIndex = irandom(array_length(bossDoorArray)-1);
+		while (shopIndex == pureIndex || shopIndex == bossIndex || shopIndex == itemIndex || shopIndex == confluxIndex || shopIndex == ritualIndex || shopIndex == arenaIndex || shopIndex == runeIndex) {
+			shopIndex = irandom(array_length(bossDoorArray)-1);
+		}
+		var shopDoor = bossDoorArray[shopIndex];
+		dir = shopDoor.doorDir;
+		var shopR = findSpecialRoom(dir, "shop");
+		with (shopDoor) {
+			doorType = "shop";
+			show_debug_message("shop door made")
+			connectRoom(id, dir, shopR, Manager1, false);
+			if (invalid) {
+				doorType = "null";
+				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
+					if (!shopFlag) {
+						show_debug_message("trying again: shop")
+						var newshopDoor = other.bossDoorArray[i]; 
+						shopIndex = i;
+						//instance_create_layer(newBossDoor.x, newBossDoor.y, "Instances", oLightWall);
+						dir = newshopDoor.doorDir;
+						show_debug_message(dir)
+						BossR = findSpecialRoom(dir, "shop");
+						//connectRoom(id, req.dir, req.room, req.owner);
+						with (newshopDoor) {
+							doorType = "shop";
+							invalid = false;
+							connectRoom(id, dir, shopR, Manager1, false);
+							if (!invalid) {
+								doorType = "shop";
+								shopFlag = true;
+							}
+						}
+						other.retryCount++;
+					}
+				}
+			}
+		}
+	}
 	if (evilRoomFlag) {
 		evilRoomFlag = false;
 		global.initEvilRoom = false;

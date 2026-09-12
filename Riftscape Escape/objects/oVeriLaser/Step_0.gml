@@ -7,24 +7,43 @@ if (!targetFound && target == noone) {
 	var dir = image_angle;
 	var dirX = x + lengthdir_x(1280, dir);
 	var dirY = y + lengthdir_y(1280, dir);
-	var line = collision_line(x, y, dirX, dirY, oIndestructable, true, false)
-	var hostLine = noone
+	ds_list_clear(wallLine);
+	ds_list_clear(nodeLine)
+	collision_line_list(x, y, dirX, dirY, oIndestructable, true, false, wallLine, true);
 	with (host) {
-		hostLine = collision_line(other.x, other.y, dirX, dirY, oVeriLaserNode, true, true)
+		collision_line_list(x, y, dirX, dirY, oVeriLaserNode, true, true, other.nodeLine, true);
 	}
-	if (instance_exists(line) || instance_exists(hostLine)) {
+	var topNode = noone;
+	var topWall = noone;
+	
+	if (ds_list_size(wallLine) > 0) {
+		topWall = wallLine[|0];
+	}
+	if (ds_list_size(nodeLine) > 0) {
+		topNode = nodeLine[|0];
+		
+	}
+	if (instance_exists(topWall) || instance_exists(topNode)) {
 		var lineDist = 9999;
 		var hostDist = 9999;
-		if (instance_exists(line)) {
-			lineDist = point_distance(x, y, line.x, line.y);
+		var pointX = 0;
+		var pointY = 0;
+		if (instance_exists(topWall)) {
+			lineDist = point_distance(x, y, topWall.x, topWall.y);
+			if (keyboard_check_pressed(vk_alt) && place_meeting(x, y, oTruePlayer)) {
+				instance_create_layer(topWall.x, topWall.y, "Instances", oBlueprint);
+			}
 		}
-		if (instance_exists(hostLine)) {
-			hostDist = point_distance(host.x, host.y, hostLine.x, hostLine.y);
+		if (instance_exists(topNode)) {
+			hostDist = point_distance(x, y, topNode.x, topNode.y);
+			if (keyboard_check_pressed(vk_alt) && place_meeting(x, y, oTruePlayer)) {
+				instance_create_layer(topNode.x, topNode.y, "Instances", oBloodySkull);
+			}
 		}
 		var dist = min(lineDist, hostDist)
 		image_xscale = dist/scale;
 	} else {
-		image_xscale = 640/scale;
+		image_xscale = 1280/scale;
 	}
 } else if (instance_exists(target) && !targetFound) {
 	var dir = image_angle;

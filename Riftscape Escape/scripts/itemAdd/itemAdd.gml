@@ -1130,6 +1130,7 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	if (_typeOfSeach == itemSearchType.boss || _typeOfSeach == itemSearchType.simple) {
 		chosenList = oItemManager.simpleItemList;
 	}
+	
 	if (_typeOfSeach == itemSearchType.iceSoup) {
 		var iceCheck = irandom_range(1, 20);
 		if (iceCheck == 1 && ds_list_size(oItemManager.ultraItemList) > 0) {
@@ -1214,32 +1215,39 @@ function removeFromItemPool (_item) {
 	}
 	switch (r) {
 		case 1:
+		var i = ds_list_find_index(oItemManager.commonItemList, _item);
+		if (i != -1) {
+			ds_list_delete(oItemManager.commonItemList, i)
+		}
+		break;
+		
+		case 2:
 		var i = ds_list_find_index(oItemManager.rareItemList, _item);
 		if (i != -1) {
 			ds_list_delete(oItemManager.rareItemList, i)
 		}
 		break;
 		
-		case 2:
+		case 3:
 		var p = ds_list_find_index(oItemManager.powerfulItemList, _item);
 		if (p != -1) {
 			ds_list_delete(oItemManager.powerfulItemList, p)
 		}
 		break;
 		
-		case 3:
+		case 4:
 		var m = ds_list_find_index(oItemManager.mythicItemList, _item);
 		if (m != -1) {
 			ds_list_delete(oItemManager.mythicItemList, m)
 		}
 		break;
-		case 4:
+		case 5:
 		var ru = ds_list_find_index(oItemManager.runeItemList, _item);
 		if (ru != -1) {
 			ds_list_delete(oItemManager.runeItemList, ru)
 		}
 		break;
-		case 5:
+		case 6:
 		var u = ds_list_find_index(oItemManager.ultraItemList, _item);
 		if (u != -1) {
 			ds_list_delete(oItemManager.ultraItemList, u)
@@ -1259,6 +1267,7 @@ function spawnItem(_item, _location, _rID, _allowDuplicating = false, _bossSearc
 		newItem.clearID = uniqueID;
 		if (_bossSearch) {
 			newItem.clearElseOnDeath = true;
+			newItem.validForClear = true;
 		}
 		var hallowedDiceCheck = irandom_range(1, 6);
 		if (rare == 0 && oItemManager.hasHollowedDice && hallowedDiceCheck == 6) {

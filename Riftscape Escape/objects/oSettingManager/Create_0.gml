@@ -6,6 +6,10 @@ global.gameSteps = 0;
 global.inCombat = false;
 global.resH = 720;
 global.resW = 1280;
+global.lifestats = {
+	xp: 0,
+	timePlayedInSeconds: 0
+}
 queueEvilRuneAdd = false;
 extendRun = false;
 //audio_falloff_set_model(audio_falloff_exponent_distance);

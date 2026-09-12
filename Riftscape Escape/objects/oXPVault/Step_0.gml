@@ -1,0 +1,1 @@
+displayString = string(global.lifestats.xp)+"XP";

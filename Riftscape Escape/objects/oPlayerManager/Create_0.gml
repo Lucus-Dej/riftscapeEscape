@@ -232,7 +232,7 @@ levelIndex = 0;
 currentLevl = levelArray[levelIndex]
 nextLevel = levelArray[levelIndex +1];
 confluxCost = 2;
-xpThreshdolds = [];
+xpThreshdolds = [200];
 
 //rune stuff
 validRuneArray = [oWarRune, oDeathRune, oFamineRune, oPestRune, oBloodRune, oFirstPRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];

@@ -133,7 +133,6 @@ if (room == tutorial) {
 	}
 }
 
-
 if (instance_exists(visual)) {
 	visual.x = x;
 	visual.y = y;

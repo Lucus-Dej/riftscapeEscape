@@ -9,7 +9,7 @@ if (global.grid_cool == false) {
 	mp_grid_add_instances(global.flyGrid, oIndestructable, true);
 	global.grid_cool = true;
 }
-if (xpTotal >= xpProgress) {
+if (xpTotal > xpProgress) {
 	array_push(xpThreshdolds, xpProgress);
 	xpTotal -= xpProgress;
 	xpProgress *= 1.25;

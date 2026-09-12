@@ -31,7 +31,7 @@ if (!global.do3d) {
 	    drawText = "Current Difficulty Level: " + string(diff);
 	}
 	else if (buttonID == 22) {
-	    drawText = "Current Level: " + string(oPlayerManager.levelsPending);
+	    drawText = "Levels Pending: " + string(oPlayerManager.levelsPending);
 	}
 
 	if (drawText != noone && buttonID != 13 && buttonID != 22) {

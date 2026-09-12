@@ -3,7 +3,8 @@ function saveGame(){
 		musicAudio: global.musicAudio,
 		sfxAudio: global.sfxAudio,
 		metaProgression: global.meta,
-		difficulty: global.difficulty
+		difficulty: global.difficulty,
+		lifestats: global.lifestats
 	};
 	
 	var file = file_text_open_write("rscapeSave.txt");
@@ -23,7 +24,7 @@ function loadGame(){
 		show_debug_message(json);
 		unlocokChallenges()
 		var saveData = json_parse(json);
-		var names = ["musicAudio", "sfxAudio", "metaProgression", "difficulty"];
+		var names = ["musicAudio", "sfxAudio", "metaProgression", "difficulty", "lifestats"];
 		for (var i = 0; i < array_length(names); i++) {
 			var name = names[i];
 			if (!variable_struct_exists(saveData, name)) {
@@ -44,6 +45,10 @@ function loadGame(){
 				
 				case "difficulty":
 				global.difficulty = struct_get(saveData, name)
+				break;
+				
+				case "lifestats":
+				global.lifestats = struct_get(saveData, name)
 				break;
 			} 
 		}

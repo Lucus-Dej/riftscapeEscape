@@ -2,7 +2,8 @@ damage = 0.5;
 image_angle = dir;
 spreadSpeed = 0.5;
 spread = false;
-
+wallLine = ds_list_create();
+nodeLine = ds_list_create();
 damageArray = [];
 damageTimerArray = [];
 dmgRefreshTime = 20;

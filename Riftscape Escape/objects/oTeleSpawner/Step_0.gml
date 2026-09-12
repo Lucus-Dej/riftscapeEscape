@@ -14,6 +14,9 @@ if (con && Manager.combatFinished && !used) {
 		childSpawned = true;
 		used = true;
 		child_spawner = instance_create_layer(x, y, "Instances", oGoNext);
+		if (room != endRuneChoiceRoom && room != hordeSurvival) {
+			instance_create_layer(x, y-128, "Items", oVaultEgg)
+		}
 		if (evil) {
 			child_spawner_evil = instance_create_layer(x, y, "Instances", oGoNextEvil)
 			with (child_spawner_evil) {

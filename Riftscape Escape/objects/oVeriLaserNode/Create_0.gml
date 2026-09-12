@@ -4,9 +4,9 @@ active = true;
 if (conditional) {
 	active = false;
 }
-laserAng = 90;
 laserList = ds_list_create();
-
+pressInt = 12;
+pressTimer = 0;
 image_xscale = 4;
 image_yscale = 4;
 setPower = function (_state) {

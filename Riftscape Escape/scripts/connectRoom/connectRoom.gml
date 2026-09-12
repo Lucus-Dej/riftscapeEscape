@@ -227,7 +227,7 @@ function findRoom (_sideAngle, _minDif = 0, _maxDif = 10) {
 	for (var i = 0; i < array_length(validPool); i++) {
 		var roomCheck = validPool[i];
 		var tags = asset_get_tags(roomCheck);
-		 if (!array_contains(tags, "conflux") && !array_contains(tags, "item") && !array_contains(tags, "pure") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
+		 if (!array_contains(tags, "shop") && !array_contains(tags, "conflux") && !array_contains(tags, "item") && !array_contains(tags, "pure") && !array_contains(tags, "rune") && (!array_contains(tags, "boss") && !array_contains(tags, "arena") && !array_contains(tags, "ritual"))) {
 			 
 			 var difficulty = -1;
 			 

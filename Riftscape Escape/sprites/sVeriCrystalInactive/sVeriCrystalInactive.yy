@@ -1,11 +1,11 @@
 {
   "$GMSprite":"v2",
   "%Name":"sVeriCrystalInactive",
-  "bboxMode":0,
+  "bboxMode":2,
   "bbox_bottom":63,
   "bbox_left":24,
   "bbox_right":39,
-  "bbox_top":27,
+  "bbox_top":49,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
