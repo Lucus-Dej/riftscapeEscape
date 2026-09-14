@@ -40,7 +40,7 @@ function loadGame(){
 				break;
 				
 				case "metaProgression":
-				global.meta = struct_get(saveData, name)
+				mergeStruct(global.meta, struct_get(saveData, name));
 				break;
 				
 				case "difficulty":
@@ -48,7 +48,8 @@ function loadGame(){
 				break;
 				
 				case "lifestats":
-				global.lifestats = struct_get(saveData, name)
+				mergeStruct(global.lifestats, struct_get(saveData, name));
+				show_debug_message("THIS IS THE LIFESTATS"+string(global.lifestats))
 				break;
 			} 
 		}
@@ -59,6 +60,25 @@ function loadGame(){
 	} else {
 		//global.musicAudio = 0.2;
 		//global.sfxAudio = 0.5;
+	}
+}
+function mergeStruct(_base, _save) {
+	var keys = variable_struct_get_names(_save);
+
+	for (var i = 0; i < array_length(keys); i++) {
+		var key = keys[i];
+		var saveValue = struct_get(_save, key);
+
+		if (is_struct(saveValue) && variable_struct_exists(_base, key)) {
+			var baseValue = struct_get(_base, key);
+
+			if (is_struct(baseValue)) {
+				mergeStruct(baseValue, saveValue);
+				continue;
+			}
+		}
+
+		struct_set(_base, key, saveValue);
 	}
 }
 function resetSave() {

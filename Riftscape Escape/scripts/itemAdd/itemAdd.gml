@@ -1215,9 +1215,9 @@ function removeFromItemPool (_item) {
 	}
 	switch (r) {
 		case 1:
-		var i = ds_list_find_index(oItemManager.commonItemList, _item);
-		if (i != -1) {
-			ds_list_delete(oItemManager.commonItemList, i)
+		var c = ds_list_find_index(oItemManager.commonItemList, _item);
+		if (clearElseOnDeath != -1) {
+			ds_list_delete(oItemManager.commonItemList, c)
 		}
 		break;
 		

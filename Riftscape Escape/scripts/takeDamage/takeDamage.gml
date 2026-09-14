@@ -280,6 +280,9 @@ function playerTakeDamage(_dmg, _type = damageType.basic) {
 				delay = cooldown;
 			}
 		}
+		if (instance_exists(oFloorManager)) {
+			oFloorManager.reflectiveGemUnlockCheck = true;
+		}
 		if (_type = damageType.contact && oItemManager.hasKrostEssence) {
 			_dmg *= 0.5;
 		}

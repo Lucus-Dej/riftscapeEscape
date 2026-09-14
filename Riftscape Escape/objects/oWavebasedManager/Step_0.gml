@@ -35,6 +35,8 @@ if (state == waveState.spawning) {
 	with (roomManager) {
 		global.flyGrid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
 		global.Grid = mp_grid_create(claimX,claimY, (claimX2 - claimX)/ 32, (claimY2-claimY)/32, 32, 32);
+		mp_grid_add_instances(global.Grid, oSuperwalls, true);
+		mp_grid_add_instances(global.Grid, oIndestructable, true);
 	}
 	enemiesLeft = instance_number(oEnemy);
 	enemString = "Enemies Left: "+string(enemiesLeft);

@@ -320,7 +320,8 @@ if (dodgeState == DODGE_PHASE.onStandby) {
 	inDodge = false;
 	dodgeContactDmg = 0;
 	if (dodgePressed && dodgeTotal >= dodgeMax) {
-		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
+		var dg = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
+		dg.followPlayer = true;
 		dodgeContactDmg = 1;
 		inDodge = true;
 		dodgeTotal = 0;
@@ -348,6 +349,8 @@ if (dodgeState == DODGE_PHASE.dodging) {
 if (dodgeBlackFlashTimer > 0 && dodgeBlackFlashTimer < 20 && inDodge && dodgePressed) {
 
 	dodgeState = DODGE_PHASE.blackflashing;
+	var dg = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oDodgeImpact);
+	dg.followPlayer = true;
 	dodgeBlackFlashTimer = 100;
 	dodgeDuration = 6;
 	iframes = 22+(global.playerReality+global.playerTime)*2;

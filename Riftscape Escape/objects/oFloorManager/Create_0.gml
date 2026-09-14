@@ -41,3 +41,4 @@ switch (room) {
 floorCompleteFlag = false;
 roomManagerArray = [];
 veribroseLockArray = [];
+reflectiveGemUnlockCheck = true;

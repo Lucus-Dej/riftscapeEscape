@@ -13,7 +13,7 @@ if (oPlayerManager.hasDodgeFate) {
 	}
 }
 damagedList = ds_map_create();
-
+followPlayer = false;
 damage = global.playerDamage + sqrt(global.playerReality) * 0.65;
 existence = global.playerReality*6;
 exisTotal = existence;

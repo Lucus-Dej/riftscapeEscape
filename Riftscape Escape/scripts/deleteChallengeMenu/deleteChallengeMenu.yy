@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"deleteChallengeMenu",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"deleteChallengeMenu",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

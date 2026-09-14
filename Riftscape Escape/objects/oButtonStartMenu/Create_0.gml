@@ -10,8 +10,7 @@ click = function () {
 	case 1: // queue difficulty question. 
 	//room_goto(hordeSurvival);
 	with (oButtonStartMenu) {
-		show_debug_message("I AM TRING TO MOVE")
-		instance_destroy()
+		instance_deactivate_object(self)
 	}
 	with (oSlider) {
 		display = false;
@@ -50,10 +49,42 @@ click = function () {
 	room_goto(tutorial)
 	break;
 	
-	case 7:
+	case 7: // show challenges
+	with (oButtonStartMenu) {
+		instance_deactivate_object(self)
+	}
+	with (oSlider) {
+		display = false;
+	}
+	layer_set_visible("Assets_1", false)
+	for (var i = 0; i < oSettingManager.challengeMenu.challengeSize; i++) {
+		var key = oSettingManager.challengeMenu.challengeKeys[i];
+		var challenge = global.metaChallengeArray.challenges[$ key];
+		var txt = "";
+		if (global.meta.challenges[$ key]) {
+		    txt = challenge.title;
+		} else {
+		    txt = challenge.hint;
+		}
+		var challengeBox = instance_create_layer(display_get_gui_width()*0.275,
+		y+(i*oSettingManager.challengeMenu.challengeSpacing), "Instances", oChallengeMenuButton, 
+		{buttonID: i, drawText: txt})
+		
+		array_push(global.metaChallengeArray.textBoxArray, challengeBox)
+		
+	}
+	oSettingManager.drawChallenge = true;
+	
 	break;
 	
-	case 8:
+	case 8: // return to menu
+	instance_activate_object(oButtonStartMenu)
+	with (oSlider) {
+		display = true;
+	}
+	layer_set_visible("Assets_1", true)
+	oSettingManager.drawChallenge = false;
+	deleteChallengeMenu();
 	break;
 	
 	case 9:

@@ -84,24 +84,107 @@ bookList = ds_list_create()
 ds_list_add(bookList, oFreedom, oFoolsGold, oDeathBook, oDictionaryCharge, oBlackHoleCharge, oHarvestBook, oDreamsBook, oThePathForward);
 item = oEnemSpider;
 itemList = [];
-ds_list_add(runeItemList, oBloodCharm, oPoisonCharm, oIceCharm, oLightningCharm, oFireCharm, oHeartPendent, oLaserPointer, oUnstableEnergy, oVirstEssence, oKrostEssence, oVeribroseEssence, oSifterEssence, oAlextraEssence, oTorzolEssence, oDirectorsNote, oPoorFingerPainting);
+
+
+ds_list_add(runeItemList, oBloodCharm, oPoisonCharm, oIceCharm, oLightningCharm, oFireCharm, 
+	oHeartPendent, oLaserPointer, oUnstableEnergy, oDirectorsNote, oPoorFingerPainting);
 
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 
-ds_list_add(commonItemList, oRadioactiveMaterial, oBottleOil, oReflectiveGem, oPropheticRune, 
-	oDoubleOrNothing, oD2, oIceSoup, oHammer, oRareSeed, oSmallSculpture, oBrokenBoomerang)
-ds_list_add(rareItemList, oRifterBloodSample, oPlasmaOrb, oFoolsGold, 
-	oAntidote, oWeightlessHourglass, oOilBarrel, 
-	oWeeklyPaycheck, oHarvestBook, oBloodyGem, oCrackedEgg, oGenStone, 
-	oBlackHoleCharge, oBrokenBloodVial, oImageOfYou,
-	oHollowedDice, oDirtyMirror);
-ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom,  oLilFurnacePickup, oLostCrown, 
-	oDeathBook, oMagnet, oBrainInAJar, oActionFigure, oWhisperingCrystal, oWaterDamagedNote, 
-	oTetheredSoulPickup, oBrokenSnowglobe, oMirrorShard);
-ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oSacDagger,  oTesseract, 
-	oSingularity, oElectricKite, oGunpowder, oDictionaryCharge, oThePathForward, oMetalOrb);
-ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun, oHorseConquest, 
-	oHorseDeath, oHorseFamine, oHorseWar, oHorsePest);
+ds_list_add(commonItemList, oRadioactiveMaterial, oBottleOil, oPropheticRune, 
+	oDoubleOrNothing, oD2, oSmallSculpture, oBrokenBoomerang)
+ds_list_add(rareItemList, oRifterBloodSample, oPlasmaOrb, 
+	oAntidote, oWeightlessHourglass, oOilBarrel, oHarvestBook, oBloodyGem, 
+	oCrackedEgg, oBlackHoleCharge, oBrokenBloodVial, oImageOfYou, oDirtyMirror);
+ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom, 
+	oDeathBook, oMagnet, oBrainInAJar, oActionFigure, oWhisperingCrystal, oBrokenSnowglobe, oMirrorShard);
+ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oTesseract, 
+oElectricKite, oGunpowder, oMetalOrb);
+ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun);
+show_debug_message(global.meta.challenges);
+show_debug_message(variable_struct_exists(global.meta.challenges, "gotItemReflectiveGem"));
+//item unlocks
+if (global.meta.challenges.gotItemReflectiveGem) {
+	ds_list_add(commonItemList, oReflectiveGem);
+}
+if (global.meta.challenges.gotItemPaychecks) {
+	ds_list_add(commonItemList, oIceSoup);
+	ds_list_add(rareItemList, oWeeklyPaycheck);
+}
+if (global.meta.challenges.gotItemHammer) {
+	ds_list_add(commonItemList, oHammer);
+}
+if (global.meta.challenges.gotItemRareseed) {
+	ds_list_add(commonItemList, oRareSeed);
+}
+if (global.meta.challenges.gotItemGenStone) {
+	ds_list_add(rareItemList, oGenStone);
+}
+if (global.meta.challenges.gotItemFoolsGold) {
+	ds_list_add(rareItemList, oFoolsGold);
+}
+if (global.meta.challenges.gotItemHollowedDice) {
+	ds_list_add(rareItemList, oHollowedDice);
+}
+if (global.meta.challenges.gotItemLilFurnace) {
+	ds_list_add(powerfulItemList, oLilFurnace);
+}
+if (global.meta.challenges.gotItemFallenCrown) {
+	ds_list_add(powerfulItemList, oLostCrown);
+}
+if (global.meta.challenges.gotItemWaterdamagedNote) {
+	ds_list_add(powerfulItemList, oWaterDamagedNote);
+}
+if (global.meta.challenges.gotItemTetheredSoul) {
+	ds_list_add(powerfulItemList, oTetheredSoulPickup);
+}
+if (global.meta.challenges.gotItemSacDagger) {
+	ds_list_add(mythicItemList, oSacDagger);
+}
+if (global.meta.challenges.gotItemSingularity) {
+	ds_list_add(mythicItemList, oSingularity);
+}
+if (global.meta.challenges.gotItemDictionary) {
+	ds_list_add(mythicItemList, oDictionaryCharge);
+}
+if (global.meta.challenges.gotItemPathForward) {
+	ds_list_add(mythicItemList, oThePathForward);
+}
+if (global.meta.challenges.gotItemScytheDeath) {
+	ds_list_add(ultraItemList, oHorseDeath);
+}
+if (global.meta.challenges.gotItemSickleFamine) {
+	ds_list_add(ultraItemList, oHorseFamine);
+}
+if (global.meta.challenges.gotItemPestDagger) {
+	ds_list_add(ultraItemList, oHorsePest);
+}
+if (global.meta.challenges.gotItemJavelinWar) {
+	ds_list_add(ultraItemList, oHorseWar);
+}
+if (global.meta.challenges.gotItemSwordConquest) {
+	ds_list_add(ultraItemList, oHorseConquest);
+}
+if (global.meta.challenges.beatRunWithKrostRune) {
+	ds_list_add(runeItemList, oKrostEssence);
+}
+if (global.meta.challenges.beatRunWithVeriRune) {
+	ds_list_add(runeItemList, oVeribroseEssence);
+}
+if (global.meta.challenges.beatRunWithAlextraRune) {
+	ds_list_add(runeItemList, oAlextraEssence);
+}
+if (global.meta.challenges.beatRunWithTorzRune) {
+	ds_list_add(runeItemList, oTorzolEssence);
+}
+if (global.meta.challenges.beatRunWithSifterRune) {
+	ds_list_add(runeItemList, oSifterEssence);
+}
+if (global.meta.challenges.beatRunWithVirstRune) {
+	ds_list_add(runeItemList, oVirstEssence);
+}
+
+
 
 ds_list_copy(runeItemCopy, runeItemList);
 ds_list_copy(commonItemCopy, commonItemList);
