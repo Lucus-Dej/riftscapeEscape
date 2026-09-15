@@ -11,7 +11,10 @@ if (prepped && !used) {
 	if (!used) {
 		playerTakeDamage(1);
 		if (global.healthPenalty > 0.1) {
-			global.healthPenalty -= 0.025;
+			global.healthPenalty -= 0.05;
+		} else if (!global.meta.challenges.gotItemSacDagger) {
+			global.meta.challenges.gotItemSacDagger = true;
+			showChallenge("gotItemSacDagger")
 		}
 		sprite_index = sRetractedSpikes;
 	}

@@ -1,5 +1,5 @@
 if (canFriendlyFireOwner  && iframe <= 0 && ignorePlayerFrames <= 0) {
-	enemyTakeDamage(damage*0.1, other);
+	enemyTakeDamage(damage*0.1, other,,, damageType.enemHoming);
 	instance_destroy();
 }/*if (owner == noone) {
 	owner = other;

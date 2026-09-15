@@ -17,6 +17,9 @@ foundOther = false;
 special = false;
 linked = false; 
 challengeAccepted = false;
+playerHit = 0;
+playerHitCooldown = 300;
+playerHitTimer = 0;
 enum doorState {
 	idle,
 	init,

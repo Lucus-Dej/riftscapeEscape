@@ -8,12 +8,18 @@ global.resH = 720;
 global.resW = 1280;
 global.lifestats = {
 	xp: 0,
-	timePlayedInSeconds: 0
+	timePlayedInSeconds: 0,
+	coverBroken: 0,
+	simpleSkipped: 0,
+	enemKilledHoming: 0,
 }
 queueEvilRuneAdd = false;
 extendRun = false;
 //audio_falloff_set_model(audio_falloff_exponent_distance);
 // meta challenge progrssion
+password = "CONQUEST";
+inputIndex = 0;
+global.runConquest = false;
 global.meta = {
 	challenges: {
 		// veribrose unlock
@@ -133,7 +139,7 @@ global.metaChallengeArray = {
 			spr: sGenStone,
 			sprIndex: 0,
 			hint: "Round The World Without Looking Back", 
-			desc: "Finish A Floor Without Entering A Completed Room",
+			desc: "Finish A Floor Without Entering The Same Door Twice",
 		},
 		
 		gotItemHammer: {

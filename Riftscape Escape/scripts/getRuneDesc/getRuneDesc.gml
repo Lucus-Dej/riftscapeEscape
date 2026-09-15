@@ -85,7 +85,6 @@ function getRuneDesc(_rune){
 }
 
 function enableRune(_rune){
-	oItemManager.dustCount++;
 	switch (_rune) {
 		case oWarRune:
 		oPlayerManager.hasWarRune = true;

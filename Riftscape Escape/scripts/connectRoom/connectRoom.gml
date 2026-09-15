@@ -140,7 +140,7 @@ function connectRoom(_doorConnector, _doorDir, _room, _roomOwner, _force) {
 			newInst.ID = ritualID;
 			ritualID++;
 		}
-		if (obj == oPowerUpConflux || obj == oPurificationTable || obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
+		if (obj == oPowerUpConflux || obj == oShopSpawner || obj == oPurificationTable || obj == oArenaFlag || obj == oRitualRoomManager || obj == oRuneRoomFlag || obj == oItemRoomFlag) {
 			specialRoom = true;	
 		}
 		

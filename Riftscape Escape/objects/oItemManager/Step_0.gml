@@ -10,6 +10,13 @@ if (searchItem == true) {
 	
 	searchItem = false;
 }
+if (luckBonus >= 10 && !luck10Check) {
+	luck10Check = true;
+}
+if (luck10Check && luckBonus < 0 && !global.meta.challenges.gotItemPaychecks) {
+	global.meta.challenges.gotItemPaychecks = true;
+	showChallenge("gotItemPaychecks")
+}
 if (global.chargeItem != noone) {
 	
 }

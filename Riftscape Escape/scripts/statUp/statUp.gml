@@ -21,7 +21,10 @@ function lifeUp() {
 	global.playerLife++;
 	recalcMaxHP();
 	var newRatio = oPlayerManager.max_hp;
-	
+	if (global.playerLife >= 10 && !global.meta.challenges.gotItemRareseed) {
+		showChallenge("gotItemRareseed");
+		global.meta.challenges.gotItemRareseed = true;
+	}
 	global.player_health += newRatio - oldRatio;
 }
 function healthUp(_bonus) {

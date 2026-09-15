@@ -1,6 +1,7 @@
 searchItem = false;
 runeCheck = false;
 ritualRerollAvailable = false;
+luck10Check = false;
 enum itemSearchType {
 	boss,
 	simple,
@@ -34,7 +35,7 @@ connonMin = 0;
 commonPool = 0;
 commonMax = commonPool + simplePool;
 rareMin = 0;
-rarePool = 49;
+rarePool = 40;
 rareMax = rarePool + commonMax;
 powerfulMin = 0;
 powerfulPool = 30; // 70
@@ -101,8 +102,7 @@ ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom,
 ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oTesseract, 
 oElectricKite, oGunpowder, oMetalOrb);
 ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun);
-show_debug_message(global.meta.challenges);
-show_debug_message(variable_struct_exists(global.meta.challenges, "gotItemReflectiveGem"));
+
 //item unlocks
 if (global.meta.challenges.gotItemReflectiveGem) {
 	ds_list_add(commonItemList, oReflectiveGem);

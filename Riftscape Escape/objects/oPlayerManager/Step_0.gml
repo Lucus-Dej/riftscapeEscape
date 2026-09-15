@@ -91,31 +91,7 @@ if (instance_exists(oEnemy)) {
 	global.inCombat = false;
 }
 if (global.player_health <= 0) {
-	if (oItemManager.hasTetheredSoul && instance_exists(oTetheredSoul)) {
-		instance_destroy(oTetheredSoul)
-		global.player_health = max_hp;
-	} else if (oItemManager.hasVirstEssence) {
-		global.player_health = max_hp;
-		itemRemove(oVirstEssence);
-		var count = array_length(oItemManager.itemList);
-		for (var i = array_length(oItemManager.itemList) - 1; i >= 0; i--) {
-			var item = oItemManager.itemList[i];
-			itemRemove(item);
-		}
-		refreshItemPool();
-		for (var i = 0; i < count; i++) {
-			var item = rollItem(true, itemSearchType.random);
-			itemAdd(item);
-		}
-		
-	} else if (room == hordeSurvival) {
-		room_goto(caves0);
-		global.player_health = max_hp*0.6;
-	} else {
-		room_goto(dead);
-		global.player_health = max_hp*0.6;
-	}
-	
+	playerDied();
 }
 if (hasTorzolRune && global.player_health > oPlayerManager.max_hp*0.6) {
 	var torzDrain = global.player_health * 0.001;

@@ -33,7 +33,7 @@ else if (ds_list_find_index(oItemManager.mythicItemCopy, object_index) != -1) {
     rarity = 4;
 }
 else if (ds_list_find_index(oItemManager.runeItemCopy, object_index) != -1) {
-    rarity = 6;
+    rarity = 5;
 }
 else if (ds_list_find_index(oItemManager.ultraItemCopy, object_index) != -1) {
     rarity = 6;

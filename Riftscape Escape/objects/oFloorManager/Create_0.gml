@@ -42,3 +42,7 @@ floorCompleteFlag = false;
 roomManagerArray = [];
 veribroseLockArray = [];
 reflectiveGemUnlockCheck = true;
+if (!global.meta.challenges.gotItemSwordConquest && room == desert0 && oPlayerManager.hasConquestRune) {
+	showChallenge("gotItemSwordConquest");
+	global.meta.challenges.gotItemSwordConquest = true;
+}

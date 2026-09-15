@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"checkChallenge",
+  "%Name":"showChallenge",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"checkChallenge",
+  "name":"showChallenge",
   "parent":{
     "name":"scripts",
     "path":"folders/scripts.yy",

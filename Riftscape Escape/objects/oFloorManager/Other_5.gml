@@ -1,3 +1,7 @@
 if (reflectiveGemUnlockCheck) {
-	global.meta.challenges.gotItemReflectiveGem = true;
+	if (!global.meta.challenges.gotItemReflectiveGem) {
+		global.meta.challenges.gotItemReflectiveGem = true;
+		showChallenge("gotItemReflectiveGem");
+	}
 }
+

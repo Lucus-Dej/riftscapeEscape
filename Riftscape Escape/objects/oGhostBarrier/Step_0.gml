@@ -4,7 +4,9 @@ if (instance_exists(oFloorManager) && RoomID != -1) {
 if (onStart && childDoor == noone) {
 	powerDoorByID(id);
 }
-
+if (playerHitTimer > 0) {
+	playerHitTimer--;
+}
 
 /*if (instance_exists(oFloorManager)) {
 	if (doorType == "item" && instance_exists(Manager1) && !challengeAccepted) {

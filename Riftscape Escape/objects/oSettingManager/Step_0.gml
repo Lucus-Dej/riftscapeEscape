@@ -59,12 +59,15 @@ if (drawChallenge && array_length(global.metaChallengeArray.textBoxArray) > 0) {
 			{image_xscale: 10, image_yscale: 1.5})
 		} else {
 			var txt = "";
+			var newSpr = sButtonLevel;
 			if (global.meta.challenges[$ key]) {
 			    txt = challenge.desc;
+				newSpr = sChallengeTextbox;
 			} else {
 			    txt = challenge.hint;
 			}
 			challengeMenu.hintBox.drawText = txt;
+			//challengeMenu.hintBox.sprite_index = newSpr;
 		}
 	}
 }

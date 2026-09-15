@@ -110,14 +110,23 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 			audio_play_sound(aParry, 2, false, global.sfxAudio);
 			initPerfectParry();
 		}
+		
 		if (oItemManager.hasWaterDamagedNote && !_source.hasDamaged) {
 			_dmg *= 2.5;
-			_source.hasDamaged = true;
+			
 		}
 		if (_dmg < 0.01) {
 			_dmg = 0.01;
 		}
 		_source.enemyHP -= _dmg;
+		if (!_source.hasDamaged) {
+			if (_source.enemyHP <= 0 && !global.meta.challenges.gotItemWaterdamagedNote) {
+				global.meta.challenges.gotItemWaterdamagedNote = true;
+				showChallenge("gotItemWaterdamagedNote")
+			}
+			_source.hasDamaged = true;
+		}
+		
 		addDamageNumber(_source.x, _source.y, _dmg,,,,_source.id);
 		_source.flash = 1;
 		
@@ -153,10 +162,25 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 			}
 		}
 	}
-	if (_source. enemyHP <= 0 && !_source.sub && !cancelKill) {
+	if (_source.enemyHP <= 0 && !_source.sub && !cancelKill) {
 		oPlayerManager.lastKilled = _source;
 		oPlayerManager.lastKilledX = _source.x;
 		oPlayerManager.lastKilledY = _source.y;
+		if (!global.meta.challenges.gotItemSingularity && _type == damageType.enemHoming) {
+			global.lifestats.enemKilledHoming++;
+			if (global.lifestats.enemKilledHoming >= 6) {
+				showChallenge("gotItemSingularity");
+				global.meta.challenges.gotItemSingularity = true;
+			}
+		}
+		if (_source.object_index == oWastelandDestroyer && !global.meta.challenges.gotItemLilFurnace) {
+			showChallenge("gotItemLilFurnace");
+			global.meta.challenges.gotItemLilFurnace = true;
+		}
+		if (_source.object_index == oRifterKing && !global.meta.challenges.gotItemFallenCrown) {
+			showChallenge("gotItemFallenCrown");
+			global.meta.challenges.gotItemFallenCrown = true;
+		}
 		if (oPlayerManager.hasEssenceHusk && (instance_exists(oHuskLife) || instance_exists(oMindHusk))) {
 			instance_create_layer(oPlayerManager.lastKilledX, oPlayerManager.lastKilledY, "Instances", oHuskInvisPickup)
 		}
@@ -272,7 +296,7 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 		}
 	}
 }
-function playerTakeDamage(_dmg, _type = damageType.basic) {
+function playerTakeDamage(_dmg, _type = damageType.basic, _source = noone) {
 	if (oPlayerManager.iframes <= 0) {
 		if (instance_exists(oJavWarMinion)) {
 			with (oJavWarMinion) {
@@ -351,13 +375,37 @@ function playerTakeDamage(_dmg, _type = damageType.basic) {
 			}
 		}
 	} 
-	if (global.player_health <= 0 && !oPlayerManager.inOverhealth) {
-		playerDied();
-	}
 }
 function playerKilledEnemy () {
 	
 }
 function playerDied () {
-	
+	if (oItemManager.hasTetheredSoul && instance_exists(oTetheredSoul)) {
+		instance_destroy(oTetheredSoul)
+		global.player_health = oPlayerManager.max_hp;
+	} else if (oItemManager.hasVirstEssence) {
+		global.player_health = oPlayerManager.max_hp;
+		itemRemove(oVirstEssence);
+		var count = array_length(oItemManager.itemList);
+		for (var i = array_length(oItemManager.itemList) - 1; i >= 0; i--) {
+			var item = oItemManager.itemList[i];
+			itemRemove(item);
+		}
+		refreshItemPool();
+		for (var i = 0; i < count; i++) {
+			var item = rollItem(true, itemSearchType.random);
+			itemAdd(item);
+		}
+		
+	} else if (room == hordeSurvival) {
+		room_goto(caves0);
+		global.player_health = oPlayerManager.max_hp*0.6;
+	} else {
+		if (instance_exists(oRifterKing) && global.difficulty == 1 && !global.meta.challenges.gotItemTetheredSoul) {
+			global.meta.challenges.gotItemTetheredSoul = true;
+			showChallenge("gotItemTetheredSoul")
+		}
+		room_goto(dead);
+		global.player_health = oPlayerManager.max_hp*0.6;
+	}
 }
