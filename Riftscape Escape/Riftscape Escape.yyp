@@ -1101,6 +1101,7 @@
     {"id":{"name":"sPoisDodgeImpact","path":"sprites/sPoisDodgeImpact/sPoisDodgeImpact.yy",},},
     {"id":{"name":"sPoisonAura","path":"sprites/sPoisonAura/sPoisonAura.yy",},},
     {"id":{"name":"sPoisonBullet","path":"sprites/sPoisonBullet/sPoisonBullet.yy",},},
+    {"id":{"name":"sPoisonCharge","path":"sprites/sPoisonCharge/sPoisonCharge.yy",},},
     {"id":{"name":"sPoisonCharm","path":"sprites/sPoisonCharm/sPoisonCharm.yy",},},
     {"id":{"name":"sPortal","path":"sprites/sPortal/sPortal.yy",},},
     {"id":{"name":"sPortalBook","path":"sprites/sPortalBook/sPortalBook.yy",},},

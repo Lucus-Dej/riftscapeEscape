@@ -3,7 +3,7 @@ if (room != hordeSurvival && room != itemRoom && object_index != oDepictionOfSer
 	show_debug_message("MY RARITY IS: "+string(rarity))
 	if (rarity == 0 && !global.meta.challenges.gotItemHollowedDice) {
 		global.lifestats.simpleSkipped++;
-		if (global.lifestats.simpleSkipped >= 50) {
+		if (global.lifestats.simpleSkipped >= 30) {
 			global.meta.challenges.gotItemHollowedDice = true;
 			showChallenge("gotItemHollowedDice");
 		}
@@ -15,4 +15,8 @@ if (room != hordeSurvival && room != itemRoom && object_index != oDepictionOfSer
 	if (oItemManager.hasDoubleOrNothing) {
 		array_push(oItemManager.donArray, object_index)
 	}
+}
+if (shopItem) {
+	var rar = findItemRarity(object_index);
+	refreshItem(rar, object_index);
 }

@@ -127,7 +127,7 @@ if (global.meta.challenges.gotItemHollowedDice) {
 	ds_list_add(rareItemList, oHollowedDice);
 }
 if (global.meta.challenges.gotItemLilFurnace) {
-	ds_list_add(powerfulItemList, oLilFurnace);
+	ds_list_add(powerfulItemList, oLilFurnacePickup);
 }
 if (global.meta.challenges.gotItemFallenCrown) {
 	ds_list_add(powerfulItemList, oLostCrown);

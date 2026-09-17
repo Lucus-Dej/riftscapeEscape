@@ -18,6 +18,7 @@ if (type == roomManagerType.arena && !wavebasedSpawned) {
 	waveManager.roundsTillBoss = 4;
 	waveManager.restrictedArrays = true;
 	waveManager.startingWeight = diffPool+2;
+	powerDoor(RoomID)
 	with (oEnemyTurrets) {
 		if (RoomID == other.RoomID) {
 			passiveSwitch = false;

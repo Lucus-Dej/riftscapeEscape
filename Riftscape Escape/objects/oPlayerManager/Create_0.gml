@@ -3,9 +3,9 @@ show_debug_message(irandom(100));
 show_debug_message(irandom(100));
 show_debug_message(irandom(100));
 
-global.playerFate = 10000; //damage
+global.playerFate = 1; //damage
 global.playerReality = 1; //speed
-global.playerThought = 100000; //cooldown
+global.playerThought = 1; //cooldown
 global.playerLife = 1; //health
 global.playerTime = 1; //luck
 global.playerEssence = 1; //lifesteal

@@ -27,8 +27,9 @@ if (state == waveState.generatingWave) {
 	}
 }
 if (state == waveState.spawning) {
-	if (isLimited && limitedWaveDoorSet) {
+	if (isLimited && !limitedWaveDoorSet) {
 		powerDoor(RoomID);
+		show_debug_message("I AM TRYING TO POWER THE ROOM")
 		limitedWaveDoorSet = true;
 	}
 	if (!gendFlyGrid)

@@ -19,12 +19,14 @@ trackerTimer = 0;
 trackerDelay = 6;
 trackerNodeLimit = 12;
 if (oPlayerManager.hasVirstRune) {
-	refreshItemPool()
 	for (var i = 0; i < array_length(oItemManager.itemList); i++) {
-		var byebyeItem = oItemManager.itemList[irandom(array_length(oItemManager.itemList)-1)];
+		var byebyeItem = oItemManager.itemList[i];
+		var r = findItemRarity(byebyeItem);
+		refreshItem(r, byebyeItem)
 		itemRemove(byebyeItem)
 		var item = rollItem(true, itemSearchType.random);
 		itemAdd(item);
+		removeFromItemPool(item)
 	}
 }
 nearWallDist = -1;

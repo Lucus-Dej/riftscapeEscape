@@ -34,6 +34,9 @@
     "name":"sPlainsCover",
     "path":"sprites/sPlainsCover/sPlainsCover.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"sAbyss",
+    "path":"sprites/sAbyss/sAbyss.yy",
+  },
   "visible":true,
 }

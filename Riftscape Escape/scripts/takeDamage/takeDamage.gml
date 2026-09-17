@@ -120,7 +120,7 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 		}
 		_source.enemyHP -= _dmg;
 		if (!_source.hasDamaged) {
-			if (_source.enemyHP <= 0 && !global.meta.challenges.gotItemWaterdamagedNote) {
+			if (_source.enemyHP <= 0 && _source.isBoss && !global.meta.challenges.gotItemWaterdamagedNote) {
 				global.meta.challenges.gotItemWaterdamagedNote = true;
 				showChallenge("gotItemWaterdamagedNote")
 			}

@@ -16,5 +16,8 @@ if (oPlayerManager.hasFirstPRune) {
 	if (primedForLightning) {
 		draw_sprite_ext(sElectricCharge, irandom(3), x, y, image_xscale, image_yscale, 0, c_white, 0.8)
 	}
+	if (canPois) {
+		draw_sprite_ext(sPoisonCharge, irandom(8), x, y, image_xscale, image_yscale, 0, c_white, 0.8)
+	}
 }
 

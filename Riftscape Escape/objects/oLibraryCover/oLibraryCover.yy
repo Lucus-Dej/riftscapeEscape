@@ -31,6 +31,9 @@
     "name":"sLibraryCover",
     "path":"sprites/sLibraryCover/sLibraryCover.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"sAbyss",
+    "path":"sprites/sAbyss/sAbyss.yy",
+  },
   "visible":true,
 }

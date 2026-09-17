@@ -15,9 +15,6 @@ function summonElementalAuras(){
 	if (oItemManager.hasPoisonCharm) {
 		array_push(elemArray, oElementalAuraPois);
 	}
-	if (oItemManager.hasLightningCharm) {
-		array_push(elemArray, oElementalAuraLightning);
-	}
 	var i = irandom(array_length(elemArray)-1);
 	var aura = elemArray[i];
 	instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", aura)

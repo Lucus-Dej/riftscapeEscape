@@ -206,7 +206,7 @@ if (floorState == genState.complete ) {
 	}
 	
 	var arenaIndex = -1;
-	var arenaCheck = irandom_range(1, 100) + global.playerTime*0.4;
+	var arenaCheck = irandom_range(100, 100) + global.playerTime*0.4;
 	if (global.difficulty == 4) {
 		ritualCheck += 10;
 	}

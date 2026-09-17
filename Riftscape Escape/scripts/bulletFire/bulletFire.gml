@@ -12,7 +12,7 @@ function bulletFire(_x, _y, _dir, _speed, _damage, _bulletType, _owner, _silent 
 		} else {
 			 b = instance_create_layer(_x, _y, "Instances", _bulletType);
 		}
-		if (oItemManager.hasPoisonCharm && oTruePlayer.currentSpeed == 0) {
+		if (oItemManager.hasPoisonCharm) {
 			var poisCheck = irandom_range(1, 12);
 			if (poisCheck + global.playerTime*0.6 >= 12) {
 				b.canPois = true;

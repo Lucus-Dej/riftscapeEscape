@@ -1051,17 +1051,30 @@ function itemRemove(_item, _removeFromInventory = true){
 	}
 }
 function refreshItem (_rairty, _item) {
+	ds_list_add(oItemManager.masterItemList, _item)
 	switch (_rairty) {
 		case 1:
-		ds_list_add(oItemManager.rareItemList, _item);
+		ds_list_add(oItemManager.commonItemList, _item);
 		break;
 		
 		case 2:
-		ds_list_add(oItemManager.powerfulItemList, _item);
+		ds_list_add(oItemManager.rareItemList, _item);
 		break;
 		
 		case 3:
+		ds_list_add(oItemManager.powerfulItemList, _item);
+		break;
+		
+		case 4:
 		ds_list_add(oItemManager.mythicItemList, _item);
+		break;
+		
+		case 5:
+		ds_list_add(oItemManager.runeItemList, _item);
+		break;
+		
+		case 6:
+		ds_list_add(oItemManager.ultraItemList, _item);
 		break;
 	}
 }
@@ -1074,6 +1087,7 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	var mythicMax = -1;
 	var ultraMax = -1;
 	var attempts = 10;
+	var itemRarity = 0;
 
 	if (ds_list_size(oItemManager.simpleItemList) > 0) {
 		totalPool += oItemManager.simplePool;
@@ -1082,7 +1096,7 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 
 	if (ds_list_size(oItemManager.commonItemList) > 0) {
 		totalPool += oItemManager.commonPool;
-		commonMax = oItemManager.commonPool;
+		commonMax = totalPool;
 	}
 
 	if (ds_list_size(oItemManager.rareItemList) > 0) {
@@ -1108,7 +1122,7 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	var j = irandom(100) + oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + _bouns + global.playerTime;
 	//j = clamp(j, 0, totalPool - 1);
 	//show_debug_message(j)
-	if (j <0) {
+	if (j < 1) {
 		j = 1;
 	}
 
@@ -1116,13 +1130,18 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	
 	if (j >= ultraMax && ds_list_size(oItemManager.ultraItemList) > 0) {
 		chosenList = oItemManager.ultraItemList;
+		itemRarity = 6;
 	} else if (j >= mythicMax && ds_list_size(oItemManager.mythicItemList) > 0) {
 		chosenList = oItemManager.mythicItemList;
+		itemRarity = 4;
 	} else if (j >= powerfulMax && ds_list_size(oItemManager.powerfulItemList) > 0) {
+		itemRarity = 3;
 		chosenList = oItemManager.powerfulItemList;
 	} else if (j >= rareMax && ds_list_size(oItemManager.rareItemList) > 0) {
+		itemRarity = 2;
 		chosenList = oItemManager.rareItemList;
 	} else if (j >= commonMax && ds_list_size(oItemManager.commonItemList) > 0) {
+		itemRarity = 1;
 		chosenList = oItemManager.commonItemList;
 	} else if (j >= simpleMax) {
 		chosenList = oItemManager.simpleItemList;
@@ -1135,30 +1154,40 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 		var iceCheck = irandom_range(1, 20);
 		if (iceCheck == 1 && ds_list_size(oItemManager.ultraItemList) > 0) {
 			chosenList = oItemManager.ultraItemList;
+			itemRarity = 6;
 		} else if (iceCheck <= 8  && ds_list_size(oItemManager.mythicItemList) > 0) {
 			chosenList = oItemManager.mythicItemList;
+			itemRarity = 4;
 		} else if (ds_list_size(oItemManager.powerfulItemList) > 0) {
+			itemRarity = 3;
 			chosenList = oItemManager.powerfulItemList;
 		} else {
 			chosenList = oItemManager.simpleItemList;
+			itemRarity = 0;
 		}
 	}
 	if (_typeOfSeach == itemSearchType.foolsGold) {
 		show_debug_message("DIGGING FOR GOLD")
 		if (ds_list_size(oItemManager.mythicItemList) > 0) {
 			chosenList = oItemManager.mythicItemList;
+			itemRarity = 4;
 		} else if (ds_list_size(oItemManager.powerfulItemList) > 0) {
 			chosenList = oItemManager.powerfulItemList;
+			itemRarity = 3;
 		} else {
 			chosenList = oItemManager.simpleItemList;
+			itemRarity = 0;
 		}
 	}
 	if (_typeOfSeach == itemSearchType.rune && ds_list_size(oItemManager.runeItemList) > 0) {
 		chosenList = oItemManager.runeItemList;
+		itemRarity = 5;
 	} else if (j >= ultraMax && ds_list_size(oItemManager.ultraItemList) > 0) {
 		chosenList = oItemManager.ultraItemList;
+		itemRarity = 6;
 	}
-	
+	var savedIndex = -1;
+	var savedList = chosenList;
 	if (_typeOfSeach == itemSearchType.random && ds_list_size(oItemManager.masterItemList) > 0) {
 		chosenList = oItemManager.masterItemList;
 	} else if (_typeOfSeach == itemSearchType.random) {
@@ -1189,8 +1218,19 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	if (chosenList == oItemManager.ultraItemList) {
 		oItemManager.ultraPool += 10;
 	}
-	if (chosenList != oItemManager.simpleItemList && _takeOutOfPool) {
+	if (chosenList != oItemManager.simpleItemList && _takeOutOfPool) { 
 		ds_list_delete(chosenList, deleteIndex);
+		if (chosenList == oItemManager.masterItemList) {
+			savedIndex = ds_list_find_index(savedList, item);
+			if (savedIndex != -1) {
+				ds_list_delete(savedList, savedIndex);
+			}
+		} else {
+			savedIndex = ds_list_find_index(oItemManager.masterItemList, item);
+			if (savedIndex != -1) {
+				ds_list_delete(savedList, savedIndex);
+			}
+		}
 	}
 	if (item == -4) {
 		item = oDepictionOfSeraphim;
@@ -1198,6 +1238,12 @@ function rollItem(_allowBooks, _typeOfSeach = itemSearchType.basic, _takeOutOfPo
 	if (_typeOfSeach != itemSearchType.random) {
 		show_debug_message("SPAWNED ITEM: "+string(item))
 		show_debug_message("NUMBER ROLLED = "+string(j))
+		show_debug_message("simple max = "+string(simpleMax))
+		show_debug_message("common max = "+string(commonMax))
+		show_debug_message("rare max = "+string(rareMax))
+		show_debug_message("powerful max = "+string(powerfulMax))
+		show_debug_message("mythic max = "+string(mythicMax))
+		show_debug_message("ultra max = "+string(ultraMax))
 	}
 	
 	if (_typeOfSeach == itemSearchType.boss && oPlayerManager.hasBossDropRune) {
@@ -1216,7 +1262,7 @@ function removeFromItemPool (_item) {
 	switch (r) {
 		case 1:
 		var c = ds_list_find_index(oItemManager.commonItemList, _item);
-		if (clearElseOnDeath != -1) {
+		if (c != -1) {
 			ds_list_delete(oItemManager.commonItemList, c)
 		}
 		break;

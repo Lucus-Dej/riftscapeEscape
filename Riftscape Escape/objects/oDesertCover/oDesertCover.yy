@@ -34,6 +34,9 @@
     "name":"sDesertCover",
     "path":"sprites/sDesertCover/sDesertCover.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"sAbyss",
+    "path":"sprites/sAbyss/sAbyss.yy",
+  },
   "visible":true,
 }

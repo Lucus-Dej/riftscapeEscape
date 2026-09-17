@@ -1,8 +1,8 @@
 {
   "$GMSprite":"v2",
   "%Name":"sChaosCover",
-  "bboxMode":2,
-  "bbox_bottom":64,
+  "bboxMode":1,
+  "bbox_bottom":63,
   "bbox_left":0,
   "bbox_right":63,
   "bbox_top":0,
