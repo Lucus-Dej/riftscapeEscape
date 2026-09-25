@@ -3,6 +3,8 @@ show_debug_message(irandom(100));
 show_debug_message(irandom(100));
 show_debug_message(irandom(100));
 
+flash = 0;
+flashRate = 0.05;
 global.playerFate = 1; //damage
 global.playerReality = 1; //speed
 global.playerThought = 1; //cooldown
@@ -237,7 +239,7 @@ confluxCost = 2;
 xpThreshdolds = [200];
 
 //rune stuff
-validRuneArray = [oWarRune, oDeathRune, oFamineRune, oPestRune, oBloodRune, oFirstPRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
+validRuneArray = [oWarRune, oDeathRune, oFamineRune, oPestRune, oBloodRune, oPowerUpRune, oBossRune, oTrapRune, oVeribroseRune, oVirstRune, oTorzolRune, oAlextraRune, oKrostRune, oSifterRune, oLifestealRune, oOverhealthRune, oBulletRangeRune, oBossDropRune, oExplosiveRune, oLuckRune, oXPReducedRune];
 activeRuneArray = [];
 hasWarRune = false;
 hasDeathRune = false;

@@ -19,7 +19,7 @@ function consumableAdd (_item) {
 		oItemManager.luckBonus += 1;
 		break;
 		case oPowerUpHP:
-		global.player_health += (oPlayerManager.max_hp*0.1);
+		healPlayer((oPlayerManager.max_hp*0.1));
 		break;
 		case oPowerUpHPHigh:
 		global.player_health = oPlayerManager.max_hp;
@@ -33,7 +33,7 @@ function rollConsumable(_mngr) {
 	}
 	
 	if (ranCheck >= 50) {
-		var consumableArray = [oPowerUpHP, oPowerUpLuck, oPowerUpXP];
+		var consumableArray = [oPowerUpLuck, oPowerUpXP];
 		var i = irandom(array_length(consumableArray)-1);
 		var powerUp = consumableArray[i];
 		if (oPlayerManager.hasPowerUpRune) {
@@ -52,7 +52,10 @@ function itemAdd(_item, _addToInventory = true){
 	if (r > 0 && f == -1) {
 		array_push(oItemManager.virstTargetArray, item);
 	}
-	if (_addToInventory) {
+	if (_addToInventory && r > 0) {
+		var spr = findRaritySprite(r);
+		array_push(oItemManager.raritySpriteList, spr);
+		array_push(oItemManager.rarityList, r);
 		array_push(oItemManager.itemList, item);
 	}
 	switch (item) {
@@ -82,6 +85,9 @@ function itemAdd(_item, _addToInventory = true){
 		break;
 		
 		// rares
+		case oPiggyBank:
+		oItemManager.hasPiggyBank = true;
+		break;
 		case oRifterBloodSample:
 		oItemManager.hasRifterBloodSample = true;
 		break;
@@ -294,6 +300,26 @@ function itemAdd(_item, _addToInventory = true){
 		realityUp();
 		break;
 		
+		case oShopCoin:
+		oItemManager.hasShopCoin = true;
+		break;
+		case oConfluxCoin:
+		oItemManager.hasConfluxCoin = true;
+		break;
+		case oArenaCoin:
+		oItemManager.hasArenaCoin = true;
+		break;
+		case oPurificationCoin:
+		oItemManager.hasPurificationCoin = true;
+		break;
+		case oRitualCoin:
+		oItemManager.hasRitualCoin = true;
+		break;
+		case oRuneCoin:
+		oItemManager.hasRuneCoin = true;
+		break;
+		
+		
 		case oBloodCharm:
 		oItemManager.hasBloodCharm = true;
 		break;
@@ -423,6 +449,9 @@ function displayItemFunction(_item){
 		break;
 		
 		// rares
+		case oPiggyBank:
+		desc = "Piggy Bank: Hold To Increase Value. Break It To Cash Out. Value: "+string(oItemManager.piggyBankLuck);
+		break;
 		case oRifterBloodSample:
 		desc = "Rifter Blood Sample: Critical Hits Cause Enemies To Bleed";
 		break;
@@ -522,6 +551,10 @@ function displayItemFunction(_item){
 		case oFreedom:
 		desc = "Freedom: Obtain Flight Until The End Of The Next Room";
 		break;
+		case oFreedomPage:
+		desc = "Freedom: Obtain Flight Until The End Of The Next Room";
+		break;
+		
 		case oCondensedRift:
 		desc = "Condensed Rift: Nearby Bullets Arc Energy Between Them";
 		break;
@@ -584,6 +617,9 @@ function displayItemFunction(_item){
 		case oFoolsGold:
 		desc = "Fool's Gold: Grants A Free Mythic Item 100% Guarantee";
 		break;
+		case oFoolsGoldPage:
+		desc = "Fool's Gold: Grants An Item 100% Guarantee";
+		break;
 		
 		
 		// mythics
@@ -607,6 +643,25 @@ function displayItemFunction(_item){
 		break;
 		case oKrostEssence:
 		desc = "Essence Of Krost: Escalating Speed + Contact Damage + Reality Up";
+		break;
+		
+		case oShopCoin:
+		desc = "Shop Coin: +30% Chance For Shop Rooms";
+		break;
+		case oConfluxCoin:
+		desc = "Conflux Coin: +30% Chance For Conflux Rooms";
+		break;
+		case oArenaCoin:
+		desc = "Arena Coin: +30% Chance For Arena Rooms";
+		break;
+		case oPurificationCoin:
+		desc = "Purification Coin: +30% Chance For Purification Rooms";
+		break;
+		case oRitualCoin:
+		desc = "Ritual Coin: +30% Chance For Ritual Rooms";
+		break;
+		case oRuneCoin:
+		desc = "Rune Coin: +30% Chance For Rune Rooms";
 		break;
 		
 		case oBloodCharm:
@@ -651,20 +706,38 @@ function displayItemFunction(_item){
 		case oBlackHoleCharge:
 		desc = "Black Hole's For Dummies: Summon A Protective Blackhole";
 		break;
+		case oBlackHolePage:
+		desc = "Black Hole's For Dummies: Summon A Protective Blackhole";
+		break;
 		case oHarvestBook:
+		desc = "Harvest: Summon A Circle Of Protective Minions";
+		break;
+		case oHarvestPage:
 		desc = "Harvest: Summon A Circle Of Protective Minions";
 		break;
 		case oDictionaryCharge:
 		desc = "Dictionary: Random Stat Up";
 		break;
+		case oDictionaryPage:
+		desc = "Dictionary: Random Stat Up";
+		break;
 		case oDeathBook:
-		desc = "Death: Kill All Non Boss Enemies";
+		desc = "Death: Deal Major Blood Damage To All Enemies";
+		break;
+		case oDeathPage:
+		desc = "Death: Deal Minor Blood Damage To All Enemies";
 		break;
 		case oDreamsBook:
 		desc = "Dreams: Begin Again With What You Have Gained";
 		break;
+		case oDreamsPage:
+		desc = "Dreams: Restart Room With What You Have Gained";
+		break;
 		case oThePathForward:
 		desc = "The Path Forward: Summon A Powerful Item";
+		break;
+		case oPathForwardPage:
+		desc = "The Path Forward: Summon An Item";
 		break;
 		
 		
@@ -695,6 +768,7 @@ function displayItemFunction(_item){
 }
 function itemRemove(_item, _removeFromInventory = true){
 	var item = _item;
+	var r = findItemRarity(item);
 	var i = array_get_index(oItemManager.itemList, item);
 	var v = array_get_index(oItemManager.virstTargetArray, item);
 	show_debug_message("REMOVING "+ string(item));
@@ -704,8 +778,10 @@ function itemRemove(_item, _removeFromInventory = true){
 	}
 	
 	if (i != -1) {
-		if (_removeFromInventory) {
+		if (_removeFromInventory && r > 0) {
+			array_delete(oItemManager.raritySpriteList, i, 1);
 			array_delete(oItemManager.itemList, i, 1);
+			array_delete(oItemManager.rarityList, i, 1);
 		}
 		
 		
@@ -736,6 +812,13 @@ function itemRemove(_item, _removeFromInventory = true){
 		break;
 		
 		// rares
+		case oPiggyBank:
+		oItemManager.hasPiggyBank = false;
+		if (_removeFromInventory) {
+			oItemManager.luckBonus += oItemManager.piggyBankLuck;
+			oItemManager.piggyBankLuck = 0;
+		}
+		break;
 		case oRifterBloodSample:
 		oItemManager.hasRifterBloodSample = false;
 		break;
@@ -953,6 +1036,25 @@ function itemRemove(_item, _removeFromInventory = true){
 		case oKrostEssence:
 		oItemManager.hasKrostEssence = false;
 		realityDown();
+		break;
+		
+		case oShopCoin:
+		oItemManager.hasShopCoin = false;
+		break;
+		case oConfluxCoin:
+		oItemManager.hasConfluxCoin = false;
+		break;
+		case oArenaCoin:
+		oItemManager.hasArenaCoin = false;
+		break;
+		case oPurificationCoin:
+		oItemManager.hasPurificationCoin = false;
+		break;
+		case oRitualCoin:
+		oItemManager.hasRitualCoin = false;
+		break;
+		case oRuneCoin:
+		oItemManager.hasRuneCoin = false;
 		break;
 		
 		case oElectricDartGun:
@@ -1328,6 +1430,37 @@ function spawnItem(_item, _location, _rID, _allowDuplicating = false, _bossSearc
 		}
 		return newItem;
 	}
+}
+function findRaritySprite(_rarity) {
+	var sprite = sRarity1Common;
+	switch (_rarity) {
+		case 1:
+		sprite = sRarity1Common;
+		break;
+		
+		case 2:
+		sprite = sRarity2Rare;
+		break;
+		
+		case 3:
+		sprite = sRarity3Powerful;
+		break;
+		
+		case 4:
+		sprite = sRarity4Mythic;
+		break;
+		
+		case 5:
+		sprite = sRarity5Rune;
+		break;
+		
+		case 6:
+		sprite = sRarity6Ultra;
+		break;
+		
+		
+	}
+	return sprite;
 }
 function findItemRarity(_item) {
 	var rarity = 0;

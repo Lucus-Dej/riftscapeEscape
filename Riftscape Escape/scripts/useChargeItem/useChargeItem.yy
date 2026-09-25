@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"useChargeItem",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"useChargeItem",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

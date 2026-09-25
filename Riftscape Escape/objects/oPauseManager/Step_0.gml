@@ -23,6 +23,7 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 		
 		resButton = instance_create_layer(centX, centY-spacing*2, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		settingButton = instance_create_layer(centX, centY-spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
+		//challengeButton = instance_create_layer(centX, centY, "pause", oButtonStartMenu, {image_yscale: 2, image_xscale: 4});
 		restartButton = instance_create_layer(centX, centY, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		quitButton = instance_create_layer(centX, centY+spacing, "pause", oButtonLevel, {image_yscale: 2, image_xscale: 4});
 		background = instance_create_layer(centX, centY, "Instances", oPauseBackground);
@@ -32,6 +33,8 @@ if ((keyboard_check_pressed(vk_escape) or unpause) && !forceUnpause) {
 		resButton.drawText = "Resume Game";
 		settingButton.drawText = "Settings";
 		settingButton.buttonID = 12;
+		//challengeButton.buttonID = 7;
+		//challengeButton.drawText = "Challenges";
 		quitButton.buttonID = 10;
 		quitButton.drawText = "Quit Game";
 		restartButton.buttonID = 9;

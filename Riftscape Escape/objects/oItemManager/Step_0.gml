@@ -1,3 +1,14 @@
+if ( keyboard_check_pressed(vk_control)) {
+	useChargeItem();
+}
+if (ritualRerollAvailable) {
+	flash += flashRate;
+	if (flash >= 1 || flash < 0) {
+		flashRate *= -1;
+	}
+} else {
+	flash = 0;
+}
 if (searchItem == true) {
 	if (bossSearch) {
 		show_debug_message("BOSS ITEM SEARCH")

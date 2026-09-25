@@ -53,6 +53,9 @@ click = function () {
 	with (oButtonStartMenu) {
 		instance_deactivate_object(self)
 	}
+	if (room != startScreen) {
+		instance_deactivate_object(oButtonLevel)
+	}
 	with (oSlider) {
 		display = false;
 	}

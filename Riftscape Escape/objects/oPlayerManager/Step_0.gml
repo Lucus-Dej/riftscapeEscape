@@ -1,3 +1,11 @@
+if (canDestroyRune) {
+	flash += flashRate;
+	if (flash >= 1 || flash < 0) {
+		flashRate *= -1;
+	}
+} else {
+	flash = 0;
+}
 // xp stuff
 xpUI = (xpTotal/xpProgress)*100;
 if (global.grid_cool == false) {

@@ -14,3 +14,6 @@ if (foolsGoldTimer > 0) {
 } else {
 	itemRemove(foolsGoldItem);
 }
+if (hasPiggyBank) {
+	piggyBankLuck += 2.5;
+}

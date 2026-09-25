@@ -1,4 +1,5 @@
-activeDuration = 90;
+oPlayerManager.runeTxt = desc;
+oPlayerManager.displayRuneDuration = 60;
 
 if (keyboard_check_pressed(vk_space) && object_index != oDullRune) {
 	if (instance_exists(oRuneRoomFlag)) {

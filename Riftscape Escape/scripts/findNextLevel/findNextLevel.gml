@@ -65,11 +65,15 @@ function findNextLevel(_level){
 		newLevel = library01;
 		break;
 		case library01:
-		newLevel = theEnd;
+		newLevel = l1;
 		break;
 		case library02:
+		newLevel = l1;
+		break;
+		case l1:
 		newLevel = theEnd;
 		break;
+		
 		
 		case plains0:
 		newLevel = plains01;

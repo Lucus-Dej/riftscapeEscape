@@ -20,4 +20,3 @@ if (oPlayerManager.hasFirstPRune) {
 		draw_sprite_ext(sPoisonCharge, irandom(8), x, y, image_xscale, image_yscale, 0, c_white, 0.8)
 	}
 }
-

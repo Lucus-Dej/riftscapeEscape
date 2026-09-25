@@ -12,7 +12,7 @@ resButton = noone;
 settingButton = noone;
 restartButton = noone;
 quitButton = noone;
-
+challengeButton = noone;
 musicSlider = noone;
 sfxSlider = noone;
 applyButton = noone;

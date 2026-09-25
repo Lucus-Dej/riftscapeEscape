@@ -82,26 +82,35 @@ masterItemList = ds_list_create();
 masterItemCopy = ds_list_create();
 dustCount = 0;
 bookList = ds_list_create()
-ds_list_add(bookList, oFreedom, oFoolsGold, oDeathBook, oDictionaryCharge, oBlackHoleCharge, oHarvestBook, oDreamsBook, oThePathForward);
+ds_list_add(bookList, oFreedom, oFoolsGold, oDeathBook, oDictionaryCharge, 
+	oBlackHoleCharge, oHarvestBook, oDreamsBook, oThePathForward);
 item = oEnemSpider;
+// freedom, death, black hole, harvest, dreams
+// due to challenges: fools gold, dictionary, path forward
 itemList = [];
-
+rarityList = [];
+raritySpriteList = [];
+flash = 0;
+shouldFlash = true;
+flashRate = 0.05;
+pageArray = [oFreedomPage, oDeathPage, oBlackHolePage, oHarvestPage, oDreamsPage]
 
 ds_list_add(runeItemList, oBloodCharm, oPoisonCharm, oIceCharm, oLightningCharm, oFireCharm, 
-	oHeartPendent, oLaserPointer, oUnstableEnergy, oDirectorsNote, oPoorFingerPainting);
+	oHeartPendent, oLaserPointer, oUnstableEnergy, oDirectorsNote,
+	oRuneCoin, oArenaCoin, oPurificationCoin, oShopCoin, oRitualCoin, oConfluxCoin);
 
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 
-ds_list_add(commonItemList, oRadioactiveMaterial, oBottleOil, oPropheticRune, 
-	oDoubleOrNothing, oD2, oSmallSculpture, oBrokenBoomerang)
+ds_list_add(commonItemList, oRadioactiveMaterial, oBottleOil,
+	oPropheticRune, oD2, oSmallSculpture, oBrokenBoomerang)
 ds_list_add(rareItemList, oRifterBloodSample, oPlasmaOrb, 
 	oAntidote, oWeightlessHourglass, oOilBarrel, oHarvestBook, oBloodyGem, 
 	oCrackedEgg, oBlackHoleCharge, oBrokenBloodVial, oImageOfYou, oDirtyMirror);
-ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom, 
+ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom, oDoubleOrNothing,
 	oDeathBook, oMagnet, oBrainInAJar, oActionFigure, oWhisperingCrystal, oBrokenSnowglobe, oMirrorShard);
 ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oTesseract, 
 oElectricKite, oGunpowder, oMetalOrb);
-ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun);
+ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun, oPoorFingerPainting);
 
 //item unlocks
 if (global.meta.challenges.gotItemReflectiveGem) {
@@ -120,8 +129,12 @@ if (global.meta.challenges.gotItemRareseed) {
 if (global.meta.challenges.gotItemGenStone) {
 	ds_list_add(rareItemList, oGenStone);
 }
+if (global.meta.challenges.gotItemPiggyBank) {
+	ds_list_add(rareItemList, oPiggyBank);
+}
 if (global.meta.challenges.gotItemFoolsGold) {
 	ds_list_add(rareItemList, oFoolsGold);
+	array_push(pageArray, oFoolsGoldPage);
 }
 if (global.meta.challenges.gotItemHollowedDice) {
 	ds_list_add(rareItemList, oHollowedDice);
@@ -146,9 +159,11 @@ if (global.meta.challenges.gotItemSingularity) {
 }
 if (global.meta.challenges.gotItemDictionary) {
 	ds_list_add(mythicItemList, oDictionaryCharge);
+	array_push(pageArray, oDictionaryPage);
 }
 if (global.meta.challenges.gotItemPathForward) {
 	ds_list_add(mythicItemList, oThePathForward);
+	array_push(pageArray, oPathForwardPage);
 }
 if (global.meta.challenges.gotItemScytheDeath) {
 	ds_list_add(ultraItemList, oHorseDeath);
@@ -194,18 +209,19 @@ ds_list_copy(powerfulItemCopy, powerfulItemList);
 ds_list_copy(mythicItemCopy, mythicItemList);
 ds_list_copy(ultraItemCopy, ultraItemList);
 
+
 ds_list_clear(masterItemList);
 
-var lists = [runeItemList, rareItemList, powerfulItemList, mythicItemList,ultraItemList, simpleItemList];
-
+var lists = [runeItemList, commonItemList, rareItemList, powerfulItemList, mythicItemList,ultraItemList, simpleItemList];
+var totalItemCount = 0;
 for (var i = 0; i < array_length(lists); i++) {
 	var list = lists[i];
-	
+	totalItemCount += ds_list_size(list);
 	for (var j = 0; j < ds_list_size(list); j++) {
 		ds_list_add(masterItemList, list[| j]);
 	}
 }
-
+show_debug_message("THERE ARE CURRENTLY "+string(totalItemCount)+" ITEMS ON THIS ACCOUNT")
 ds_list_copy(masterItemCopy, masterItemList);
 
 deniedItemArray = [];
@@ -221,6 +237,8 @@ seedCombatCheck = false
 
 hasDeal = false;
 
+piggyBankLuck = 1;
+hasPiggyBank = false;
 hasRadioactiveMaterial = false;
 hasBottleOil = false;
 hasD2 = false;
@@ -327,6 +345,13 @@ hasLightningCharm = false;
 hasFireCharm = false;
 hasPoisonCharm = false;
 hasBloodCharm = false;
+
+hasShopCoin = false;
+hasArenaCoin = false;
+hasRitualCoin = false;
+hasConfluxCoin = false;
+hasRuneCoin = false;
+hasPurificationCoin = false;
 
 hasHorseWar = false;
 hasHorseDeath = false;

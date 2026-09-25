@@ -1,12 +1,16 @@
 drawText = noone;
 faded = false;
 click = function () {
+	
 	switch (buttonID) {
 		case -1: // default. does nothing
 	
 		break;
 	
 		case 0:
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		layer_set_visible(oPlayerManager.levelMenuLayer, false)
 		oPlayerManager.inLevelMenu = false;
 		layer_set_visible(oPlayerManager.tokenMenuLayer, true)
@@ -14,13 +18,20 @@ click = function () {
 		break;
 	
 		case 1: // fate up
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		if (oPlayerManager.levelsPending > 0) {
 			fateUp();
 			oPlayerManager.levelsPending--;
 			oPlayerManager.fateLeveled++;
 			}
 		break;
+		
 		case 2: // life up
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		if (oPlayerManager.levelsPending > 0) {
 			lifeUp();
 			oPlayerManager.levelsPending--;
@@ -28,6 +39,9 @@ click = function () {
 			}
 		break;
 		case 3: // reality up
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		if (oPlayerManager.levelsPending > 0) {
 			realityUp();
 			oPlayerManager.levelsPending--;
@@ -35,6 +49,9 @@ click = function () {
 			}
 		break;
 		case 4: // thought up
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		if (oPlayerManager.levelsPending > 0) {
 			thoughtUp();
 			oPlayerManager.thoughtLeveled++;
@@ -42,6 +59,9 @@ click = function () {
 		}
 		break;
 		case 5: // time up
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		if (oPlayerManager.levelsPending > 0) {
 			timeUp();
 			oPlayerManager.levelsPending--;
@@ -49,6 +69,9 @@ click = function () {
 		}
 		break;
 		case 6: // essence up
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		if (oPlayerManager.levelsPending > 0) {
 			essenceUp();
 			oPlayerManager.essenceLeveled++;
@@ -56,6 +79,9 @@ click = function () {
 		}
 		break;
 		case 7:
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		layer_set_visible(oPlayerManager.levelMenuLayer, true)
 		oPlayerManager.inLevelMenu = true;
 		layer_set_visible(oPlayerManager.tokenMenuLayer, false)
@@ -63,6 +89,9 @@ click = function () {
 	
 		break;
 		case 8:
+		if (!instance_exists(oPlayerManager)) {
+			exit;
+		}
 		layer_set_visible(oPlayerManager.tokenMenuLayer, false)
 		oPlayerManager.inTokenMenu = false;
 		layer_set_visible(oPlayerManager.levelMenuLayer, false)

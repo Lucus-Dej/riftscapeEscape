@@ -8,8 +8,8 @@
   "name":"oBlackHoleCharge",
   "overriddenProperties":[],
   "parent":{
-    "name":"charge",
-    "path":"folders/items/charge.yy",
+    "name":"books",
+    "path":"folders/items/charge/books.yy",
   },
   "parentObjectId":{
     "name":"oItemCharge",

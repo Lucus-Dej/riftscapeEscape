@@ -210,7 +210,7 @@ if (array_length(activeRuneArray) > 0) {
 	    var GUIy = startY + row * cell;
 		
 		var scale = 0.5;
-		
+		var alpha = 0.5;
 		var w = sprite_get_width(spr) * scale;
 		var h = sprite_get_height(spr) * scale;
 
@@ -218,11 +218,20 @@ if (array_length(activeRuneArray) > 0) {
 		if (mouseX >= GUIx - w * 0.5 && mouseX <= GUIx + w * 0.5 && mouseY >= GUIy - h * 0.5 && mouseY <= GUIy + h * 0.5) {
 			hoveredItem = obj;
 		}
-		if (hoveredItem == obj && canDestroyRune) {
-			draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 1);
+		if (hoveredItem == obj) {
+			scale = 1;
+			if (canDestroyRune) {
+				shader_set(shdHit);
+				shader_set_uniform_f(shader_get_uniform(shdHit, "flash"), flash);
+				draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 1);
+				shader_reset();
+			} else {
+				draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, alpha);
+			}
 		} else {
-			draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
+			draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, alpha);
 		}
+		
 	}
 	if (hoveredItem != noone) {
 		//show_debug_message(hoveredItem)
@@ -234,6 +243,7 @@ if (array_length(activeRuneArray) > 0) {
 		}
 		displayRuneDuration = 60;
 		if (canDestroyRune && mouse_check_button(mb_left) && hoveredItem != oConquestRune) {
+			audio_play_sound(aShatter, 1, false, global.sfxAudio)
 			var l = array_get_index(activeRuneArray, hoveredItem);
 			array_delete(activeRuneArray, l, 1)
 			disableRune(hoveredItem);

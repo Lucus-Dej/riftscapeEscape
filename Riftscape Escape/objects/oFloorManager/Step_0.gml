@@ -164,6 +164,9 @@ if (floorState == genState.complete ) {
 	if (global.difficulty == 4) {
 		ritualCheck += 10;
 	}
+	if (oItemManager.hasRitualCoin) {
+		ritualCheck += 30;
+	}
 	if (ritualCheck >= 70 || evilRoomFlag) {
 		var ritualFlag = false;
 		ritualIndex = irandom(array_length(bossDoorArray)-1);
@@ -208,9 +211,12 @@ if (floorState == genState.complete ) {
 	var arenaIndex = -1;
 	var arenaCheck = irandom_range(1, 100) + global.playerTime*0.4;
 	if (global.difficulty == 4) {
-		ritualCheck += 10;
+		arenaCheck += 10;
 	}
-	if (arenaCheck >= 55 || evilRoomFlag) {
+	if (oItemManager.hasArenaCoin) {
+		arenaCheck += 30;
+	}
+	if (arenaCheck >= 5 || evilRoomFlag) {
 		var arenaFlag = false;
 		arenaIndex = irandom(array_length(bossDoorArray)-1);
 		while (arenaIndex == bossIndex || arenaIndex == itemIndex || arenaIndex == ritualIndex) {
@@ -218,7 +224,7 @@ if (floorState == genState.complete ) {
 		}
 		var arenaDoor = bossDoorArray[arenaIndex];
 		dir = arenaDoor.doorDir;
-		var arenaR = findSpecialRoom(dir, "arena");
+		var arenaR = findSpecialRoom(dir, "arena", true);
 		with (arenaDoor) {
 			doorType = "arena";
 			show_debug_message("arena door made")
@@ -257,7 +263,10 @@ if (floorState == genState.complete ) {
 	var runeIndex = 0;
 	var runeCheck = irandom_range(1, 100) + global.playerTime*0.4 + oItemManager.dustCount;
 	if (global.difficulty == 4) {
-		ritualCheck += 10;
+		runeCheck += 10;
+	}
+	if (oItemManager.hasRuneCoin) {
+		runeCheck += 30;
 	}
 	if (runeCheck >= 45 || evilRoomFlag) {
 		var runeFlag = false;
@@ -304,7 +313,10 @@ if (floorState == genState.complete ) {
 	var confluxIndex = 0;
 	var confluxCheck = irandom_range(1, 100) + global.playerTime*0.4 + global.playerFate*0.2;
 	if (global.difficulty == 4) {
-		ritualCheck += 10;
+		confluxCheck += 10;
+	}
+	if (oItemManager.hasConfluxCoin) {
+		confluxCheck += 30;
 	}
 	if (confluxCheck >= 90 && !evilRoomFlag) {
 		var confluxFlag = false;
@@ -351,6 +363,9 @@ if (floorState == genState.complete ) {
 	if (global.difficulty == 4) {
 		pureCheck += 10;
 	}
+	if (oItemManager.hasPurificationCoin) {
+		pureCheck += 30;
+	}
 	if ((evilRoomFlag || pureCheck >= 55 ) && (room != caves0 && room != caves01)  && (array_length(oPlayerManager.activeRuneArray) > 1)) {
 		var pureFlag = false;
 		pureIndex = irandom(array_length(bossDoorArray)-1);
@@ -393,11 +408,15 @@ if (floorState == genState.complete ) {
 	}
 	var shopIndex = 0;
 	var shopCheck = irandom_range(1, 100) + global.playerTime*0.8;
+	var luck = oItemManager.luckBonus+ oItemManager.reflectiveGemLuckBonus + global.playerTime;
 	if (global.difficulty == 4) {
 		shopCheck += 10;
 	}
+	if (oItemManager.hasShopCoin) {
+		shopCheck += 30;
+	}
 	show_debug_message("shop Index is "+string(shopCheck))
-	if ((evilRoomFlag || shopCheck >= 70 )) {
+	if ((evilRoomFlag || shopCheck >= 70 ) && luck > 0) {
 		var shopFlag = false;
 		shopIndex = irandom(array_length(bossDoorArray)-1);
 		while (shopIndex == pureIndex || shopIndex == bossIndex || shopIndex == itemIndex || shopIndex == confluxIndex || shopIndex == ritualIndex || shopIndex == arenaIndex || shopIndex == runeIndex) {

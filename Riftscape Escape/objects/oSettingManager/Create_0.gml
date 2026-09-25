@@ -68,6 +68,8 @@ global.meta = {
 		
 		gotItemFoolsGold: false,
 		
+		gotItemPiggyBank: false,
+		
 		gotItemWaterdamagedNote: false,
 		
 		gotItemLilFurnace: false,
@@ -138,7 +140,7 @@ global.metaChallengeArray = {
 			title: "???",
 			spr: sGenStone,
 			sprIndex: 0,
-			hint: "Round The World Without Looking Back", 
+			hint: "Round The World Without Looking Back",
 			desc: "Finish A Floor Without Entering The Same Door Twice",
 		},
 		
@@ -188,6 +190,14 @@ global.metaChallengeArray = {
 			sprIndex: 0,
 			hint: "Abandon Riches",
 			desc: "Skip A Mythic Item",
+		},
+		
+		gotItemPiggyBank: {
+			title: "Piggy Bank",
+			spr: sPiggyBank,
+			sprIndex: 0,
+			hint: "For A Rainy Day...",
+			desc: "Store More Than 99,999XP In Your Vault",
 		},
 		
 		gotItemWaterdamagedNote: {

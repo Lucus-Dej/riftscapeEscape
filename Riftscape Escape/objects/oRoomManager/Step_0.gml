@@ -189,6 +189,9 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 		combatFinished = true;
 		revealFlag = true;
 		inCombat = false;
+		if (oItemManager.hasPiggyBank) {
+			oItemManager.piggyBankLuck += 0.05;
+		}
 		oPlayerManager.incombat = false;
 		
 		if (instance_exists(floorManager)) {
@@ -198,18 +201,13 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 			if (!floorManager.floorCompleteFlag) {
 				rollConsumable(spawner);
 			} else {
-				var floorClearReward = irandom_range(1, 4);
-				switch (floorClearReward) {
-					case 1:
+				var floorClearReward = irandom_range(1, 100) + global.playerTime*0.5;
+				if (floorClearReward < 65) {
+					var tempArray = [oPowerUpHPHigh, oPowerUpLuckHigh, oPowerUpXPHigh]
+					var ranI = irandom(array_length(tempArray)-1);
+					var newDrop = tempArray[ranI];
 					instance_create_layer(spawner.x, spawner.y, "Instances", oPowerUpHPHigh);
-					break;
-					case 2:
-					instance_create_layer(spawner.x, spawner.y, "Instances", oPowerUpLuckHigh);
-					break;
-					case 3:
-					instance_create_layer(spawner.x, spawner.y, "Instances", oPowerUpHPHigh);
-					break;
-					case 4:
+				} else if (floorClearReward < 85) {
 					var funCheck = irandom_range(1, 50) + global.playerTime;
 					if (funCheck >= 50) {
 						var item = rollItem(false, itemSearchType.simple);
@@ -218,7 +216,10 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 						var i = rollItem(false);
 						instance_create_layer(spawner.x, spawner.y, "Instances", i);
 					}
-					break;
+				} else {
+					var ranIndex = irandom(array_length(oItemManager.pageArray)-1);
+					var page = oItemManager.pageArray[ranIndex];
+					instance_create_layer(spawner.x, spawner.y, "Instances", page);
 				}
 			}
 		} else {

@@ -4,7 +4,7 @@ shoot_delay = 160;
  enemyHP = 100;
 enemSpeed = 00;
 baseSpeed = enemSpeed;
-xp = 500;
+xp = 500000;
 damage = 15;
 bullet_speed = 5.5;
 searchPlayer();

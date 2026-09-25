@@ -1,9 +1,11 @@
 damagedList = ds_map_create();
 nearbyBullets = ds_list_create();
 dmgRefreshTime = 12;
+bounceX = 0;
+bounceY = 0;
 skipDeath = false;
 flying = false;
-tempGhostTimer = 0;
+tempGhostTimer = 2;
 damageArray = [];
 damageTimerArray = [];
 links = [];

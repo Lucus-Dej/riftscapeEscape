@@ -9,7 +9,7 @@ function getRuneDesc(_rune){
 		desc = "War Rune: Enemies Can Reflect Bullets";
 		break;
 		case oPestRune:
-		desc = "Pest Rune: Enemies Spawn Homing Flies On Death";
+		desc = "Pestilence Rune: Enemies Spawn Homing Flies On Death";
 		break;
 		case oFamineRune:
 		desc = "Famine Rune: Blood Heals For Less And Decays Faster";

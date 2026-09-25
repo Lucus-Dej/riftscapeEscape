@@ -13,4 +13,3 @@ if (instance_exists(oPlayerManager)) {
 	x = mouse_x;
 	y = mouse_y;
 }
-

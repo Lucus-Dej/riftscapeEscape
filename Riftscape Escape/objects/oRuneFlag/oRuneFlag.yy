@@ -32,5 +32,5 @@
     "path":"sprites/sBlankRune/sBlankRune.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

@@ -12,8 +12,8 @@
   "name":"oPortalBookPortal",
   "overriddenProperties":[],
   "parent":{
-    "name":"charge",
-    "path":"folders/items/charge.yy",
+    "name":"zOther",
+    "path":"folders/items/charge/zOther.yy",
   },
   "parentObjectId":null,
   "persistent":false,

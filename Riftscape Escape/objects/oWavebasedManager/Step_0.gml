@@ -29,7 +29,6 @@ if (state == waveState.generatingWave) {
 if (state == waveState.spawning) {
 	if (isLimited && !limitedWaveDoorSet) {
 		powerDoor(RoomID);
-		show_debug_message("I AM TRYING TO POWER THE ROOM")
 		limitedWaveDoorSet = true;
 	}
 	if (!gendFlyGrid)
@@ -39,7 +38,7 @@ if (state == waveState.spawning) {
 		mp_grid_add_instances(global.Grid, oSuperwalls, true);
 		mp_grid_add_instances(global.Grid, oIndestructable, true);
 	}
-	enemiesLeft = instance_number(oEnemy);
+	enemiesLeft = instance_number(oEnemy)-instance_number(oSubEnemy);
 	enemString = "Enemies Left: "+string(enemiesLeft);
 	inCombat = true; 
 	with (oEnemyTurrets) {
@@ -84,6 +83,7 @@ if (state == waveState.spawning) {
 		if (!runeRound && instance_exists(oRuneSpawner) && !restrictedArrays) {
 			instance_destroy(oRuneSpawner)
 		}
+		rollConsumable(id);
 		with (oEnemyTurrets) {
 			if (RoomID == other.RoomID) {
 				if (active) {
@@ -92,7 +92,6 @@ if (state == waveState.spawning) {
 			}
 		}
 		if (runeRound) {
-			rollConsumable(id);
 			var runeSpawner = noone;
 			with (oRuneFlag) {
 				runeSpawner = instance_create_layer(x, y, "Instances", oRuneSpawner);
@@ -102,7 +101,6 @@ if (state == waveState.spawning) {
 			runeRound = false;
 		}
 		if (itemRound) {
-			rollConsumable(id);
 			var item = rollItem(false);
 			with (itemSpawner) {
 				instance_create_layer(x, y, "Instances", item);

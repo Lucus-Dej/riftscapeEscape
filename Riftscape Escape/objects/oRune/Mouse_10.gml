@@ -1,1 +1,2 @@
-activeDuration = 300;
+oPlayerManager.runeTxt = desc;
+oPlayerManager.displayRuneDuration = 60;

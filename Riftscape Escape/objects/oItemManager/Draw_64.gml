@@ -9,20 +9,22 @@ var mouseY = device_mouse_y_to_gui(0);
 
 var hoveredItem = noone;
 
-var cols = 6;
-var iconSize = 16;   
+var cols = 4;
+var iconSize = 32;   
 var pad = 12;
 var cell = iconSize + pad;
 
 // bottom-right anchor
 var startX = guiW - (cols * cell) - 8;
 var startY = guiH * 0.35;
-
+var skipped = 0;
 
 if (!oPlayerManager.inLevelMenu)
 for (var i = 0; i < array_length(itemList); i++) {
 	var denied = false;
     var obj = itemList[i];
+	var r = rarityList[i];
+	
 	//if (obj == -4) {
 		//show_debug_message(i);
 		//show_debug_message(itemList[i]);
@@ -32,6 +34,7 @@ for (var i = 0; i < array_length(itemList); i++) {
 		denied = true;
 	}
 	var spr = object_get_sprite(obj);
+	var raritySprite = raritySpriteList[i];
 	if (spr == -1) continue;
 
     var col = i mod cols;
@@ -41,21 +44,31 @@ for (var i = 0; i < array_length(itemList); i++) {
     var GUIy = startY + row * cell;
 
 
-    var scale = 0.5;
-
-	
-	if (denied) {
-		draw_sprite_ext(sDenied, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
-		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.1);
-	} else {
-		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.5);
-	}
+    var scale = 0.75;
+	var alpha = 0.5;
 	var w = sprite_get_width(spr) * scale;
 	var h = sprite_get_height(spr) * scale;
-	
 	if (mouseX >= GUIx - w * 0.5 && mouseX <= GUIx + w * 0.5 && mouseY >= GUIy - h * 0.5 && mouseY <= GUIy + h * 0.5) {
 		hoveredItem = obj;
+		scale = 1;
+		alpha = 1;
+		shader_set(shdHit);
+		shader_set_uniform_f(shader_get_uniform(shdHit, "flash"), flash);
 	}
+	
+	if (denied) {
+		draw_sprite_ext(sDenied, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, alpha);
+		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, 0.1);
+		shader_reset();
+		draw_sprite_ext(raritySprite, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, alpha);
+	} else {
+		draw_sprite_ext(spr, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, alpha);
+		shader_reset();
+		draw_sprite_ext(raritySprite, 0, floor(GUIx), floor(GUIy), scale, scale, 0, c_white, alpha);
+	}
+	
+	
+	
 }
 	
 if (hoveredItem != noone) {
@@ -65,6 +78,7 @@ if (hoveredItem != noone) {
 		itemRemove(hoveredItem);
 		var newItem = rollItem(true);
 		itemAdd(newItem);
+		audio_play_sound(aShatter, 1, false, global.sfxAudio)
 		//show_debug_message("newItem item is "+string(newItem));
 		ritualRerollAvailable = false;
 	}
@@ -119,106 +133,7 @@ if (global.chargeItem != noone) {
         }
     }
 }
-if (global.currentCharges >= global.itemCharges && keyboard_check_pressed(vk_control) && global.chargeItem != noone) {
-		
-	switch (global.chargeItem.object_index) {
-		
-		case oFreedom:
-		global.playerCanFly = true;
-		freedomFlyFlag = true;
-		break;
-		case oDictionaryCharge:
-		global.itemCharges += 3;
-		var i = irandom_range(1, 6);
-		
-		switch (i) {
-			case 1:
-			realityUp();
-			break;
-			
-			case 2:
-			lifeUp();
-			break;
-			
-			case 3:
-			essenceUp();
-			break;
-			
-			case 4:
-			timeUp();
-			break;
-			
-			case 5:
-			fateUp();
-			break;
-			
-			case 6:
-			thoughtUp();
-			break;
-		}
-		break;
-		
-		case oThePathForward:
-		//dropID = instance_create_layer(x, y, "Instances", oItemFlag);
-		var newItem = rollItem(true,,,10);
-		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", newItem);
-		global.itemCharges += 6;
-		break;
-		
-		case oDeathBook:
-		with (oEnemy) {
-			enemyTakeDamage(10, id, , true, damageType.playerFire)
-		}
-		break;
-		case oHarvestBook:
-		for (var f = 0; f < 8; f++) {
-			var summon = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionHarvestBlocker);
-			summon.orbitAngle = f*45;
-		}
-		with (oMinionHarvestBlocker) {
-			init = true;
-		}
-		break;
-		
-		case oDreamsBook:
-		room_goto(hordeSurvival);
-		global.chargeItem = noone;
-		with (oPlayerManager) {
-			levelIndex = 0;
-			currentLevl = levelArray[levelIndex]
-			nextLevel = levelArray[levelIndex +1];
-			
-		}
-		break;
-		
-		case oBlackHoleCharge:
-		instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oChargeBlackHole);
-		break;
-		
-		
-		case oFoolsGold:
-		var foolsItem = rollItem(false, itemSearchType.foolsGold);
-		itemAdd(foolsItem);
-		foolsGoldItem = foolsItem;
-		foolsGoldTimer = 1;
-		global.chargeItem = noone;
-		break;
-		
-		case oPortalBook:
-		var num = instance_number(oPortalBookPortal)
-		if (!instance_exists(portalbook.portal1)) {
-			portalbook.portal1 = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oPortalBookPortal);
-			portalbook.portal1.portalId = 1; 
-		} else if (!instance_exists(portalbook.portal2)) {
-			portalbook.portal2 = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oPortalBookPortal);
-			portalbook.portal2.portalId = 2; 
-		}
-		
-		break;
-		
-	}
-	global.currentCharges = 0;
-}
+
 
 // display item text?
 if (displayItemTimer > 0) {

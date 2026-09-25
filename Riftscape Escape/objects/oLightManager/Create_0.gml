@@ -18,6 +18,7 @@ lightObjArray[1] = (oLightWall);
 lightObjArray[3] = (oStartRoom);
 lightObjArray[4] = (oStartRoomWave);
 lightObjArray[5] = (oRitualRoomSpawner);
+lightObjArray[6] = (oXPVault);
 
 smallLightArray[0] = (oTruePlayer);
 smallLightArray[1] = (oPlayerAbilities);
@@ -25,6 +26,8 @@ smallLightArray[2] = (oEnemy);
 smallLightArray[3] = (oItems);
 smallLightArray[4] = (oRifterTorch);
 smallLightArray[5] = (oPowerUpConflux);
+smallLightArray[6] = (oGoNext);
+smallLightArray[7] = (oGoNextEvil);
 
 tinyLightArray[0] = (oEnemyBullets);
 tinyLightArray[1] = (oPlayerBullets);
