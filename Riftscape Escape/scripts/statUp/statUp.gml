@@ -9,9 +9,10 @@ function fateUp() {
 function thoughtUp() {
 	global.playerThought++;
 	oPlayerManager.statCooldown += 1;
+	var thought = max(0, global.playerThought - 1);
 	
-	var raw = (global.playerThought * 0.1) + power(global.playerThought, 0.35) * 0.1;
-	oPlayerManager.statBulletDelay = raw/ (1+raw/6)
+	var raw = (thought * 0.075) + power(thought, 0.95) * 0.05;
+	oPlayerManager.statBulletDelay = raw / (1 + raw / 6);
 
 }
 function lifeUp() {
@@ -60,8 +61,9 @@ function thoughtDown() {
 		global.playerThought--;
 		
 		oPlayerManager.statCooldown -= 1;
-		
-		var raw = (global.playerThought * 0.1) + power(global.playerThought, 0.35) * 0.1;
+		var thought = max(0, global.playerThought - 1);
+	
+		var raw = (thought * 0.075) + power(thought, 0.95) * 0.05;
 		oPlayerManager.statBulletDelay = raw / (1 + raw / 6);
 	}
 }

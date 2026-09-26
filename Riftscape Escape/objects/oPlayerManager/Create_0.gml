@@ -174,9 +174,9 @@ statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;
 
-global.bullet_delay = 32;
+global.bullet_delay = 36;
 baseBulletDelay = global.bullet_delay;
-overHealthBulletDelay = global.playerEssence/4;
+overHealthBulletDelay = 0;
 statBulletDelay = 0;
 statBulletDebuff = 0;
 

@@ -90,7 +90,7 @@ if (leveling && levelsPending <=0) {
 
 // damage and health stuff
 if (tookDamage) {
-	iframes = 24;
+	//iframes = 24;
 	tookDamage = false;
 }
 if (instance_exists(oEnemy)) {
@@ -123,7 +123,10 @@ if (invisTimer > 0) {
 	}
 	}
 }
-fireRate = (baseBulletDelay+statBulletDebuff)/(1 + ((thoughtDodgeFireRateBoost) + (thoughtCircleFireRateBoost) + (oItemManager.effectiveYinBonus) + (statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + (overHealthBulletDelay)));
+fireRate = (baseBulletDelay+statBulletDebuff)/
+	(1 + ((thoughtDodgeFireRateBoost) + (thoughtCircleFireRateBoost) + 
+	(oItemManager.effectiveYinBonus) + (statBulletDelay) + (brainJarBonus-1) + (tesseractSpeedBonus) + 
+	(overHealthBulletDelay)));
 if (fireRate < fireRateCap) {
 	global.bullet_delay = fireRateCap - ((fireRateCap - fireRate)*0.2);
 } else {
@@ -497,9 +500,9 @@ if (global.difficulty == 1) {
 if (inOverhealth) {
 	dodgeLifeBonus = 0;
 	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
-	overHealthBulletDelay = sqrt(global.playerEssence)*0.18;
-	overHealthDamageBuff = sqrt(global.playerEssence)*0.12;
-	overHealthCooldownBuff = sqrt(global.playerEssence)*0.95;
+	overHealthBulletDelay = sqrt(global.playerEssence)*0.55;
+	overHealthDamageBuff = sqrt(global.playerEssence)*0.14;
+	overHealthCooldownBuff = sqrt(global.playerEssence)*0.98;
 	global.player_health = 115;
 }
 if (inOverhealth && overhealthFlag) {
