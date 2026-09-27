@@ -174,7 +174,7 @@ statSpeed = 0;
 dodgeSpeed = 0;
 overHealthSpeedBonus = 0;
 
-global.bullet_delay = 36;
+global.bullet_delay = 30;
 baseBulletDelay = global.bullet_delay;
 overHealthBulletDelay = 0;
 statBulletDelay = 0;

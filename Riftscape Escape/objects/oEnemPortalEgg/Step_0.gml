@@ -16,7 +16,7 @@ if (existance <= 0) {
 		enem.xp *= 6000;
 	}
 	if (Manager.object_index == oWavebasedManager && !bossEgg) {
-		enem.xp *= 0.65;
+		enem.xp *= 0.85;
 	}
 	
 	instance_destroy();

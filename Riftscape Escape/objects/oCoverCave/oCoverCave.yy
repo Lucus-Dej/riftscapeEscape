@@ -34,9 +34,6 @@
     "name":"sCoverCave",
     "path":"sprites/sCoverCave/sCoverCave.yy",
   },
-  "spriteMaskId":{
-    "name":"sAbyss",
-    "path":"sprites/sAbyss/sAbyss.yy",
-  },
+  "spriteMaskId":null,
   "visible":true,
 }
