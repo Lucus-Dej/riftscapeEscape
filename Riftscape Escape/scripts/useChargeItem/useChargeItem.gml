@@ -103,9 +103,9 @@ function useChargeItem(){
 			break;
 			
 			case oHarvestBook:
-			for (var f = 0; f < 8; f++) {
+			for (var fq = 0; fq < 8; fq++) {
 				var summon = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionHarvestBlocker);
-				summon.orbitAngle = f*45;
+				summon.orbitAngle = fq*45;
 			}
 			with (oMinionHarvestBlocker) {
 				init = true;
@@ -113,9 +113,9 @@ function useChargeItem(){
 			break;
 			
 			case oHarvestPage:
-			for (var f = 0; f < 4; f++) {
+			for (var fe = 0; fe < 4; fe++) {
 				var summon = instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Instances", oMinionHarvestBlocker);
-				summon.orbitAngle = f*90;
+				summon.orbitAngle = fe*90;
 			}
 			with (oMinionHarvestBlocker) {
 				init = true;
@@ -151,9 +151,9 @@ function useChargeItem(){
 			break;
 			
 			case oFoolsGoldPage:
-			var foolsItem = rollItem(false, itemSearchType.foolsGold);
-			itemAdd(foolsItem);
-			oItemManager.foolsGoldItem = foolsItem;
+			var foolsItem1 = rollItem(false, itemSearchType.foolsGold);
+			itemAdd(foolsItem1);
+			oItemManager.foolsGoldItem = foolsItem1;
 			oItemManager.foolsGoldTimer = 1;
 			global.chargeItem = noone;
 			break;

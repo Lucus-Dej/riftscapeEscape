@@ -178,10 +178,9 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 			image_index = 0;
 		}
 	}
-	with (oReverseTrappedSpikes) {
+	with (oAlternatingSpikes) {
 		if (RoomID == other.RoomID) {
 			active = false;
-			swap = false;
 			image_index = 0;
 		}
 	}
