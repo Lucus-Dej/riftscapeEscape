@@ -4,6 +4,7 @@ existanceTot = existance;
 doRefund = false;
 playerOnCircle = false;
 playerLeftCircle = false;
+fireCharmStartingAng = 0;
 if (oPlayerManager.hasCircleLife) {
 	sprite_index = sCircleLife;
 }

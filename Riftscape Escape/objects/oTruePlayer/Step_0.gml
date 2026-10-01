@@ -47,8 +47,16 @@ if (lockedTimer > 0) {
 	realSpeed = 0;
 	global.bullet_cooldown = global.bullet_delay
 }
-hsp = _xinput * realSpeed;
-vsp = _yinput * realSpeed;
+var accel = 0.35;
+var fric = 0.5;
+
+if (_xinput != 0 || _yinput != 0) {
+    hsp = lerp(hsp, _xinput * realSpeed, accel);
+    vsp = lerp(vsp, _yinput * realSpeed, accel);
+} else {
+    hsp = lerp(hsp, 0, fric);
+    vsp = lerp(vsp, 0, fric);
+}
 
 if (oPlayerManager.hasFirstPRune) {
 	var forwardDir = oCamera.direction;

@@ -5,7 +5,11 @@ if (!ds_exists(damagedList, ds_type_map)) {
 if (!ds_map_exists(damagedList, hit.id)) {
 	ds_map_add(damagedList, hit.id, true);
 	enemyTakeDamage(damage, other,,,damageType.dodge);
+	if (oItemManager.hasPoisonCharm) {
+		callDOT(other, damage*0.04, 12, 12, dotType.poison, oTruePlayer);
+	}
 	if (oPlayerManager.hasDodgeLife) {
-		callDOT(other, global.playerLife*0.01 + 0.15, global.playerReality, 12, dotType.poison, object_index);
+		oPlayerManager.dodgeLifeHP += damage;
+		//callDOT(other, global.playerLife*0.01 + 0.15, global.playerReality, 12, dotType.poison, object_index);
 	}
 }

@@ -1,5 +1,8 @@
 event_inherited()
-
+if (oItemManager.hasLightningCharm) {
+	instance_create_layer(x, y, "Items", oLightningCircle);
+}
+damage = 2 + global.playerDamage * 0.7 + sqrt(global.playerTime) * 1.2;
 target = noone;
 chaseSpeed = (global.playerTime+global.playerThought)/2;
 path = -1;

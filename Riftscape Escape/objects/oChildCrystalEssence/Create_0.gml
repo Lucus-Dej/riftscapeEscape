@@ -1,4 +1,7 @@
 event_inherited()
+if (oItemManager.hasLightningCharm) {
+	instance_create_layer(x, y, "Items", oLightningCircle);
+}
 if (!oPlayerManager.hasCrystalReality) {
 	goUp = false;
 	goLeft = false;
@@ -7,7 +10,7 @@ if (!oPlayerManager.hasCrystalReality) {
 }
 realityCheck = 1;
 hasSpawned = false;
-
+damage = 0.3 + global.playerDamage * 0.4 + sqrt(global.playerEssence) * 1.1;
 target = noone;
 chaseSpeed = (global.playerTime+global.playerThought)/10;
 path = -1;

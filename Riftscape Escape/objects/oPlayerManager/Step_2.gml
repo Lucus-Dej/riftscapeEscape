@@ -1,8 +1,10 @@
 
 if (global.playerKilled == true) {
-	if (inOverhealth && overhealthTimer < 125+25*global.playerEssence) {
-		overhealthTimer += 25+global.playerEssence*5;
-	}
+	if (overhealthTimer < 100) {
+			overhealthTimer += 6+global.playerEssence*0.2;
+		} else {
+			overhealthTimer += 2+global.playerEssence*0.05;
+		}
 	if (hasCircleEssence && initCircle && oTruePlayer.inCircle && instance_exists(oCricleOfFate)) {
 		oCricleOfFate.existance += global.playerEssence*30;
 		if (oCricleOfFate.existance > oCricleOfFate.existanceTot*0.9) {

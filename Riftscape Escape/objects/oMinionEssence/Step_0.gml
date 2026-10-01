@@ -1,3 +1,18 @@
+if (oItemManager.hasBloodCharm) {
+	var bloodCheck = irandom_range(1, 3) + global.playerTime * 0.2;
+	 if (bloodCheck >= 3) {
+		var distMax = sprite_width/2;
+		var ang = irandom(359);
+		
+		var spill = instance_create_layer(x, y, "Items", oBloodSpill)
+		spill.dmg =  global.playerLife*0.045+minionCrownDmgBonus*0.05;
+		var scale = random_range(0.5, 0.75);
+		scale = (image_xscale*0.5)*scale;
+		spill.image_xscale = scale;
+		spill.image_yscale = scale;
+		
+	 }
+}
 if (oPlayerManager.hasMinionReality) {
 	minionRealitySpeedBonus = -35;
 	bulletSpeed = baseBulletSpeed * global.playerReality*0.1 - 0.3;

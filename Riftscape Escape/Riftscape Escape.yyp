@@ -854,6 +854,7 @@
     {"id":{"name":"aChimingCrystals","path":"sounds/aChimingCrystals/aChimingCrystals.yy",},},
     {"id":{"name":"aEnemFire","path":"sounds/aEnemFire/aEnemFire.yy",},},
     {"id":{"name":"aFloorClear","path":"sounds/aFloorClear/aFloorClear.yy",},},
+    {"id":{"name":"aLightning","path":"sounds/aLightning/aLightning.yy",},},
     {"id":{"name":"aLongDrawnBreath","path":"sounds/aLongDrawnBreath/aLongDrawnBreath.yy",},},
     {"id":{"name":"aParry","path":"sounds/aParry/aParry.yy",},},
     {"id":{"name":"aPlayerBoom","path":"sounds/aPlayerBoom/aPlayerBoom.yy",},},

@@ -11,6 +11,9 @@ if (!doRefund) oPlayerManager.huskTotal = 0;
 if (portalDelay <= 0) {
 	ready = true;
 	if (oPlayerManager.huskPressed) {
+		if (oItemManager.hasLightningCharm) {
+			instance_create_layer(x, y, "Items", oLightningCircle);
+		}
 		if (oPlayerManager.hasFateHusk) {
 			var rounds = clamp(3 - floor(existance / (existanceTot / 3)), 1, 3);
 			var bullets = global.playerThought;

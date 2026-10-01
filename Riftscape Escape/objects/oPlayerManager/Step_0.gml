@@ -278,7 +278,6 @@ if (array_length(swordJabObjArray) > 0) {
 //dodge stuff
 dodgePressed = keyboard_check_pressed(ord(dodgeKey));
 if (global.playerReality >= 6 && evilDodgeFlagIHate) {
-	dodgeLifeHP = global.player_health/4;
 	global.playerContactDmg = true;
 	dodgeCharge = (dodgeTotal/dodgeMax)*100;
 }
@@ -486,23 +485,27 @@ if (thoughtDodgeFireRateBoost > 0) {
 
 
 if (global.difficulty == 1) {
-	overhealthCooldown = 100 + 50+global.playerEssence*8
+	overhealthSuperTotal = 608 - global.playerEssence*8
 	global.lifesteal = (global.playerDamage* 0.4 + max_hp * (0.005 + (global.playerEssence*0.01))*oItemManager.sacDaggerBonus);
 } else if (global.difficulty == 2) {
-	overhealthCooldown = 100 + 40+global.playerEssence*5
+	overhealthSuperTotal = 905 - global.playerEssence*5
 	global.lifesteal = (global.playerDamage* 0.35 + max_hp * (0.0020 + (global.playerEssence*0.0055))*oItemManager.sacDaggerBonus);
 } else if (global.difficulty >= 3) {
-	overhealthCooldown = 100 + 40+global.playerEssence*5
+	overhealthSuperTotal = 1205 - global.playerEssence*5
 	global.lifesteal = (global.playerDamage* 0.3 + max_hp * (0.0015 + (global.playerEssence*0.0035))*oItemManager.sacDaggerBonus);
 }
 
 
 if (inOverhealth) {
+	overhealthEffec = overhealthTimer/100;
+	if (overhealthEffec > 1) {
+		overhealthEffec = 2.5;
+	}
 	dodgeLifeBonus = 0;
-	overHealthSpeedBonus = sqrt(global.playerEssence) * 0.85;
-	overHealthBulletDelay = sqrt(global.playerEssence)*0.55;
-	overHealthDamageBuff = sqrt(global.playerEssence)*0.14;
-	overHealthCooldownBuff = sqrt(global.playerEssence)*0.98;
+	overHealthSpeedBonus = (sqrt(global.playerEssence) * 0.85)*overhealthEffec;
+	overHealthBulletDelay = (sqrt(global.playerEssence)*0.45)*overhealthEffec;
+	overHealthDamageBuff = (sqrt(global.playerEssence)*0.09)*overhealthEffec;
+	overHealthCooldownBuff = (sqrt(global.playerEssence)*0.98)*overhealthEffec;
 	global.player_health = 115;
 }
 if (inOverhealth && overhealthFlag) {

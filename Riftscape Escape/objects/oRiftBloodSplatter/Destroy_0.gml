@@ -4,11 +4,14 @@ if (canHeal) {
 	}
 	var heal = global.lifesteal*9*image_xscale*0.8;
 	healPlayer(heal, true);
-	if (oPlayerManager.inOverhealth && oPlayerManager.overhealthTimer < 100+20*global.playerEssence) {
-			oPlayerManager.overhealthTimer += 45+global.playerEssence*5;
-	}
-	if (oPlayerManager.overHealthOverheated) {
-		oPlayerManager.overhealthSuperTimer -= 10*global.playerEssence+45;
+	if (oPlayerManager.inOverhealth) {
+		if (oPlayerManager.overhealthTimer < 100) {
+			oPlayerManager.overhealthTimer += 12+global.playerEssence*0.5;
+		} else {
+			oPlayerManager.overhealthTimer += 5+global.playerEssence*0.25;
+		}	
+	} else if (oPlayerManager.overHealthOverheated) {
+		oPlayerManager.overhealthSuperTimer -= 5*global.playerEssence+45;
 	}
 	if (oItemManager.hasVeribroseEssence) {
 		oPlayerManager.trueCrit = true;

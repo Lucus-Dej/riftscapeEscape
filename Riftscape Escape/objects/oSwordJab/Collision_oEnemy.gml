@@ -3,6 +3,9 @@ if (!ds_exists(damagedList, ds_type_map)) {
 }
 if (!ds_map_exists(damagedList, other)) {
 	ds_map_add(damagedList, other, true);
+	if (oItemManager.hasPoisonCharm) {
+		callDOT(other, damage*0.04, 12, 12, dotType.poison, oTruePlayer);
+	}
 	enemyTakeDamage(damage, other, , , damageType.sword);
 	if (oPlayerManager.hasSwordReality) {
 		oPlayerManager.realitySwordBonus += global.playerReality;

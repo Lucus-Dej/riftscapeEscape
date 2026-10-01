@@ -108,6 +108,9 @@ function enemyTakeDamage(_dmg, _source, _isDot = false, _trueDmg = false, _type 
 		//audio_play_sound_at(aBoom, _source.x, _source.y, 0, 1, 1, 1, false, 0, global.sfxAudio)
 		if (_source.perfectParryTimer > 0 && _type == damageType.sword) {
 			audio_play_sound(aParry, 2, false, global.sfxAudio);
+			if (oItemManager.hasLightningCharm) {
+				instance_create_layer(_source.x, _source.y, "Items", oLightningBolt);
+			}
 			initPerfectParry();
 		}
 		
@@ -320,7 +323,7 @@ function playerTakeDamage(_dmg, _type = damageType.basic, _source = noone) {
 			addDamageNumber(312+irandom_range(-3, 3), 64+irandom_range(-3, 3), _dmg, c_white, , true, oTruePlayer.id);
 		} else if (oPlayerManager.inOverhealth) {
 			addDamageNumber(312+irandom_range(-3, 3), 64+irandom_range(-3, 3), oPlayerManager.overhealthTimer/3, c_aqua, , true, oTruePlayer.id);
-			oPlayerManager.overhealthTimer /= 3;
+			oPlayerManager.overhealthTimer -= 17.5;
 			
 		} else {
 			global.player_health -= _dmg;

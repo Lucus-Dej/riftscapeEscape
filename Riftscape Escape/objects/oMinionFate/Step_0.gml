@@ -1,3 +1,18 @@
+if (oItemManager.hasBloodCharm) {
+	var bloodCheck = irandom_range(1, 3) + global.playerTime * 0.2;
+	 if (bloodCheck >= 3) {
+		var distMax = sprite_width/2;
+		var ang = irandom(359);
+		
+		var spill = instance_create_layer(x, y, "Items", oBloodSpill)
+		spill.dmg =  global.playerLife*0.045+minionCrownDmgBonus*0.05;
+		var scale = random_range(0.5, 0.75);
+		scale = (image_xscale*0.5)*scale;
+		spill.image_xscale = scale;
+		spill.image_yscale = scale;
+		
+	 }
+}
 dmgRefreshTime = global.bullet_delay;
 rot = 1 + global.playerFate;
 minionChaseSpeed = global.playerReality*0.4 + 3.5;

@@ -4,3 +4,4 @@ damageArray = [];
 damageTimerArray = [];
 dmgRefreshTime = 60;
 flash = 1;
+audio_play_sound(aLightning, 4, false, global.sfxAudio)

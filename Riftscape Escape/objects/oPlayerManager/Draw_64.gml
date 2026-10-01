@@ -13,24 +13,27 @@ if (!inOverhealth) {
 	draw_healthbar(16, 16, 348, 32, healthDisplay, c_dkgrey, c_red, c_red, 0, true, true);
 }
 if (inOverhealth) {
-	draw_healthbar(16, 16, 348, 32, overhealthTimer, c_red, c_red, c_aqua, 0, true, true);
+	if (overhealthTimer > 100) {
+		overhealthTimer -= 0.25;
+	}
+	draw_healthbar(16, 16, 348, 32, overhealthTimer, c_red, c_red, c_navy, 0, true, true);
 	if (oItemManager.hasCrackedEgg) {
 		oTruePlayer.immuneToContactDmg = true;
 	}
 	if (!global.inCombat && overhealthTimer > 75) {
-		overhealthTimer -= 0.1;
+		overhealthTimer -= 0.01;
 	} else if (!global.inCombat && overhealthTimer <= 75) {
 		
 	} else if (global.inCombat) {
 		if (oItemManager.hasPetrifiedHeart) {
 			overhealthTimer-= 2;
 		}
-		overhealthTimer -= 0.5;
+		overhealthTimer -= 0.075;
 	}
 	global.player_health = max_hp;
 	
 	if (overhealthTimer < 0) {
-		overhealthTimer = overhealthCooldown;
+		overhealthTimer = 20;
 		dodgeLifeBonus = 0;
 		
 		overhealthCooldownUI = (overhealthSuperTimer/overhealthSuperTotal)*100;
@@ -49,9 +52,9 @@ if (inOverhealth) {
 			}
 		}
 	}
-} else if (inOverhealth) {
-	overheatBar = draw_healthbar(16, 16, 348, 32, 100, c_blue, c_black, c_red, 0, true, true);
-}
+} //else if (inOverhealth) {
+	//overheatBar = draw_healthbar(16, 16, 348, 32, 100, c_blue, c_black, c_red, 0, true, true);
+//}
 if (dodgeLifeBonus > 0) {
 	draw_healthbar(16, 16, 348, 32, (dodgeLifeBonus/dodgeLifeHP)*100, c_black, c_green, c_green, 0, true, true);
 }
@@ -63,7 +66,7 @@ if (overHealthOverheated) {
 			overhealthSuperTimer -= 4.5;
 		}
 		if (global.difficulty == 1) {
-			overhealthSuperTimer -= 0.6;
+			overhealthSuperTimer -= 0.5;
 		} 
 		overhealthSuperTimer--;
 	}

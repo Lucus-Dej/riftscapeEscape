@@ -1,4 +1,3 @@
-
 if (oPlayerManager.hasLifeHusk) {
 	instance_create_layer(tpSpotX, tpSpotY, "Instances", oHuskLife);
 	

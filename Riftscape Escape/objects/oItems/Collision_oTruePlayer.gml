@@ -7,7 +7,7 @@ if (!randomItem) {
 
 if (keyboard_check_pressed(vk_space)) {
 	if (shopItem) {
-		if (oItemManager.luckBonus > 0) {
+		if (oItemManager.luckBonus + oItemManager.reflectiveGemLuckBonus > 0) {
 			grabed = true;
 			removeFromItemPool(object_index)
 			instance_destroy();

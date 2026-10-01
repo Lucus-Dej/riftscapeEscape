@@ -2,6 +2,9 @@ audio_play_sound_at(aPortalOpen, x, y, 0, 0, 0, 0, 0, 2, global.sfxAudio);
 if (oPlayerManager.hasDodgeLife) {
 	sprite_index = sPoisDodgeImpact;
 }
+if (oItemManager.hasLightningCharm) {
+	instance_create_layer(x, y, "Items", oLightningCircle);
+}
 if (oPlayerManager.hasDodgeFate) {
 	with (oEnemy) {
 		if (point_distance(x, y, other.x, other.y) <= 256) {
