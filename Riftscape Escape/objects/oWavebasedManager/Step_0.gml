@@ -83,7 +83,7 @@ if (state == waveState.spawning) {
 		if (!runeRound && instance_exists(oRuneSpawner) && !restrictedArrays) {
 			instance_destroy(oRuneSpawner)
 		}
-		rollConsumable(id);
+		
 		with (oEnemyTurrets) {
 			if (RoomID == other.RoomID) {
 				if (active) {
@@ -113,6 +113,28 @@ if (state == waveState.spawning) {
 			bossBonus++;
 			roundsTillBoss = 5;
 			bossRound = false;
+			var floorClearReward = irandom_range(1, 100) + global.playerTime*0.5;
+			if (floorClearReward < 65) {
+				var tempArray = [oPowerUpHPHigh, oPowerUpLuckHigh, oPowerUpXPHigh]
+				var ranI = irandom(array_length(tempArray)-1);
+				var newDrop = tempArray[ranI];
+				instance_create_layer(x, y, "Instances", oPowerUpHPHigh);
+			} else if (floorClearReward < 85) {
+				var funCheck = irandom_range(1, 50) + global.playerTime;
+				if (funCheck >= 50) {
+					var item = rollItem(false, itemSearchType.simple);
+					instance_create_layer(x, y, "Instances", item);
+				} else {
+					var i = rollItem(false);
+					instance_create_layer(x, y, "Instances", i);
+				}
+			} else {
+				var ranIndex = irandom(array_length(oItemManager.pageArray)-1);
+				var page = oItemManager.pageArray[ranIndex];
+				instance_create_layer(x, y, "Instances", page);
+			}
+		} else {
+			rollConsumable(id);
 		}
 		state = waveState.inBetween;
 	}

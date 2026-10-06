@@ -4,7 +4,7 @@ function endOfCombatCheck(){
 		oItemManager.reflectiveGemLuckBonus += 0.75;
 	}
 	if (!instance_exists(oDeathRuneSpecter) && oPlayerManager.hasDeathRune) {
-		enem = spawnEnemViaEgg(60, oDeathRuneSpecter, false, false, RoomID, id, instance_nearest(x, y, oSpawnSpawner))
+		enem = spawnEnemViaEgg(60, oDeathRuneSpecter, false, false, RoomID, id, instance_nearest(x, y, oPlayerSpawnPoint))
 	}
 	if (oItemManager.hasRareSeed && !global.damageCheck) {
 		var randLifeUp = irandom_range(1, 8);

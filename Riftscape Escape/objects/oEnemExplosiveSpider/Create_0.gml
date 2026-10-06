@@ -6,6 +6,6 @@ on_cooldown = false;
 bite_timer = shoot_delay;
 enemSpeed = 4.8;
 baseSpeed = enemSpeed;
-damage = 15;
+damage = 25;
 contactDamage = damage;
 denyHP = false;

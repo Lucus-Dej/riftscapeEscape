@@ -11,7 +11,11 @@ if (!discovered && instance_exists(workerX)) {
 	}
 }
 if (type == roomManagerType.arena && !wavebasedSpawned) {
-	waveManager = instance_create_layer(x, y, "Instances", oWavebasedManager);
+	var spawnPoint = id;
+	if (instance_exists(oWavebasedStarter)) {
+		spawnPoint = instance_nearest(x, y, oWavebasedStarter);
+	}
+	waveManager = instance_create_layer(spawnPoint.x, spawnPoint.y, "Instances", oWavebasedManager);
 	waveManager.RoomID = RoomID;
 	waveManager.isLimited = true;
 	waveManager.waveLimit = 5;
@@ -182,6 +186,7 @@ if (inCombat && !combatFinished && temp_portal == noone) {
 		if (RoomID == other.RoomID) {
 			active = false;
 			image_index = 0;
+			swap = false;
 		}
 	}
 		global.activeRoom = false;
