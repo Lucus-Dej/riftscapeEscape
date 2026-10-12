@@ -12,3 +12,7 @@ bullet_speed = 5.5;
 searchPlayer();
 image_xscale = 1.5;
 image_yscale = 1.5;
+if (global.difficulty >= 4) {
+	damage = 18;
+	shoot_delay = 15;
+}

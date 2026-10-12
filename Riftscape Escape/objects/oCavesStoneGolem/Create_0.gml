@@ -14,3 +14,11 @@ halfRaged = false;
 fullRaged = false;
 image_xscale = 2;
 image_yscale = 2;
+if (global.difficulty >= 4) {
+	damage = 18.5;
+	shoot_delay = 110;
+	rageBreak = 120;
+	enemSpeed = 6;
+	baseSpeed = enemSpeed;
+	initalSpeed = enemSpeed;
+}

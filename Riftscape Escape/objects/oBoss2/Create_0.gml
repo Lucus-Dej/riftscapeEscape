@@ -15,3 +15,7 @@ damage = 9.5;
 enragedAngle = 0;
 spawnCheck = 0;
 spawnNum = 900;
+if (global.difficulty >= 4) {
+	damage = 11;
+	shoot_delay = 100;
+}

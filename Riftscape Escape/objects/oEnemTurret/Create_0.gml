@@ -8,3 +8,7 @@ baseSpeed = enemSpeed;
 fireToggle = false;
 damage = 35;
 searchPlayer();
+if (global.difficulty >= 4) {
+	damage = 42.5;
+	shoot_delay = 105;
+}

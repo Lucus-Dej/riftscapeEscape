@@ -11,3 +11,6 @@ denyHP = true;
 if (layer_get_name(layer) != "Flying") {
 	layer = layer_get_id("Flying");
 }
+if (global.difficulty >= 4) {
+	damage = 40;;
+}

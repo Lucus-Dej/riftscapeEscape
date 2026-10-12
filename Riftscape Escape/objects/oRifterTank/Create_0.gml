@@ -36,3 +36,9 @@ VesselPath_timer = 15;
 VesselBulletSpeed = 4;
 
 searchPlayer();
+if (global.difficulty >= 4) {
+	damage = 19;
+	shoot_delay = 110;
+	bullet_speed = 5;
+}
+

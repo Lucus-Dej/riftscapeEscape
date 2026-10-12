@@ -12,3 +12,8 @@ searchPlayer();
 chargeCooldown = 18;
 chargeTime = chargeCooldown;
 modifiedAlpha = 1;
+if (global.difficulty >= 4) {
+	damage = 42;
+	shoot_delay = 110;
+	bullet_speed = 18;
+}

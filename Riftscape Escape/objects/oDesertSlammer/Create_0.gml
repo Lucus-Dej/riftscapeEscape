@@ -30,5 +30,8 @@ damage = 20;
 chargeBonus = 0;
 contactDamage = damage;
 
-
+if (global.difficulty >= 4) {
+	damage = 25;
+	chargeDelay = 200;
+}
 

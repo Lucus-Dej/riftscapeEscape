@@ -19,3 +19,7 @@ enragedDelay = enragedCooldown;
 phasePoint1 =  enemyHP*0.7;
 ang = 0;
 
+if (global.difficulty >= 4) {
+	damage = 14;
+	shoot_delay = 25;
+}

@@ -49,6 +49,10 @@ move5rngRate = 0;
 image_xscale = 2;
 image_yscale = 2;
 isBoss = true;
+if (global.difficulty >= 4) {
+	trueTorz = true;
+}
+
 if (trueTorz) {
 	moveTotal *= 2;
 	shoot_delay -= 10;

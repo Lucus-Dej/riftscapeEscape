@@ -47,3 +47,8 @@ lineAngleCW = 0;
 lineAngleCCW = 0;
 
 attackActive = false;
+if (global.difficulty >= 4) {
+	missleMax = 32;
+	wallSpawnCooldown = 30;
+	damage = 24;
+}

@@ -10,3 +10,7 @@ searchPlayer();
 bulletCount = 0;
 bulletLimit = 12;
 ranNum = -1;
+if (global.difficulty >= 4) {
+	damage = 28.5;
+	shoot_delay = 110;
+}

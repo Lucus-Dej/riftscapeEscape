@@ -14,3 +14,8 @@ bodyArray = [];
 spawnedBody = false;
 image_xscale = 0.75;
 image_yscale = 0.75;
+if (global.difficulty >= 4) {
+	damage = 14;
+	enemSpeed = 3.65;
+	baseSpeed = enemSpeed;
+}

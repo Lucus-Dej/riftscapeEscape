@@ -54,3 +54,9 @@ enum RIFTERCHARGE {
 	IDLE, WINDUP, CHARGE, RECOVER
 }
 state = RIFTERCHARGE.IDLE;
+if (global.difficulty >= 4) {
+	damage = 40;
+	shoot_delay = 270;
+	slamCooldown -= 10;
+	slamDamage = 45;
+}

@@ -19,3 +19,8 @@ flying = true;
 if (layer_get_name(layer) != "Flying") {
 	layer = layer_get_id("Flying");
 }
+if (global.difficulty >= 4) {
+	damage = 16.5;
+	shoot_delay = 45;
+	bullet_speed = 8;
+}

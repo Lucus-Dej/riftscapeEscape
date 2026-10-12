@@ -31,5 +31,9 @@ damage = 14;
 contactDamage = damage;
 chargeBonus = 0;
 
+if (global.difficulty >= 4) {
+	damage = 180;
+	shoot_delay = 110;
+}
 
 

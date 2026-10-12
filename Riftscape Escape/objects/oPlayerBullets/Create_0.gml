@@ -5,7 +5,7 @@ bounceX = 0;
 bounceY = 0;
 skipDeath = false;
 flying = false;
-tempGhostTimer = 2;
+tempGhostTimer = 0;
 damageArray = [];
 damageTimerArray = [];
 links = [];
@@ -65,6 +65,7 @@ image_angle = point_direction(
 );
 ignoreEnemy = noone;
 ignoreWall = noone;
+ignoreWalls = [];
 target = noone;
 turretCooldown = global.bullet_delay*0.7;
 turretDelay = turretCooldown;

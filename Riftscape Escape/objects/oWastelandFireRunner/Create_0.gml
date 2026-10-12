@@ -28,3 +28,7 @@ rounds = 4;
 roundDiraction = 55;
 fireDelay = 12;
 spawnEnemy = oWastelandBurner
+if (global.difficulty >= 4) {
+	damage = 18;
+	shoot_delay = 185;
+}

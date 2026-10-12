@@ -14,3 +14,7 @@ enraged = false;
 move = -1;
 damage = 8.5;
 searchPlayer();
+if (global.difficulty >= 4) {
+	damage = 11;
+	shoot_delay = 190;
+}

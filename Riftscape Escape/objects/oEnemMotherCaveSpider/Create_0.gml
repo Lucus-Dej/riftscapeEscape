@@ -11,3 +11,8 @@ image_xscale += 1;
 image_yscale += 1;
 count = irandom_range(4, 8);
 spiderArray = [oEnemSpider, oEnemCaveSpider, oEnemExplosiveSpider];
+if (global.difficulty >= 4) {
+	damage = 18;
+	shoot_delay = 65;
+	count += 2;
+}

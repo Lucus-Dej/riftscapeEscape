@@ -34,3 +34,7 @@ minionArray = [];
 orbitAngle = 0;
 radius = 64;
 image_speed = 0.4;
+if (global.difficulty >= 4) {
+	minionMax = 8;
+	damage = 26;
+}

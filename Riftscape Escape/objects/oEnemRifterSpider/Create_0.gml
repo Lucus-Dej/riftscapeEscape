@@ -8,3 +8,6 @@ baseSpeed = enemSpeed;
 contactDamage = 25.5;
 damage = contactDamage;
 count = 3;
+if (global.difficulty >= 4) {
+	count++;
+}

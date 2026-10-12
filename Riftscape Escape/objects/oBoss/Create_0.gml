@@ -8,9 +8,13 @@ recoil_cooldown = 10;
 fire_duration = 9;
 fire_timer = fire_duration;
 recoil_timer = 0;
- enemyHP = 18;
+ enemyHP = 15.5;
 phasePoint1 =  enemyHP/2;
 enraged = false;
 move = -1;
-damage = 8.5;
+damage = 9.5;
 searchPlayer();
+if (global.difficulty >= 4) {
+	damage = 12;
+	shoot_delay = 90;
+}

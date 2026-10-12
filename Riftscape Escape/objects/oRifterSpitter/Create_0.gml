@@ -14,3 +14,7 @@ baseSpeed = enemSpeed;
 damage = 36.5;
 bullet_speed = 5.5;
 playerPercent = 0;
+if (global.difficulty >= 4) {
+	damage = 40;
+	shoot_delay = 110;
+}

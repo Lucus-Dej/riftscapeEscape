@@ -10,9 +10,17 @@ searchPlayer();
 isDashing = false;
 dashDuration = 80;
 dashTimer = 0;
+dashSpeed = 3.8;
+dashDir = 0;
 flying = true;
 if (layer_get_name(layer) != "Flying") {
 	layer = layer_get_id("Flying");
 }
 image_xscale += 1;
 image_yscale += 1;
+if (global.difficulty >= 4) {
+	dashSpeed = 4.4;
+	shoot_delay = 70;
+	dashDuration = 35;
+	damage = 22.5;
+}

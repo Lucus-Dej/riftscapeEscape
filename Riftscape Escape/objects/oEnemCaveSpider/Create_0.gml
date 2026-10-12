@@ -8,3 +8,7 @@ enemSpeed = 4.45;
 baseSpeed = enemSpeed;
 damage = 12.5;
 contactDamage = damage;
+if (global.difficulty >= 4) {
+	shoot_delay = 30;
+	damage = 15;
+}

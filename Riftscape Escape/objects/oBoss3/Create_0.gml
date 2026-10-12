@@ -14,3 +14,7 @@ phasePoint1 =  enemyHP/2;
 enraged = false;
 damage = 19;
 ang = irandom_range(35, 60);
+if (global.difficulty >= 4) {
+	damage = 23;
+	shoot_delay = 160;
+}

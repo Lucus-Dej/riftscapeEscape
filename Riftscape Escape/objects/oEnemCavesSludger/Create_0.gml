@@ -8,3 +8,8 @@ damage = 18.5;
 bullet_speed = 4.1;
 speedBoost = 0;
 searchPlayer();
+if (global.difficulty >= 4) {
+	shoot_delay = 90;
+	damage = 32;
+	bullet_speed = 5;
+}

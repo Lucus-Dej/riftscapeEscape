@@ -15,4 +15,8 @@ bulletCount = 0;
 attack = -1;
 blackHole = noone;
 blackholeDuration = 0;
+if (global.difficulty >= 4) {
+	damage = 25;
+	shoot_delay = 95;
+}
 

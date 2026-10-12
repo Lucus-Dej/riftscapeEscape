@@ -16,3 +16,9 @@ if (layer_get_name(layer) != "Flying") {
 	layer = layer_get_id("Flying");
 }
 image_speed = 0;
+if (global.difficulty >= 4) {
+	damage = 14;
+	shoot_delay = 75;
+	enemSpeed = 1;
+	baseSpeed = enemSpeed;
+}

@@ -46,28 +46,7 @@ if (oItemManager.hasConRift) {
 			}
 		}
 	}
-}/*
-with (oPlayerBullets) {
-	// abs(makeTime - other.makeTime) <= 12)
-	var hostID = id;
-	var targetID = other.id;
-	var makeLink = true;
-	var dist = point_distance(x, y, other.x, other.y);
-	if (id != other.id && dist <= 128) {
-		
-		with (oBulletLightningLink) {
-			if ((connector == hostID && host == targetID) || (host == hostID && connector == targetID)) {
-				makeLink = false;
-			}
-		}
-		if (makeLink) {
-			//other.connected = true;
-			var link = instance_create_layer(x, y, "Instances", oBulletLightningLink);
-			link.host = id;
-			link.connector = other.id;
-		}
-	}
-}*/
+}
 if (!firedFromTurret && !turretApplied && isTurret) {
 	image_xscale += 0.5;
 	image_yscale += 0.5;
@@ -121,7 +100,7 @@ if (isTurret && !firedFromTurret && turretApplied) {
 		
 		
 	}
-if (!is_real(x) || !is_real(y)) {
+/*if (!is_real(x) || !is_real(y)) {
     show_debug_message("oBullet position corrupted");
     instance_destroy();
     exit;
@@ -132,7 +111,7 @@ if (!is_real(speed) || !is_real(direction)) {
     show_debug_message("oBullet movement corrupted");
     instance_destroy();
     exit;
-}
+}*/
 if (canOrbit && instance_exists(orbitCenter)) {
 
     orbitAngle += orbitSpeed;
@@ -197,6 +176,20 @@ if (array_length(damageArray) > 0) {
 			array_delete(damageTimerArray, i, 1);
 			array_delete(damageArray, i, 1);
 		}
+	}
+}
+if (array_length(ignoreWalls) > 0) {
+	var stillTouching = false;
+
+	for (var i = 0; i < array_length(ignoreWalls); i++) {
+		if (instance_exists(ignoreWalls[i]) && place_meeting(x, y, ignoreWalls[i])) {
+			stillTouching = true;
+			break;
+		}
+	}
+
+	if (!stillTouching) {
+		ignoreWalls = [];
 	}
 }
 x += lengthdir_x(speed, direction);

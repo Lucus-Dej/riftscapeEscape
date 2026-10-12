@@ -28,3 +28,9 @@ fireDelay = 12;
 spawnEnemy = oEnemSpider
 image_xscale += 1;
 image_yscale += 1;
+if (global.difficulty >= 4) {
+	damage = 26;
+	enemSpeed = 1.25;
+	baseSpeed = enemSpeed;
+	shotTotal = 15;
+}

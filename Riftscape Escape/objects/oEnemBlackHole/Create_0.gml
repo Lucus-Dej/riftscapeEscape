@@ -7,13 +7,17 @@ rotation = 1;
 enemSpeed = 0.2;
 baseSpeed = enemSpeed;
 xp = 8;
-damage = 20;
+damage = 12.5;
 contactDamage = 35;
 bullet_speed = 6.5;
 searchPlayer();
-spawnWeight = 8.5;
+spawnWeight = 11.5;
 bulletCount = 0;
 attack = -1;
 blackHole = noone;
 blackholeDuration = 0;
 shotAngle = 0;
+if (global.difficulty >= 4) {
+	damage = 14;
+	shoot_delay = 330;
+}
