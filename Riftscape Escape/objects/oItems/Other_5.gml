@@ -1,4 +1,4 @@
-if (room != hordeSurvival && room != itemRoom && object_index != oDepictionOfSeraphim && !shopItem) {
+if (instance_exists(oItemManager) && room != hordeSurvival && room != itemRoom && object_index != oDepictionOfSeraphim && !shopItem) {
 	oItemManager.luckBonus += rarity+1;
 	show_debug_message("MY RARITY IS: "+string(rarity))
 	if (rarity == 0 && !global.meta.challenges.gotItemHollowedDice) {

@@ -10,14 +10,29 @@ if (oPlayerManager.hasFirstPRune) {
 
 	draw_sprite_ext(sprite_index, image_index, 0, 0, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 	if (shopItem) {
-		draw_text_transformed(0, -64, "Price: "+string(price)+"Luck Bonus", 2, 2, 0)
+		draw_set_colour(c_black);
+		if (oItemManager.flagNextShopItemFree) {
+			draw_text_transformed(0, -64, "Price: "+string(price)+"Luck Bonus", 2, 2, 0)
+		} else if (oItemManager.flagNextShopItemDiscount) {
+			draw_text_transformed(0, -64, "Price: "+string(price)+"Luck Bonus", 2, 2, 0)
+		} else {
+			draw_text_transformed(0, -64, "Price: "+string(price)+"Luck Bonus", 2, 2, 0)
+		}
+		
 	}
 	matrix_set(matrix_world, matrix_build_identity());
 } else {
 	draw_self();
 	if (shopItem) {
-		
-		draw_text_transformed(x-string_width(displayString)/2, y+48, displayString, 1, 1, 0)
+		draw_set_colour(c_red);
+		if (oItemManager.flagNextShopItemFree) {
+			draw_text_transformed(x-string_width("Price: FREE!")/2, y+48, "Price: FREE!", 1, 1, 0)
+		} else if (oItemManager.flagNextShopItemDiscount) {
+			draw_text_transformed(x-string_width(discountString)/2, y+48, discountString, 1, 1, 0)
+		} else {
+			draw_set_colour(c_black);
+			draw_text_transformed(x-string_width(displayString)/2, y+48, displayString, 1, 1, 0)
+		}
 		
 	}
 	

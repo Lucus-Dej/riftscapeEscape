@@ -6,6 +6,9 @@ global.gameSteps = 0;
 global.inCombat = false;
 global.resH = 720;
 global.resW = 1280;
+restartRunKey = keyboard_check(ord("L"));
+restartRunTime = 30;
+restartRunCurrent = 0;
 global.lifestats = {
 	xp: 0,
 	timePlayedInSeconds: 0,
@@ -54,6 +57,8 @@ global.meta = {
 		
 		
 		// item unlocks
+		gotItemItemsPlus: false,
+		
 		gotItemGenStone: false,
 		
 		gotItemHammer: false,
@@ -136,6 +141,14 @@ global.enemBulletCount = 0;
 
 global.metaChallengeArray = {	
 	challenges: {
+		gotItemItemsPlus: {
+			title: "Items Plus",
+			spr: sItemsPlus,
+			sprIndex: 0,
+			hint: "Consumerism",
+			desc: "Buy Eight Items In One Rune",
+		},
+		
 		gotItemGenStone: {
 			title: "???",
 			spr: sGenStone,
@@ -467,3 +480,16 @@ challengeMenu = {
 	visibleChallenges: 2,
 }
 maxScroll = (challengeMenu.challengeSize - challengeMenu.visibleChallenges) * challengeMenu.challengeSpacing;
+
+function quickRestart() {
+	room_goto(hordeSurvival);
+	instance_destroy(oLightManager);
+	instance_create_layer(x, y, "Instances", oLightManager);
+	var diffLayer = "difficultyMenu";
+	layer_set_visible(diffLayer, false);
+	if (global.difficulty == 4) {
+		oSettingManager.queueEvilRuneAdd = true;
+	}
+	instance_destroy(oPlayerManager);
+	instance_destroy(oItemManager);
+}

@@ -79,7 +79,7 @@ if (surface_get_width(lightSurface) != camW || surface_get_height(lightSurface) 
 // Draw lighting
 surface_set_target(lightSurface);
 if (instance_exists(oPlayerManager) && !oPlayerManager.hasFirstPRune) {
-	draw_clear_alpha(c_black, darkLevel);
+	draw_clear_alpha(c_black, darkLevel+darkLevelRestartMod);
 }
 
 

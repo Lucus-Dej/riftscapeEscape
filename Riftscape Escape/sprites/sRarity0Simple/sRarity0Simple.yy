@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"raritySprites",
-    "path":"folders/sprites/ASSETS/ITEMS/raritySprites.yy",
+    "name":"passive",
+    "path":"folders/sprites/ASSETS/ITEMS/raritySprites/passive.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

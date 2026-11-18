@@ -1,7 +1,7 @@
-damage = 0.5;
+damage = 0;//0.5;
 image_angle = dir;
 spreadSpeed = 0.5;
-spread = false;
+spread = true;
 wallLine = ds_list_create();
 nodeLine = ds_list_create();
 damageArray = [];

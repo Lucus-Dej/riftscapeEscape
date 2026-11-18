@@ -32,6 +32,7 @@
     {"$GMObjectProperty":"v2","%Name":"zTilt","filters":[],"listItems":[],"multiselect":false,"name":"zTilt","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"conditional","filters":[],"listItems":[],"multiselect":false,"name":"conditional","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"laserAng","filters":[],"listItems":[],"multiselect":false,"name":"laserAng","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"90","varDescription":"90 is Up.\r\n180 Left.\r\n270 Down.\r\n0 Right.","varFriendlyName":"Ang","varType":1,},
+    {"$GMObjectProperty":"v2","%Name":"boss","filters":[],"listItems":[],"multiselect":false,"name":"boss","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

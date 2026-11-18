@@ -2,11 +2,13 @@
 if (!veribroseMark && grabed) {
 	if (global.chargeItem == noone) {
 		global.chargeItem = self;
+		oItemManager.currentChargeRaritySpr = findRaritySpriteCons(rarity)
 		global.itemCharges = charges;
 		global.currentCharges = global.itemCharges;
 	} else if (global.chargeItem != noone) {
 		instance_create_layer(x, y, "Instances", global.chargeItem.object_index);
 		global.chargeItem = self;
+		oItemManager.currentChargeRaritySpr = findRaritySpriteCons(rarity)
 		global.itemCharges = charges;
 	}
 }

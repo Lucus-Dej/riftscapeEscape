@@ -5,7 +5,7 @@
     "name":"agMusic",
     "path":"audiogroups/agMusic",
   },
-  "bitDepth":0,
+  "bitDepth":1,
   "channelFormat":1,
   "compression":0,
   "compressionQuality":4,
@@ -20,7 +20,7 @@
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
-  "sampleRate":48000,
+  "sampleRate":11025,
   "soundFile":"desertTemples.mp3",
-  "volume":1.0,
+  "volume":0.3,
 }

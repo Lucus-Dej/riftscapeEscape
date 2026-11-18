@@ -1,4 +1,5 @@
 iframe = 12;
+pauseTime = 0;
 canFriendlyFireOwner = false;
 owner = noone;
 rotate = false;

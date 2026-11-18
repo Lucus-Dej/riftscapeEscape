@@ -20,4 +20,4 @@ if (oPlayerManager.hasFirstPRune) {
 }
 
 shader_reset();
-draw_text(x-64, y, active)
+draw_text(x, y-128, laserDir)

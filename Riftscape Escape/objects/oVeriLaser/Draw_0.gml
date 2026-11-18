@@ -17,4 +17,4 @@ if (oPlayerManager.hasFirstPRune) {
 var dir = image_angle;
 var dirX = x + lengthdir_x(1200, dir);
 var dirY = y + lengthdir_y(1200, dir);
-draw_line(x, y, dirX, dirY)
+//draw_line(x, y, dirX, dirY)

@@ -11,4 +11,7 @@ if (!array_contains(damageArray, other.id)) {
 		oPlayerManager.hasBombKilled = true;
 		global.playerKilled = true;
 	}
+	if (other.object_index == target) {
+		targetFound = true;
+	}
 }

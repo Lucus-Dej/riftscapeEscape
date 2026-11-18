@@ -136,6 +136,14 @@ function useChargeItem(){
 			case oBlackHoleCharge:
 			instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oChargeBlackHole);
 			break;
+			case oCriminalRecord:
+			oItemManager.flagNextShopItemFree = true;
+			break;
+			
+			case oCriminalRecordPage:
+			oItemManager.flagNextShopItemDiscount = true;
+			global.chargeItem = noone;
+			break;
 			
 			case oBlackHolePage:
 			instance_create_layer(oTruePlayer.x, oTruePlayer.y, "Items", oChargeBlackHole);

@@ -52,8 +52,10 @@ for (var i = 0; i < array_length(itemList); i++) {
 		hoveredItem = obj;
 		scale = 1;
 		alpha = 1;
-		shader_set(shdHit);
-		shader_set_uniform_f(shader_get_uniform(shdHit, "flash"), flash);
+		if (ritualRerollAvailable) {
+			shader_set(shdHit);
+			shader_set_uniform_f(shader_get_uniform(shdHit, "flash"), flash);
+		}
 	}
 	
 	if (denied) {
@@ -71,18 +73,7 @@ for (var i = 0; i < array_length(itemList); i++) {
 	
 }
 	
-if (hoveredItem != noone) {
-	displayItemFunction(hoveredItem);
-	if (ritualRerollAvailable && mouse_check_button_pressed(mb_left)) {
-		//show_debug_message("hovered item is "+string(hoveredItem));
-		itemRemove(hoveredItem);
-		var newItem = rollItem(true);
-		itemAdd(newItem);
-		audio_play_sound(aShatter, 1, false, global.sfxAudio)
-		//show_debug_message("newItem item is "+string(newItem));
-		ritualRerollAvailable = false;
-	}
-}
+
 if (global.chargeItem != noone) {
     var obj = global.chargeItem.object_index;
     var spr = object_get_sprite(obj);
@@ -92,11 +83,23 @@ if (global.chargeItem != noone) {
 
         var sprW = sprite_get_width(spr) * scale;
         var sprH = sprite_get_height(spr) * scale;
-
+		
         var sx = pad;
-        var sy = display_get_gui_height() - sprH - pad;
-
-        draw_sprite_ext(spr, 0, sx + sprW * 0.5, sy + sprH * 0.5, scale, scale, 0, c_white, 1);
+        var sy = display_get_gui_height() - sprH - pad - 32;
+		var alpha = 0.6;
+		if (mouseX >= sx + sprW * 0.5 - sprW * scale * 0.5 && mouseX <= sx + sprW * 0.5 + sprW * scale * 0.5 && mouseY >= sy + sprH * 0.5 - sprH * scale * 0.5 && mouseY <= sy + sprH * 0.5 + sprH * scale * 0.5) {
+			hoveredItem = obj;
+			scale += 0.25;
+			alpha = 1;
+			if (ritualRerollAvailable) {
+				shader_set(shdHit);
+				shader_set_uniform_f(shader_get_uniform(shdHit, "flash"), flash);
+			}
+		}
+		
+        draw_sprite_ext(spr, 0, sx + sprW * 0.5, sy + sprH * 0.5, scale, scale, 0, c_white, alpha);
+		shader_reset();
+		draw_sprite_ext(currentChargeRaritySpr, 0, sx + sprW * 0.5, sy + sprH * 0.5, scale, scale, 0, c_white, alpha);
 
         // charge values
         var current = global.currentCharges;
@@ -116,25 +119,45 @@ if (global.chargeItem != noone) {
 			draw_set_color(c_white);
 			draw_set_font(fLevels);
 			draw_text(startItemX, startItemY-sprW, "Click Crtl");
+			shader_set(shdHit);
+			shader_set_uniform_f(shader_get_uniform(shdHit, "flash"), flash);
 		}
         for (var i = 0; i < maxCharges; i++) {
             var x1 = startItemX + i * (segWidth + segPad);
             var x2 = x1 + segWidth;
             var y1 = startItemY;
             var y2 = y1 + segHeight;
-
+			
             if (i < current) {
-				draw_set_color(c_yellow);
-                draw_rectangle(x1, y1, x2, y2, false); // filled
+				draw_set_color(c_aqua);
+                draw_rectangle(x1, y1+32, x2, y2+32, false); // filled
             } else {
-				draw_set_color(c_ltgrey);
-                draw_rectangle(x1, y1, x2, y2, true);  // empty
+				draw_set_color(c_dkgrey);
+                draw_rectangle(x1, y1+32, x2, y2+32, true);  // empty
             }
         }
+		shader_reset();
     }
+	
 }
 
-
+if (hoveredItem != noone) {
+	displayItemFunction(hoveredItem);
+	if (ritualRerollAvailable && mouse_check_button_pressed(mb_left)) {
+		//show_debug_message("hovered item is "+string(global.chargeItem));
+		if (global.chargeItem != noone && hoveredItem == global.chargeItem.object_index) {
+			global.chargeItem = noone;
+			global.currentCharges = 0;
+		} else {
+			itemRemove(hoveredItem);
+		}
+		var newItem = rollItem(true);
+		itemAdd(newItem);
+		audio_play_sound(aShatter, 1, false, global.sfxAudio)
+		//show_debug_message("newItem item is "+string(newItem));
+		ritualRerollAvailable = false;
+	}
+}
 // display item text?
 if (displayItemTimer > 0) {
 	var alpha = min(displayItemTimer / 20, 1);

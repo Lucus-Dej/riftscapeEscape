@@ -1,7 +1,7 @@
 depth = -99999999;
 
 lightSurface = -1;
-
+darkLevelRestartMod = 0;
 lightList = array_create(0);
 litEntity = noone;
 unlitEntity = noone

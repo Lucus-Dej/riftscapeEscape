@@ -84,7 +84,7 @@ if (floorState == genState.complete ) {
 		if (invalid) {
 			//isBossDoor = false;
 			//doorType = "null";
-			instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
+			//instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
 			for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 				if (!bossFlag) {
 					show_debug_message("trying again: BOSS")
@@ -182,7 +182,7 @@ if (floorState == genState.complete ) {
 			connectRoom(id, dir, ritualR, Manager1, false);
 			if (invalid) {
 				doorType = "null";
-				instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
+				//instance_create_layer(x, y, "Instances", oDepictionOfSeraphim);
 				for (var i = 0; i < array_length(other.bossDoorArray); i++) {
 					if (!ritualFlag) {
 						show_debug_message("trying again: RITUAL")
@@ -414,6 +414,9 @@ if (floorState == genState.complete ) {
 	}
 	if (oItemManager.hasShopCoin) {
 		shopCheck += 30;
+	}
+	if (oItemManager.hasItemsPlus) {
+		shopCheck += 25;
 	}
 	show_debug_message("shop Index is "+string(shopCheck))
 	if ((evilRoomFlag || shopCheck >= 70 ) && luck > 0) {

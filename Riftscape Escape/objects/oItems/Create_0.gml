@@ -39,5 +39,8 @@ else if (ds_list_find_index(oItemManager.ultraItemCopy, object_index) != -1) {
     rarity = 6;
 }
 isLightExcluded = false;
-
+if (oItemManager.hasItemsPlus) {
+	price *= 0.65;
+}
 displayString =  "Price: "+string(price)+" Item Luck";
+discountString = "Price: "+string(price/2)+" Item Luck";

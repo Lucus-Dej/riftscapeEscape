@@ -11,7 +11,21 @@ if (keyboard_check_pressed(vk_space)) {
 			grabed = true;
 			removeFromItemPool(object_index)
 			instance_destroy();
-			oItemManager.luckBonus -= price;
+			oItemManager.itemsBought++;
+			if (oItemManager.itemsBought >= 8 && !global.meta.challenges.gotItemItemsPlus) {
+				showChallenge("gotItemItemsPlus");
+				global.meta.challenges.gotItemItemsPlus = true;
+			}
+			if (oItemManager.flagNextShopItemFree) {
+				//nothing :)
+				oItemManager.flagNextShopItemFree = false;
+			} else if (oItemManager.flagNextShopItemDiscount) {
+				oItemManager.luckBonus -= price/2;
+				oItemManager.flagNextShopItemDiscount = false;
+			} else {
+				oItemManager.luckBonus -= price;
+			}
+			
 		}
 	} else {
 		grabed = true;

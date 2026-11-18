@@ -1,3 +1,7 @@
+if (pauseTime > 0) {
+	pauseTime--;
+	exit;
+}
 if (iframe >= 0) {
 	if (instance_exists(owner)) {
 		if (!place_meeting(x, y, owner)) {

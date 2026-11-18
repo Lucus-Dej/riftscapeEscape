@@ -1,4 +1,18 @@
 global.gameSteps++;
+restartRunKey = keyboard_check(ord("L"));
+if (restartRunKey) {
+	restartRunCurrent++;
+	if (instance_exists(oLightManager)) {
+		oLightManager.darkLevelRestartMod += 0.01;
+	}
+	if (restartRunCurrent > restartRunTime) {
+		quickRestart();
+		restartRunCurrent = 0;
+	}
+} else {
+	oLightManager.darkLevelRestartMod = 0;
+	restartRunCurrent = 0;
+}
 if (drawChallenge) {
 	if (mouse_wheel_up()) {
 		/*challengeMenu.currentIndex++;

@@ -34,6 +34,9 @@ switch (room) {
 	changeTrack(desertTemples)
 	break;
 	
+	case d1:
+	changeTrack(aDesertTheme2)
+	
 	case kingdom0:
 	changeTrack(aLongDrawnBreath)
 	break;

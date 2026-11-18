@@ -2,6 +2,7 @@ searchItem = false;
 runeCheck = false;
 ritualRerollAvailable = false;
 luck10Check = false;
+itemsBought = 0;
 enum itemSearchType {
 	boss,
 	simple,
@@ -50,7 +51,7 @@ displayItemDuration = 90;
 displayItemTimer = 0;
 itemDesc = "placeholder";
 itemDescLength = string_length(itemDesc);
-
+currentChargeRaritySpr = noone;
 rarity = 0;
 randomise();
 
@@ -82,7 +83,7 @@ masterItemList = ds_list_create();
 masterItemCopy = ds_list_create();
 dustCount = 0;
 bookList = ds_list_create()
-ds_list_add(bookList, oFreedom, oFoolsGold, oDeathBook, oDictionaryCharge, 
+ds_list_add(bookList, oFreedom, oFoolsGold, oDeathBook, oDictionaryCharge, oCriminalRecord,
 	oBlackHoleCharge, oHarvestBook, oDreamsBook, oThePathForward);
 item = oEnemSpider;
 // freedom, death, black hole, harvest, dreams
@@ -93,7 +94,7 @@ raritySpriteList = [];
 flash = 0;
 shouldFlash = true;
 flashRate = 0.05;
-pageArray = [oFreedomPage, oDeathPage, oBlackHolePage, oHarvestPage, oDreamsPage]
+pageArray = [oFreedomPage, oDeathPage, oBlackHolePage, oHarvestPage, oDreamsPage, oCriminalRecordPage]
 
 ds_list_add(runeItemList, oBloodCharm, oPoisonCharm, oIceCharm, oLightningCharm, oFireCharm, 
 	oHeartPendent, oLaserPointer, oUnstableEnergy, oDirectorsNote,
@@ -105,7 +106,7 @@ ds_list_add(commonItemList, oRadioactiveMaterial, oBottleOil,
 	oPropheticRune, oD2, oSmallSculpture, oBrokenBoomerang)
 ds_list_add(rareItemList, oRifterBloodSample, oPlasmaOrb, 
 	oAntidote, oWeightlessHourglass, oOilBarrel, oHarvestBook, oBloodyGem, 
-	oCrackedEgg, oBlackHoleCharge, oBrokenBloodVial, oImageOfYou, oDirtyMirror);
+	oCrackedEgg, oBlackHoleCharge, oBrokenBloodVial, oImageOfYou, oDirtyMirror, oCriminalRecord);
 ds_list_add(powerfulItemList, oElementalVortex, oYin, oYang, oFreedom, oDoubleOrNothing,
 	oDeathBook, oMagnet, oBrainInAJar, oActionFigure, oWhisperingCrystal, oBrokenSnowglobe, oMirrorShard);
 ds_list_add(mythicItemList, oCondensedRift, oPetrifiedHeart, oMolotov,  oTesseract, 
@@ -113,6 +114,9 @@ oElectricKite, oGunpowder, oMetalOrb);
 ds_list_add(ultraItemList, oDreamsBook, oHauntedGravestone, oElectricDartGun, oPoorFingerPainting);
 
 //item unlocks
+if (global.meta.challenges.gotItemItemsPlus) {
+	ds_list_add(powerfulItemList, oItemsPlus);
+}
 if (global.meta.challenges.gotItemReflectiveGem) {
 	ds_list_add(commonItemList, oReflectiveGem);
 }
@@ -257,6 +261,8 @@ hasHollowedDice = false;
 spawnSimple = false;
 hasDirtyMirror = false;
 hasReflectiveGem = false;
+flagNextShopItemDiscount = false;
+flagNextShopItemFree = false;
 reflectiveGemLuckBonus = 0;
 reflectiveGemFlag = false;
 show_debug_message("ItemManager CREATED in room: " + string(room));
@@ -266,6 +272,7 @@ portalbook = {
 	portal1: noone,
 	portal2: noone
 }
+hasItemsPlus = false
 hasElementalVortex = false;
 hasCrystalIce = false;
 hasCrystalFire = false;

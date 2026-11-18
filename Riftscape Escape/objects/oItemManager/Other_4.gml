@@ -17,3 +17,6 @@ if (foolsGoldTimer > 0) {
 if (hasPiggyBank) {
 	piggyBankLuck += 2.5;
 }
+if (hasItemsPlus) {
+	luckBonus -= 0.2;
+}

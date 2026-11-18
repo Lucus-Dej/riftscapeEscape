@@ -155,7 +155,16 @@ function itemAdd(_item, _addToInventory = true){
 		oItemManager.hasBloodyGem = true;
 		break;
 		
+		
 		// powerful'
+		case oItemsPlus:
+		oItemManager.hasItemsPlus = true;
+		with (oItems) {
+			if (shopItem) {
+				price *= 0.65;
+			}
+		}
+		break;
 		case oLightningCrystal:
 		oItemManager.hasCrystalLightning = true;
 		break;
@@ -449,6 +458,10 @@ function displayItemFunction(_item){
 		break;
 		
 		// rares
+		case oItemsPlus:
+		desc = "Items Plus: 'More Shops. Better Prices'. Subscription Price: 0.2";
+		break;
+		
 		case oPiggyBank:
 		desc = "Piggy Bank: Hold To Increase Value. Break It To Cash Out. Value: "+string(oItemManager.piggyBankLuck);
 		break;
@@ -553,6 +566,12 @@ function displayItemFunction(_item){
 		break;
 		case oFreedomPage:
 		desc = "Freedom: Obtain Flight Until The End Of The Next Room";
+		break;
+		case oCriminalRecord:
+		desc = "Criminal Record: Next Shop Item Is Free";
+		break;
+		case oCriminalRecordPage:
+		desc = "Criminal Record: Next Shop Item Is 50% Off";
 		break;
 		
 		case oCondensedRift:
@@ -887,6 +906,14 @@ function itemRemove(_item, _removeFromInventory = true){
 		break;
 		
 		// powerful
+		case oItemsPlus:
+		oItemManager.hasItemsPlus = false;
+		with (oItems) {
+			if (shopItem) {
+				price /= 0.65;
+			}
+		}
+		break;
 		case oElementalVortex:
 		oItemManager.hasElementalVortex = false;
 		break;
@@ -1431,8 +1458,39 @@ function spawnItem(_item, _location, _rID, _allowDuplicating = false, _bossSearc
 		return newItem;
 	}
 }
+function findRaritySpriteCons(_rarity) {
+	var sprite = sRarity0SimpleCons;
+	switch (_rarity) {
+		case 1:
+		sprite = sRarity1CommonCons;
+		break;
+		
+		case 2:
+		sprite = sRarity2Rare_1Cons;
+		break;
+		
+		case 3:
+		sprite = sRarity3PowerfulCons;
+		break;
+		
+		case 4:
+		sprite = sRarity4MythicCons;
+		break;
+		
+		case 5:
+		sprite = sRarity5RuneCons;
+		break;
+		
+		case 6:
+		sprite = sRarity6UltraCons;
+		break;
+		
+		
+	}
+	return sprite;
+}
 function findRaritySprite(_rarity) {
-	var sprite = sRarity1Common;
+	var sprite = sRarity0Simple;
 	switch (_rarity) {
 		case 1:
 		sprite = sRarity1Common;

@@ -1,0 +1,15 @@
+damage = 30;
+image_angle = dir;
+spreadSpeed = 0.5;
+spread = false;
+wallLine = ds_list_create();
+nodeLine = ds_list_create();
+damageArray = [];
+damageTimerArray = [];
+dmgRefreshTime = 20;
+target = noone;
+image_alpha = 0.7;
+decay = false;
+targetFound = false;
+scale = sprite_width;
+trackingID = 0;
