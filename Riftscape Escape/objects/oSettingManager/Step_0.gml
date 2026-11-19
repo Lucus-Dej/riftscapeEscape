@@ -10,7 +10,10 @@ if (restartRunKey) {
 		restartRunCurrent = 0;
 	}
 } else {
-	oLightManager.darkLevelRestartMod = 0;
+	if (instance_exists(oLightManager)) {
+		oLightManager.darkLevelRestartMod = 0;
+	}
+	
 	restartRunCurrent = 0;
 }
 if (drawChallenge) {

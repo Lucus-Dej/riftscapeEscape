@@ -418,6 +418,9 @@ if (floorState == genState.complete ) {
 	if (oItemManager.hasItemsPlus) {
 		shopCheck += 25;
 	}
+	if (oItemManager.hasBloodTranfusion) {
+		shopCheck += 10;
+	}
 	show_debug_message("shop Index is "+string(shopCheck))
 	if ((evilRoomFlag || shopCheck >= 70 ) && luck > 0) {
 		var shopFlag = false;

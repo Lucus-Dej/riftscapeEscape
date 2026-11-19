@@ -7,7 +7,8 @@ if (!randomItem) {
 
 if (keyboard_check_pressed(vk_space)) {
 	if (shopItem) {
-		if (oItemManager.luckBonus + oItemManager.reflectiveGemLuckBonus > 0) {
+		if ((!oItemManager.hasBloodTranfusion && oItemManager.luckBonus + oItemManager.reflectiveGemLuckBonus > 0)
+		|| (oItemManager.hasBloodTranfusion && global.healthPenalty > 0.1)) {
 			grabed = true;
 			removeFromItemPool(object_index)
 			instance_destroy();
@@ -23,7 +24,17 @@ if (keyboard_check_pressed(vk_space)) {
 				oItemManager.luckBonus -= price/2;
 				oItemManager.flagNextShopItemDiscount = false;
 			} else {
-				oItemManager.luckBonus -= price;
+				if (oItemManager.hasBloodTranfusion) {
+					if (global.healthPenalty > 0.1) {
+						global.healthPenalty -= price/100;
+						if (global.healthPenalty < 0.1) {
+							global.healthPenalty = 0.1
+						}
+					}
+				} else {
+					oItemManager.luckBonus -= price;
+				}
+				
 			}
 			
 		}

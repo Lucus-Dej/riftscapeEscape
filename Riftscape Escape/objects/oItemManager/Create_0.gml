@@ -98,7 +98,7 @@ pageArray = [oFreedomPage, oDeathPage, oBlackHolePage, oHarvestPage, oDreamsPage
 
 ds_list_add(runeItemList, oBloodCharm, oPoisonCharm, oIceCharm, oLightningCharm, oFireCharm, 
 	oHeartPendent, oLaserPointer, oUnstableEnergy, oDirectorsNote,
-	oRuneCoin, oArenaCoin, oPurificationCoin, oShopCoin, oRitualCoin, oConfluxCoin);
+	oRuneCoin, oArenaCoin, oPurificationCoin, oShopCoin, oRitualCoin, oConfluxCoin, oBloodTransfusion);
 
 ds_list_add(simpleItemList, oBloodySkull, oPottedPlant, oDeformedBrain,oTornPainting,oBurntBook,oBlueprint);
 
@@ -335,7 +335,7 @@ veriFlagTP = false;
 veriRoom = veribroseItemRoom;
 savedRoom = noone;
 hasKrostEssence = false;
-
+hasBloodTranfusion = false;
 
 //mythic passive
 hasLaserPointer = false;

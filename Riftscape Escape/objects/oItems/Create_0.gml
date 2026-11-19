@@ -42,5 +42,9 @@ isLightExcluded = false;
 if (oItemManager.hasItemsPlus) {
 	price *= 0.65;
 }
-displayString =  "Price: "+string(price)+" Item Luck";
-discountString = "Price: "+string(price/2)+" Item Luck";
+costString = " Item Luck";
+if (oItemManager.hasBloodTranfusion) {
+	costString = "% Max HP";
+}
+displayString =  "Price: "+string(price)+string(costString);
+discountString = "Price: "+string(price/2)+string(costString);

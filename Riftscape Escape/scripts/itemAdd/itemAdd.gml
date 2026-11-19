@@ -309,6 +309,13 @@ function itemAdd(_item, _addToInventory = true){
 		realityUp();
 		break;
 		
+		case oBloodTransfusion:
+		oItemManager.hasBloodTranfusion = true;
+		with (oItems) {
+			costString = "% Max HP";
+		}
+		break;
+		
 		case oShopCoin:
 		oItemManager.hasShopCoin = true;
 		break;
@@ -664,6 +671,9 @@ function displayItemFunction(_item){
 		desc = "Essence Of Krost: Escalating Speed + Contact Damage + Reality Up";
 		break;
 		
+		case oBloodTransfusion:
+		desc = "Blood Transfusion: +10% Chance For Shop Rooms. Items Cost Maximum HP Instead";
+		break;
 		case oShopCoin:
 		desc = "Shop Coin: +30% Chance For Shop Rooms";
 		break;
@@ -1063,6 +1073,13 @@ function itemRemove(_item, _removeFromInventory = true){
 		case oKrostEssence:
 		oItemManager.hasKrostEssence = false;
 		realityDown();
+		break;
+		
+		case oBloodTransfusion:
+		oItemManager.hasBloodTranfusion = false;
+		with (oItems) {
+			costString = " Item Luck";
+		}
 		break;
 		
 		case oShopCoin:
